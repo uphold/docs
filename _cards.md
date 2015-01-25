@@ -1,0 +1,130 @@
+# Cards
+
+Bitreserve uses the concept of a "card" as a store of value. Each card is denominated by a currency or store of value, and every card is automatically provisioned one or more addresses to which value can be sent. Whenever value flows into a card, Bitreserve automatically converts that value into the value determined by the card's denomination. In the world of bitcoin for example, this allows one to preserve the original value sent by the sender and shields the recipient from any volatility they might be exposed to by holding bitcoin directly. This also allows recipients of funds to normalize all incoming funds to a single store of value regardless of how the value was originally sent.
+
+## List Cards
+
+```bash
+curl "https://api.bitreserve.org/v0/me/cards"
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns the following JSON:
+
+```json
+[
+  {
+    "id": "ade869d8-7913-4f67-bb4d-72719f0a2be0",
+    "address": {
+      "bitcoin": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH"
+    },
+    "label": "USD card",
+    "currency": "USD",
+    "balance": "897.29",
+    "available": "897.29",
+    "lastTransactionAt": "2014-09-24T18:11:53.561Z",
+    "position": 2,
+    "addresses": [
+      {
+        "id": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH",
+        "network": "bitcoin"
+      }
+    ]
+  },
+  {
+    "id": "91380a1f-c6f1-4d81-a204-8b40538c1f0d",
+    "address": {
+      "bitcoin": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan"
+    },
+    "label": "BTC Card #2",
+    "currency": "BTC",
+    "balance": "0.00",
+    "available": "0.00",
+    "lastTransactionAt": "2014-07-07T05:40:46.624Z",
+    "position": 7,
+    "addresses": [
+      {
+        "id": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan",
+        "network": "bitcoin"
+      },
+      {
+        "id": "18yFebPW8USkoBtYXeV6quwgnPGEVyvpKi",
+        "network": "bitcoin"
+      }
+    ]
+  }
+]
+```
+
+Retrieves a list of cards for the current user.
+
+### Request
+
+`GET https://api.bitreserve.org/v0/me/cards`
+
+### Response
+
+Returns an array of the current user's cards.
+
+## Get Card Details
+
+```bash
+curl "https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b"
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns the following JSON:
+
+```json
+{
+  "id": "2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3",
+  "address": {
+    "bitcoin": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY"
+  },
+  "label": "CNY card",
+  "currency": "CNY",
+  "balance": "42.82",
+  "available": "42.82",
+  "lastTransactionAt": "2014-06-16T20:46:51.002Z",
+  "position": 5,
+  "addresses": [
+    {
+      "id": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
+      "network": "bitcoin"
+    }
+  ]
+}
+```
+
+Retrieves the details about a specific card.
+
+### Request
+
+`GET https://api.bitreserve.org/v0/me/cards/:id`
+
+<aside class="notice">The card ID specified must be owned by the user making the call.</aside>
+
+### Response
+
+Returns the details associated the card ID provided.
+
+## Create Card
+
+```bash
+curl -X POST --data "label=My+New+Card&currency=USD" \
+  -H "Authorization: Bearer <token>" \
+  https://api.bitreserve.org/v0/me/cards
+```
+
+### Request
+
+`POST https://api.bitreserve.org/v0/me/cards`
+
+Parameter | Default |  Description
+--------- | ----------- | -----------
+label | | The display name of the card. Max length: 140 characters.
+currency | | The currency to denominate value stored by the card, represented as a three character currency code.
+
+### Response
+
+Returns a fully formed [Card Object](#card-object) representing the card created.
