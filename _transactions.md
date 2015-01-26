@@ -151,7 +151,7 @@ Returns a [Transaction Object](#transaction-object).
 
 ```bash
 curl "https://api.bitreserve.org/v0/me/transactions" \
-  -X POST \
+  -X GET \
   -H "Authorization: Bearer <token>"
 ```
 > The above command returns the following JSON:
@@ -205,7 +205,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 
 ```bash
 curl "https://api.bitreserve.org/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/transactions" \
-  -X POST \
+  -X GET \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -259,8 +259,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## Get All Transactions (Public)
 
 ```bash
-curl "https://api.bitreserve.org/v0/reserve/transactions" \
-  -H "Authorization: Bearer <token>"
+curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
 ```
 
 > The above command returns the following JSON, truncated for brevity:
@@ -349,9 +348,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## Get Transaction (Public)
 
 ```bash
-curl "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a89-b653-e0a6d0bcf634" \
-  -X POST \
-  -H "Authorization: Bearer <token>"
+curl -X GET "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a89-b653-e0a6d0bcf634"
 ```
 
 > The above command returns the following JSON:
