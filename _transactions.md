@@ -342,7 +342,7 @@ Requests the public view of all transactions in the reserve.
 
 ### Response
 
-Returns a [Transaction Object](#transaction-object).
+Returns an array of [Transaction Objects](#transaction-object).
 
 <aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
 
