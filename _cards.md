@@ -102,7 +102,7 @@ Retrieves the details about a specific card.
 
 `GET https://api.bitreserve.org/v0/me/cards/:id`
 
-<aside class="notice">The card ID specified must be owned by the user making the call.</aside>
+<aside class="notice">`:id` can either be the card ID or its bitcoin address and it must be owned by the user making the call.</aside>
 
 ### Response
 
