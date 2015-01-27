@@ -106,7 +106,7 @@ Retrieves the details about a specific card.
 
 ### Response
 
-Returns the details associated the card ID provided.
+Returns the details associated with the card ID provided.
 
 ## Create Card
 
