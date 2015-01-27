@@ -10,3 +10,11 @@ The follow libraries are available:
 * [PHP SDK](https://github.com/seegno/bitreserve-sdk-php)
 
 We are actively looking for developers to contribute Bitreserve client libraries for a variety of platforms and languages. If you have written a library, please share a link to the github repository with us at <a href="mailto:support@bitreserve.org?subject=I want to contribute code">support@bitreserve.org</a> so that we can promote it here, and collaborate with you on its further development.
+
+## API Changes
+
+You can be notified of the latest changes by *watching* our official [documentation repository](https://github.com/bitreserve/api/) on GitHub.
+
+We are currently in *v0* which means that breaking changes may be introduced. Please follow the *[next](https://github.com/bitreserve/api/releases/tag/next)* release to avoid breaking your application.
+
+The official changelog is currently on [GitHub](https://github.com/bitreserve/api/releases).
