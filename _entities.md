@@ -264,7 +264,7 @@ Property | Description
 --------- | -----------
 id | A unique ID on the Bitreserve Network associated with the transaction.
 message | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
-status | The current status of the transaction. Possible values are: `waiting`, `processing`, `cancelled` or `completed`.
+status | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
 type | The nature of the transaction. Possible values are `invite`, `transfer`, `external/out`, `internal`, and `external/in`.
 RefundedById | When a transaction is cancelled, specifically a transaction in which money is sent to an email address, this contains the transaction ID of the transaction which refunds the amount back to the user.
 createdAt | The date and time the transaction was initiated.
