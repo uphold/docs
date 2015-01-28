@@ -31,7 +31,7 @@ We recommend people secure Personal Access Tokens like you would a password. The
 > To create a Personal Access Token, execute the following command:
 
 ```bash
-curl https://api.bitreserve.org/oauth2/tokens \
+curl https://api.bitreserve.org/v0/me/tokens \
   -X POST \
   -H 'X-Bitreserve-OTP: <OTP-Token>' \
   -H "Content-Type: application/json" \
