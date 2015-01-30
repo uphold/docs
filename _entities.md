@@ -15,7 +15,6 @@
   "balance": "0.00",
   "available": "0.00",
   "lastTransactionAt": "2014-07-07T05:40:46.624Z",
-  "position": 7,
   "addresses": [
     {
       "id": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan",
@@ -24,6 +23,12 @@
     {
       "id": "18yFebPW8USkoBtYXeV6quwgnPGEVyvpKi",
       "network": "bitcoin"
+    }
+  ],
+  "settings": [
+    {
+      "position": "7",
+      "starred": true
     }
   ]
 }
@@ -39,7 +44,7 @@ currency | The currency by which the card is denominated.
 balance | The total balance of the card, including all pending transactions.
 available | The balance available for withdrawal/usage.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
-position | The member’s preferred sort order for the card.
+settings | Contains the card's current `position` and whether the card is `starred` or not.
 
 ## Contact Object
 

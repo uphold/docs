@@ -92,7 +92,18 @@ curl "https://api.bitreserve.org/v0/me"
       "balance": "42.82",
       "available": "42.82",
       "lastTransactionAt": "2014-06-16T20:46:51.002Z",
-      "position": 5
+      "addresses": [
+        {
+          "id": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
+          "network": "bitcoin"
+        }
+      ],
+      "settings": [
+        {
+          "position": "5",
+          "starred": true
+        }
+      ]
     }
   ],
   "transactions": [
