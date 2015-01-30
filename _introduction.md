@@ -15,6 +15,6 @@ We are actively looking for developers to contribute Bitreserve client libraries
 
 You can be notified of the latest changes by *watching* our official [documentation repository](https://github.com/bitreserve/api/) on GitHub.
 
-We are currently in *v0* which means that breaking changes may be introduced. Please follow the *[next](https://github.com/bitreserve/api/releases/tag/next)* release to avoid breaking your application.
+We are currently in *v0* which means that breaking changes may be introduced. If there are any upcoming changes we will add them to a release named *next*. You can follow it in the *[releases](https://github.com/bitreserve/api/releases)* page to avoid breaking your application.
 
 The official changelog is currently on [GitHub](https://github.com/bitreserve/api/releases).
