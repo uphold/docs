@@ -7,7 +7,7 @@ We will provide our members with access to two different resources. The first is
 ## Reserve Status
 
 ```bash
-curl https://api.bitreserve.org/v0/reserve/statistics
+curl "https://api.bitreserve.org/v0/reserve/statistics"
 ```
 
 > Which returns the following:
@@ -321,6 +321,10 @@ rate | The rate we used when computing the holding to the corresponding currency
 `GET https://api.bitreserve.org/v0/reserve/statistics`
 
 ## The Reserveledger
+
+```bash
+curl "https://api.bitreserve.org/v0/reserve/ledger"
+```
 
 Our ledger provides a detailed record of the obligations (a.k.a. "liabilities") flowing into our network via our members, and the resulting changes we as a company make to the assets in our reserve to secure the value of those obligations.
 
