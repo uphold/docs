@@ -9,3 +9,4 @@ In Bitreserve's API, we frequently call for a currency as an input or output. We
 * `JPY` - Japanese Yen
 * `USD` - United States Dollar
 * `XAU` - Ounces of Gold
+* 'XAG' - Ounces of Silver
