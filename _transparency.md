@@ -322,15 +322,21 @@ rate | The rate we used when computing the holding to the corresponding currency
 
 ## The Reserveledger
 
-```bash
-curl "https://api.bitreserve.org/v0/reserve/ledger"
-```
-
 Our ledger provides a detailed record of the obligations (a.k.a. "liabilities") flowing into our network via our members, and the resulting changes we as a company make to the assets in our reserve to secure the value of those obligations.
 
 The ledger is made up of "entries," each of which contains information about the change to an asset, a liability, or both, and references the related transactions that affected the change whenever possible.
 
 Frequently one may find that changes to the Reserve's assets and liabilities are not made in lock step with one another, and that the Reserve may accrue liabilities of one asset type or another, and then have those liabilities offset by a single change to the Reserve's assets.
+
+### Request
+
+```bash
+curl "https://api.bitreserve.org/v0/reserve/ledger"
+```
+
+`GET https://api.bitreserve.org/v0/reserve/ledger`
+
+This endpoint supports [Pagination](#pagination).
 
 ### Deposits
 

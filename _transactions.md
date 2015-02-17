@@ -197,6 +197,8 @@ Requests a list of transactions associated with the current user.
 
 `GET https://api.bitreserve.org/v0/me/transactions`
 
+This endpoint supports [Pagination](#pagination).
+
 ### Response
 
 Returns an array of [Transaction Objects](#transaction-object).
@@ -251,6 +253,8 @@ Requests a list of transactions associated with a specific card.
 ### Request
 
 `GET https://api.bitreserve.org/v0/me/cards/:card/transactions`
+
+This endpoint supports [Pagination](#pagination).
 
 ### Response
 
@@ -338,6 +342,8 @@ Requests the public view of all transactions in the reserve.
 ### Request
 
 `GET https://api.bitreserve.org/v0/reserve/transactions`
+
+This endpoint supports [Pagination](#pagination).
 
 ### Response
 
