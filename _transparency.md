@@ -532,7 +532,6 @@ Given that this is a point in the chain at which there is a genesis of value, th
     "rate": "1.00"
   },
   "status": "completed",
-  "quotedAt": "2014-10-08T12:26:29.794Z",
   "createdAt": "2014-10-08T12:26:29.807Z"
 }
 
@@ -582,7 +581,6 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
     "rate": "1.00",
   },
   "status": "completed",
-  "quotedAt": "2014-10-08T06:53:45.048Z",
   "createdAt": "2014-10-08T06:53:51.060Z"
 }
 
@@ -633,7 +631,6 @@ A transfer documents movement of value within our network, either between two pa
     "rate": "392.16000"
   },
   "status": "completed",
-  "quotedAt": "2014-09-30T20:29:33.588Z",
   "createdAt": "2014-09-30T20:29:36.458Z"
 }
 

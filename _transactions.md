@@ -16,8 +16,11 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 ```json
 {
   "id": "7c377eba-cb1e-45a2-8c13-9807b4139bec",
-  "status": "pending",
   "type": "transfer",
+  "message": null,
+  "status": "pending",
+  "RefundedById":null,
+  "createdAt": "2014-08-27T00:01:11.616Z",
   "denomination": {
     "amount": "0.1",
     "currency": "BTC",
@@ -160,7 +163,8 @@ curl "https://api.bitreserve.org/v0/me/transactions" \
 [
   {
     "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-    "message":null,
+    "type": "transfer",
+    "message": null,
     "status": "waiting",
     "RefundedById":null,
     "createdAt": "2014-08-27T00:01:11.616Z",
@@ -175,7 +179,8 @@ curl "https://api.bitreserve.org/v0/me/transactions" \
   },
   {
     "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-    "message":null,
+    "type": "transfer",
+    "message": null,
     "status": "waiting",
     "RefundedById":null,
     "createdAt": "2014-08-27T00:01:12.616Z",
@@ -217,7 +222,8 @@ curl "https://api.bitreserve.org/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a
 [
   {
     "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-    "message":null,
+    "type": "transfer",
+    "message": null,
     "status": "waiting",
     "RefundedById":null,
     "createdAt": "2014-08-27T00:01:11.616Z",
@@ -232,7 +238,8 @@ curl "https://api.bitreserve.org/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a
   },
   {
     "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-    "message":null,
+    "type": "transfer",
+    "message": null,
     "status": "waiting",
     "RefundedById":null,
     "createdAt": "2014-08-27T00:01:12.616Z",
@@ -272,6 +279,7 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
 [
   {
     "id": "63dc7ccb-0e57-400d-8ea7-7d903753801c",
+    "type": "deposit",
     "params": {
       "margin": "0.45",
       "pair": "BTCUSD",
@@ -298,11 +306,11 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
       "rate": "0.00244983"
     },
     "status": "completed",
-    "quotedAt": "2014-09-25T19:19:36.052Z",
     "createdAt": "2014-09-25T19:19:51.201Z"
   },
   {
     "id": "fc4263a8-5df0-493d-bd26-517a218c7089",
+    "type": "deposit",
     "params": {
       "margin": "0.00",
       "pair": "BTCBTC",
@@ -329,7 +337,6 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
       "rate": "1.00"
     },
     "status": "completed",
-    "quotedAt": "2014-09-25T18:11:42.300Z",
     "createdAt": "2014-09-25T18:11:50.182Z"
   }
 ]
@@ -362,9 +369,14 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a
 ```json
 {
   "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
+  "type": "deposit",
   "params": {
     "type": "invite",
     "pair": "USDUSD"
+  },
+  "denomination": {
+    "amount": "1.00",
+    "currency": "USD"
   },
   "origin": {
     "base": "1.00",
@@ -380,7 +392,8 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a
     "fee": "0.00",
     "currency": "USD"
   },
-  "status": "waiting"
+  "status": "waiting",
+  "createdAt": "2014-09-25T18:11:50.182Z"
 }
 ```
 
