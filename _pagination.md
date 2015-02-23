@@ -1,6 +1,6 @@
 # Pagination
 
-All collection endpoints support [Range Pagination Headers](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) using `Range` & `Content-Range` entity-headers.
+ Collection endpoints with large dataset supports [Range Pagination Headers](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) using `Range` & `Content-Range` entity-headers.
 
 ## Request
 
