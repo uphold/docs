@@ -1,6 +1,6 @@
 # Support
 
-We are in the process of setting up a public forum for developers to seek support from the community and fellow Bitreserve professionals. In the meantime, if you have a question about the API, please contact us at <a href="support@bitreserve.org?subject=I have an API question">support@bitreserve.org</a>.
+Please visit our <a href="https://groups.google.com/forum/#!forum/bitreservedev"> developer community where you can seek support from fellow developers as well as the developer support professionals at Bitreserve.</a> If you need to contact us directly, please email <a href="mailto:developer@bitreserve.org?Subject=Help%20Me" target="_top">developer@bitreserve.org</a>
 
 <br>
 <br>
