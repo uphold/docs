@@ -7,7 +7,9 @@ In Bitreserve's API, we frequently call for a currency as an input or output. We
 * `CNY` - Chinese Yuan
 * `EUR` - European Euro
 * `GBP` - British Pound
+* `INR` - Indian Rupee
 * `JPY` - Japanese Yen
+* `MXN` - Mexican Peso
 * `USD` - United States Dollar
 * `XAG` - Ounces of Silver
 * `XAU` - Ounces of Gold
