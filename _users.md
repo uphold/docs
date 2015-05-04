@@ -98,12 +98,10 @@ curl "https://api.bitreserve.org/v0/me"
           "network": "bitcoin"
         }
       ],
-      "settings": [
-        {
-          "position": "5",
-          "starred": true
-        }
-      ]
+      "settings": {
+        "position": "5",
+        "starred": true
+      }
     }
   ]
 }

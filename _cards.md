@@ -29,12 +29,10 @@ curl "https://api.bitreserve.org/v0/me/cards"
         "network": "bitcoin"
       }
     ],
-    "settings": [
-      {
-        "position": "1",
-        "starred": true
-      }
-    ]
+    "settings": {
+      "position": "1",
+      "starred": true
+    }
   },
   {
     "id": "91380a1f-c6f1-4d81-a204-8b40538c1f0d",
@@ -56,12 +54,10 @@ curl "https://api.bitreserve.org/v0/me/cards"
         "network": "bitcoin"
       }
     ],
-    "settings": [
-      {
-        "position": "7",
-        "starred": true
-      }
-    ]
+    "settings": {
+      "position": "7",
+      "starred": true
+    }
   }
 ]
 ```
@@ -102,12 +98,10 @@ curl "https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24
       "network": "bitcoin"
     }
   ],
-  "settings": [
-    {
-      "position": "5",
-      "starred": true
-    }
-  ]
+  "settings": {
+    "position": "5",
+    "starred": true
+  }
 }
 ```
 

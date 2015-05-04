@@ -25,12 +25,10 @@
       "network": "bitcoin"
     }
   ],
-  "settings": [
-    {
-      "position": "7",
-      "starred": true
-    }
-  ]
+  "settings": {
+    "position": "7",
+    "starred": true
+  }
 }
 ```
 
