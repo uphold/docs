@@ -30,7 +30,7 @@ curl "https://api.bitreserve.org/v0/me/cards"
       }
     ],
     "settings": {
-      "position": "1",
+      "position": 1,
       "starred": true
     }
   },
@@ -55,7 +55,7 @@ curl "https://api.bitreserve.org/v0/me/cards"
       }
     ],
     "settings": {
-      "position": "7",
+      "position": 7,
       "starred": true
     }
   }
@@ -99,7 +99,7 @@ curl "https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24
     }
   ],
   "settings": {
-    "position": "5",
+    "position": 5,
     "starred": true
   }
 }

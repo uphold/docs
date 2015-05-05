@@ -99,7 +99,7 @@ curl "https://api.bitreserve.org/v0/me"
         }
       ],
       "settings": {
-        "position": "5",
+        "position": 5,
         "starred": true
       }
     }
