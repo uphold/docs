@@ -26,7 +26,7 @@
     }
   ],
   "settings": {
-    "position": "7",
+    "position": 7,
     "starred": true
   }
 }
