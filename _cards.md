@@ -120,9 +120,11 @@ Returns the details associated with the card ID provided.
 ## Create Card
 
 ```bash
-curl -X POST --data "label=My+New+Card&currency=USD" \
-  -H "Authorization: Bearer <token>" \
-  https://api.bitreserve.org/v0/me/cards
+curl https://api.bitreserve.org/v0/me/cards \
+  -X POST \
+  -H "Authorization: Bearer <token>"
+  -H "Content-Type: application/json" \
+  -d '{ "label": "My New Card", "currency": "USD" }'
 ```
 
 ### Request
@@ -137,3 +139,26 @@ currency | | The currency to denominate value stored by the card, represented as
 ### Response
 
 Returns a fully formed [Card Object](#card-object) representing the card created.
+
+## Update Card
+
+```bash
+curl https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
+  -X PATCH \
+  -H "Authorization: Bearer <token>"
+  -H "Content-Type: application/json" \
+  -d '{ "label": "My Updated Card" }'
+```
+
+### Request
+
+`PATCH https://api.bitreserve.org/v0/me/cards/:id`
+
+Parameter | Description
+--------- | -----------
+label | The display name of the card. Max length: 140 characters.
+settings | An object with the card's `position` and whether it is `starred`.
+
+### Response
+
+Returns a fully formed [Card Object](#card-object) representing the updated card.
