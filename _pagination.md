@@ -18,6 +18,6 @@ curl "https://api.bitreserve.org/v0/me/transactions"
 
 ## Response
 
-The endpoints that support pagination returns a `Content-Range` header. For instance, if you make a request with `Range: items=0-4` header the response will contain the following header: `Content-Range 0-4/*` where `*` will be the total number of items that this endpoint can return.
+The endpoints that support pagination returns a `Content-Range` header. For instance, if you make a request with `Range: items=0-4` header the response will contain the following header: `Content-Range: 0-4/*` where `*` will be the total number of items that this endpoint can return.
 
 If the `Range` header is malformed or if the range cannot be satisfied you will receive a 412 error or a 416 error, respectively.
