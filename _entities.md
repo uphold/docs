@@ -6,43 +6,47 @@
 
 ```
 {
-  "id": "91380a1f-c6f1-4d81-a204-8b40538c1f0d",
   "address": {
-    "bitcoin": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan"
+    "bitcoin": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH"
   },
-  "label": "BTC Card #2",
-  "currency": "BTC",
-  "balance": "0.00",
-  "available": "0.00",
-  "lastTransactionAt": "2014-07-07T05:40:46.624Z",
+  "available": "87.52",
+  "balance": "87.52",
+  "currency": "EUR",
+  "id": "c4a77706-7b3a-4b8b-968b-4190038d37e8",
+  "label": "EUR card",
+  "lastTransactionAt": "2015-06-03T12:25:21.809Z",
+  "settings": {
+    "position": 4,
+    "starred": true
+  },
   "addresses": [
     {
-      "id": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan",
-      "network": "bitcoin"
-    },
-    {
-      "id": "18yFebPW8USkoBtYXeV6quwgnPGEVyvpKi",
+      "id": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH",
       "network": "bitcoin"
     }
   ],
-  "settings": {
-    "position": 7,
-    "starred": true
-  }
+  "normalized": [
+    {
+      "available": "99.04",
+      "balance": "99.04",
+      "currency": "USD"
+    }
+  ]
 }
 ```
 
 Property | Description
 --------- | -----------
-id | A unique ID associated with the card.
 address | A key/value pair representing the primary address for the card.
-addresses | An associative array of all the known addresses associated with the card, including the primary card.
-label | The display name of the card as chosen by the user.
-currency | The currency by which the card is denominated.
-balance | The total balance of the card, including all pending transactions.
 available | The balance available for withdrawal/usage.
+balance | The total balance of the card, including all pending transactions.
+currency | The currency by which the card is denominated.
+id | A unique ID associated with the card.
+label | The display name of the card as chosen by the user.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
 settings | Contains the card's current `position` and whether the card is `starred` or not.
+addresses | An associative array of all the known addresses associated with the card, including the primary card.
+normalized | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 
 ## Contact Object
 
@@ -50,26 +54,28 @@ settings | Contains the card's current `position` and whether the card is `starr
 
 ```
 {
-  "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
-  "firstName": "Han",
-  "lastName": "Solo",
+  "addresses": [
+    "mtRwYWGKe1hYqNJ5fSTogXWPnFxoQrPYo6"
+  ],
   "company": "Independent",
   "emails": [
     "han.solo@rebelalliance.org"
   ],
-  "addresses": [],
+  "firstName": "Han",
+  "id": "c4db98e4-c9e1-46dc-a927-17a26fb9772c",
+  "lastName": "Solo",
   "name": "Han Solo"
 }
 ```
 
 Property | Description
 --------- | -----------
-id | A unique ID in the Bitreserve network identifying the contact.
-firstName | The first name of this contact provided by the user.
-lastName | The last name of this contact provided by the user.
+addresses | An array of known addresses associated with this contact.
 company | The company of this contact provided by the user.
 emails | An array of known email addresses associated with this contact.
-address | An array of known addresses associated with this contact.
+firstName | The first name of this contact provided by the user.
+id | A unique ID in the Bitreserve network identifying the contact.
+lastName | The last name of this contact provided by the user.
 name | The display name of the contact created by joining the first and last names.
 
 ## Currency Pair Object
@@ -77,127 +83,25 @@ name | The display name of the contact created by joining the first and last nam
 > An example currency pair encoded in JSON looks like this:
 
 ```
-"BTCUSD": {
-  "bid": "599.23",
-  "ask": "600.99"
+{
+  "ask": "225.76",
+  "bid": "225.73",
+  "currency": "USD",
+  "pair": "BTCUSD"
 }
 ```
 
 A currency pair is the combination of two currencies, encoded as two currency codes, e.g. USD, GBP, EUR, concatenated together to represent the current status of converting the first currency into the second. For example, the currency pair "BTCUSD" represents moving from bitcoin to US dollars.
 
-Each currency pair has three properties:
+Each currency pair has four properties:
 
 Property | Description
 --------- | -----------
-bid | The current bid price, or the price we quote when buying the asset.
 ask | The current ask price, or the price we quote when selling the asset.
+bid | The current bid price, or the price we quote when buying the asset.
+currency | The currency that is used in the `ask` and `bid` prices.
+pair | The currency pair AB represents moving from A to B.
 
-## User Object
-
-> An example user encoded in JSON looks like this:
-
-```
-{
-  "username": "byrnereese",
-  "email": "byrne@bitreserve.org",
-  "firstName": "Byrne",
-  "lastName": "Reese",
-  "name": "Byrne Reese",
-  "country": "US",
-  "state": "CA",
-  "currencies": [
-    "BTC",
-    "USD",
-    "EUR",
-    "GBP",
-    "CNY",
-    "JPY",
-    "XAU"
-  ],
-  "status": {
-    "email": "ok",
-    "phone": "pending",
-    "review": "pending",
-    "volume": "ok",
-    "identity": "pending",
-    "overview": "pending",
-    "screening": "pending",
-    "registration": "running"
-  },
-  "settings": {
-    "theme": "minimalistic",
-    "currency": "USD",
-    "hasNewsSubscription": "true",
-    "intl": {
-      "language": {
-        "locale": "en-US"
-      },
-      "dateTimeFormat": {
-        "locale": "en-US"
-      },
-      "numberFormat": {
-        "locale": "en-US"
-      }
-    },
-    "hasOtpEnabled": "false"
-  },
-  "phones":[
-    {
-      "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
-      "verified": "true",
-      "primary": "true",
-      "e164Masked": "+XXXXXXXXX04",
-      "nationalMasked": "(XXX) XXX-XX04",
-      "internationalMasked": "+X XXX-XXX-XX04"
-    }
-  ],
-  "balances": {
-    "total": "1083.77",
-    "currencies": {
-      "CNY": {
-        "amount": "6.98",
-        "balance": "42.82",
-        "currency": "USD",
-        "rate": "6.13880"
-      },
-      "EUR": {
-        "amount": "75.01",
-        "balance": "58.05",
-        "currency": "USD",
-        "rate": "1.29220"
-      }
-    }
-  },
-  "cards": <snip>,
-  "transactions": <snip>
-}
-```
-
-The ```user``` object contains all information we have on record relating to the currently logged in user.
-
-<aside class="notice">
-Privacy Notice: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
-</aside>
-
-### User Status
-
-We communicate a number of different user states through our API. At a high-level accounts can be in one of four states:
-
-* **pending** - This state is present while the user is creating an account
-* **restricted** - When a user is in this state they are allowed to login to the application and receive money, but they are not permitted to initiate transactions. This states exists to allow members to satisfy additional data requirements.
-* **blocked** - This state is present when a user has violated our terms of service. In this state users are unable to login or access the product.
-* **ok** - Everything is ay-ok.
-
-When members are in restricted or blocked state, the `flags` field can help communicate the reasons for account suspension. These flags, and their permissible values are:
-
-Flag | Permissible Values | Description
--------- | ----------- | ---------
-email | pending, ok | The status of email verification.
-registration | pending, running, ok | Where a user is in the registration process.
-phone | pending, running, ok | The status of phone number verification.
-ofac | pending, ready, running, ok, failed | The status of whether a user has cleared [OFAC](http://en.wikipedia.org/wiki/Office_of_Foreign_Assets_Control) screening.
-identity | pending, ready, running, ok, failed | The status of identity verification during membership application process.
-verification | pending, ready, ok, failed | The status of user data verification.
 
 ## Transaction Object
 
@@ -205,54 +109,62 @@ verification | pending, ready, ok, failed | The status of user data verification
 
 ```
 {
-  "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-  "message": "",
-  "type": "invite",
-  "status": "waiting",
-  "RefundedById": null,
-  "createdAt": "2014-08-27T00:01:11.616Z",
+  "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
+  "type": "transfer",
+  "message": "Join Bitreserve!",
   "denomination": {
-    "rate": "1.00",
-    "amount": "1.00",
-    "currency": "USD"
-  },
-  "origin": {
-    "address": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH",
-    "base": "1.00",
-    "commission": "0.00",
-    "fee": "0.00",
-    "amount": "1.00",
-    "CardId": "ade869d8-7913-4f67-bb4d-72719f0a2be0",
+    "amount": "2.00",
     "currency": "USD",
-    "description": "Luke Skywalker",
+    "pair": "USDUSD",
+    "rate": "1.00"
+  },
+  "status": "waiting",
+  "params": {
+    "currency": "USD",
+    "margin": "0.00",
+    "pair": "USDUSD",
+    "progress": "0",
+    "rate": "1.00",
+    "ttl": 30000,
+    "type": "invite"
+  },
+  "createdAt": "2015-06-04T11:43:30.645Z",
+  "normalized": [
+    {
+      "amount": "2.00",
+      "commission": "0.00",
+      "currency": "USD",
+      "rate": "1.00"
+    }
+  ],
+  "origin": {
+    "CardId": "718c7c81-ae87-46b3-97d5-131b78d76f05",
+    "amount": "2.00",
+    "base": "2.00",
+    "commission": "0.00",
+    "currency": "USD",
+    "description": "John Smith",
+    "fee": "0.00",
     "rate": "1.00",
     "sources": [
       {
-        "id": "35325c99-edeb-4625-9cd8-f56d4783c352",
-        "amount": "1"
+        "id": "f66f0e7f-20a1-4983-8855-52b96cd57d31",
+        "amount": "2.00"
       }
     ],
-    "type": "card"
+    "type": "card",
+    "username": "johnsmith"
   },
   "destination": {
-    "address": "1PtbHc2C3DHQmTRMxMd1DJgH7AKubjhbip",
-    "base": "1.00",
+    "amount": "2.00",
+    "base": "2.00",
     "commission": "0.00",
-    "fee": "0.00",
-    "amount": "1.00",
-    "CardId": "e3bc8674-f647-42f1-91b5-0395458ee81c",
     "currency": "USD",
     "description": "leia.organa@senate.coruscant.gov",
+    "fee": "0.00",
     "rate": "1.00",
-    "type": "email"
-  },
-  "params": {
-    "pair": "USDUSD",
-    "margin": "0.00",
-    "currency": "USD",
-    "rate": "1.00",
-    "progress": "0",
-    "ttl": 30000
+    "type": "email",
+    "username": null
   }
 }
 ```
@@ -266,15 +178,16 @@ There are two views of a transaction: public and private. The private view of in
 Property | Description
 --------- | -----------
 id | A unique ID on the Bitreserve Network associated with the transaction.
+type | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 message | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
-status | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
-type | The nature of the transaction. Possible values are `invite`, `transfer`, `external/out`, `internal`, and `external/in`.
-RefundedById | When a transaction is cancelled, specifically a transaction in which money is sent to an email address, this contains the transaction ID of the transaction which refunds the amount back to the user.
-createdAt | The date and time the transaction was initiated.
 denomination | The funds to be transfered, as originally requested. See "Denomination" below.
+status | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
+params | Other parameters of this transaction. See "Parameters" below.
+createdAt | The date and time the transaction was initiated.
+normalized | The transaction details in the overall selected currency by the user. See "Normalized" below.
 origin | The sender of the funds. See "Origin and Destination" below.
 destination | The recipient of the funds. See "Origin and Destination" below.
-params | Other parameters of this transaction.
+
 
 <aside class="notice">
 A transaction can involve 3 different currencies: the currency as **denominated** by the user, the currency at the **origin** card and the currency at the **destination** card. For instance, _"transfer 1 BTC from my USD card to my EUR card"_. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is credited at the origin, then debited in EUR at the destination.
@@ -288,27 +201,52 @@ Property | Description
 --------- | -----------
 amount | The amount to be transacted.
 currency | The currency for said amount.
+pair | The currency pair representing the denominated currency and the currency at ```origin```.
 rate | The quoted rate for converting between the denominated currency and the currency at ```origin```.
 
 <aside class="notice">
 If the ```denomination``` and ```origin``` are the same currency, the ```rate``` will be '1.00'.
 </aside>
 
+### Parameters
+
+The `params` property associated with a transaction records additional meta data relating to the respective transaction. It contains the following properties:
+
+Property | Description
+--------- | -----------
+currency | The currency in which the total commission is expressed.
+margin | Bitreserve's commission expressed in percentage.
+pair | The currency pair associated with any exchange that took place, if any.
+progress | In case a transaction is coming in from the outside, how many confirmations have been received.
+ttl | The time this quote is good for, in milliseconds.
+
+### Normalized
+
+The `normalized` property contains the normalized amount and commission values in the currency chosen by the user in the settings:
+
+Property | Description
+--------- | -----------
+amount | The amount to be transacted.
+commission | The total commission taken on this transaction, either at origin or at destination.
+currency | The currency in which the amount and commission are expressed.
+rate | The exchange rate for this pair.
+
 ### Origin
 The origin has properties regarding how the transaction affects the account at origin of the funds:
 
 Property | Description
 --------- | -----------
-address | The address from which funds were taken.
+CardId | The ID of the card debited. Only visible to the user who sends the transaction.
+amount | The amount debited to the origin account, including commissions and fees.
 base | The amount to debit the origin account, before commissions or fees.
 commission | The commission charged by Bitreserve to process the transaction.
-fee | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Bitreserve Bitcoin Address.
-amount | The amount debited to the origin account, including commissions and fees.
-CardId | The ID of the card debited. Only visible to the user who sends the transaction.
 currency | The currency of the funds at the origin acount.
 description | The name of the sender.
+fee | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Bitreserve Bitcoin Address.
 rate | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of ```destination.rate```).
-type | The type of endpoint. Possible values are 'card' and 'external'
+sources | The transactions where the value was originated from (id and amount).
+type | The type of endpoint. Possible values are 'card' and 'external'.
+username | The username from the user that performed the transaction.
 
 <aside class="notice">
 Commissions are incurred only when a currency conversion is required. A commission is charged at origin when the denomination currency is different from the origin currency, and it's deducted at destination when the denomination currency is different from the destination currency.
@@ -320,28 +258,188 @@ The destination of a transaction has its own set of properties describing how th
 
 Property | Description
 --------- | -----------
-address | The address to which funds were directed.
+CardId | The ID of the card credited. Only visible to the user who receives the transaction.
+amount | The amount credited to the destination account, including commissions and fees.
 base | The amount to credit the destination account, before commissions or fees.
 commission | The commission charged by Bitreserve to process the transaction. Commissions are only charged when currency is converted into a different denomination.
-fee | The Bitcoin network Fee, if destination is a BTC account but origin is not.
-amount | The amount credited to the destination account, including commissions and fees.
-CardId | The ID of the card credited. Only visible to the user who receives the transaction.
 currency | The denomination of the funds at the time they were sent/received.
 description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient.
+fee | The Bitcoin network Fee, if destination is a BTC account but origin is not.
 rate | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of ```origin.rate```).
 type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 
+## User Object
 
-### Parameters
+> An example user encoded in JSON looks like this:
 
-The `params` property associated with a transaction records additional meta data relating to the respective transaction. It contains the following properties:
+```
+{
+  "address": {},
+  "birthdate": "1986-05-04",
+  "country": "US",
+  "currencies": [
+    "BTC",
+    "CHF",
+    "CNY",
+    "EUR",
+    "GBP",
+    "INR",
+    "JPY",
+    "MXN",
+    "USD",
+    "XAG",
+    "XAU",
+    "XPD",
+    "XPT"
+  ],
+  "email": "testing+smith@bitreserve.org",
+  "firstName": "John",
+  "identity": {},
+  "lastName": "Smith",
+  "name": "John Smith",
+  "phones": [
+    {
+      "e164Masked": "+XXXXXXXXX54",
+      "id": "03c46123-1f82-4bca-893d-d5de587c3135",
+      "internationalMasked": "+X XXX-XXX-XX54",
+      "nationalMasked": "(XXX) XXX-XX54",
+      "primary": true,
+      "verified": true
+    }
+  ],
+  "settings": {
+    "currency": "USD",
+    "hasNewsSubscription": true,
+    "hasOtpEnabled": true,
+    "intl": {
+      "dateTimeFormat": {
+        "locale": "en-US"
+      },
+      "language": {
+        "locale": "en-US"
+      },
+      "numberFormat": {
+        "locale": "en-US"
+      }
+    }
+  },
+  "state": "California",
+  "status": "ok",
+  "username": "johnsmith",
+  "verifications": {
+    "identity": {
+      "status": "required"
+    }
+  },
+  "balances": {
+    "total": "499.04",
+    "currencies": {
+      "BTC": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "440.49500"
+      },
+      "CHF": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "1.08085"
+      },
+      "CNY": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "0.16017"
+      },
+      "EUR": {
+        "amount": "99.04",
+        "balance": "87.52",
+        "currency": "USD",
+        "rate": "1.13165"
+      },
+      "GBP": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "1.52485"
+      },
+      "INR": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "0.01605"
+      },
+      "JPY": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "0.00837"
+      },
+      "MXN": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "0.06700"
+      },
+      "USD": {
+        "amount": "400.00",
+        "balance": "400.00",
+        "currency": "USD",
+        "rate": "1.00000"
+      },
+      "XAG": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "17.27900"
+      },
+      "XAU": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "1235.46975"
+      },
+      "XPD": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "772.33385"
+      },
+      "XPT": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "1232.91175"
+      }
+    }
+  },
+  "cards": <snip>
+}
+```
 
-Property | Description
---------- | -----------
-pair | The currency pair associated with any exchange that took place, if any.
-margin | Bitreserve's commission expressed in percentage.
-commission | The total commission taken on this transaction, either at origin or at destination.
-currency | The currency in which the total commission is expressed.
-rate | The exchange rate for this pair.
-progress | In case a transaction is coming in from the outside, how many confirmations have been received.
-ttl | The time this quote is good for, in milliseconds (`[0-30000]`).
+The ```user``` object contains all information we have on record relating to the currently logged in user.
+
+<aside class="notice">
+Privacy Notice: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
+</aside>
+
+### User Status
+
+We communicate a number of different user states through our API. At a high-level accounts can be in one of four states:
+
+* **pending** - This state is present while the user is creating an account.
+* **restricted** - When a user is in this state they are allowed to login to the application and receive money, but they are not permitted to initiate transactions. This state exists to allow users to satisfy additional data requirements.
+* **blocked** - This state is present when a user has violated our terms of service. In this state users are unable to login or access the product.
+* **ok** - Everything is ay-ok.
+
+When users are in a specific state, the `verifications` field can help communicate the reasons for account status and potential suspension. These verifications have permissible values and in some cases, an associated reason. Here is an overview of the verifications field:
+
+Flag | Permissible Values | Reason | Description
+-------- | ----------- | --------- | ---------
+birthdate | required | n/a | Whether the user needs to provide his/her date of birth.
+email | unconfirmed | n/a | Whether the user needs to confirm his/her email.
+identity | required, retry, review, running | n/a | The status of identity verification during membership application process.
+location | required, blocked | country, state | Whether the user has specified his/her location, which can be a blocked country/state.
+phone | required, unconfirmed | n/a | The status of phone number verification.
+terms | required | updated | Whether the user has accepted the latest version of the terms of service.
