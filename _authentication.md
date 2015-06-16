@@ -165,3 +165,19 @@ curl https://api.bitreserve.org/v0/me \
 You can use Basic Authentication by providing your username or email and password combination.
 
 If you have OTP (One Time Password, also known as Two-Factor Authentication) enabled, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `X-Bitreserve-OTP: Required`. You will then automatically receive an SMS, or Push Notification with your verification code, depending on whether you have the Authy app installed or not. Then execute the command above again, this time passing your OTP verification code as a header, like so: `X-Bitreserve-OTP: <OTP-Token>`.
+## Buttons
+
+We prefer that you use these image resources when connecting your applications to Bitreserve.<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-lightPurple@1x.png) ![Connect Button](/images/buttons/Bitreserve-connect-purple@1x.png) ![Connect Button](/images/buttons/Bitreserve-connect-white@1x.png)<br/>
+
+![Connect Button](/images/buttons/Bitreserve-connect-with-lightPurple@1x.png)<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-with-purple@1x.png)<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-with-white@1x.png)<br/>
+
+![Connect Button](/images/buttons/Bitreserve-connect-lightPurple@2x.png)<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-purple@2x.png)<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-white@2x.png)<br/>
+
+![Connect Button](/images/buttons/Bitreserve-connect-with-lightPurple@2x.png)<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-with-purple@2x.png)<br/>
+![Connect Button](/images/buttons/Bitreserve-connect-with-white@2x.png)<br/>
