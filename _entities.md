@@ -145,6 +145,36 @@ bid      | The current bid price, or the price we quote when buying the asset.
 currency | The currency that is used in the `ask` and `bid` prices.
 pair     | The currency pair AB represents moving from A to B.
 
+## Phone Object
+
+> An example phone encoded in JSON looks like this:
+
+```
+{
+  "e164Masked": "+XXXXXXXXX04",
+  "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
+  "internationalMasked": "+X XXX-XXX-XX04",
+  "nationalMasked": "(XXX) XXX-XX04",
+  "primary": true,
+  "verified": true
+}
+```
+
+Property            | Description
+------------------- | ---------------------------------------------------------------------------------------------------------
+e164Masked          | The masked representation of the phone number in the [E.164 format](https://en.wikipedia.org/wiki/E.164).
+id                  | A unique ID in the Uphold platform identifying the phone.
+internationalMasked | The masked representation of the phone number in international format.
+nationalMasked      | The masked representation of the phone number in national format.
+primary             | A boolean indicating if this phone number is the user's primary phone number.
+verified            | A boolean indicating if this phone number has been verified.
+
+<aside class="notice">
+  For more information about the specifics of the "international" and "national" phone number formats, refer to the
+  <a href="https://github.com/google/libphonenumber/blob/master/javascript/i18n/phonenumbers/phonenumberutil.js#L885-L894">implementation</a>
+  of the <code>google-libphonenumber</code> package.
+</aside>
+
 ## Transaction Object
 
 > An example transaction encoded in JSON looks like this:

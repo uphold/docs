@@ -31,6 +31,8 @@ cards:read                        | Can view all [cards](#card-object) and their
 cards:write                       | Can create and update any [card](#card-object).
 contacts:read                     | Can view all [contacts](#contact-object) and their information.
 contacts:write                    | Can create and update any [contact](#contact-object).
+phones:read                       | Can view all [phone](#phone-object) numbers and their information.
+phones:write                      | Can add new [phone](#phone-object) numbers.
 transactions:deposit              | Can create a deposit [transaction](#transaction-object).
 transactions:read                 | Can view any [transaction](#transaction-object).
 transactions:transfer:application | Can create a [transaction](#transaction-object) between the user and the application.
