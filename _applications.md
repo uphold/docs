@@ -37,3 +37,25 @@ user:read | Can view the [user](#user-object) and their information.
 
 You can always request more scopes later by asking for user consent again.
 </aside>
+
+## Resources
+
+We prefer that you use these image resources when connecting your applications to Bitreserve.
+
+![Connect Button](/images/buttons/Bitreserve-connect-lightPurple@1x.png)<br>
+[small (119x40)](/images/buttons/Bitreserve-connect-lightPurple@1x.png), [large (238x80)](/images/buttons/Bitreserve-connect-lightPurple@2x.png)
+
+![Connect Button](/images/buttons/Bitreserve-connect-purple@1x.png)<br>
+[small (119x40)](/images/buttons/Bitreserve-connect-purple@1x.png), [large (238x80)](/images/buttons/Bitreserve-connect-purple@2x.png)
+
+![Connect Button](/images/buttons/Bitreserve-connect-white@1x.png)<br>
+[small (119x40)](/images/buttons/Bitreserve-connect-white@1x.png), [large (238x80)](/images/buttons/Bitreserve-connect-white@2x.png)
+
+![Connect Button](/images/buttons/Bitreserve-connect-with-lightPurple@1x.png)<br>
+[small (222x40)](/images/buttons/Bitreserve-connect-with-lightPurple@1x.png), [large (443x80)](/images/buttons/Bitreserve-connect-with-lightPurple@2x.png)
+
+![Connect Button](/images/buttons/Bitreserve-connect-with-purple@1x.png)<br>
+[small (222x40)](/images/buttons/Bitreserve-connect-with-purple@1x.png), [large (443x80)](/images/buttons/Bitreserve-connect-with-purple@2x.png)
+
+![Connect Button](/images/buttons/Bitreserve-connect-with-white@1x.png)<br>
+[small (222x40)](/images/buttons/Bitreserve-connect-with-white@1x.png), [large (443x80)](/images/buttons/Bitreserve-connect-with-white@2x.png)
