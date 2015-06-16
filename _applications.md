@@ -42,20 +42,20 @@ You can always request more scopes later by asking for user consent again.
 
 We prefer that you use these image resources when connecting your applications to Bitreserve.
 
-<img alt="Connect Button" src="/images/buttons/bitreserve-connect-light-purple@1x.png" srcset="/images/buttons/bitreserve-connect-light-purple@1x.png 1x, /images/buttons/bitreserve-connect-light-purple@2x.png 2x"><br>
-[small (119x40)](/images/buttons/bitreserve-connect-light-purple@1x.png), [large (238x80)](/images/buttons/bitreserve-connect-light-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/bitreserve-connect-light-purple@1x.png" srcset="images/buttons/bitreserve-connect-light-purple@1x.png 1x, images/buttons/bitreserve-connect-light-purple@2x.png 2x"><br>
+[small (119x40)](images/buttons/bitreserve-connect-light-purple@1x.png), [large (238x80)](images/buttons/bitreserve-connect-light-purple@2x.png)
 
-<img alt="Connect Button" src="/images/buttons/bitreserve-connect-purple@1x.png" srcset="/images/buttons/bitreserve-connect-purple@1x.png 1x, /images/buttons/bitreserve-connect-purple@2x.png 2x"><br>
-[small (119x40)](/images/buttons/bitreserve-connect-purple@1x.png), [large (238x80)](/images/buttons/bitreserve-connect-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/bitreserve-connect-purple@1x.png" srcset="images/buttons/bitreserve-connect-purple@1x.png 1x, images/buttons/bitreserve-connect-purple@2x.png 2x"><br>
+[small (119x40)](images/buttons/bitreserve-connect-purple@1x.png), [large (238x80)](images/buttons/bitreserve-connect-purple@2x.png)
 
-<img alt="Connect Button" src="/images/buttons/bitreserve-connect-white@1x.png" srcset="/images/buttons/bitreserve-connect-white@1x.png 1x, /images/buttons/bitreserve-connect-white@2x.png 2x"><br>
-[small (119x40)](/images/buttons/bitreserve-connect-white@1x.png), [large (238x80)](/images/buttons/bitreserve-connect-white@2x.png)
+<img alt="Connect Button" src="images/buttons/bitreserve-connect-white@1x.png" srcset="images/buttons/bitreserve-connect-white@1x.png 1x, images/buttons/bitreserve-connect-white@2x.png 2x"><br>
+[small (119x40)](images/buttons/bitreserve-connect-white@1x.png), [large (238x80)](images/buttons/bitreserve-connect-white@2x.png)
 
-<img alt="Connect Button" src="/images/buttons/bitreserve-connect-with-light-purple@1x.png" srcset="/images/buttons/bitreserve-connect-with-light-purple@1x.png 1x, /images/buttons/bitreserve-connect-with-light-purple@2x.png 2x"><br>
-[small (222x40)](/images/buttons/bitreserve-connect-with-light-purple@1x.png), [large (443x80)](/images/buttons/bitreserve-connect-with-light-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/bitreserve-connect-with-light-purple@1x.png" srcset="images/buttons/bitreserve-connect-with-light-purple@1x.png 1x, images/buttons/bitreserve-connect-with-light-purple@2x.png 2x"><br>
+[small (222x40)](images/buttons/bitreserve-connect-with-light-purple@1x.png), [large (443x80)](images/buttons/bitreserve-connect-with-light-purple@2x.png)
 
-<img alt="Connect Button" src="/images/buttons/bitreserve-connect-with-purple@1x.png" srcset="/images/buttons/bitreserve-connect-with-purple@1x.png 1x, /images/buttons/bitreserve-connect-with-purple@2x.png 2x"><br>
-[small (222x40)](/images/buttons/bitreserve-connect-with-purple@1x.png), [large (443x80)](/images/buttons/bitreserve-connect-with-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/bitreserve-connect-with-purple@1x.png" srcset="images/buttons/bitreserve-connect-with-purple@1x.png 1x, images/buttons/bitreserve-connect-with-purple@2x.png 2x"><br>
+[small (222x40)](images/buttons/bitreserve-connect-with-purple@1x.png), [large (443x80)](images/buttons/bitreserve-connect-with-purple@2x.png)
 
-<img alt="Connect Button" src="/images/buttons/bitreserve-connect-with-white@1x.png" srcset="/images/buttons/bitreserve-connect-with-white@1x.png 1x, /images/buttons/bitreserve-connect-with-white@2x.png 2x"><br>
-[small (222x40)](/images/buttons/bitreserve-connect-with-white@1x.png), [large (443x80)](/images/buttons/bitreserve-connect-with-white@2x.png)
+<img alt="Connect Button" src="images/buttons/bitreserve-connect-with-white@1x.png" srcset="images/buttons/bitreserve-connect-with-white@1x.png 1x, images/buttons/bitreserve-connect-with-white@2x.png 2x"><br>
+[small (222x40)](images/buttons/bitreserve-connect-with-white@1x.png), [large (443x80)](images/buttons/bitreserve-connect-with-white@2x.png)
