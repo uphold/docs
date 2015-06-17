@@ -161,6 +161,18 @@ curl https://api.bitreserve.org/v0/me \
   -H 'X-Bitreserve-OTP: <OTP-Token>' \
   -u <username-or-email>:<password>
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+require_once 'config.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client();
+$token = $client->createToken('EMAIL', 'PASSWORD', 'DESCRIPTION');
+echo sprintf("Token: %s\n", $token['access_token']);
+echo sprintf("Description: %s\n", $token['description']);
+echo sprintf("Expires: %s\n", $token['expires']);
+
 
 You can use Basic Authentication by providing your username or email and password combination.
 

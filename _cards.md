@@ -8,6 +8,27 @@ Bitreserve uses the concept of a "card" as a store of value. Each card is denomi
 curl "https://api.bitreserve.org/v0/me/cards"
   -H "Authorization: Bearer <token>"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN');
+// Get the current user.
+$user = $client->getUser();
+// Get current user cards
+$cards = $user->getCards();
+
+echo "*** List of user cards ***\n";
+foreach ($cards as $card) {
+  echo sprintf("Label: %s\n", $card->getLabel());
+  echo sprintf("Id: %s\n", $card->getId());
+  echo sprintf("Bitcoin Address: %s\n", $card->getAddress()['bitcoin']);
+  echo sprintf("Balance: %s\n", $card->getBalance());
+  echo "\n";
+    }
+?>
+```
 
 > The above command returns the following JSON:
 
@@ -78,6 +99,32 @@ Returns an array of the current user's cards.
 curl "https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b"
   -H "Authorization: Bearer <token>"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+// Get the current user.
+$user = $client->getUser();
+// Get current user cards.
+$cards = $user->getCards();
+
+echo "*** List of details for one card ***\n";
+foreach($cards as $card) {
+  // Enter the id of the specific card you want the details of.
+  if($card->getID() === '8645a6d0-2dea-4733-ac83-8917a5452aa1') {
+    echo sprintf("Label: %s\n", $card->getLabel());
+    echo sprintf("Id: %s\n", $card->getId());
+    echo sprintf("Bitcoin Address: %s\n", $card->getAddress()['bitcoin']);
+    echo sprintf("Balance: %s\n", $card->getBalance());
+    echo "\n";
+  } else {
+    echo "Card not found";
+  }
+}
+?>
+```
 
 > The above command returns the following JSON:
 
@@ -125,6 +172,20 @@ curl https://api.bitreserve.org/v0/me/cards \
   -H "Authorization: Bearer <token>"
   -H "Content-Type: application/json" \
   -d '{ "label": "My New Card", "currency": "USD" }'
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+// Get the current user.
+$user = $client->getUser();
+$newCard = $user->createCard('TEST CARD', 'USD');
+
+echo "*** Details of newly created card ***\n";
+print_r($newCard->toArray());
+?>
 ```
 
 ### Request

@@ -10,6 +10,22 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
   -H "Authorization: Bearer <token>" \
   -d "denomination[currency]=BTC&denomination[amount]=0.1&destination=foo@bar.com"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+// Get the current user.
+$user = $client->getUser();
+echo "\n*** Create a new transaction ***\n";
+// Get a user card.
+$card = $user->getCardById('8645a6d0-2dea-4733-ac83-8917a5452aa1');
+// Create a new transaction sending 1 US Dollar.
+$transaction = $card->createTransaction('recipientemail@gmail.com', '1', 'USD');
+print_r($transaction->toArray());
+?>
+```
 
 > The above command returns the following JSON:
 
@@ -67,6 +83,13 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
+```php
+// Use transaction object from create transaction call above.
+$transaction->commit();
+echo "\n*** Committed transaction ***\n";
+print_r($transaction->toArray());
+?>
+```
 
 > Returns a [Transaction Object](#transaction-object).
 
@@ -112,6 +135,31 @@ Returns a [Transaction Object](#transaction-object).
 curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/cancel" \
   -X POST \
   -H "Authorization: Bearer <token>"
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('TOKEN'));
+// Get the current user.
+$user = $client->getUser();
+// Get user transactions.
+$pager = $user->getTransactions();
+
+echo "*** Details of cancelled transaction ***\n";
+while ($pager->hasNext()) {
+    $transactions = $pager->getNext();
+    foreach ($transactions as $transaction) {
+      echo $transaction->getId();
+      echo "\n";
+      //Enter the transaction ID of the transaction you wish to cancel.
+      if($transaction->getId()=='401cd88e-a00b-47a6-90d4-0e369e35ba3b'){
+        $transaction->cancel();
+      }
+    }
+}
+?>
 ```
 
 > Returns a [Transaction Object](#transaction-object).
@@ -215,6 +263,34 @@ curl "https://api.bitreserve.org/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+// Get the current user.
+$user = $client->getUser();
+// Get user cards.
+$card = $user->getCardById('8645a6d0-2dea-4733-ac83-8917a5452aa1');
+$pager = $card->getTransactions();
+
+echo "*** List of card transactions ***\n";
+while ($pager->hasNext()) {
+    $transactions = $pager->getNext();
+    foreach ($transactions as $transaction) {
+        echo sprintf("Date: %s\n", $transaction->getCreatedAt());
+        echo sprintf("Status: %s\n", $transaction->getStatus());
+        $origin = $transaction->getOrigin();
+        echo sprintf("Origin: %s\n", $origin['description']);
+        $destination = $transaction->getDestination();
+        echo sprintf("Destination: %s\n", $destination['description']);
+        echo sprintf("Amount: %s %s\n", $destination['amount'], $destination['currency']);
+        echo "\n";
+    }
+}
+?>
+```
 
 > The above command returns the following JSON:
 
@@ -271,6 +347,24 @@ Returns an array of [Transaction Objects](#transaction-object).
 
 ```bash
 curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use \Bitreserve\BitreserveClient as Client;
+// Initialize the client. In this case, we don't need an
+// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
+$client = new Client();
+// Get the reserve summary of all the obligations and assets within it.
+$statistics = $client->getReserve()->getStatistics();
+print_r($statistics);
+// Get the reserve ledger
+$pager = $client->getReserve()->getLedger();
+print_r($pager->getNext());
+// Get latest transactions
+$pager = $client->getReserve()->getTransactions();
+print_r($pager->getNext()[0]->toArray());
+?>
 ```
 
 > The above command returns the following JSON, truncated for brevity:
@@ -362,6 +456,18 @@ Returns an array of [Transaction Objects](#transaction-object).
 
 ```bash
 curl -X GET "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a89-b653-e0a6d0bcf634"
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use \Bitreserve\BitreserveClient as Client;
+// Initialize the client. In this case, we don't need an
+// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
+$client = new Client();
+// Get specific transaction.
+$transaction = $client->getReserve()->getTransactionById('44645dd0-02b9-4b00-a13a-2d1026ea7841');
+print_r($transaction->toArray());
+?>
 ```
 
 > The above command returns the following JSON:

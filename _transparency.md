@@ -9,6 +9,20 @@ We will provide our members with access to two different resources. The first is
 ```bash
 curl "https://api.bitreserve.org/v0/reserve/statistics"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use \Bitreserve\BitreserveClient as Client;
+// Initialize the client. In this case, we don't need an
+// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
+$client = new Client();
+// Get the reserve summary of all the obligations and assets within it.
+$statistics = $client->getReserve()->getStatistics();
+
+echo "*** Reserve Status ***\n";
+print_r($statistics);
+?>
+```
 
 > Which returns the following:
 
@@ -332,6 +346,20 @@ Frequently one may find that changes to the Reserve's assets and liabilities are
 
 ```bash
 curl "https://api.bitreserve.org/v0/reserve/ledger"
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use \Bitreserve\BitreserveClient as Client;
+// Initialize the client. In this case, we don't need an
+// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
+$client = new Client();
+// Get the reserve ledger
+$pager = $client->getReserve()->getLedger();
+
+echo "*** Reserve ledger ***\n";
+print_r($pager->getNext());
+?>
 ```
 
 `GET https://api.bitreserve.org/v0/reserve/ledger`
