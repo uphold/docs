@@ -172,6 +172,7 @@ $token = $client->createToken('EMAIL', 'PASSWORD', 'DESCRIPTION');
 echo sprintf("Token: %s\n", $token['access_token']);
 echo sprintf("Description: %s\n", $token['description']);
 echo sprintf("Expires: %s\n", $token['expires']);
+?>
 
 
 You can use Basic Authentication by providing your username or email and password combination.
