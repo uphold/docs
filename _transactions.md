@@ -201,7 +201,7 @@ while ($pager->hasNext()) {
     foreach ($transactions as $transaction) {
       echo $transaction->getId();
       echo "\n";
-      //Enter the transaction ID of the transaction you wish to cancel.
+      //Enter the transaction ID of the transaction you wish to resend.
       if($transaction->getId()=='401cd88e-a00b-47a6-90d4-0e369e35ba3b'){
         $transaction->resend();
       }
