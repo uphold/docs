@@ -32,6 +32,21 @@ curl https://api.bitreserve.org/oauth2/token \
   -u <clientId>:<clientSecret> \
   -d 'code=<code>&grant_type=authorization_code'
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client an AUTHORIZATION TOKEN is not needed.
+$client = new Client();
+// Retrieve ClientID and ClientSecret from web interface.
+$clientId = 'ClientID';
+$clientSecret = 'ClientSecret';
+//Code is sent to the callback url as a header.
+$code = 'Code';
+$result = $client->getOauth2Token($clientId, $clientSecret, $code);
+echo sprintf("access_token: %s\n", $result['access_token']);
+?>
+```
 
 > If your request for a token checks out, then our API will return the following:
 
@@ -73,6 +88,14 @@ grant_type | yes | Must be set to *'authorization_code'*.
 curl "https://api.bitreserve.org/v0/me/cards"
   -H "Authorization: Bearer <token>"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+?>
+```
 
 Once you have obtained an access token you may call any protected API method on behalf of the user using the "Authorization" HTTP header in the format:
 
@@ -102,6 +125,19 @@ curl https://api.bitreserve.org/v0/me/tokens \
   -u <username-or-email>:<password> \
   -d '{ "description": "My command line script" }'
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+require_once 'config.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client();
+$token = $client->createToken('EMAIL', 'PASSWORD', 'DESCRIPTION');
+echo sprintf("Token: %s\n", $token['access_token']);
+echo sprintf("Description: %s\n", $token['description']);
+echo sprintf("Expires: %s\n", $token['expires']);
+?>
+```
 
 To create a Personal Access Token you may use the following endpoint:
 
@@ -128,6 +164,17 @@ curl https://api.bitreserve.org/v0/me/tokens/:token \
   -X DELETE \
   -H "Authorization: Bearer <token>"
 ```
+```php
+<?php
+require_once 'vendor/autoload.php';
+require_once 'config.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client('AUTHORIZATION_TOKEN');
+// Delete the token currently in use.
+$token = $client->deleteToken();
+?>
+```
 
 To revoke a Personal Access Token you may use the following endpoint:
 
@@ -147,7 +194,18 @@ token | yes | The PAT you wish to revoke.
 curl https://api.bitreserve.org/v0/me \
   -u 41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20:X-OAuth-Basic
 ```
-
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+$client = new Client('41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20');
+// Get the current user.
+$user = $client->getUser();
+// Expose all user information.
+echo "\n*** User full information ***\n";
+print_r($user->toArray());
+?>
+```
 A PAT may be used for authenticating a request via the HTTP Basic Authentication scheme.
 
 The username should be set as the `token` and password should be set to `X-OAuth-Basic`.
@@ -168,11 +226,14 @@ require_once 'config.php';
 use Bitreserve\BitreserveClient as Client;
 // Initialize the client.
 $client = new Client();
-$token = $client->createToken('EMAIL', 'PASSWORD', 'DESCRIPTION');
-echo sprintf("Token: %s\n", $token['access_token']);
-echo sprintf("Description: %s\n", $token['description']);
-echo sprintf("Expires: %s\n", $token['expires']);
+$user = $client->simpleRequest('EMAIL', 'PASSWORD', 'OTP');
+// Expose all user information.
+echo "\n*** User full information ***\n";
+print_r($user->toArray());
 ?>
+```
+
+
 
 
 You can use Basic Authentication by providing your username or email and password combination.

@@ -84,6 +84,7 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
   -H "Authorization: Bearer <token>"
 ```
 ```php
+<?php
 // Use transaction object from create transaction call above.
 $transaction->commit();
 echo "\n*** Committed transaction ***\n";
@@ -182,6 +183,31 @@ Returns a [Transaction Object](#transaction-object).
 curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/resend" \
   -X POST \
   -H "Authorization: Bearer <token>"
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+// Initialize the client.
+$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+// Get the current user.
+$user = $client->getUser();
+// Get user transactions.
+$pager = $user->getTransactions();
+
+echo "*** Details of resent transaction ***\n";
+while ($pager->hasNext()) {
+    $transactions = $pager->getNext();
+    foreach ($transactions as $transaction) {
+      echo $transaction->getId();
+      echo "\n";
+      //Enter the transaction ID of the transaction you wish to cancel.
+      if($transaction->getId()=='401cd88e-a00b-47a6-90d4-0e369e35ba3b'){
+        $transaction->resend();
+      }
+    }
+}
+?>
 ```
 
 > Returns a [Transaction Object](#transaction-object).
