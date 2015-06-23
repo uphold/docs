@@ -357,64 +357,12 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
         "balance": "87.52",
         "currency": "USD",
         "rate": "1.13165"
-      },
-      "GBP": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1.52485"
-      },
-      "INR": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.01605"
-      },
-      "JPY": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.00837"
-      },
-      "MXN": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.06700"
-      },
-      "USD": {
-        "amount": "400.00",
-        "balance": "400.00",
-        "currency": "USD",
-        "rate": "1.00000"
-      },
-      "XAG": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "17.27900"
-      },
-      "XAU": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1235.46975"
-      },
-      "XPD": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "772.33385"
-      },
-      "XPT": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1232.91175"
-      }
+      },<snip>
     }
   },
-  "cards": <snip>
+  "cards": {
+
+  } <snip>
 }
 ```
 
