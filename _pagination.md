@@ -13,6 +13,9 @@ curl "https://api.bitreserve.org/v0/me/transactions"
   -H "Authorization: Bearer <token>"
   -H "Range: items=0-4"
 ```
+```php
+Coming soon!
+```
 
 > The above command will return the user's last five transactions.
 

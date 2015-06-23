@@ -14,16 +14,12 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN'));
-// Get the current user.
+$client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
-echo "\n*** Create a new transaction ***\n";
-// Get a user card.
 $card = $user->getCardById('8645a6d0-2dea-4733-ac83-8917a5452aa1');
 // Create a new transaction sending 1 US Dollar.
-$transaction = $card->createTransaction('recipientemail@gmail.com', '1', 'USD');
-print_r($transaction->toArray());
+$transaction = $card->createTransaction('user@gmail.com', '1', 'USD');
+// CreateTransaction will return a Transaction object.
 ?>
 ```
 
@@ -87,7 +83,6 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 <?php
 // Use transaction object from create transaction call above.
 $transaction->commit();
-echo "\n*** Committed transaction ***\n";
 print_r($transaction->toArray());
 ?>
 ```
@@ -141,14 +136,11 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('TOKEN'));
-// Get the current user.
+$client = new Client('AUTHORIZATION TOKEN');
+// Get all transactions for a user.
 $user = $client->getUser();
-// Get user transactions.
 $pager = $user->getTransactions();
-
-echo "*** Details of cancelled transaction ***\n";
+// Iterate over all transactions for the one you wish to cancel.
 while ($pager->hasNext()) {
     $transactions = $pager->getNext();
     foreach ($transactions as $transaction) {
@@ -188,19 +180,12 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN'));
-// Get the current user.
+$client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
-// Get user transactions.
 $pager = $user->getTransactions();
-
-echo "*** Details of resent transaction ***\n";
 while ($pager->hasNext()) {
     $transactions = $pager->getNext();
     foreach ($transactions as $transaction) {
-      echo $transaction->getId();
-      echo "\n";
       //Enter the transaction ID of the transaction you wish to resend.
       if($transaction->getId()=='401cd88e-a00b-47a6-90d4-0e369e35ba3b'){
         $transaction->resend();
@@ -230,6 +215,15 @@ Returns a [Transaction Object](#transaction-object).
 curl "https://api.bitreserve.org/v0/me/transactions" \
   -X GET \
   -H "Authorization: Bearer <token>"
+```
+```php
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+$client = new Client('AUTHORIZATION TOKEN');
+$user = $client->getUser();
+$pager = $user->getTransactions();
+?>
 ```
 > The above command returns the following JSON:
 
@@ -293,26 +287,15 @@ curl "https://api.bitreserve.org/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN'));
-// Get the current user.
+$client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
-// Get user cards.
 $card = $user->getCardById('8645a6d0-2dea-4733-ac83-8917a5452aa1');
 $pager = $card->getTransactions();
 
-echo "*** List of card transactions ***\n";
 while ($pager->hasNext()) {
     $transactions = $pager->getNext();
     foreach ($transactions as $transaction) {
-        echo sprintf("Date: %s\n", $transaction->getCreatedAt());
-        echo sprintf("Status: %s\n", $transaction->getStatus());
-        $origin = $transaction->getOrigin();
-        echo sprintf("Origin: %s\n", $origin['description']);
-        $destination = $transaction->getDestination();
-        echo sprintf("Destination: %s\n", $destination['description']);
-        echo sprintf("Amount: %s %s\n", $destination['amount'], $destination['currency']);
-        echo "\n";
+        // Process $transactions.
     }
 }
 ?>
@@ -378,16 +361,14 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
 <?php
 require_once 'vendor/autoload.php';
 use \Bitreserve\BitreserveClient as Client;
-// Initialize the client. In this case, we don't need an
-// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
 $client = new Client();
 // Get the reserve summary of all the obligations and assets within it.
 $statistics = $client->getReserve()->getStatistics();
 print_r($statistics);
-// Get the reserve ledger
+// Get the reserve ledger.
 $pager = $client->getReserve()->getLedger();
 print_r($pager->getNext());
-// Get latest transactions
+// Get latest transactions.
 $pager = $client->getReserve()->getTransactions();
 print_r($pager->getNext()[0]->toArray());
 ?>
@@ -470,6 +451,10 @@ Requests the public view of all transactions in the reserve.
 
 `GET https://api.bitreserve.org/v0/reserve/transactions`
 
+<aside class="notice">
+**Import Notice**: This endpoint is public. Authentication is not required.
+</aside>
+
 This endpoint supports [Pagination](#pagination).
 
 ### Response
@@ -487,12 +472,10 @@ curl -X GET "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a
 <?php
 require_once 'vendor/autoload.php';
 use \Bitreserve\BitreserveClient as Client;
-// Initialize the client. In this case, we don't need an
-// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
 $client = new Client();
 // Get specific transaction.
 $transaction = $client->getReserve()->getTransactionById('44645dd0-02b9-4b00-a13a-2d1026ea7841');
-print_r($transaction->toArray());
+// GetTransactionById method returns an Transaction object.
 ?>
 ```
 
@@ -536,6 +519,10 @@ Requests the public view of a specific transaction.
 ### Request
 
 `GET https://api.bitreserve.org/v0/reserve/transactions/:id`
+
+<aside class="notice">
+**Import Notice**: This endpoint is public. Authentication is not required.
+</aside>
 
 ### Response
 

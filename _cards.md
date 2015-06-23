@@ -12,21 +12,12 @@ curl "https://api.bitreserve.org/v0/me/cards"
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN');
-// Get the current user.
+$client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
-// Get current user cards
 $cards = $user->getCards();
 
-echo "*** List of user cards ***\n";
 foreach ($cards as $card) {
-  echo sprintf("Label: %s\n", $card->getLabel());
-  echo sprintf("Id: %s\n", $card->getId());
-  echo sprintf("Bitcoin Address: %s\n", $card->getAddress()['bitcoin']);
-  echo sprintf("Balance: %s\n", $card->getBalance());
-  echo "\n";
-    }
+// Process $cards array.
 ?>
 ```
 
@@ -103,25 +94,14 @@ curl "https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN'));
-// Get the current user.
+$client = new Client('AUTHORIZATION_TOKEN');
 $user = $client->getUser();
-// Get current user cards.
 $cards = $user->getCards();
 
-echo "*** List of details for one card ***\n";
 foreach($cards as $card) {
   // Enter the id of the specific card you want the details of.
   if($card->getID() === '8645a6d0-2dea-4733-ac83-8917a5452aa1') {
-    echo sprintf("Label: %s\n", $card->getLabel());
-    echo sprintf("Id: %s\n", $card->getId());
-    echo sprintf("Bitcoin Address: %s\n", $card->getAddress()['bitcoin']);
-    echo sprintf("Balance: %s\n", $card->getBalance());
-    echo "\n";
-  } else {
-    echo "Card not found";
-  }
+  // Process $card object.
 }
 ?>
 ```
@@ -177,14 +157,9 @@ curl https://api.bitreserve.org/v0/me/cards \
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN'));
-// Get the current user.
+$client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
 $newCard = $user->createCard('TEST CARD', 'USD');
-
-echo "*** Details of newly created card ***\n";
-print_r($newCard->toArray());
 ?>
 ```
 
@@ -210,7 +185,9 @@ curl https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b
   -H "Content-Type: application/json" \
   -d '{ "label": "My Updated Card" }'
 ```
-
+```php
+coming soon
+```
 ### Request
 
 `PATCH https://api.bitreserve.org/v0/me/cards/:id`

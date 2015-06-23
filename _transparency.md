@@ -13,14 +13,9 @@ curl "https://api.bitreserve.org/v0/reserve/statistics"
 <?php
 require_once 'vendor/autoload.php';
 use \Bitreserve\BitreserveClient as Client;
-// Initialize the client. In this case, we don't need an
-// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
 $client = new Client();
 // Get the reserve summary of all the obligations and assets within it.
 $statistics = $client->getReserve()->getStatistics();
-
-echo "*** Reserve Status ***\n";
-print_r($statistics);
 ?>
 ```
 
@@ -99,6 +94,10 @@ rate | The rate we used when computing the holding to the corresponding currency
 
 `GET https://api.bitreserve.org/v0/reserve/statistics`
 
+<aside class="notice">
+**Import Notice**: This endpoint is public. Authentication is not required.
+</aside>
+
 ### Response
 Returns an associative array containing the summaries for each currency that Bitreserve holds. The example to right shows a full summary for one currency.
 
@@ -110,7 +109,7 @@ The ledger is made up of "entries," each of which contains information about the
 
 Frequently one may find that changes to the Reserve's assets and liabilities are not made in lock step with one another, and that the Reserve may accrue liabilities of one asset type or another, and then have those liabilities offset by a single change to the Reserve's assets.
 
-### Request
+
 
 ```bash
 curl "https://api.bitreserve.org/v0/reserve/ledger"
@@ -119,18 +118,17 @@ curl "https://api.bitreserve.org/v0/reserve/ledger"
 <?php
 require_once 'vendor/autoload.php';
 use \Bitreserve\BitreserveClient as Client;
-// Initialize the client. In this case, we don't need an
-// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
 $client = new Client();
 // Get the reserve ledger
 $pager = $client->getReserve()->getLedger();
-
-echo "*** Reserve ledger ***\n";
-print_r($pager->getNext());
 ?>
 ```
-
+### Request
 `GET https://api.bitreserve.org/v0/reserve/ledger`
+
+<aside class="notice">
+**Import Notice**: This endpoint is public. Authentication is not required.
+</aside>
 
 This endpoint supports [Pagination](#pagination).
 

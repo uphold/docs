@@ -357,7 +357,7 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
         "balance": "87.52",
         "currency": "USD",
         "rate": "1.13165"
-      },<snip>
+      },
     }
   },
   "cards": {

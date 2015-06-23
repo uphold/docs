@@ -11,18 +11,10 @@ curl "https://api.bitreserve.org/v0/ticker"
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client. In this case, we don't need an
-// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
 $client = new Client();
-// Get tickers.
 $tickers = $client->getTicker();
-
-echo "*** Current exchange rates ***\n";
 foreach ($tickers as $ticker) {
-    echo sprintf("Pair: %s\n", $ticker->getPair());
-    echo sprintf("Ask: 1 %s = %s %s\n", substr($ticker->getPair(), 0, 3), $ticker->getAsk(), $ticker->getCurrency());
-    echo sprintf("Bid: 1 %s = %s %s\n", substr($ticker->getPair(), 0, 3), $ticker->getBid(), $ticker->getCurrency());
-    echo "\n";
+  // Process $tickers.
 }
 ?>
 ```
@@ -54,12 +46,16 @@ foreach ($tickers as $ticker) {
     "bid": "6.7459",
     "currency": "CNY",
     "pair": "CHFCNY"
-  }, <snip>
+  }<snip>
 ```
 
 ### Request
 
 `GET https://api.bitreserve.org/v0/ticker`
+
+<aside class="notice">
+**Import Notice**: This endpoint is public. Authentication is not required.
+</aside>
 
 ### Response
 
@@ -74,17 +70,10 @@ curl "https://api.bitreserve.org/v0/ticker/USD"
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client. In this case, we don't need an
-// AUTHORIZATION_TOKEN because the Ticker endpoint is public.
 $client = new Client();
-// Get tickers for INR.
 $tickers = $client->getTickerByCurrency('INR');
-echo "*** Current exchange rates ***\n";
 foreach ($tickers as $ticker) {
-    echo sprintf("Pair: %s\n", $ticker->getPair());
-    echo sprintf("Ask: 1 %s = %s %s\n", substr($ticker->getPair(), 0, 3), $ticker->getAsk(), $ticker->getCurrency());
-    echo sprintf("Bid: 1 %s = %s %s\n", substr($ticker->getPair(), 0, 3), $ticker->getBid(), $ticker->getCurrency());
-    echo "\n";
+  //process $tickers.
 }
 ?>
 ```
@@ -115,7 +104,7 @@ foreach ($tickers as $ticker) {
     "bid": "1.5328",
     "currency": "USD",
     "pair": "GBPUSD"
-  },<snip>
+  }<snip>
 ```
 
 This method allows developers to find all exchanges rates relative to a given currency.
@@ -123,6 +112,10 @@ This method allows developers to find all exchanges rates relative to a given cu
 ### Request
 
 `GET https://api.bitreserve.org/v0/ticker/:currency`
+
+<aside class="notice">
+**Import Notice**: This endpoint is public. Authentication is not required.
+</aside>
 
 ### Response
 

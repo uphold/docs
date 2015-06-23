@@ -36,7 +36,6 @@ curl https://api.bitreserve.org/oauth2/token \
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client an AUTHORIZATION TOKEN is not needed.
 $client = new Client();
 // Retrieve ClientID and ClientSecret from web interface.
 $clientId = 'ClientID';
@@ -44,7 +43,6 @@ $clientSecret = 'ClientSecret';
 //Code is sent to the callback url as a header.
 $code = 'Code';
 $result = $client->getOauth2Token($clientId, $clientSecret, $code);
-echo sprintf("access_token: %s\n", $result['access_token']);
 ?>
 ```
 
@@ -92,8 +90,7 @@ curl "https://api.bitreserve.org/v0/me/cards"
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
-$client = new Client(getenv('AUTHORIZATION_TOKEN'));
+$client = new Client('AUTHORIZATION TOKEN');
 ?>
 ```
 
@@ -130,12 +127,8 @@ curl https://api.bitreserve.org/v0/me/tokens \
 require_once 'vendor/autoload.php';
 require_once 'config.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
 $client = new Client();
 $token = $client->createToken('EMAIL', 'PASSWORD', 'DESCRIPTION');
-echo sprintf("Token: %s\n", $token['access_token']);
-echo sprintf("Description: %s\n", $token['description']);
-echo sprintf("Expires: %s\n", $token['expires']);
 ?>
 ```
 
@@ -169,7 +162,6 @@ curl https://api.bitreserve.org/v0/me/tokens/:token \
 require_once 'vendor/autoload.php';
 require_once 'config.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
 $client = new Client('AUTHORIZATION_TOKEN');
 // Delete the token currently in use.
 $token = $client->deleteToken();
@@ -198,13 +190,10 @@ curl https://api.bitreserve.org/v0/me \
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
-//Initialize the client.
 $client = new Client('41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20');
 // Get the current user.
 $user = $client->getUser();
-// Expose all user information.
-echo "\n*** User full information ***\n";
-print_r($user->toArray());
+// Exposes all user information. See 'Entities' for details on the data structure of user information.
 ?>
 ```
 A PAT may be used for authenticating a request via the HTTP Basic Authentication scheme.
@@ -225,12 +214,9 @@ curl https://api.bitreserve.org/v0/me \
 require_once 'vendor/autoload.php';
 require_once 'config.php';
 use Bitreserve\BitreserveClient as Client;
-// Initialize the client.
 $client = new Client();
 $user = $client->simpleRequest('EMAIL', 'PASSWORD', 'OTP');
-// Expose all user information.
-echo "\n*** User full information ***\n";
-print_r($user->toArray());
+// Exposes all user information. See 'Entities' for details on the data structure of user information.
 ?>
 ```
 
