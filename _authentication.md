@@ -198,6 +198,7 @@ curl https://api.bitreserve.org/v0/me \
 <?php
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
+//Initialize the client.
 $client = new Client('41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20');
 // Get the current user.
 $user = $client->getUser();
