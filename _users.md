@@ -12,7 +12,6 @@ require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
-// The getUser method returns and array which contains all user information.
 ?>
 ```
 
@@ -142,8 +141,8 @@ $phones = $user->getPhones();
 
 foreach($phones as $phone){
   // Process $phones.
-  ?>
   }
+?>
 ```
 
 > The above command returns the following JSON:

@@ -46,7 +46,9 @@ foreach ($tickers as $ticker) {
     "bid": "6.7459",
     "currency": "CNY",
     "pair": "CHFCNY"
-  }<snip>
+  },
+  <snip>
+]
 ```
 
 ### Request
@@ -104,7 +106,9 @@ foreach ($tickers as $ticker) {
     "bid": "1.5328",
     "currency": "USD",
     "pair": "GBPUSD"
-  }<snip>
+  },
+  <snip>
+]
 ```
 
 This method allows developers to find all exchanges rates relative to a given currency.

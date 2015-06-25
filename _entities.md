@@ -360,11 +360,9 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
       },
     }
   },
-  "cards": {
-
-  } <snip>
-}
-```
+  "cards": <snip>
+  }
+  ```
 
 The ```user``` object contains all information we have on record relating to the currently logged in user.
 

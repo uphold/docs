@@ -19,7 +19,6 @@ $user = $client->getUser();
 $card = $user->getCardById('8645a6d0-2dea-4733-ac83-8917a5452aa1');
 // Create a new transaction sending 1 US Dollar.
 $transaction = $card->createTransaction('user@gmail.com', '1', 'USD');
-// CreateTransaction will return a Transaction object.
 ?>
 ```
 
@@ -137,21 +136,9 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client('AUTHORIZATION TOKEN');
-// Get all transactions for a user.
-$user = $client->getUser();
-$pager = $user->getTransactions();
-// Iterate over all transactions for the one you wish to cancel.
-while ($pager->hasNext()) {
-    $transactions = $pager->getNext();
-    foreach ($transactions as $transaction) {
-      echo $transaction->getId();
-      echo "\n";
-      //Enter the transaction ID of the transaction you wish to cancel.
-      if($transaction->getId()=='401cd88e-a00b-47a6-90d4-0e369e35ba3b'){
-        $transaction->cancel();
-      }
-    }
-}
+//Enter the transaction ID of the transaction you wish to resend.
+$transaction = $client->getTransactionById('44645dd0-02b9-4b00-a13a-2d1026ea7841');
+$transaction->cancel();
 ?>
 ```
 
@@ -181,17 +168,9 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client('AUTHORIZATION TOKEN');
-$user = $client->getUser();
-$pager = $user->getTransactions();
-while ($pager->hasNext()) {
-    $transactions = $pager->getNext();
-    foreach ($transactions as $transaction) {
-      //Enter the transaction ID of the transaction you wish to resend.
-      if($transaction->getId()=='401cd88e-a00b-47a6-90d4-0e369e35ba3b'){
-        $transaction->resend();
-      }
-    }
-}
+//Enter the transaction ID of the transaction you wish to resend.
+$transaction = $client->getTransactionById('44645dd0-02b9-4b00-a13a-2d1026ea7841');
+$transaction->resend();
 ?>
 ```
 
@@ -475,7 +454,6 @@ use \Bitreserve\BitreserveClient as Client;
 $client = new Client();
 // Get specific transaction.
 $transaction = $client->getReserve()->getTransactionById('44645dd0-02b9-4b00-a13a-2d1026ea7841');
-// GetTransactionById method returns an Transaction object.
 ?>
 ```
 

@@ -119,7 +119,7 @@ curl "https://api.bitreserve.org/v0/reserve/ledger"
 require_once 'vendor/autoload.php';
 use \Bitreserve\BitreserveClient as Client;
 $client = new Client();
-// Get the reserve ledger
+// Get the reserve ledger.
 $pager = $client->getReserve()->getLedger();
 ?>
 ```

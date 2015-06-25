@@ -125,7 +125,6 @@ curl https://api.bitreserve.org/v0/me/tokens \
 ```php
 <?php
 require_once 'vendor/autoload.php';
-require_once 'config.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client();
 $token = $client->createToken('EMAIL', 'PASSWORD', 'DESCRIPTION');
@@ -191,9 +190,7 @@ curl https://api.bitreserve.org/v0/me \
 require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client('41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20');
-// Get the current user.
 $user = $client->getUser();
-// Exposes all user information. See 'Entities' for details on the data structure of user information.
 ?>
 ```
 A PAT may be used for authenticating a request via the HTTP Basic Authentication scheme.
@@ -216,7 +213,6 @@ require_once 'config.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client();
 $user = $client->simpleRequest('EMAIL', 'PASSWORD', 'OTP');
-// Exposes all user information. See 'Entities' for details on the data structure of user information.
 ?>
 ```
 

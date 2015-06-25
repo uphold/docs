@@ -13,10 +13,8 @@ use Bitreserve\BitreserveClient as Client;
 $client = new Client('AUTHORIZATION TOKEN');
 $user = $client->getUser();
 $contactObjects = $user->getContacts();
-
-echo "*** List of user contacts ***\n";
 foreach ($contactObjects as $contact) {
-  // Process $contactObjects. See 'Entities' for sample data structure of a contact object.
+  // Process $contactObjects.
 }
 ?>
 ```
@@ -70,7 +68,7 @@ require_once 'vendor/autoload.php';
 use Bitreserve\BitreserveClient as Client;
 $client = new Client(getenv('AUTHORIZATION_TOKEN'));
 $user = $client->getUser();
-//Enter the user ID of the contact you want the details of. GetContactById will return a contact object.
+//Enter the user ID of the contact you want the details of.
 $contact = $user->getContactById('1f0b8698-5c61-4f39-82b5-e89abd94970f');
 ?>
 ```
@@ -115,7 +113,6 @@ $user = $client->getUser();
 $emails = array("emailofcontact@gmail.com");
 $addresses = array();
 $contact = $user->createContact('CantactFirstName', 'ContactLastName', 'ContactCompany', $emails, $addresses);
-//createContact will return a contact object. See 'Entities' for an example of the data structure of a Contact object.
   ?>
 ```
 

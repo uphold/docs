@@ -18,6 +18,7 @@ $cards = $user->getCards();
 
 foreach ($cards as $card) {
 // Process $cards array.
+}
 ?>
 ```
 
@@ -186,7 +187,13 @@ curl https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b
   -d '{ "label": "My Updated Card" }'
 ```
 ```php
-coming soon
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+$client = new Client(getenv('AUTHORIZATION TOKEN'));
+$user = $client->getUser();
+$newCard = $user->createCard('CARD NAME', 'USD');
+?>
 ```
 ### Request
 

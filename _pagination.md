@@ -14,7 +14,13 @@ curl "https://api.bitreserve.org/v0/me/transactions"
   -H "Range: items=0-4"
 ```
 ```php
-Coming soon!
+<?php
+require_once 'vendor/autoload.php';
+use Bitreserve\BitreserveClient as Client;
+$client = new Client('AUTHORIZATION TOKEN');
+$user = $client->getUser();
+$transactions = $user->getTransactions(4);
+?>
 ```
 
 > The above command will return the user's last five transactions.
