@@ -11,97 +11,90 @@ curl "https://api.bitreserve.org/v0/me"
 
 ```json
 {
-  "username": "byrnereese",
-  "email": "byrne@bitreserve.org",
-  "firstName": "Byrne",
-  "lastName": "Reese",
-  "name": "Byrne Reese",
-  "country": "US",
-  "state": "CA",
-  "currencies": [
-    "BTC",
-    "USD",
-    "EUR",
-    "GBP",
-    "CNY",
-    "JPY",
-    "XAU"
-  ],
-  "status": {
-    "email": "ok",
-    "phone": "pending",
-    "review": "pending",
-    "volume": "ok",
-    "identity": "pending",
-    "overview": "pending",
-    "screening": "pending",
-    "registration": "running"
+  "address": {
+    "city": "New Valentinstad",
+    "line1": "80236 Ivy Loaf",
+    "line2": "Apt. 366",
+    "zipCode": "53059"
   },
+  "birthdate": "2014-08-27",
+  "country": "US",
+  "currencies": [
+    "BTC"
+  ],
+  "email": "luke.skywalker@bitreserve.org",
+  "firstName": "Luke",
+  "lastName": "Skywalker",
+  "name": "Luke Skywalker",
+  "phones": [
+    {
+      "e164Masked": "+XXXXXXXXX06",
+      "id": "7eb106e5-65c0-461a-8c1d-b6e1f44a7bc7",
+      "internationalMasked": "+X XXX-XXX-XX06",
+      "nationalMasked": "(XXX) XXX-XX06",
+      "primary": true,
+      "verified": true
+    }
+  ],
   "settings": {
-    "theme": "minimalistic",
     "currency": "USD",
-    "hasNewsSubscription": "true",
+    "hasOtpEnabled": true,
     "intl": {
-      "language": {
+      "dateTimeFormat": {
         "locale": "en-US"
       },
-      "dateTimeFormat": {
+      "language": {
         "locale": "en-US"
       },
       "numberFormat": {
         "locale": "en-US"
       }
     },
-    "hasOtpEnabled": "false"
+    "theme": "vintage"
   },
-  "phones": [
-    {
-      "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
-      "verified": "true",
-      "primary": "true",
-      "e164Masked": "+XXXXXXXXX04",
-      "nationalMasked": "(XXX) XXX-XX04",
-      "internationalMasked": "+X XXX-XXX-XX04"
-    }
-  ],
+  "state": "WA",
+  "status": "ok",
+  "username": "skywalker",
+  "verifications": {},
   "balances": {
-    "total": "1083.77",
+    "total": "90.00",
     "currencies": {
-      "CNY": {
-        "amount": "6.98",
-        "balance": "42.82",
+      "BTC": {
+        "amount": "90.00",
+        "balance": "0.1",
         "currency": "USD",
-        "rate": "6.13880"
-      },
-      "EUR": {
-        "amount": "75.01",
-        "balance": "58.05",
-        "currency": "USD",
-        "rate": "1.29220"
+        "rate": "900.00000"
       }
     }
   },
   "cards": [
     {
-      "id": "2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3",
       "address": {
-        "bitcoin": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY"
+        "bitcoin": "mwvGZzRfgco7AVKajLkByGom5BTp6EMng7"
       },
-      "label": "CNY card",
-      "currency": "CNY",
-      "balance": "42.82",
-      "available": "42.82",
-      "lastTransactionAt": "2014-06-16T20:46:51.002Z",
+      "available": "0.1",
+      "balance": "0.1",
+      "currency": "BTC",
+      "id": "b152a105-c47d-4a8f-8904-9838a3fed608",
+      "label": "BTC card",
+      "lastTransactionAt": "2015-07-01T19:43:58.824Z",
+      "settings": {
+        "position": 1,
+        "starred": true
+      },
       "addresses": [
         {
-          "id": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
+          "id": "mwvGZzRfgco7AVKajLkByGom5BTp6EMng7",
           "network": "bitcoin"
         }
       ],
-      "settings": {
-        "position": 5,
-        "starred": true
-      }
+      "normalized": [
+        {
+          "available": "90.00",
+          "balance": "90.00",
+          "currency": "USD"
+        }
+      ]
     }
   ]
 }
