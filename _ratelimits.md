@@ -8,12 +8,14 @@ Some endpoints have stricter rules as it relates to rate limits. These endpoints
 
 The following table indicates the current rate limits:
 
-| Endpoint              | Requests (per IP) / window | Requests (per user) / window |
-| ----------------------|---------------------------:|-----------------------------:|
-| *Global*              | 300 / 5-min window         | N/A                          |
-| POST /oauth2/token    | 10 / 1-min window          | 10 / 1-min window            |
-| POST /password/forgot | 10 / 10-min window         | 3 / 5-min window             |
-| POST /users           | 10 / 10-min window         | N/A                          |
+| Endpoint                                  | Requests (per IP) / window | Requests (per user) / window |
+| ------------------------------------------|---------------------------:|-----------------------------:|
+| *Global*                                  | 300 / 5-min window         | N/A                          |
+| POST /cards/:card/transactions            | 300 / 5-min window         | 100 / 30-min window          |
+| POST /cards/:card/transactions/:id/commit | 300 / 5-min window         | 100 / 24-hour window         |
+| POST /oauth2/token                        | 10 / 1-min window          | 10 / 1-min window            |
+| POST /password/forgot                     | 10 / 10-min window         | 3 / 5-min window             |
+| POST /users                               | 10 / 10-min window         | N/A                          |
 
 ## Response Headers
 
