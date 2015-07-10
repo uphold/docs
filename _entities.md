@@ -275,7 +275,7 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 ```
 {
   "address": {},
-  "birthdate": "1986-05-04",
+  "birthdate": "2014-08-27",
   "country": "US",
   "currencies": [
     "BTC",
@@ -292,11 +292,11 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
     "XPD",
     "XPT"
   ],
-  "email": "testing+smith@bitreserve.org",
-  "firstName": "John",
+  "email": "luke.skywalker@bitreserve.org",
+  "firstName": "Luke",
   "identity": {},
-  "lastName": "Smith",
-  "name": "John Smith",
+  "lastName": "Skywalker",
+  "name": "Luke Skywalker",
   "phones": [
     {
       "e164Masked": "+XXXXXXXXX54",
@@ -323,14 +323,11 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
       }
     }
   },
+  "memberAt": "2015-07-10T15:36:20.288Z",
   "state": "California",
   "status": "ok",
-  "username": "johnsmith",
-  "verifications": {
-    "identity": {
-      "status": "required"
-    }
-  },
+  "username": "skywalker",
+  "verifications": {},
   "balances": {
     "total": "499.04",
     "currencies": {
@@ -423,6 +420,10 @@ The ```user``` object contains all information we have on record relating to the
 <aside class="notice">
 Privacy Notice: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
 </aside>
+
+Property  | Description
+--------- | -----------
+memberAt  | The date when the user has become a verified member.
 
 ### User Status
 
