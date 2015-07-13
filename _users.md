@@ -52,6 +52,7 @@ curl "https://api.bitreserve.org/v0/me"
     },
     "theme": "vintage"
   },
+  "memberAt": "2015-07-10T15:36:20.288Z",
   "state": "WA",
   "status": "ok",
   "username": "skywalker",
