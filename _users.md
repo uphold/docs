@@ -3,7 +3,7 @@
 ## Get User
 
 ```bash
-curl "https://api.bitreserve.org/v0/me"
+curl "https://api.uphold.com/v0/me"
   -H "Authorization: Bearer <token>"
 ```
 
@@ -22,7 +22,7 @@ curl "https://api.bitreserve.org/v0/me"
   "currencies": [
     "BTC"
   ],
-  "email": "luke.skywalker@bitreserve.org",
+  "email": "luke.skywalker@uphold.com",
   "firstName": "Luke",
   "lastName": "Skywalker",
   "name": "Luke Skywalker",
@@ -103,7 +103,7 @@ curl "https://api.bitreserve.org/v0/me"
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me`
+`GET https://api.uphold.com/v0/me`
 
 ### Response
 
@@ -114,7 +114,7 @@ Returns the details associated the current user.
 ## Get User Phone Numbers
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/phones"
+curl "https://api.uphold.com/v0/me/phones"
   -H "Authorization: Bearer <token>"
 ```
 
@@ -135,7 +135,7 @@ curl "https://api.bitreserve.org/v0/me/phones"
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/phones`
+`GET https://api.uphold.com/v0/me/phones`
 
 ### Response
 

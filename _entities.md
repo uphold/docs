@@ -74,7 +74,7 @@ addresses | An array of known addresses associated with this contact.
 company | The company of this contact provided by the user.
 emails | An array of known email addresses associated with this contact.
 firstName | The first name of this contact provided by the user.
-id | A unique ID in the Bitreserve network identifying the contact.
+id | A unique ID in the Uphold network identifying the contact.
 lastName | The last name of this contact provided by the user.
 name | The display name of the contact created by joining the first and last names.
 
@@ -111,7 +111,7 @@ pair | The currency pair AB represents moving from A to B.
 {
   "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
   "type": "transfer",
-  "message": "Join Bitreserve!",
+  "message": "Join Uphold!",
   "denomination": {
     "amount": "2.00",
     "currency": "USD",
@@ -169,15 +169,15 @@ pair | The currency pair AB represents moving from A to B.
 }
 ```
 
-Transactions record the movement of value into, within and out of the Bitreserve network. Transactions have the following properties:
+Transactions record the movement of value into, within and out of the Uphold network. Transactions have the following properties:
 
 <aside class="notice">
-There are two views of a transaction: public and private. The private view of information only privy to those who were a party to the transaction. Public views suppress and hide any private or personally identifiable information in order for Bitreserve to protect user privacy.
+There are two views of a transaction: public and private. The private view of information only privy to those who were a party to the transaction. Public views suppress and hide any private or personally identifiable information in order for Uphold to protect user privacy.
 </aside>
 
 Property | Description
 --------- | -----------
-id | A unique ID on the Bitreserve Network associated with the transaction.
+id | A unique ID on the Uphold Network associated with the transaction.
 type | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 message | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
 denomination | The funds to be transfered, as originally requested. See "Denomination" below.
@@ -215,7 +215,7 @@ The `params` property associated with a transaction records additional meta data
 Property | Description
 --------- | -----------
 currency | The currency in which the total commission is expressed.
-margin | Bitreserve's commission expressed in percentage.
+margin | Uphold's commission expressed in percentage.
 pair | The currency pair associated with any exchange that took place, if any.
 progress | In case a transaction is coming in from the outside, how many confirmations have been received.
 ttl | The time this quote is good for, in milliseconds.
@@ -239,10 +239,10 @@ Property | Description
 CardId | The ID of the card debited. Only visible to the user who sends the transaction.
 amount | The amount debited to the origin account, including commissions and fees.
 base | The amount to debit the origin account, before commissions or fees.
-commission | The commission charged by Bitreserve to process the transaction.
+commission | The commission charged by Uphold to process the transaction.
 currency | The currency of the funds at the origin acount.
 description | The name of the sender.
-fee | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Bitreserve Bitcoin Address.
+fee | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Uphold Bitcoin Address.
 rate | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of ```destination.rate```).
 sources | The transactions where the value was originated from (id and amount).
 type | The type of endpoint. Possible values are 'card' and 'external'.
@@ -261,7 +261,7 @@ Property | Description
 CardId | The ID of the card credited. Only visible to the user who receives the transaction.
 amount | The amount credited to the destination account, including commissions and fees.
 base | The amount to credit the destination account, before commissions or fees.
-commission | The commission charged by Bitreserve to process the transaction. Commissions are only charged when currency is converted into a different denomination.
+commission | The commission charged by Uphold to process the transaction. Commissions are only charged when currency is converted into a different denomination.
 currency | The denomination of the funds at the time they were sent/received.
 description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient.
 fee | The Bitcoin network Fee, if destination is a BTC account but origin is not.
@@ -292,7 +292,7 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
     "XPD",
     "XPT"
   ],
-  "email": "luke.skywalker@bitreserve.org",
+  "email": "luke.skywalker@uphold.com",
   "firstName": "Luke",
   "identity": {},
   "lastName": "Skywalker",

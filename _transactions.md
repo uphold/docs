@@ -5,7 +5,7 @@
 > Step 1: Create the Transaction
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions" \
+curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions" \
   -X POST \
   -H "Authorization: Bearer <token>" \
   -d "denomination[currency]=BTC&denomination[amount]=0.1&destination=foo@bar.com"
@@ -63,7 +63,7 @@ curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transact
 > Step 2: Commit the Transaction
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/commit" \
+curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/commit" \
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
@@ -76,7 +76,7 @@ In step one, one prepares the transaction by specifying:
 
 * The currency to denominate the transaction by.
 * The amount of value to send in the denominated currency.
-* The destination of the transaction, which can be in the form of a bitcoin address, an email address, or a Bitreserve username.
+* The destination of the transaction, which can be in the form of a bitcoin address, an email address, or a Uphold username.
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 
@@ -86,7 +86,7 @@ You may only send value from addresses that you own.
 
 ### Request
 
-`POST https://api.bitreserve.org/v0/me/cards/:card/transactions`
+`POST https://api.uphold.com/v0/me/cards/:card/transactions`
 
 ### Response
 
@@ -100,7 +100,7 @@ Once a transaction has been created and a quote secured, commit the transaction 
 
 ### Request
 
-`POST https://api.bitreserve.org/v0/me/cards/:card/transactions/:id/commit`
+`POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
 
 ### Response
 
@@ -109,7 +109,7 @@ Returns a [Transaction Object](#transaction-object).
 ## Cancel a Transaction
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/cancel" \
+curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/cancel" \
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
@@ -120,7 +120,7 @@ Cancels a transaction that has not yet been redeemed.
 
 ### Request
 
-`POST https://api.bitreserve.org/v0/me/cards/:card/transactions/:id/cancel`
+`POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/cancel`
 
 ### Response
 
@@ -131,7 +131,7 @@ Returns a [Transaction Object](#transaction-object).
 ## Resend a Transaction
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/resend" \
+curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/resend" \
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
@@ -142,7 +142,7 @@ Triggers a reminder for a transaction that hasn't been redeemed yet.
 
 ### Request
 
-`POST https://api.bitreserve.org/v0/me/cards/:card/transactions/:id/resend`
+`POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/resend`
 
 ### Response
 
@@ -153,7 +153,7 @@ Returns a [Transaction Object](#transaction-object).
 ## List User Transactions
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/transactions" \
+curl "https://api.uphold.com/v0/me/transactions" \
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
@@ -200,7 +200,7 @@ Requests a list of transactions associated with the current user.
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/transactions`
+`GET https://api.uphold.com/v0/me/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
@@ -211,7 +211,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## List Card Transactions
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/transactions" \
+curl "https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/transactions" \
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
@@ -259,7 +259,7 @@ Requests a list of transactions associated with a specific card.
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/cards/:card/transactions`
+`GET https://api.uphold.com/v0/me/cards/:card/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
@@ -270,7 +270,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## Get All Transactions (Public)
 
 ```bash
-curl -X GET "https://api.bitreserve.org/v0/reserve/transactions"
+curl -X GET "https://api.uphold.com/v0/reserve/transactions"
 ```
 
 > The above command returns the following JSON, truncated for brevity:
@@ -348,7 +348,7 @@ Requests the public view of all transactions in the reserve.
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/reserve/transactions`
+`GET https://api.uphold.com/v0/reserve/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
@@ -361,7 +361,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## Get Transaction (Public)
 
 ```bash
-curl -X GET "https://api.bitreserve.org/v0/reserve/transactions/a97bb994-6e24-4a89-b653-e0a6d0bcf634"
+curl -X GET "https://api.uphold.com/v0/reserve/transactions/a97bb994-6e24-4a89-b653-e0a6d0bcf634"
 ```
 
 > The above command returns the following JSON:
@@ -403,7 +403,7 @@ Requests the public view of a specific transaction.
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/reserve/transactions/:id`
+`GET https://api.uphold.com/v0/reserve/transactions/:id`
 
 ### Response
 
