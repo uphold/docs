@@ -5,7 +5,7 @@ Developers can query at any time the rates we utilize when exchanging one form o
 ## Get All Tickers
 
 ```bash
-curl "https://api.bitreserve.org/v0/ticker"
+curl "https://api.uphold.com/v0/ticker"
 ```
 
 > The above command returns the following JSON:
@@ -293,16 +293,16 @@ curl "https://api.bitreserve.org/v0/ticker"
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/ticker`
+`GET https://api.uphold.com/v0/ticker`
 
 ### Response
 
-Returns an associative array containing the current rates Bitreserve has on record for all currency pairs.
+Returns an associative array containing the current rates Uphold has on record for all currency pairs.
 
 ## Get Tickers for Currency
 
 ```bash
-curl "https://api.bitreserve.org/v0/ticker/USD"
+curl "https://api.uphold.com/v0/ticker/USD"
 ```
 
 > The above command returns the following JSON:
@@ -394,8 +394,8 @@ This method allows developers to find all exchanges rates relative to a given cu
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/ticker/:currency`
+`GET https://api.uphold.com/v0/ticker/:currency`
 
 ### Response
 
-Returns an associative array containing the current rates Bitreserve has on record for the currency specified.
+Returns an associative array containing the current rates Uphold has on record for the currency specified.

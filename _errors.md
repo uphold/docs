@@ -1,6 +1,6 @@
 # Errors
 
-Bitreserve API uses the following error codes:
+Uphold API uses the following error codes:
 
 Code | Meaning
 ---------- | -------
