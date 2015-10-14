@@ -3,7 +3,7 @@
 ## List Contacts
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/contacts" \
+curl "https://api.uphold.com/v0/me/contacts" \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -38,7 +38,7 @@ curl "https://api.bitreserve.org/v0/me/contacts" \
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/contacts`
+`GET https://api.uphold.com/v0/me/contacts`
 
 ### Response
 
@@ -47,7 +47,7 @@ Returns an array of contact objects associated with the current user.
 ## Get Contact
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4c079" \
+curl "https://api.uphold.com/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4c079" \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -69,7 +69,7 @@ curl "https://api.bitreserve.org/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/contacts/:id`
+`GET https://api.uphold.com/v0/me/contacts/:id`
 
 ### Response
 
@@ -80,12 +80,12 @@ Returns an associative array containing the details of the designated contact.
 ```bash
 curl -X POST --data "firstName=Luke&lastName=Skywalker&company=Lars+Moisture+Farm,+Inc.&emails=support@larsmoisturefarm.com" \
   -H "Authorization: Bearer <token>" \
-  https://api.bitreserve.org/v0/me/contacts
+  https://api.uphold.com/v0/me/contacts
 ```
 
 ### Request
 
-`POST https://api.bitreserve.org/v0/me/contacts`
+`POST https://api.uphold.com/v0/me/contacts`
 
 Parameter | Default |  Description
 --------- | ----------- | -----------

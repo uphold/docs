@@ -1,18 +1,18 @@
 # Authentication
 
-Bitreserve is an OAuth 2.0 compliant service.
+Uphold is an OAuth 2.0 compliant service.
 
 Partners looking to integrate with our API must [register an application](#registering-an-application) and use the Web Application Flow. A sample implementation will be available soon.
 
 ## Web Application Flow
 
-Ideal for web applications that wish to retrieve information about a user's Bitreserve account or take actions on their behalf.
+Ideal for web applications that wish to retrieve information about a user's Uphold account or take actions on their behalf.
 
 ### Step 1 - Authorization
 
 The authenticating web application should redirect users to the following URL:
 
-`https://bitreserve.org/authorize/<client_id>`
+`https://api.uphold.com/authorize/<client_id>`
 
 Supported query parameters:
 
@@ -26,7 +26,7 @@ scope | yes | Permissions to request from the user.
 > Exchanging the `code` for a `token`:
 
 ```bash
-curl https://api.bitreserve.org/oauth2/token \
+curl https://api.uphold.com/oauth2/token \
   -X POST \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -u <clientId>:<clientSecret> \
@@ -42,7 +42,7 @@ curl https://api.bitreserve.org/oauth2/token \
 }
 ```
 
-If the user accepts your request, Bitreserve will redirect the user back to your site with a temporary `code` and the previously provided `state`, *as is*.
+If the user accepts your request, Uphold will redirect the user back to your site with a temporary `code` and the previously provided `state`, *as is*.
 
 This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
 
@@ -50,7 +50,7 @@ Your application is responsible for ensuring that the `state` matches the value 
 
 You may then exchange this `code` for an `access token` using the following endpoint:
 
-`POST https://api.bitreserve.org/oauth2/token`
+`POST https://api.uphold.com/oauth2/token`
 
 Supported parameters:
 
@@ -70,7 +70,7 @@ grant_type | yes | Must be set to *'authorization_code'*.
 > Request using the 'Authorization' header:
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards"
+curl "https://api.uphold.com/v0/me/cards"
   -H "Authorization: Bearer <token>"
 ```
 
@@ -95,7 +95,7 @@ For **personal usage only** you may choose to use a PAT. This token establishes 
 > To create a Personal Access Token, execute the following command:
 
 ```bash
-curl https://api.bitreserve.org/v0/me/tokens \
+curl https://api.uphold.com/v0/me/tokens \
   -X POST \
   -H 'X-Bitreserve-OTP: <OTP-Token>' \
   -H "Content-Type: application/json" \
@@ -105,7 +105,7 @@ curl https://api.bitreserve.org/v0/me/tokens \
 
 To create a Personal Access Token you may use the following endpoint:
 
-`POST https://bitreserve.org/v0/me/tokens`
+`POST https://api.uphold.com/v0/me/tokens`
 
 Supported parameters:
 
@@ -124,14 +124,14 @@ Additionally, if the account is secured with Two-Factor Authentication, the `X-B
 > To revoke a Personal Access Token, execute the following command:
 
 ```bash
-curl https://api.bitreserve.org/v0/me/tokens/:token \
+curl https://api.uphold.com/v0/me/tokens/:token \
   -X DELETE \
   -H "Authorization: Bearer <token>"
 ```
 
 To revoke a Personal Access Token you may use the following endpoint:
 
-`DELETE https://bitreserve.org/v0/me/tokens/:token`
+`DELETE https://api.uphold.com/v0/me/tokens/:token`
 
 Supported parameters:
 
@@ -144,7 +144,7 @@ token | yes | The PAT you wish to revoke.
 > Example of using a personal access token to make requests to our API:
 
 ```bash
-curl https://api.bitreserve.org/v0/me \
+curl https://api.uphold.com/v0/me \
   -u 41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20:X-OAuth-Basic
 ```
 
@@ -157,7 +157,7 @@ The username should be set as the `token` and password should be set to `X-OAuth
 > Simple request using username or email and password:
 
 ```bash
-curl https://api.bitreserve.org/v0/me \
+curl https://api.uphold.com/v0/me \
   -H 'X-Bitreserve-OTP: <OTP-Token>' \
   -u <username-or-email>:<password>
 ```

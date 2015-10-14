@@ -1,13 +1,13 @@
 # Transparency
 
-The following section outlines a system for how Bitreserve will provide the transparency our members require in order to ascertain the solvency of the reserve we operate to protect the value entrusted to us by our Members.
+The following section outlines a system for how Uphold will provide the transparency our members require in order to ascertain the solvency of the reserve we operate to protect the value entrusted to us by our Members.
 
-We will provide our members with access to two different resources. The first is the Bitreserve Ledger, or "Reserveledger" as we call it. The Reserveledger is a real-time listing of all the company's assets and liabilities. Each entry in the ledger can reference one or more transactions that a user can inquire about and obtain the details of via the second key resource: the Reservechain.
+We will provide our members with access to two different resources. The first is the Uphold Ledger, or "Reserveledger" as we call it. The Reserveledger is a real-time listing of all the company's assets and liabilities. Each entry in the ledger can reference one or more transactions that a user can inquire about and obtain the details of via the second key resource: the Reservechain.
 
 ## Reserve Status
 
 ```bash
-curl "https://api.bitreserve.org/v0/reserve/statistics"
+curl "https://api.uphold.com/v0/reserve/statistics"
 ```
 
 > Which returns the following:
@@ -318,7 +318,7 @@ rate | The rate we used when computing the holding to the corresponding currency
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/reserve/statistics`
+`GET https://api.uphold.com/v0/reserve/statistics`
 
 ## The Reserveledger
 
@@ -331,10 +331,10 @@ Frequently one may find that changes to the Reserve's assets and liabilities are
 ### Request
 
 ```bash
-curl "https://api.bitreserve.org/v0/reserve/ledger"
+curl "https://api.uphold.com/v0/reserve/ledger"
 ```
 
-`GET https://api.bitreserve.org/v0/reserve/ledger`
+`GET https://api.uphold.com/v0/reserve/ledger`
 
 This endpoint supports [Pagination](#pagination).
 
@@ -372,7 +372,7 @@ The following entry shows how a deposit of 0.5 bitcoin by a user would be encode
 
 ### Transfer of Value
 
-The entry below shows how a user transferring 1.3 bitcoin to a "dollar card," effectively exchanging bitcoin for dollars, would be encoded on the ledger. In this entry, two liabilities are affected. The first is a loss of 1.3 BTC as an obligation, and the second is a gain of $507.51 USD as an obligation. Which makes sense: when a user transfers the bitcoin to their dollar card, Bitreserve no longer owes them that bitcoin. Instead, Bitreserve owes them the $507.51 they exchanged for that bitcoin.
+The entry below shows how a user transferring 1.3 bitcoin to a "dollar card," effectively exchanging bitcoin for dollars, would be encoded on the ledger. In this entry, two liabilities are affected. The first is a loss of 1.3 BTC as an obligation, and the second is a gain of $507.51 USD as an obligation. Which makes sense: when a user transfers the bitcoin to their dollar card, Uphold no longer owes them that bitcoin. Instead, Uphold owes them the $507.51 they exchanged for that bitcoin.
 
 <pre class="inline"><code>{
   "type": "liability",
@@ -443,7 +443,7 @@ When value is removed from the Reserve, two entries are added. One accounting fo
 
 ### Reallocation of Assets
 
-Bitreserve may decide to secure the value of its Reserve by holding value in asset classes which may or may not correlate to how our liabilities are denominated among our members. For example, Bitreserve may wish to convert $1,000,000 in cash into a security of equal value. These changes to the Reserve do not relate to any specific transaction, but need to be accounted for nonetheless. What follows is how we could encode shifting 1M dollars into a US Treasury Bill. Take note that we can optionally include additional data relating to the asset class.
+Uphold may decide to secure the value of its Reserve by holding value in asset classes which may or may not correlate to how our liabilities are denominated among our members. For example, Uphold may wish to convert $1,000,000 in cash into a security of equal value. These changes to the Reserve do not relate to any specific transaction, but need to be accounted for nonetheless. What follows is how we could encode shifting 1M dollars into a US Treasury Bill. Take note that we can optionally include additional data relating to the asset class.
 
 <pre class="inline"><code>{
   "type": "asset",
@@ -472,7 +472,7 @@ For the time being this "reallocation" example is merely theoretical, but speaks
 
 ## The Reservechain
 
-Bitreserve's Reservechain is a record of all of the transactions made by its Members that move value through the network. It is a "chain" in that any value moved in a transaction can be easily traced back to it's origin.
+Uphold's Reservechain is a record of all of the transactions made by its Members that move value through the network. It is a "chain" in that any value moved in a transaction can be easily traced back to it's origin.
 
 At a high level, each transaction in the Reservechain contains the following key pieces of information:
 
@@ -480,7 +480,7 @@ At a high level, each transaction in the Reservechain contains the following key
 * the entity initiating the transaction
 * the entity receiving the value being moved
 * a collection of value stored on the network from which the value for current transaction is derived
-* all relevant exchange data associated with the transaction, including the quoted exchange rates, Bitreserve's commission, etc.
+* all relevant exchange data associated with the transaction, including the quoted exchange rates, Uphold's commission, etc.
 
 <aside class="notice">
 Transactions relating to the flow of value into and out of the network may contain additional information correlating and making reference to external systems which can be independently queried to verify the veracity of the transaction recorded in our system.
@@ -539,7 +539,7 @@ Given that this is a point in the chain at which there is a genesis of value, th
 
 ### Withdrawals
 
-Withdrawal documents the flow of assets out of the system. The destination of the transaction would refer as completely as it can to any external sources that the Bitreserve transaction can be correlated against/with.
+Withdrawal documents the flow of assets out of the system. The destination of the transaction would refer as completely as it can to any external sources that the Uphold transaction can be correlated against/with.
 
 Withdrawals also account for value leaving the Reservechain, and is thus a terminus point with regards to traceability.
 
