@@ -40,22 +40,49 @@ You can always request more scopes later by asking for user consent again.
 
 ## Resources
 
-We prefer that you use these image resources when connecting your applications to Uphold.
+We prefer that you use these image resources when connecting your applications to Bitreserve.
 
-<img alt="Connect Button" src="images/buttons/bitreserve-connect-light-purple@1x.png" srcset="images/buttons/bitreserve-connect-light-purple@1x.png 1x, images/buttons/bitreserve-connect-light-purple@2x.png 2x"><br>
-[small (119x40)](images/buttons/bitreserve-connect-light-purple@1x.png), [large (238x80)](images/buttons/bitreserve-connect-light-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/greenBg_btn@1x.png" srcset="images/buttons/greenBg_btn@1x.png 1x, images/buttons/greenBg_btn@2x.png 2x"><br>
+[small (124x40)](images/buttons/greenBg_btn@1x.png), [large (247x80)](images/buttons/greenBg_btn@2x.png)
 
-<img alt="Connect Button" src="images/buttons/bitreserve-connect-purple@1x.png" srcset="images/buttons/bitreserve-connect-purple@1x.png 1x, images/buttons/bitreserve-connect-purple@2x.png 2x"><br>
-[small (119x40)](images/buttons/bitreserve-connect-purple@1x.png), [large (238x80)](images/buttons/bitreserve-connect-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/greenBg_poweredBy_btn@1x.png" srcset="images/buttons/greenBg_poweredBy_btn@1x.png 1x, images/buttons/greenBg_poweredBy_btn@2x.png 2x"><br>
+[small (198x40)](images/buttons/greenBg_poweredBy_btn@1x.png), [large (395x80)](images/buttons/greenBg_poweredBy_btn@2x.png)
 
-<img alt="Connect Button" src="images/buttons/bitreserve-connect-white@1x.png" srcset="images/buttons/bitreserve-connect-white@1x.png 1x, images/buttons/bitreserve-connect-white@2x.png 2x"><br>
-[small (119x40)](images/buttons/bitreserve-connect-white@1x.png), [large (238x80)](images/buttons/bitreserve-connect-white@2x.png)
+<img alt="Connect Button" src="greenBg-connectWith_btn@1x.png" srcset="greenBg-connectWith_btn@1x.png 1x, images/buttons/greenBg-connectWith_btn@2x.png 2x"><br>
+[small (205x40)](greenBg-connectWith_btn@1x.png), [large (410x80)](images/buttons/greenBg-connectWith_btn@2x.png)
 
-<img alt="Connect Button" src="images/buttons/bitreserve-connect-with-light-purple@1x.png" srcset="images/buttons/bitreserve-connect-with-light-purple@1x.png 1x, images/buttons/bitreserve-connect-with-light-purple@2x.png 2x"><br>
-[small (222x40)](images/buttons/bitreserve-connect-with-light-purple@1x.png), [large (443x80)](images/buttons/bitreserve-connect-with-light-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/lightGrayBg_lightGrayBorder_btn@1x.png" srcset="images/buttons/lightGrayBg_lightGrayBorder_btn@1x.png 1x, images/buttons/lightGrayBg_lightGrayBorder_btn@2x.png 2x"><br>
+[small (125x41)](images/buttons/lightGrayBg_lightGrayBorder_btn@1x.png), [large (249x82)](images/buttons/lightGrayBg_lightGrayBorder_btn@2x.png)
 
-<img alt="Connect Button" src="images/buttons/bitreserve-connect-with-purple@1x.png" srcset="images/buttons/bitreserve-connect-with-purple@1x.png 1x, images/buttons/bitreserve-connect-with-purple@2x.png 2x"><br>
-[small (222x40)](images/buttons/bitreserve-connect-with-purple@1x.png), [large (443x80)](images/buttons/bitreserve-connect-with-purple@2x.png)
+<img alt="Connect Button" src="images/buttons/lightGrayBg_lightGrayBorder_connectWith_btn@1x.png" srcset="images/buttons/lightGrayBg_lightGrayBorder_connectWith_btn@1x.png 1x, images/buttons/lightGrayBg_lightGrayBorder_connectWith_btn@2x.png 2x"><br>
+[small (206x41)](images/buttons/lightGrayBg_lightGrayBorder_connectWith_btn@1x.png), [large (412x82)](images/buttons/lightGrayBg_lightGrayBorder_connectWith_btn@2x.png)
 
-<img alt="Connect Button" src="images/buttons/bitreserve-connect-with-white@1x.png" srcset="images/buttons/bitreserve-connect-with-white@1x.png 1x, images/buttons/bitreserve-connect-with-white@2x.png 2x"><br>
-[small (222x40)](images/buttons/bitreserve-connect-with-white@1x.png), [large (443x80)](images/buttons/bitreserve-connect-with-white@2x.png)
+<img alt="Connect Button" src="images/buttons/lightGrayBg_lightGrayBorder_poweredBy_btn@1x.png" srcset="images/buttons/lightGrayBg_lightGrayBorder_poweredBy_btn@1x.png 1x, images/buttons/lightGrayBg_lightGrayBorder_poweredBy_btn@2x.png 2x"><br>
+[small (199x41)](images/buttons/lightGrayBg_lightGrayBorder_poweredBy_btn@1x.png), [large (397x82)](images/buttons/lightGrayBg_lightGrayBorder_poweredBy_btn@2x.png)
+
+<img alt="Connect Button" src="images/buttons/poweredBy_uphold_gray@1x.png" srcset="images/buttons/poweredBy_uphold_gray@1x.png 1x, images/buttons/poweredBy_uphold_gray@2x.png 2x"><br>
+[small (129x50)](images/buttons/poweredBy_uphold_gray@1x.png), [large (258x100)](images/buttons/poweredBy_uphold_gray@2x.png)
+
+<img alt="Connect Button" src="images/buttons/poweredBy_uphold_green@1x.png" srcset="images/buttons/poweredBy_uphold_green@1x.png 1x, images/buttons/poweredBy_uphold_green@2x.png 2x"><br>
+[small (129x50)](images/buttons/poweredBy_uphold_green@1x.png), [large (258x100)](images/buttons/poweredBy_uphold_green@2x.png)
+
+<img alt="Connect Button" src="poweredBy_uphold@1x.png" srcset="poweredBy_uphold@1x.png 1x, images/buttons/poweredBy_uphold@2x.png 2x"><br>
+[small (129x50)](poweredBy_uphold@1x.png), [large (258x100)](images/buttons/poweredBy_uphold@2x.png)
+
+<img alt="Connect Button" src="whiteBg_darkGrayBorder_btn@1x.png" srcset="whiteBg_darkGrayBorder_btn@1x.png 1x, images/buttons/whiteBg_darkGrayBorder_btn@2x.png 2x"><br>
+[small (125x41)](whiteBg_darkGrayBorder_btn@1x.png), [large (249x82)](images/buttons/whiteBg_darkGrayBorder_btn@2x.png)
+
+<img alt="Connect Button" src="whiteBg_darkGrayBorder_ConnectWith_btn@1x.png" srcset="whiteBg_darkGrayBorder_ConnectWith_btn@1x.png 1x, images/buttons/whiteBg_darkGrayBorder_ConnectWith_btn@2x.png 2x"><br>
+[small (206x41)](whiteBg_darkGrayBorder_ConnectWith_btn@1x.png), [large (412x82)](images/buttons/whiteBg_darkGrayBorder_ConnectWith_btn@2x.png)
+
+<img alt="Connect Button" src="whiteBg_darkGrayBorder_poweredBy_btn@1x.png" srcset="whiteBg_darkGrayBorder_poweredBy_btn@1x.png 1x, images/buttons/whiteBg_darkGrayBorder_poweredBy_btn@2x.png 2x"><br>
+[small (199x41)](whiteBg_darkGrayBorder_poweredBy_btn@1x.png), [large (397x82)](images/buttons/whiteBg_darkGrayBorder_poweredBy_btn@2x.png)
+
+<img alt="Connect Button" src="whiteBg_lightGrayBorder_btn@1x.png" srcset="whiteBg_lightGrayBorder_btn@1x.png 1x, images/buttons/whiteBg_lightGrayBorder_btn@2x.png 2x"><br>
+[small (125x41)](whiteBg_lightGrayBorder_btn@1x.png), [large (249x82)](images/buttons/whiteBg_lightGrayBorder_btn@2x.png)
+
+<img alt="Connect Button" src="whiteBg_lightGrayBorder_connectWith_btn@1x.png" srcset="whiteBg_lightGrayBorder_connectWith_btn@1x.png 1x, images/buttons/whiteBg_lightGrayBorder_connectWith_btn@2x.png 2x"><br>
+[small (206x41)](whiteBg_lightGrayBorder_connectWith_btn@1x.png), [large (412x82)](images/buttons/whiteBg_lightGrayBorder_connectWith_btn@2x.png)
+
+<img alt="Connect Button" src="whiteBg_lightGrayBorder_poweredBy_btn@1x.png" srcset="whiteBg_lightGrayBorder_poweredBy_btn@1x.png 1x, images/buttons/whiteBg_lightGrayBorder_poweredBy_btn@2x.png 2x"><br>
+[small (199x41)](whiteBg_lightGrayBorder_poweredBy_btn@1x.png), [large (397x82)](images/buttons/whiteBg_lightGrayBorder_poweredBy_btn@2x.png)
