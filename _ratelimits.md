@@ -18,7 +18,7 @@ The following table indicates the current rate limits:
 | POST /users                                | 10 / 10-min window         | N/A                          |
 
 <aside class="notice">
-**Important Notice**: When performing a considerable volume of transactions, please refer to the [Transaction and Trading Limits FAQ](https://support.bitreserve.org/hc/en-us/articles/205658625-Transaction-and-Trading-Limits) to know more about Trading Power.
+**Important Notice**: When performing a considerable volume of transactions, please refer to the [Transaction and Trading Limits FAQ](https://support.uphold.com/hc/en-us/articles/205658625-Transaction-and-Trading-Limits) to know more about Trading Power.
 </aside>
 
 ## Response Headers
@@ -36,7 +36,7 @@ The current rate limit in effect is explained via custom HTTP headers as describ
 > Example request:
 
 ```
-curl -I -X GET "https://api.bitreserve.org/v0/ticker"
+curl -I -X GET "https://api.uphold.com/v0/ticker"
 ```
 
 > Rate limit details on response headers:

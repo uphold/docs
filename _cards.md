@@ -1,11 +1,11 @@
 # Cards
 
-Bitreserve uses the concept of a "card" as a store of value. Each card is denominated by a currency or store of value, and every card is automatically provisioned one or more addresses to which value can be sent. Whenever value flows into a card, Bitreserve automatically converts that value into the value determined by the card's denomination. In the world of bitcoin for example, this allows one to preserve the original value sent by the sender and shields the recipient from any volatility they might be exposed to by holding bitcoin directly. This also allows recipients of funds to normalize all incoming funds to a single store of value regardless of how the value was originally sent.
+Uphold uses the concept of a "card" as a store of value. Each card is denominated by a currency or store of value, and every card is automatically provisioned one or more addresses to which value can be sent. Whenever value flows into a card, Uphold automatically converts that value into the value determined by the card's denomination. In the world of bitcoin for example, this allows one to preserve the original value sent by the sender and shields the recipient from any volatility they might be exposed to by holding bitcoin directly. This also allows recipients of funds to normalize all incoming funds to a single store of value regardless of how the value was originally sent.
 
 ## List Cards
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards"
+curl "https://api.uphold.com/v0/me/cards"
   -H "Authorization: Bearer <token>"
 ```
 
@@ -66,7 +66,7 @@ Retrieves a list of cards for the current user.
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/cards`
+`GET https://api.uphold.com/v0/me/cards`
 
 ### Response
 
@@ -75,7 +75,7 @@ Returns an array of the current user's cards.
 ## Get Card Details
 
 ```bash
-curl "https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b"
+curl "https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b"
   -H "Authorization: Bearer <token>"
 ```
 
@@ -109,7 +109,7 @@ Retrieves the details about a specific card.
 
 ### Request
 
-`GET https://api.bitreserve.org/v0/me/cards/:id`
+`GET https://api.uphold.com/v0/me/cards/:id`
 
 <aside class="notice">`:id` can either be the card ID or its bitcoin address and it must be owned by the user making the call.</aside>
 
@@ -120,7 +120,7 @@ Returns the details associated with the card ID provided.
 ## Create Card
 
 ```bash
-curl https://api.bitreserve.org/v0/me/cards \
+curl https://api.uphold.com/v0/me/cards \
   -X POST \
   -H "Authorization: Bearer <token>"
   -H "Content-Type: application/json" \
@@ -129,7 +129,7 @@ curl https://api.bitreserve.org/v0/me/cards \
 
 ### Request
 
-`POST https://api.bitreserve.org/v0/me/cards`
+`POST https://api.uphold.com/v0/me/cards`
 
 Parameter | Default |  Description
 --------- | ----------- | -----------
@@ -143,7 +143,7 @@ Returns a fully formed [Card Object](#card-object) representing the card created
 ## Update Card
 
 ```bash
-curl https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
+curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
   -X PATCH \
   -H "Authorization: Bearer <token>"
   -H "Content-Type: application/json" \
@@ -152,7 +152,7 @@ curl https://api.bitreserve.org/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b
 
 ### Request
 
-`PATCH https://api.bitreserve.org/v0/me/cards/:id`
+`PATCH https://api.uphold.com/v0/me/cards/:id`
 
 Parameter | Description
 --------- | -----------
