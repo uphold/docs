@@ -19,6 +19,7 @@ The following _scopes_ are supported by the API:
 
 Scope                 | Description
 --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+accounts:read         | Can view all [accounts](#account-object) and their information.
 cards:read            | Can view all [cards](#card-object) and their information.
 cards:write           | Can create and update any [card](#card-object).
 contacts:read         | Can view all [contacts](#contact-object) and their information.

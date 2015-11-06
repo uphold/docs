@@ -85,7 +85,7 @@ Once you have obtained an access token you may call any protected API method on 
 ## Personal Access Tokens (PAT)
 Ideal for scripts, automated tools and command-line programs which remain under your control.
 
-For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your username/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
+For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your username/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
 
 ### Creating a PAT
 > To create a Personal Access Token, execute the following command:

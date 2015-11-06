@@ -71,9 +71,18 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
 ### Step 1: Create Transaction
 In step one, one prepares the transaction by specifying:
 
-- The currency to denominate the transaction by.
-- The amount of value to send in the denominated currency.
-- The destination of the transaction, which can be in the form of a bitcoin address, an email address, an account id, or a Uphold username.
+- The _currency_ to denominate the transaction by.
+- The _amount_ of value to send in the denominated currency.
+- The _origin_ of the transaction can be an account id in the case of a _deposit_.
+- The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id, or a Uphold username.
+
+The following table describes the types of transactions currently supported:
+
+Type       | Origin                                          | Destination
+---------- | ----------------------------------------------- | ------------------------------------------------------------------
+deposit    | _ACH_, _SEPA_ or _Credit/Debit Card_ account id | Uphold card id
+withdrawal | Uphold card id                                  | _ACH_, _SEPA_, _Credit/Debit Card_ account id or _Bitcoin_ address
+transfer   | Uphold card id                                  | An email address, an Uphold username, an Uphold card id
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 <aside class="notice">
