@@ -4,7 +4,7 @@
 
 > An example card encoded in JSON looks like this:
 
-```
+```json
 {
   "address": {
     "bitcoin": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH"
@@ -52,7 +52,7 @@ normalized | Contains the normalized `available` and `balance` values in the cur
 
 > An example contact encoded in JSON looks like this:
 
-```
+```json
 {
   "addresses": [
     "mtRwYWGKe1hYqNJ5fSTogXWPnFxoQrPYo6"
@@ -82,7 +82,7 @@ name | The display name of the contact created by joining the first and last nam
 
 > An example currency pair encoded in JSON looks like this:
 
-```
+```json
 {
   "ask": "225.76",
   "bid": "225.73",
@@ -107,7 +107,7 @@ pair | The currency pair AB represents moving from A to B.
 
 > An example transaction encoded in JSON looks like this:
 
-```
+```json
 {
   "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
   "type": "transfer",
@@ -271,7 +271,7 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 
 > An example user encoded in JSON looks like this:
 
-```
+```json
 {
   "address": {},
   "birthdate": "2014-08-27",

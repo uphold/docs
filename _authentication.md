@@ -35,7 +35,7 @@ curl https://api.uphold.com/oauth2/token \
 
 > If your request for a token checks out, then our API will return the following:
 
-```
+```json
 {
   "access_token": "41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20",
   "expires_in": null

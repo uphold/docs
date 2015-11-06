@@ -35,7 +35,7 @@ The current rate limit in effect is explained via custom HTTP headers as describ
 
 > Example request:
 
-```
+```bash
 curl -I -X GET "https://api.uphold.com/v0/ticker"
 ```
 
