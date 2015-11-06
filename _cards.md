@@ -111,7 +111,9 @@ Retrieves the details about a specific card.
 
 `GET https://api.uphold.com/v0/me/cards/:id`
 
-<aside class="notice">`:id` can either be the card ID or its bitcoin address and it must be owned by the user making the call.</aside>
+<aside class="notice">
+  <code>:id</code> can either be the card ID or its bitcoin address and it must be owned by the user making the call.
+</aside>
 
 ### Response
 

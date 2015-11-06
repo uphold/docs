@@ -467,7 +467,7 @@ Uphold may decide to secure the value of its Reserve by holding value in asset c
 </code></pre>
 
 <aside class="notice">
-For the time being this "reallocation" example is merely theoretical, but speaks to the potential for us to records assets of various types.
+  For the time being this "reallocation" example is merely theoretical, but speaks to the potential for us to records assets of various types.
 </aside>
 
 ## The Reservechain
@@ -483,7 +483,7 @@ At a high level, each transaction in the Reservechain contains the following key
 * all relevant exchange data associated with the transaction, including the quoted exchange rates, Uphold's commission, etc.
 
 <aside class="notice">
-Transactions relating to the flow of value into and out of the network may contain additional information correlating and making reference to external systems which can be independently queried to verify the veracity of the transaction recorded in our system.
+  Transactions relating to the flow of value into and out of the network may contain additional information correlating and making reference to external systems which can be independently queried to verify the veracity of the transaction recorded in our system.
 </aside>
 
 #### Traceability
