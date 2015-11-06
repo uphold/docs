@@ -5,7 +5,7 @@ Uphold uses the concept of a "card" as a store of value. Each card is denominate
 ## List Cards
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards"
+curl "https://api.uphold.com/v0/me/cards" \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -75,7 +75,7 @@ Returns an array of the current user's cards.
 ## Get Card Details
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b"
+curl "https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b" \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -124,7 +124,7 @@ Returns the details associated with the card ID provided.
 ```bash
 curl https://api.uphold.com/v0/me/cards \
   -X POST \
-  -H "Authorization: Bearer <token>"
+  -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{ "label": "My New Card", "currency": "USD" }'
 ```
@@ -147,7 +147,7 @@ Returns a fully formed [Card Object](#card-object) representing the card created
 ```bash
 curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
   -X PATCH \
-  -H "Authorization: Bearer <token>"
+  -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -d '{ "label": "My Updated Card" }'
 ```

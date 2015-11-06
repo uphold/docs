@@ -3,7 +3,7 @@
 ## Get User
 
 ```bash
-curl "https://api.uphold.com/v0/me"
+curl "https://api.uphold.com/v0/me" \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -114,7 +114,7 @@ Returns the details associated the current user.
 ## Get User Phone Numbers
 
 ```bash
-curl "https://api.uphold.com/v0/me/phones"
+curl "https://api.uphold.com/v0/me/phones" \
   -H "Authorization: Bearer <token>"
 ```
 

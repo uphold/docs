@@ -78,9 +78,10 @@ Returns an associative array containing the details of the designated contact.
 ## Create Contact
 
 ```bash
-curl -X POST --data "firstName=Luke&lastName=Skywalker&company=Lars+Moisture+Farm,+Inc.&emails=support@larsmoisturefarm.com" \
+curl https://api.uphold.com/v0/me/contacts \
+  -X POST \
   -H "Authorization: Bearer <token>" \
-  https://api.uphold.com/v0/me/contacts
+  -d "firstName=Luke&lastName=Skywalker&company=Lars+Moisture+Farm,+Inc.&emails=support@larsmoisturefarm.com"
 ```
 
 ### Request
