@@ -70,7 +70,7 @@ grant_type | yes | Must be set to *'authorization_code'*.
 > Request using the 'Authorization' header:
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards"
+curl "https://api.uphold.com/v0/me/cards" \
   -H "Authorization: Bearer <token>"
 ```
 
