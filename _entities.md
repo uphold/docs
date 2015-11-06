@@ -194,17 +194,17 @@ destination | The recipient of the funds. See "Origin and Destination" below.
 
 ### Denomination
 
-The actual value being transacted is denominated in a certain currency, as expressed by the ```denomination``` field with the following properties:
+The actual value being transacted is denominated in a certain currency, as expressed by the `denomination` field with the following properties:
 
 Property | Description
 --------- | -----------
 amount | The amount to be transacted.
 currency | The currency for said amount.
-pair | The currency pair representing the denominated currency and the currency at ```origin```.
-rate | The quoted rate for converting between the denominated currency and the currency at ```origin```.
+pair | The currency pair representing the denominated currency and the currency at `origin`.
+rate | The quoted rate for converting between the denominated currency and the currency at `origin`.
 
 <aside class="notice">
-  If the ```denomination``` and ```origin``` are the same currency, the ```rate``` will be '1.00'.
+  If the `denomination` and `origin` are the same currency, the `rate` will be '1.00'.
 </aside>
 
 ### Parameters
@@ -242,7 +242,7 @@ commission | The commission charged by Uphold to process the transaction.
 currency | The currency of the funds at the origin acount.
 description | The name of the sender.
 fee | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Uphold Bitcoin Address.
-rate | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of ```destination.rate```).
+rate | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of `destination.rate`).
 sources | The transactions where the value was originated from (id and amount).
 type | The type of endpoint. Possible values are 'card' and 'external'.
 username | The username from the user that performed the transaction.
@@ -264,7 +264,7 @@ commission | The commission charged by Uphold to process the transaction. Commis
 currency | The denomination of the funds at the time they were sent/received.
 description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient.
 fee | The Bitcoin network Fee, if destination is a BTC account but origin is not.
-rate | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of ```origin.rate```).
+rate | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of `origin.rate`).
 type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 
 ## User Object
@@ -414,7 +414,7 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 }
 ```
 
-The ```user``` object contains all information we have on record relating to the currently logged in user.
+The `user` object contains all information we have on record relating to the currently logged in user.
 
 <aside class="notice">
   <strong>Privacy Notice</strong>: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
