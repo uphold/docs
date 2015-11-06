@@ -2,7 +2,7 @@
 
 ## Card Object
 
-> An example currency pair encoded in JSON looks like this:
+> An example card encoded in JSON looks like this:
 
 ```
 {
