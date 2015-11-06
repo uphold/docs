@@ -62,7 +62,7 @@ code | yes | The code acquired in step 1.
 grant_type | yes | Must be set to *'authorization_code'*.
 
 <aside class="notice">
-**Important Notice**: We recommend encoding the *clientId* and *clientSecret* with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
+  <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
 </aside>
 
 ### Step 3 - Using the Access Token
@@ -79,9 +79,9 @@ Once you have obtained an access token you may call any protected API method on 
 `Authorization: Bearer <token>`
 
 <aside class="notice">
-**Security Notice**: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
+  <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
 
-This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
+  This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
 </aside>
 
 ## Personal Access Tokens (PAT)
@@ -114,9 +114,9 @@ Parameter | Required |  Description
 description | no | A human-readable description of this PAT.
 
 <aside class="notice">
-**Import Notice**: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme.
+  <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme.
 
-Additionally, if the account is secured with Two-Factor Authentication, the `X-Bitreserve-OTP` header is required.
+  Additionally, if the account is secured with Two-Factor Authentication, the `X-Bitreserve-OTP` header is required.
 </aside>
 
 ### Revoking a PAT

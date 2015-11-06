@@ -172,7 +172,7 @@ pair | The currency pair AB represents moving from A to B.
 Transactions record the movement of value into, within and out of the Uphold network. Transactions have the following properties:
 
 <aside class="notice">
-There are two views of a transaction: public and private. The private view of information only privy to those who were a party to the transaction. Public views suppress and hide any private or personally identifiable information in order for Uphold to protect user privacy.
+  There are two views of a transaction: public and private. The private view of information only privy to those who were a party to the transaction. Public views suppress and hide any private or personally identifiable information in order for Uphold to protect user privacy.
 </aside>
 
 Property | Description
@@ -188,9 +188,8 @@ normalized | The transaction details in the overall selected currency by the use
 origin | The sender of the funds. See "Origin and Destination" below.
 destination | The recipient of the funds. See "Origin and Destination" below.
 
-
 <aside class="notice">
-A transaction can involve 3 different currencies: the currency as **denominated** by the user, the currency at the **origin** card and the currency at the **destination** card. For instance, _"transfer 1 BTC from my USD card to my EUR card"_. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is credited at the origin, then debited in EUR at the destination.
+  A transaction can involve 3 different currencies: the currency as <strong>denominated</strong> by the user, the currency at the <strong>origin</strong> card and the currency at the <strong>destination</strong> card. For instance, <i>"transfer 1 BTC from my USD card to my EUR card"</i>. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is credited at the origin, then debited in EUR at the destination.
 </aside>
 
 ### Denomination
@@ -205,7 +204,7 @@ pair | The currency pair representing the denominated currency and the currency 
 rate | The quoted rate for converting between the denominated currency and the currency at ```origin```.
 
 <aside class="notice">
-If the ```denomination``` and ```origin``` are the same currency, the ```rate``` will be '1.00'.
+  If the ```denomination``` and ```origin``` are the same currency, the ```rate``` will be '1.00'.
 </aside>
 
 ### Parameters
@@ -249,7 +248,7 @@ type | The type of endpoint. Possible values are 'card' and 'external'.
 username | The username from the user that performed the transaction.
 
 <aside class="notice">
-Commissions are incurred only when a currency conversion is required. A commission is charged at origin when the denomination currency is different from the origin currency, and it's deducted at destination when the denomination currency is different from the destination currency.
+  Commissions are incurred only when a currency conversion is required. A commission is charged at origin when the denomination currency is different from the origin currency, and it's deducted at destination when the denomination currency is different from the destination currency.
 </aside>
 
 
@@ -418,7 +417,7 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 The ```user``` object contains all information we have on record relating to the currently logged in user.
 
 <aside class="notice">
-Privacy Notice: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
+  <strong>Privacy Notice</strong>: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
 </aside>
 
 Property  | Description

@@ -81,7 +81,7 @@ In step one, one prepares the transaction by specifying:
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 
 <aside class="notice">
-You may only send value from addresses that you own.
+  You may only send value from addresses that you own.
 </aside>
 
 ### Request

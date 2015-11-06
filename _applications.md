@@ -5,7 +5,7 @@
 Developers will need to [register their application](https://uphold.com/dashboard/profile/applications/developer/new) before getting started. A registered application will be assigned a unique *Client Id* and *Client Secret*.
 
 <aside class="notice">
-**Security Notice**: Your *Client Secret* should never be shared, must be kept secret at all times and should only be used from your server-side application.
+  <strong>Security Notice</strong>: Your <i>Client Secret</i> should never be shared, must be kept secret at all times and should only be used from your server-side application.
 </aside>
 
 ## Considerations
@@ -33,9 +33,9 @@ transactions:write | Can create a [transaction](#transaction-object) from any ca
 user:read | Can view the [user](#user-object) and their information.
 
 <aside class="notice">
-**Important Notice**: Only specify scopes that your application absolutely needs.
+  <strong>Important Notice</strong>: Only specify scopes that your application absolutely needs.
 
-You can always request more scopes later by asking for user consent again.
+  You can always request more scopes later by asking for user consent again.
 </aside>
 
 ## Resources
