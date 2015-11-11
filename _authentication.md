@@ -12,7 +12,7 @@ Ideal for web applications that wish to retrieve information about a user's Upho
 
 The authenticating web application should redirect users to the following URL:
 
-`https://api.uphold.com/authorize/<client_id>`
+`https://uphold.com/authorize/<client_id>`
 
 Supported query parameters:
 
