@@ -23,12 +23,6 @@ curl "https://api.uphold.com/v0/me/cards" \
     "balance": "897.29",
     "available": "897.29",
     "lastTransactionAt": "2014-09-24T18:11:53.561Z",
-    "addresses": [
-      {
-        "id": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH",
-        "network": "bitcoin"
-      }
-    ],
     "settings": {
       "position": 1,
       "starred": true
@@ -44,16 +38,6 @@ curl "https://api.uphold.com/v0/me/cards" \
     "balance": "0.00",
     "available": "0.00",
     "lastTransactionAt": "2014-07-07T05:40:46.624Z",
-    "addresses": [
-      {
-        "id": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan",
-        "network": "bitcoin"
-      },
-      {
-        "id": "18yFebPW8USkoBtYXeV6quwgnPGEVyvpKi",
-        "network": "bitcoin"
-      }
-    ],
     "settings": {
       "position": 7,
       "starred": true
@@ -92,12 +76,6 @@ curl "https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b" \
   "balance": "42.82",
   "available": "42.82",
   "lastTransactionAt": "2014-06-16T20:46:51.002Z",
-  "addresses": [
-    {
-      "id": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
-      "network": "bitcoin"
-    }
-  ],
   "settings": {
     "position": 5,
     "starred": true

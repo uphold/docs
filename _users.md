@@ -83,12 +83,6 @@ curl "https://api.uphold.com/v0/me" \
         "position": 1,
         "starred": true
       },
-      "addresses": [
-        {
-          "id": "mwvGZzRfgco7AVKajLkByGom5BTp6EMng7",
-          "network": "bitcoin"
-        }
-      ],
       "normalized": [
         {
           "available": "90.00",
