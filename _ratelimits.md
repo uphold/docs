@@ -18,7 +18,7 @@ The following table indicates the current rate limits:
 | POST /users                                | 10 / 10-min window         | N/A                          |
 
 <aside class="notice">
-**Important Notice**: When performing a considerable volume of transactions, please refer to the [Transaction and Trading Limits FAQ](https://support.uphold.com/hc/en-us/articles/205658625-Transaction-and-Trading-Limits) to know more about Trading Power.
+<strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/206118653-Transaction-Trading-Limits">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
 </aside>
 
 ## Response Headers
