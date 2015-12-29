@@ -14,6 +14,10 @@ The authenticating web application should redirect users to the following URL:
 
 `https://uphold.com/authorize/<client_id>`
 
+Or for sandbox applications:
+
+`https://sandbox.uphold.com/authorize/<client_id>`
+
 Supported query parameters:
 
 Parameter | Required |  Description
