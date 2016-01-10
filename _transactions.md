@@ -84,6 +84,10 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
   You may only send value from addresses that you own.
 </aside>
 
+<aside class="notice">
+  Adding the query string parameter `?commit=true` to this request will create and commit the transaction in a single step.
+</aside>
+
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
