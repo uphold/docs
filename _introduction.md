@@ -7,6 +7,7 @@ Welcome to the Uphold API, we're glad to have you! Provided here is all the docu
 The follow libraries are available:
 
 * [Android SDK](https://github.com/uphold/uphold-sdk-android)
+* [Node SDK](https://github.com/DanWebb/uphold-sdk-node)
 * [PHP SDK](https://github.com/seegno/uphold-sdk-php)
 * [Python SDK](https://github.com/byrnereese/uphold-sdk-python)
 * [Ruby SDK](https://github.com/subvisual/uphold-sdk-ruby)
