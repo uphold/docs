@@ -11,6 +11,7 @@ The follow libraries are available:
 * [PHP SDK](https://github.com/seegno/uphold-sdk-php)
 * [Python SDK](https://github.com/byrnereese/uphold-sdk-python)
 * [Ruby SDK](https://github.com/subvisual/uphold-sdk-ruby)
+* [Node SDK](https://github.com/DanWebb/uphold-sdk-node)
 
 We are actively looking for developers to contribute Uphold client libraries for a variety of platforms and languages. If you have written a library, please share a link to the github repository with us at <a href="mailto:developer@uphold.com?subject=I want to contribute code">developer@uphold.com</a> so that we can promote it here, and collaborate with you on its further development.
 
