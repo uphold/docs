@@ -309,7 +309,6 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
   "settings": {
     "currency": "USD",
     "hasNewsSubscription": true,
-    "hasOtpEnabled": true,
     "intl": {
       "dateTimeFormat": {
         "locale": "en-US"
@@ -319,6 +318,24 @@ type | The type of endpoint. Possible values are 'email', 'card' and 'external'.
       },
       "numberFormat": {
         "locale": "en-US"
+      }
+    },
+    "otp": {
+      "login": {
+        "enabled": true
+      },
+      "transactions": {
+        "send": {
+          "enabled": true
+        },
+        "transfer": {
+          "enabled": false
+        },
+        "withdraw": {
+          "crypto": {
+            "enabled": true
+          }
+        }
       }
     }
   },
@@ -423,6 +440,13 @@ The `user` object contains all information we have on record relating to the cur
 Property  | Description
 --------- | -----------
 memberAt  | The date when the user has become a verified member.
+
+### User Settings
+
+* **otp.login.enabled** - This will prompt the user to input an OTP token when creating an OAuth token.
+* **otp.transactions.send.enabled** - This will prompt the user to input an OTP token when creating a transaction to another user.
+* **otp.transactions.transfer.enabled** - This will prompt the user to input an OTP token when transacting between the user's own cards.
+* **otp.transactions.withdraw.crypto.enabled** - This will prompt the user to input an OTP token when withdrawing to the bitcoin network.
 
 ### User Status
 
