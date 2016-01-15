@@ -1,5 +1,4 @@
 # Rate Limits
-
 The API applies rate limits based on the number of requests per a predefined interval (i.e. a time-window). We currently do not differentiate between authenticated and unauthenticated requests. The global rate limit takes into account the remote client IP only.
 
 We plan on changing this policy in the future to one that limits on an account-by-account basis. For now, please be advised that those operating from corporate networks may hit their limit faster given that everyone may present the same IP address to our network.
@@ -8,30 +7,28 @@ Some endpoints have stricter rules as it relates to rate limits. These endpoints
 
 The following table indicates the current rate limits:
 
-| Endpoint                                   | Requests (per IP) / window | Requests (per user) / window |
-| -------------------------------------------|---------------------------:|-----------------------------:|
-| *Global*                                   | 300 / 5-min window         | N/A                          |
-| POST /cards/:card/transactions             | 300 / 5-min window         | N/A                          |
-| POST /cards/:card/transactions/:id/commit  | 300 / 5-min window         | N/A                          |
-| POST /oauth2/token                         | 10 / 1-min window          | 10 / 1-min window            |
-| POST /password/forgot                      | 10 / 10-min window         | 3 / 5-min window             |
-| POST /users                                | 10 / 10-min window         | N/A                          |
+Endpoint                                  | Requests (per IP) / window | Requests (per user) / window
+----------------------------------------- | -------------------------: | ---------------------------:
+*Global*                                  |         300 / 5-min window |                          N/A
+POST /cards/:card/transactions            |         300 / 5-min window |                          N/A
+POST /cards/:card/transactions/:id/commit |         300 / 5-min window |                          N/A
+POST /oauth2/token                        |          10 / 1-min window |            10 / 1-min window
+POST /password/forgot                     |         10 / 10-min window |             3 / 5-min window
+POST /users                               |         10 / 10-min window |                          N/A
 
 <aside class="notice">
-<strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/206118653-Transaction-Trading-Limits">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
+  <strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/206118653-Transaction-Trading-Limits">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
 </aside>
 
 ## Response Headers
-
 The current rate limit in effect is explained via custom HTTP headers as described in the table below. Additionally, the standard HTTP `Retry-After` header field will be appended when the rate limit is exhausted and indicates, in delta-seconds, how long until the rate limit window is reset.
 
-| Header                | Description                                                                                                            |
-|-----------------------|------------------------------------------------------------------------------------------------------------------------|
-| X-RateLimit-Limit     | The total number of requests possible in the current window duration                                                   |
-| X-RateLimit-Remaining | The number of requests remaining in the current window duration                                                        |
-| X-RateLimit-Reset     | The time, in UTC [epoch seconds](http://en.wikipedia.org/wiki/Unix_time), until the end of the current window duration |
-| Retry-After           | The time, in seconds, until the end of the current window duration                                                     |
-
+Header                | Description
+--------------------- | ----------------------------------------------------------------------------------------------------------------------
+X-RateLimit-Limit     | The total number of requests possible in the current window duration
+X-RateLimit-Remaining | The number of requests remaining in the current window duration
+X-RateLimit-Reset     | The time, in UTC [epoch seconds](http://en.wikipedia.org/wiki/Unix_time), until the end of the current window duration
+Retry-After           | The time, in seconds, until the end of the current window duration
 
 > Example request:
 
@@ -64,7 +61,7 @@ In this this example, the request could be retried in 1 minute and 25 seconds.
 
 Alternatively, the `X-RateLimit-Reset` header could also be used to calculate when to retry the request:
 
-> Parsing *X-RateLimit-Reset*:
+> Parsing _X-RateLimit-Reset_:
 
 ```js
 console.log(new Date(1422288199 * 1000));

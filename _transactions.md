@@ -1,7 +1,5 @@
 # Transactions
-
 ## Create &amp; Commit a Transaction
-
 > Step 1: Create the Transaction
 
 ```bash
@@ -71,15 +69,13 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
 > Returns a [Transaction Object](#transaction-object).
 
 ### Step 1: Create Transaction
-
 In step one, one prepares the transaction by specifying:
 
-* The currency to denominate the transaction by.
-* The amount of value to send in the denominated currency.
-* The destination of the transaction, which can be in the form of a bitcoin address, an email address, or a Uphold username.
+- The currency to denominate the transaction by.
+- The amount of value to send in the denominated currency.
+- The destination of the transaction, which can be in the form of a bitcoin address, an email address, an account id, or a Uphold username.
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
-
 <aside class="notice">
   You may only send value from addresses that you own.
 </aside>
@@ -89,25 +85,18 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 </aside>
 
 ### Request
-
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
 
 ### Response
-
 Returns a [Transaction Object](#transaction-object).
 
-
 ### Step 2: Commit Transaction
-
-Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter
-`message` can also be sent which will overwrite the value currently stored in the transaction.
+Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
 
 ### Request
-
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
 
 ### Response
-
 Returns a [Transaction Object](#transaction-object).
 
 ## Cancel a Transaction
@@ -123,13 +112,10 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
 Cancels a transaction that has not yet been redeemed.
 
 ### Request
-
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/cancel`
 
 ### Response
-
 Returns a [Transaction Object](#transaction-object).
-
 <aside class="notice">Only transactions with status `waiting` can be cancelled.</aside>
 
 ## Resend a Transaction
@@ -145,13 +131,10 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
 Triggers a reminder for a transaction that hasn't been redeemed yet.
 
 ### Request
-
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/resend`
 
 ### Response
-
 Returns a [Transaction Object](#transaction-object).
-
 <aside class="notice">Only transactions with status `waiting` can be resent.</aside>
 
 ## List User Transactions
@@ -161,6 +144,7 @@ curl "https://api.uphold.com/v0/me/transactions" \
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
+
 > The above command returns the following JSON:
 
 ```json
@@ -203,13 +187,11 @@ curl "https://api.uphold.com/v0/me/transactions" \
 Requests a list of transactions associated with the current user.
 
 ### Request
-
 `GET https://api.uphold.com/v0/me/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
 ### Response
-
 Returns an array of [Transaction Objects](#transaction-object).
 
 ## List Card Transactions
@@ -262,13 +244,11 @@ curl "https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/tr
 Requests a list of transactions associated with a specific card.
 
 ### Request
-
 `GET https://api.uphold.com/v0/me/cards/:card/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
 ### Response
-
 Returns an array of [Transaction Objects](#transaction-object).
 
 ## Get All Transactions (Public)
@@ -351,15 +331,12 @@ See also: [Transparency: Reservechain](#the-reservechain)
 Requests the public view of all transactions in the reserve.
 
 ### Request
-
 `GET https://api.uphold.com/v0/reserve/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
 ### Response
-
 Returns an array of [Transaction Objects](#transaction-object).
-
 <aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
 
 ## Get Transaction (Public)
@@ -406,11 +383,8 @@ See also: [Transparency: Reservechain](#the-reservechain)
 Requests the public view of a specific transaction.
 
 ### Request
-
 `GET https://api.uphold.com/v0/reserve/transactions/:id`
 
 ### Response
-
 Returns a [Transaction Object](#transaction-object).
-
 <aside class="notice">Note that you will only receive the list of committed transactions.</aside>
