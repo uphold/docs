@@ -16,8 +16,6 @@ We are actively looking for developers to contribute Uphold client libraries for
 
 ## API Changes
 
-You can be notified of the latest changes by *watching* our official [documentation repository](https://github.com/uphold/docs/) on GitHub.
-
-We are currently in *v0* which means that breaking changes may be introduced. If there are any upcoming changes we will add them to a release named *next*. You can follow it in the *[releases](https://github.com/uphold/docs/releases)* page to avoid breaking your application.
+You can be notified of the latest changes by *watching* our official [documentation repository](https://github.com/uphold/docs/) on GitHub and by following our [developer blog](https://uphold.com/en/developer/blog).
 
 The official changelog is currently on [GitHub](https://github.com/uphold/docs/releases).
