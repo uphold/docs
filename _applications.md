@@ -19,18 +19,24 @@ The following _scopes_ are supported by the API:
 
 Scope                 | Description
 --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-accounts:read         | Can view all [accounts](#account-object) and their information.
-cards:read            | Can view all [cards](#card-object) and their information.
-cards:write           | Can create and update any [card](#card-object).
-contacts:read         | Can view all [contacts](#contact-object) and their information.
-contacts:write        | Can create and update any [contact](#contact-object).
-transactions:deposit  | Can create a deposit [transaction](#transaction-object).
-transactions:read     | Can view any [transaction](#transaction-object).
-transactions:send     | Can create a [transaction](#transaction-object) between different users (including invites).
-transactions:transfer | Can create a [transaction](#transaction-object) between a user's cards.
-transactions:withdraw | Can create a withdrawal [transaction](#transaction-object).
-transactions:write    | Can create a [transaction](#transaction-object) from any card to any destination (another card or an external address), cancel and resend transactions. This scope will be deprecated in the future in favor of the more fine-grained write scopes above (deposit, send, transfer and withdraw).
-user:read             | Can view the [user](#user-object) and their information.
+accounts:read                     | Can view all [accounts](#account-object) and their information.
+cards:read                        | Can view all [cards](#card-object) and their information.
+cards:write                       | Can create and update any [card](#card-object).
+contacts:read                     | Can view all [contacts](#contact-object) and their information.
+contacts:write                    | Can create and update any [contact](#contact-object).
+transactions:deposit              | Can create a deposit [transaction](#transaction-object).
+transactions:read                 | Can view any [transaction](#transaction-object).
+transactions:transfer:application | Can create a [transaction](#transaction-object) between the user and the application.
+transactions:transfer:others      | Can create a [transaction](#transaction-object) between different users.
+transactions:transfer:self        | Can create a [transaction](#transaction-object) between a user's cards.
+transactions:withdraw             | Can create a withdrawal [transaction](#transaction-object).
+user:read                         | Can view the [user](#user-object) and their information.
+
+The following _scopes_ are deprecated and will be removed in a future version of the API:
+
+Scope                 | Description
+--------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+transactions:write                | Can create a [transaction](#transaction-object) from any card to any destination (another card or an external address), cancel and resend transactions. This scope is now deprecated in favor of the more fine-grained write scopes above (deposit, transfer and withdraw).
 
 <aside class="notice">
   <strong>Important Notice</strong>: Only specify scopes that your application absolutely needs.

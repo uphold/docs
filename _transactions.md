@@ -95,6 +95,7 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
+<aside class="notice">Requires any of the following scopes: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self`, `transactions:withdraw`, or `transactions:write` for Uphold Connect applications. If creating with the query string parameter `?commit=true`, the scope has to match the type of transaction being committed.</aside>
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
@@ -104,6 +105,7 @@ Once a transaction has been created and a quote secured, commit the transaction 
 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
+<aside class="notice">Requires any of the following scopes, based on the type of transaction being committed: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self`, `transactions:withdraw`, or `transactions:write` for Uphold Connect applications.</aside>
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
@@ -122,6 +124,7 @@ Cancels a transaction that has not yet been redeemed.
 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/cancel`
+<aside class="notice">Requires the `transactions:write` scope for Uphold Connect applications.</aside>
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
@@ -141,6 +144,7 @@ Triggers a reminder for a transaction that hasn't been redeemed yet.
 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/resend`
+<aside class="notice">Requires the `transactions:write` scope for Uphold Connect applications.</aside>
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
@@ -197,6 +201,7 @@ Requests a list of transactions associated with the current user.
 
 ### Request
 `GET https://api.uphold.com/v0/me/transactions`
+<aside class="notice">Requires the `transactions:read` scope for Uphold Connect applications.</aside>
 
 This endpoint supports [Pagination](#pagination).
 
@@ -254,6 +259,7 @@ Requests a list of transactions associated with a specific card.
 
 ### Request
 `GET https://api.uphold.com/v0/me/cards/:card/transactions`
+<aside class="notice">Requires the `transactions:read` scope for Uphold Connect applications.</aside>
 
 This endpoint supports [Pagination](#pagination).
 
