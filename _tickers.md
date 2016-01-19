@@ -1,5 +1,4 @@
 # Tickers
-
 Developers can query at any time the rates we utilize when exchanging one form of value for another. These are expressed in "currency pairs."
 
 ## Get All Tickers
@@ -292,11 +291,9 @@ curl "https://api.uphold.com/v0/ticker"
 ```
 
 ### Request
-
 `GET https://api.uphold.com/v0/ticker`
 
 ### Response
-
 Returns an associative array containing the current rates Uphold has on record for all currency pairs.
 
 ## Get Tickers for Currency
@@ -393,9 +390,7 @@ curl "https://api.uphold.com/v0/ticker/USD"
 This method allows developers to find all exchanges rates relative to a given currency.
 
 ### Request
-
 `GET https://api.uphold.com/v0/ticker/:currency`
 
 ### Response
-
 Returns an associative array containing the current rates Uphold has on record for the currency specified.
