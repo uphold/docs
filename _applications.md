@@ -17,8 +17,8 @@ When requesting authorization from a user the application must specify the level
 
 The following _scopes_ are supported by the API:
 
-Scope                 | Description
---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Scope                             | Description
+--------------------------------- | -------------------------------------------------------------------------------------
 accounts:read                     | Can view all [accounts](#account-object) and their information.
 cards:read                        | Can view all [cards](#card-object) and their information.
 cards:write                       | Can create and update any [card](#card-object).
@@ -32,11 +32,12 @@ transactions:transfer:self        | Can create a [transaction](#transaction-obje
 transactions:withdraw             | Can create a withdrawal [transaction](#transaction-object).
 user:read                         | Can view the [user](#user-object) and their information.
 
+### Deprecated scopes
 The following _scopes_ are deprecated and will be removed in a future version of the API:
 
-Scope                 | Description
---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-transactions:write                | Can create a [transaction](#transaction-object) from any card to any destination (another card or an external address), cancel and resend transactions. This scope is now deprecated in favor of the more fine-grained write scopes above (deposit, transfer and withdraw).
+Scope              | Description
+------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+transactions:write | Can create a [transaction](#transaction-object) from any origin to any destination (another card or an external address), cancel and resend transactions. This scope is now deprecated in favor of the more fine-grained write scopes above (deposit, transfer and withdraw).
 
 <aside class="notice">
   <strong>Important Notice</strong>: Only specify scopes that your application absolutely needs.
