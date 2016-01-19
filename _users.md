@@ -94,6 +94,7 @@ curl "https://api.uphold.com/v0/me" \
 
 ### Request
 `GET https://api.uphold.com/v0/me`
+<aside class="notice">Requires the `user:read` scope for Uphold Connect applications.</aside>
 
 ### Response
 Returns the details associated the current user.
