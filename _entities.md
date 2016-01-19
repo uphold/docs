@@ -187,7 +187,8 @@ Property     | Description
 id           | A unique ID on the Uphold Network associated with the transaction.
 type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 message      | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
-denomination | The funds to be transfered, as originally requested. See "Denomination" below.
+denomination | The funds to be transferred, as originally requested. See "Denomination" below.
+fees         | The fees that were applied to the transaction.
 status       | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
 params       | Other parameters of this transaction. See "Parameters" below.
 createdAt    | The date and time the transaction was initiated.
@@ -211,6 +212,20 @@ rate     | The quoted rate for converting between the denominated currency and t
 
 <aside class="notice">
   If the `denomination` and `origin` are the same currency, the `rate` will be '1.00'.
+</aside>
+
+### Fees
+The `fees` property contains an array of fees that were applied to the transaction. Each object in the array contains the following properties:
+
+Property | Description
+-------- | ---------------------------------------------------------------------------------
+amount   | The amount to be charged.
+currency | The currency for said amount.
+target   | Can be `origin` or `destination` and determines where the fee was applied.
+type     | The type of fee. Can be one of: `deposit`, `exchange`, `network` or `withdrawal`.
+
+<aside class="notice">
+  <strong>Important Notice</strong>: For further information on our fees, please visit our FAQ: <a href="https://support.uphold.com/hc/en-us/articles/202342496-Is-Uphold-a-free-service-">Is Uphold a free service?</a>
 </aside>
 
 ### Parameters
