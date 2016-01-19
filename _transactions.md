@@ -13,27 +13,41 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
 
 ```json
 {
-  "id": "7c377eba-cb1e-45a2-8c13-9807b4139bec",
-  "type": "transfer",
-  "message": null,
-  "status": "pending",
-  "RefundedById":null,
-  "createdAt": "2014-08-27T00:01:11.616Z",
   "denomination": {
     "amount": "0.1",
     "currency": "BTC",
-    "pair": "BTCBTC",
-    "rate": "1.00"
+    "rate": "1.00",
+    "pair": "BTCBTC"
   },
+  "fees": [],
+  "id": "7c377eba-cb1e-45a2-8c13-9807b4139bec",
+  "normalized": [{
+    "amount": "900.00",
+    "commission": "0.00",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "900.00000"
+  }],
+  "params": {
+    "currency": "BTC",
+    "margin": "0.00",
+    "pair": "BTCBTC",
+    "rate": "1.00",
+    "ttl": 7000,
+    "type": "invite"
+  },
+  "status": "pending",
+  "type": "transfer",
   "origin": {
-    "CardId": "66cf2c86-8247-4094-bbec-ca29cea8220f",
     "amount": "0.1",
     "base": "0.1",
+    "CardId": "66cf2c86-8247-4094-bbec-ca29cea8220f",
     "commission": "0.00",
     "currency": "BTC",
     "description": "John Doe",
     "fee": "0.00",
     "rate": "1.00",
+    "sources": [],
     "type": "card",
     "username": "johndoe"
   },
@@ -47,14 +61,6 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
     "rate": "1.00",
     "type": "email"
   },
-  "params": {
-    "currency": "BTC",
-    "margin": "0.00",
-    "pair": "BTCBTC",
-    "rate": "1.00",
-    "ttl": 30000,
-    "type": "invite"
-  }
 }
 ```
 
@@ -163,36 +169,40 @@ curl "https://api.uphold.com/v0/me/transactions" \
 ```json
 [
   {
-    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-    "type": "transfer",
-    "message": null,
-    "status": "waiting",
-    "RefundedById":null,
     "createdAt": "2014-08-27T00:01:11.616Z",
     "denomination": {
-      "rate": "1.00",
       "amount": "1.00",
-      "currency": "USD"
+      "currency": "USD",
+      "rate": "1.00",
+      "pair": "USDUSD"
     },
+    "fees": [],
+    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
+    "message": null,
+    "params": "<excluded for brevity>",
+    "status": "waiting",
+    "type": "transfer",
     "origin": "<excluded for brevity>",
     "destination": "<excluded for brevity>",
-    "params": "<excluded for brevity>"
+    "RefundedById": null
   },
   {
-    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-    "type": "transfer",
-    "message": null,
-    "status": "waiting",
-    "RefundedById":null,
     "createdAt": "2014-08-27T00:01:12.616Z",
     "denomination": {
-      "rate": "1.00",
       "amount": "1.00",
-      "currency": "USD"
+      "currency": "USD",
+      "rate": "1.00",
+      "pair": "USDUSD"
     },
+    "fees": [],
+    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
+    "message": null,
+    "params": "<excluded for brevity>",
+    "status": "waiting",
+    "type": "transfer",
     "origin": "<excluded for brevity>",
     "destination": "<excluded for brevity>",
-    "params": "<excluded for brevity>"
+    "RefundedById": null
   }
 ]
 ```
@@ -221,36 +231,40 @@ curl "https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/tr
 ```json
 [
   {
-    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-    "type": "transfer",
-    "message": null,
-    "status": "waiting",
-    "RefundedById":null,
     "createdAt": "2014-08-27T00:01:11.616Z",
     "denomination": {
-      "rate": "1.00",
       "amount": "1.00",
-      "currency": "USD"
+      "currency": "USD",
+      "rate": "1.00",
+      "pair": "USDUSD"
     },
+    "fees": [],
+    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
+    "message": null,
+    "params": "<excluded for brevity>",
+    "status": "waiting",
+    "type": "transfer",
     "origin": "<excluded for brevity>",
     "destination": "<excluded for brevity>",
-    "params": "<excluded for brevity>"
+    "RefundedById": null
   },
   {
-    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-    "type": "transfer",
-    "message": null,
-    "status": "waiting",
-    "RefundedById":null,
     "createdAt": "2014-08-27T00:01:12.616Z",
     "denomination": {
-      "rate": "1.00",
       "amount": "1.00",
-      "currency": "USD"
+      "currency": "USD",
+      "rate": "1.00",
+      "pair": "USDUSD"
     },
+    "fees": [],
+    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
+    "message": null,
+    "params": "<excluded for brevity>",
+    "status": "waiting",
+    "type": "transfer",
     "origin": "<excluded for brevity>",
     "destination": "<excluded for brevity>",
-    "params": "<excluded for brevity>"
+    "RefundedById": null
   }
 ]
 ```
@@ -275,70 +289,139 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
 > The above command returns the following JSON, truncated for brevity:
 
 ```json
-[
-  {
-    "id": "63dc7ccb-0e57-400d-8ea7-7d903753801c",
-    "type": "deposit",
-    "params": {
-      "margin": "0.45",
-      "pair": "BTCUSD",
-      "type": "transfer"
-    },
-    "denomination": {
-      "amount": "25.00",
-      "currency": "USD"
-    },
-    "origin": {
-      "amount": "25.00",
-      "base": "25.00",
-      "commission": "0.00",
-      "currency": "USD",
-      "fee": "0.00",
-      "rate": "408.19000"
-    },
-    "destination": {
-      "amount": "0.06087161",
-      "base": "0.06124598",
-      "commission": "0.00027437",
-      "currency": "BTC",
-      "fee": "0.0001",
-      "rate": "0.00244983"
-    },
-    "status": "completed",
-    "createdAt": "2014-09-25T19:19:51.201Z"
+[{
+  "createdAt": "2014-09-25T19:19:51.201Z",
+  "denomination": {
+    "amount": "25.00",
+    "currency": "USD",
+    "rate": "1.00",
+    "pair": "USDUSD"
   },
-  {
-    "id": "fc4263a8-5df0-493d-bd26-517a218c7089",
-    "type": "deposit",
-    "params": {
-      "margin": "0.00",
-      "pair": "BTCBTC",
-      "type": "external/out"
-    },
-    "denomination": {
-      "amount": "0.45",
-      "currency": "BTC"
-    },
-    "origin": {
-      "amount": "0.4501",
-      "base": "0.45",
-      "commission": "0.00",
-      "currency": "BTC",
-      "fee": "0.0001",
-      "rate": "1.00"
-    },
-    "destination": {
-      "amount": "0.45",
-      "base": "0.45",
-      "commission": "0.00",
-      "currency": "BTC",
-      "fee": "0.00",
-      "rate": "1.00"
-    },
-    "status": "completed",
-    "createdAt": "2014-09-25T18:11:50.182Z"
+  "fees": [{
+    "type": "exchange",
+    "amount": "0.00",
+    "target": "destination",
+    "currency": "BTC",
+    "percentage": "0.00"
+  }],
+  "id": "63dc7ccb-0e57-400d-8ea7-7d903753801c",
+  "message": null,
+  "params": {
+    "currency": "USD",
+    "margin": "0.00",
+    "pair": "BTCUSD",
+    "progress": "1",
+    "rate": "900.00000",
+    "ttl": 7000,
+    "type": "transfer"
+  },
+  "status": "completed",
+  "type": "transfer",
+  "normalized": [{
+    "fee": "0.00",
+    "rate": "0.91759",
+    "amount": "22.94",
+    "currency": "EUR",
+    "commission": "0.00"
+  }],
+  "origin": {
+    "amount": "25.00",
+    "base": "25.00",
+    "CardId": "f4dbc023-61bb-43e9-9ce6-7f34efd9e688",
+    "commission": "0.00",
+    "currency": "USD",
+    "description": "Nuno Sousa",
+    "fee": "0.00",
+    "rate": "900.00000",
+    "sources": [{
+      "id": "4586e3f6-5fff-473f-b479-4e7ce2ba14cf",
+      "amount": "25.00"
+    }],
+    "type": "card",
+    "username": "johndoe"
+  },
+  "destination": {
+    "amount": "0.02777777",
+    "base": "0.02777777",
+    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
+    "commission": "0.00",
+    "currency": "BTC",
+    "description": "Nuno Sousa",
+    "fee": "0.00",
+    "rate": "0.00111111",
+    "type": "card",
+    "username": "johndoe"
+  },
+},
+{
+  "createdAt": "2016-01-19T12:07:01.611Z",
+  "denomination": {
+    "amount": "0.01",
+    "currency": "BTC",
+    "rate": "1.00",
+    "pair": "BTCBTC"
+  },
+  "fees": [{
+    "type": "network",
+    "amount": "0.0002",
+    "target": "origin",
+    "currency": "BTC"
+  }, {
+    "type": "withdrawal",
+    "amount": "0.00",
+    "target": "origin",
+    "currency": "BTC",
+    "percentage": "0.5"
+  }],
+  "id": "99191bf6-52d8-4f29-92e8-676b68c9a85b",
+  "message": null,
+  "network": "bitcoin",
+  "normalized": [{
+    "amount": "9.18",
+    "commission": "0.00",
+    "currency": "USD",
+    "fee": "0.18",
+    "rate": "900.00000"
+  }],
+  "params": {
+    "currency": "BTC",
+    "margin": "0.00",
+    "pair": "BTCBTC",
+    "progress": "1",
+    "rate": "1.00",
+    "ttl": 7000,
+    "type": "external/out"
+  },
+  "status": "completed",
+  "type": "withdrawal",
+  "origin": {
+    "amount": "0.0102",
+    "base": "0.01",
+    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
+    "commission": "0.00",
+    "currency": "BTC",
+    "description": "Nuno Sousa",
+    "fee": "0.0002",
+    "rate": "1.00",
+    "sources": [{
+      "id": "390ed0ab-c014-43f3-868a-8ea3ea56025e",
+      "amount": "0.0102"
+    }],
+    "type": "card",
+    "username": "johndoe"
+  },
+  "destination": {
+    "address": "n2eMqTT929pb1RDNuqEnxdaLau1rxy3efi",
+    "amount": "0.01",
+    "base": "0.01",
+    "commission": "0.00",
+    "currency": "BTC",
+    "description": "n2eMqTT929pb1RDNuqEnxdaLau1rxy3efi",
+    "fee": "0.00",
+    "rate": "1.00",
+    "type": "external"
   }
-]
+}]
 ```
 
 See also: [Transparency: Reservechain](#the-reservechain)
@@ -364,32 +447,44 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions/a97bb994-6e24-4a89-b
 
 ```json
 {
-  "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-  "type": "deposit",
-  "params": {
-    "type": "invite",
-    "pair": "USDUSD"
-  },
+  "application": null,
+  "createdAt": "2014-08-27T00:01:11.616Z",
   "denomination": {
     "amount": "1.00",
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1.00",
+    "pair": "USDUSD"
   },
+  "fees": [],
+  "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
+  "params": {
+    "currency": "USD",
+    "margin": "0.00",
+    "pair": "USDUSD",
+    "rate": "1.00"
+  },
+  "status": "cancelled",
+  "type": "transfer",
   "origin": {
-    "base": "1.00",
     "amount": "1.00",
+    "base": "1.00",
     "commission": "0.00",
+    "currency": "USD",
     "fee": "0.00",
-    "currency": "USD"
+    "rate": "1.00",
+    "sources": [{
+      "id": "35325c99-edeb-4625-9cd8-f56d4783c352",
+      "amount": "1"
+    }]
   },
   "destination": {
-    "base": "1.00",
     "amount": "1.00",
+    "base": "1.00",
     "commission": "0.00",
+    "currency": "USD",
     "fee": "0.00",
-    "currency": "USD"
-  },
-  "status": "waiting",
-  "createdAt": "2014-09-25T18:11:50.182Z"
+    "rate": "1.00"
+  }
 }
 ```
 

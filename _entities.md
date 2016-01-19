@@ -124,38 +124,37 @@ pair     | The currency pair AB represents moving from A to B.
 
 ```json
 {
-  "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
-  "type": "transfer",
-  "message": "Join Uphold!",
+  "createdAt": "2015-06-04T11:43:30.645Z",
   "denomination": {
     "amount": "2.00",
     "currency": "USD",
     "pair": "USDUSD",
     "rate": "1.00"
   },
-  "status": "waiting",
+  "fees": [],
+  "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
+  "message": "Join Uphold!",
+  "normalized": [{
+    "amount": "2.00",
+    "commission": "0.00",
+    "currency": "USD",
+    "rate": "1.00"
+  }],
   "params": {
     "currency": "USD",
     "margin": "0.00",
     "pair": "USDUSD",
     "progress": "0",
     "rate": "1.00",
-    "ttl": 30000,
+    "ttl": 7000,
     "type": "invite"
   },
-  "createdAt": "2015-06-04T11:43:30.645Z",
-  "normalized": [
-    {
-      "amount": "2.00",
-      "commission": "0.00",
-      "currency": "USD",
-      "rate": "1.00"
-    }
-  ],
+  "status": "waiting",
+  "type": "transfer",
   "origin": {
-    "CardId": "718c7c81-ae87-46b3-97d5-131b78d76f05",
     "amount": "2.00",
     "base": "2.00",
+    "CardId": "718c7c81-ae87-46b3-97d5-131b78d76f05",
     "commission": "0.00",
     "currency": "USD",
     "description": "John Smith",
