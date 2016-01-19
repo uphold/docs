@@ -11,54 +11,46 @@ curl "https://api.uphold.com/v0/me/cards" \
 > The above command returns the following JSON:
 
 ```json
-[
-  {
-    "id": "ade869d8-7913-4f67-bb4d-72719f0a2be0",
-    "address": {
-      "bitcoin": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH"
-    },
-    "label": "USD card",
-    "currency": "USD",
-    "balance": "897.29",
-    "available": "897.29",
-    "lastTransactionAt": "2014-09-24T18:11:53.561Z",
-    "addresses": [
-      {
-        "id": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH",
-        "network": "bitcoin"
-      }
-    ],
-    "settings": {
-      "position": 1,
-      "starred": true
-    }
+[{
+  "id": "ade869d8-7913-4f67-bb4d-72719f0a2be0",
+  "address": {
+    "bitcoin": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH"
   },
-  {
-    "id": "91380a1f-c6f1-4d81-a204-8b40538c1f0d",
-    "address": {
-      "bitcoin": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan"
-    },
-    "label": "BTC Card #2",
-    "currency": "BTC",
-    "balance": "0.00",
-    "available": "0.00",
-    "lastTransactionAt": "2014-07-07T05:40:46.624Z",
-    "addresses": [
-      {
-        "id": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan",
-        "network": "bitcoin"
-      },
-      {
-        "id": "18yFebPW8USkoBtYXeV6quwgnPGEVyvpKi",
-        "network": "bitcoin"
-      }
-    ],
-    "settings": {
-      "position": 7,
-      "starred": true
-    }
+  "label": "USD card",
+  "currency": "USD",
+  "balance": "897.29",
+  "available": "897.29",
+  "lastTransactionAt": "2014-09-24T18:11:53.561Z",
+  "addresses": [{
+    "id": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH",
+    "network": "bitcoin"
+  }],
+  "settings": {
+    "position": 1,
+    "starred": true
   }
-]
+}, {
+  "id": "91380a1f-c6f1-4d81-a204-8b40538c1f0d",
+  "address": {
+    "bitcoin": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan"
+  },
+  "label": "BTC Card #2",
+  "currency": "BTC",
+  "balance": "0.00",
+  "available": "0.00",
+  "lastTransactionAt": "2014-07-07T05:40:46.624Z",
+  "addresses": [{
+    "id": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan",
+    "network": "bitcoin"
+  }, {
+    "id": "18yFebPW8USkoBtYXeV6quwgnPGEVyvpKi",
+    "network": "bitcoin"
+  }],
+  "settings": {
+    "position": 7,
+    "starred": true
+  }
+}]
 ```
 
 Retrieves a list of cards for the current user.
@@ -89,12 +81,10 @@ curl "https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b" \
   "balance": "42.82",
   "available": "42.82",
   "lastTransactionAt": "2014-06-16T20:46:51.002Z",
-  "addresses": [
-    {
-      "id": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
-      "network": "bitcoin"
-    }
-  ],
+  "addresses": [{
+    "id": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
+    "network": "bitcoin"
+  }],
   "settings": {
     "position": 5,
     "starred": true

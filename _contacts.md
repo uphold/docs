@@ -9,30 +9,27 @@ curl "https://api.uphold.com/v0/me/contacts" \
 > The above command returns the following JSON:
 
 ```json
-[
-  {
-    "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
-    "firstName": "Han",
-    "lastName": "Solo",
-    "company": "Rebel Alliance",
-    "emails": [
-      "han.solo@rebelalliance.org"
-    ],
-    "addresses": [],
-    "name": "Han Solo"
-  },
-  {
-    "id": "2f3b26bf-4621-4fe9-ab7d-565105b22588",
-    "firstName": "Leia",
-    "lastName": "Organa",
-    "company": "Galactic Senate",
-    "emails": [
-      "leia.organa@senate.coruscant.gov"
-    ],
-    "addresses": [],
-    "name": "Leia Organa"
-  }
-]
+[{
+  "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
+  "firstName": "Han",
+  "lastName": "Solo",
+  "company": "Rebel Alliance",
+  "emails": [
+    "han.solo@rebelalliance.org"
+  ],
+  "addresses": [],
+  "name": "Han Solo"
+}, {
+  "id": "2f3b26bf-4621-4fe9-ab7d-565105b22588",
+  "firstName": "Leia",
+  "lastName": "Organa",
+  "company": "Galactic Senate",
+  "emails": [
+    "leia.organa@senate.coruscant.gov"
+  ],
+  "addresses": [],
+  "name": "Leia Organa"
+}]
 ```
 
 ### Request

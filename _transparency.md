@@ -12,290 +12,241 @@ curl "https://api.uphold.com/v0/reserve/statistics"
 > Which returns the following:
 
 ```json
-[
-  {
+[{
+  "currency": "BTC",
+  "values": [{
+    "assets": "287.24725",
     "currency": "BTC",
-    "values": [
-      {
-        "assets": "287.24725",
-        "currency": "BTC",
-        "liabilities": "133.789096",
-        "rate": "1.00"
-      },
-      {
-        "assets": "592404.25",
-        "currency": "CNY",
-        "liabilities": "275919.87",
-        "rate": "2062.34967"
-      },
-      {
-        "assets": "76787.16",
-        "currency": "EUR",
-        "liabilities": "35764.61",
-        "rate": "267.31889"
-      },
-      {
-        "assets": "60512.35",
-        "currency": "GBP",
-        "liabilities": "28184.40",
-        "rate": "210.66168"
-      },
-      {
-        "assets": "10591340.78",
-        "currency": "JPY",
-        "liabilities": "4933052.69",
-        "rate": "36871.86292"
-      },
-      {
-        "assets": "96843.97",
-        "currency": "USD",
-        "liabilities": "45106.32",
-        "rate": "337.14500"
-      }
-    ],
-    "totals": {
-      "commissions": "7.47763",
-      "transactions": "1755.86701",
-      "assets": "493.75857302",
-      "liabilities": "335.82190088"
-    }
-  },
-  {
+    "liabilities": "133.789096",
+    "rate": "1.00"
+  }, {
+    "assets": "592404.25",
     "currency": "CNY",
-    "values": [
-      {
-        "assets": "0.00",
-        "currency": "BTC",
-        "liabilities": "1.02929007",
-        "rate": "0.00048486"
-      },
-      {
-        "assets": "0.00",
-        "currency": "CNY",
-        "liabilities": "2122.73",
-        "rate": "1.00"
-      },
-      {
-        "assets": "0.00",
-        "currency": "EUR",
-        "liabilities": "275.15",
-        "rate": "0.12962"
-      },
-      {
-        "assets": "0.00",
-        "currency": "GBP",
-        "liabilities": "216.83",
-        "rate": "0.10214"
-      },
-      {
-        "assets": "0.00",
-        "currency": "JPY",
-        "liabilities": "37939.77",
-        "rate": "17.87310"
-      },
-      {
-        "assets": "0.00",
-        "currency": "USD",
-        "liabilities": "347.02",
-        "rate": "0.16347"
-      }
-    ],
-    "totals": {
-      "commissions": "16282.33",
-      "transactions": "3823508.63",
-      "assets": "1018302.81",
-      "liabilities": "692583.22"
-    }
-  },
-  {
+    "liabilities": "275919.87",
+    "rate": "2062.34967"
+  }, {
+    "assets": "76787.16",
     "currency": "EUR",
-    "values": [
-      {
-        "assets": "0.00",
-        "currency": "BTC",
-        "liabilities": "12.99977754",
-        "rate": "0.00374082"
-      },
-      {
-        "assets": "0.00",
-        "currency": "CNY",
-        "liabilities": "26809.95",
-        "rate": "7.71485"
-      },
-      {
-        "assets": "0.00",
-        "currency": "EUR",
-        "liabilities": "3475.11",
-        "rate": "1.00"
-      },
-      {
-        "assets": "0.00",
-        "currency": "GBP",
-        "liabilities": "2738.56",
-        "rate": "0.78805"
-      },
-      {
-        "assets": "0.00",
-        "currency": "JPY",
-        "liabilities": "479323.83",
-        "rate": "137.93055"
-      },
-      {
-        "assets": "0.00",
-        "currency": "USD",
-        "liabilities": "4382.81",
-        "rate": "1.26120"
-      }
-    ],
-    "totals": {
-      "commissions": "2093.29",
-      "transactions": "491498.28",
-      "assets": "131991.93",
-      "liabilities": "89772.20"
-    }
-  },
-  {
+    "liabilities": "35764.61",
+    "rate": "267.31889"
+  }, {
+    "assets": "60512.35",
     "currency": "GBP",
-    "values": [
-      {
-        "assets": "0.00",
-        "currency": "BTC",
-        "liabilities": "6.66475849",
-        "rate": "0.00474691"
-      },
-      {
-        "assets": "0.00",
-        "currency": "CNY",
-        "liabilities": "13745.15",
-        "rate": "9.78985"
-      },
-      {
-        "assets": "0.00",
-        "currency": "EUR",
-        "liabilities": "1781.64",
-        "rate": "1.26895"
-      },
-      {
-        "assets": "0.00",
-        "currency": "GBP",
-        "liabilities": "1404.02",
-        "rate": "1.00"
-      },
-      {
-        "assets": "0.00",
-        "currency": "JPY",
-        "liabilities": "245743.23",
-        "rate": "175.02830"
-      },
-      {
-        "assets": "0.00",
-        "currency": "USD",
-        "liabilities": "2246.99",
-        "rate": "1.60040"
-      }
-    ],
-    "totals": {
-      "commissions": "1648.42",
-      "transactions": "387091.81",
-      "assets": "104016.64",
-      "liabilities": "70745.21"
-    }
-  },
-  {
+    "liabilities": "28184.40",
+    "rate": "210.66168"
+  }, {
+    "assets": "10591340.78",
     "currency": "JPY",
-    "values": [
-      {
-        "assets": "0.00",
-        "currency": "BTC",
-        "liabilities": "1.78214122",
-        "rate": "0.0000271"
-      },
-      {
-        "assets": "0.00",
-        "currency": "CNY",
-        "liabilities": "3676.53",
-        "rate": "0.05595"
-      },
-      {
-        "assets": "0.00",
-        "currency": "EUR",
-        "liabilities": "476.41",
-        "rate": "0.00725"
-      },
-      {
-        "assets": "0.00",
-        "currency": "GBP",
-        "liabilities": "375.43",
-        "rate": "0.00571"
-      },
-      {
-        "assets": "0.00",
-        "currency": "JPY",
-        "liabilities": "65710.91",
-        "rate": "1.00"
-      },
-      {
-        "assets": "0.00",
-        "currency": "USD",
-        "liabilities": "600.84",
-        "rate": "0.00914"
-      }
-    ],
-    "totals": {
-      "commissions": "286882.91",
-      "transactions": "67366825.69",
-      "assets": "18205797.97",
-      "liabilities": "12382365.53"
-    }
-  },
-  {
+    "liabilities": "4933052.69",
+    "rate": "36871.86292"
+  }, {
+    "assets": "96843.97",
     "currency": "USD",
-    "values": [
-      {
-        "assets": "206.51132302",
-        "currency": "BTC",
-        "liabilities": "179.55683756",
-        "rate": "0.00296608"
-      },
-      {
-        "assets": "425898.56",
-        "currency": "CNY",
-        "liabilities": "370308.99",
-        "rate": "6.11710"
-      },
-      {
-        "assets": "55204.77",
-        "currency": "EUR",
-        "liabilities": "47999.28",
-        "rate": "0.79289"
-      },
-      {
-        "assets": "43504.29",
-        "currency": "GBP",
-        "liabilities": "37825.97",
-        "rate": "0.62484"
-      },
-      {
-        "assets": "7614457.19",
-        "currency": "JPY",
-        "liabilities": "6620595.10",
-        "rate": "109.36500"
-      },
-      {
-        "assets": "69624.26",
-        "currency": "USD",
-        "liabilities": "60536.69",
-        "rate": "1.00"
-      }
-    ],
-    "totals": {
-      "commissions": "2652.43",
-      "transactions": "622844.43",
-      "assets": "166468.23",
-      "liabilities": "113220.67"
-    }
+    "liabilities": "45106.32",
+    "rate": "337.14500"
+  }],
+  "totals": {
+    "commissions": "7.47763",
+    "transactions": "1755.86701",
+    "assets": "493.75857302",
+    "liabilities": "335.82190088"
   }
-]
+}, {
+  "currency": "CNY",
+  "values": [{
+    "assets": "0.00",
+    "currency": "BTC",
+    "liabilities": "1.02929007",
+    "rate": "0.00048486"
+  }, {
+    "assets": "0.00",
+    "currency": "CNY",
+    "liabilities": "2122.73",
+    "rate": "1.00"
+  }, {
+    "assets": "0.00",
+    "currency": "EUR",
+    "liabilities": "275.15",
+    "rate": "0.12962"
+  }, {
+    "assets": "0.00",
+    "currency": "GBP",
+    "liabilities": "216.83",
+    "rate": "0.10214"
+  }, {
+    "assets": "0.00",
+    "currency": "JPY",
+    "liabilities": "37939.77",
+    "rate": "17.87310"
+  }, {
+    "assets": "0.00",
+    "currency": "USD",
+    "liabilities": "347.02",
+    "rate": "0.16347"
+  }],
+  "totals": {
+    "commissions": "16282.33",
+    "transactions": "3823508.63",
+    "assets": "1018302.81",
+    "liabilities": "692583.22"
+  }
+}, {
+  "currency": "EUR",
+  "values": [{
+    "assets": "0.00",
+    "currency": "BTC",
+    "liabilities": "12.99977754",
+    "rate": "0.00374082"
+  }, {
+    "assets": "0.00",
+    "currency": "CNY",
+    "liabilities": "26809.95",
+    "rate": "7.71485"
+  }, {
+    "assets": "0.00",
+    "currency": "EUR",
+    "liabilities": "3475.11",
+    "rate": "1.00"
+  }, {
+    "assets": "0.00",
+    "currency": "GBP",
+    "liabilities": "2738.56",
+    "rate": "0.78805"
+  }, {
+    "assets": "0.00",
+    "currency": "JPY",
+    "liabilities": "479323.83",
+    "rate": "137.93055"
+  }, {
+    "assets": "0.00",
+    "currency": "USD",
+    "liabilities": "4382.81",
+    "rate": "1.26120"
+  }],
+  "totals": {
+    "commissions": "2093.29",
+    "transactions": "491498.28",
+    "assets": "131991.93",
+    "liabilities": "89772.20"
+  }
+}, {
+  "currency": "GBP",
+  "values": [{
+    "assets": "0.00",
+    "currency": "BTC",
+    "liabilities": "6.66475849",
+    "rate": "0.00474691"
+  }, {
+    "assets": "0.00",
+    "currency": "CNY",
+    "liabilities": "13745.15",
+    "rate": "9.78985"
+  }, {
+    "assets": "0.00",
+    "currency": "EUR",
+    "liabilities": "1781.64",
+    "rate": "1.26895"
+  }, {
+    "assets": "0.00",
+    "currency": "GBP",
+    "liabilities": "1404.02",
+    "rate": "1.00"
+  }, {
+    "assets": "0.00",
+    "currency": "JPY",
+    "liabilities": "245743.23",
+    "rate": "175.02830"
+  }, {
+    "assets": "0.00",
+    "currency": "USD",
+    "liabilities": "2246.99",
+    "rate": "1.60040"
+  }],
+  "totals": {
+    "commissions": "1648.42",
+    "transactions": "387091.81",
+    "assets": "104016.64",
+    "liabilities": "70745.21"
+  }
+}, {
+  "currency": "JPY",
+  "values": [{
+    "assets": "0.00",
+    "currency": "BTC",
+    "liabilities": "1.78214122",
+    "rate": "0.0000271"
+  }, {
+    "assets": "0.00",
+    "currency": "CNY",
+    "liabilities": "3676.53",
+    "rate": "0.05595"
+  }, {
+    "assets": "0.00",
+    "currency": "EUR",
+    "liabilities": "476.41",
+    "rate": "0.00725"
+  }, {
+    "assets": "0.00",
+    "currency": "GBP",
+    "liabilities": "375.43",
+    "rate": "0.00571"
+  }, {
+    "assets": "0.00",
+    "currency": "JPY",
+    "liabilities": "65710.91",
+    "rate": "1.00"
+  }, {
+    "assets": "0.00",
+    "currency": "USD",
+    "liabilities": "600.84",
+    "rate": "0.00914"
+  }],
+  "totals": {
+    "commissions": "286882.91",
+    "transactions": "67366825.69",
+    "assets": "18205797.97",
+    "liabilities": "12382365.53"
+  }
+}, {
+  "currency": "USD",
+  "values": [{
+    "assets": "206.51132302",
+    "currency": "BTC",
+    "liabilities": "179.55683756",
+    "rate": "0.00296608"
+  }, {
+    "assets": "425898.56",
+    "currency": "CNY",
+    "liabilities": "370308.99",
+    "rate": "6.11710"
+  }, {
+    "assets": "55204.77",
+    "currency": "EUR",
+    "liabilities": "47999.28",
+    "rate": "0.79289"
+  }, {
+    "assets": "43504.29",
+    "currency": "GBP",
+    "liabilities": "37825.97",
+    "rate": "0.62484"
+  }, {
+    "assets": "7614457.19",
+    "currency": "JPY",
+    "liabilities": "6620595.10",
+    "rate": "109.36500"
+  }, {
+    "assets": "69624.26",
+    "currency": "USD",
+    "liabilities": "60536.69",
+    "rate": "1.00"
+  }],
+  "totals": {
+    "commissions": "2652.43",
+    "transactions": "622844.43",
+    "assets": "166468.23",
+    "liabilities": "113220.67"
+  }
+}]
 ```
 
 To assist developers with tracking the overall status of our Reserve, we provide a summary of all the obligations and assets within it. Then for convenience's sake we compute the value of each our holdings in all of the currencies we support, making it easy for example to display our total US dollar liabilities, but expressed in Euros. For example, a request to fetch a summary will return an array of assets with the following properties:
@@ -539,12 +490,10 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
     "currency": "BTC",
     "fee": "0.0001",
     "rate": "1.00",
-    "sources": [
-      {
-        "id": "33eef226-1c1e-4b38-be2f-28d9a57aecdb",
-        "amount": "0.10359178"
-      }
-    ]
+    "sources": [{
+      "id": "33eef226-1c1e-4b38-be2f-28d9a57aecdb",
+      "amount": "0.10359178"
+    }]
   },
   "destination": {
     "address": "1BSrDxeTL9ViJBrAb1QHjK2wsGShjSGVeb",
@@ -583,16 +532,13 @@ A transfer documents movement of value within our network, either between two pa
     "currency": "BTC",
     "fee": "0.0001",
     "rate": "0.00255",
-    "sources": [
-      {
-        "id": "61cdccdf-cb6e-414e-aafc-7c42dc375cf6",
-        "amount": "0.73327414"
-      },
-      {
-        "id": "34f87520-49a4-4f46-8ee0-ba0522c06aa1",
-        "amount": "0.56682586"
-      }
-    ]
+    "sources": [{
+      "id": "61cdccdf-cb6e-414e-aafc-7c42dc375cf6",
+      "amount": "0.73327414"
+    }, {
+      "id": "34f87520-49a4-4f46-8ee0-ba0522c06aa1",
+      "amount": "0.56682586"
+    }]
   },
   "destination": {
     "amount": "507.51",

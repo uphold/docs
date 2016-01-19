@@ -38,19 +38,15 @@ type     | The type of the account. Possible values are: `card`, `sepa`.
     "position": 4,
     "starred": true
   },
-  "addresses": [
-    {
-      "id": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH",
-      "network": "bitcoin"
-    }
-  ],
-  "normalized": [
-    {
-      "available": "99.04",
-      "balance": "99.04",
-      "currency": "USD"
-    }
-  ]
+  "addresses": [{
+    "id": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH",
+    "network": "bitcoin"
+  }],
+  "normalized": [{
+    "available": "99.04",
+    "balance": "99.04",
+    "currency": "USD"
+  }]
 }
 ```
 
@@ -160,12 +156,10 @@ pair     | The currency pair AB represents moving from A to B.
     "description": "John Smith",
     "fee": "0.00",
     "rate": "1.00",
-    "sources": [
-      {
-        "id": "f66f0e7f-20a1-4983-8855-52b96cd57d31",
-        "amount": "2.00"
-      }
-    ],
+    "sources": [{
+      "id": "f66f0e7f-20a1-4983-8855-52b96cd57d31",
+      "amount": "2.00"
+    }],
     "type": "card",
     "username": "johnsmith"
   },
@@ -304,16 +298,14 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
   "identity": {},
   "lastName": "Skywalker",
   "name": "Luke Skywalker",
-  "phones": [
-    {
-      "e164Masked": "+XXXXXXXXX54",
-      "id": "03c46123-1f82-4bca-893d-d5de587c3135",
-      "internationalMasked": "+X XXX-XXX-XX54",
-      "nationalMasked": "(XXX) XXX-XX54",
-      "primary": true,
-      "verified": true
-    }
-  ],
+  "phones": [{
+    "e164Masked": "+XXXXXXXXX54",
+    "id": "03c46123-1f82-4bca-893d-d5de587c3135",
+    "internationalMasked": "+X XXX-XXX-XX54",
+    "nationalMasked": "(XXX) XXX-XX54",
+    "primary": true,
+    "verified": true
+  }],
   "settings": {
     "currency": "USD",
     "hasNewsSubscription": true,
