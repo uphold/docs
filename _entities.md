@@ -38,19 +38,15 @@ type     | The type of the account. Possible values are: `card`, `sepa`.
     "position": 4,
     "starred": true
   },
-  "addresses": [
-    {
-      "id": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH",
-      "network": "bitcoin"
-    }
-  ],
-  "normalized": [
-    {
-      "available": "99.04",
-      "balance": "99.04",
-      "currency": "USD"
-    }
-  ]
+  "addresses": [{
+    "id": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH",
+    "network": "bitcoin"
+  }],
+  "normalized": [{
+    "available": "99.04",
+    "balance": "99.04",
+    "currency": "USD"
+  }]
 }
 ```
 
@@ -124,49 +120,46 @@ pair     | The currency pair AB represents moving from A to B.
 
 ```json
 {
-  "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
-  "type": "transfer",
-  "message": "Join Uphold!",
+  "createdAt": "2015-06-04T11:43:30.645Z",
   "denomination": {
     "amount": "2.00",
     "currency": "USD",
     "pair": "USDUSD",
     "rate": "1.00"
   },
-  "status": "waiting",
+  "fees": [],
+  "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
+  "message": "Join Uphold!",
+  "normalized": [{
+    "amount": "2.00",
+    "commission": "0.00",
+    "currency": "USD",
+    "rate": "1.00"
+  }],
   "params": {
     "currency": "USD",
     "margin": "0.00",
     "pair": "USDUSD",
     "progress": "0",
     "rate": "1.00",
-    "ttl": 30000,
+    "ttl": 7000,
     "type": "invite"
   },
-  "createdAt": "2015-06-04T11:43:30.645Z",
-  "normalized": [
-    {
-      "amount": "2.00",
-      "commission": "0.00",
-      "currency": "USD",
-      "rate": "1.00"
-    }
-  ],
+  "status": "waiting",
+  "type": "transfer",
   "origin": {
-    "CardId": "718c7c81-ae87-46b3-97d5-131b78d76f05",
     "amount": "2.00",
     "base": "2.00",
+    "CardId": "718c7c81-ae87-46b3-97d5-131b78d76f05",
     "commission": "0.00",
     "currency": "USD",
     "description": "John Smith",
     "fee": "0.00",
     "rate": "1.00",
-    "sources": [
-      {
-        "id": "f66f0e7f-20a1-4983-8855-52b96cd57d31",
-        "amount": "2.00"
-      }
-    ],
+    "sources": [{
+      "id": "f66f0e7f-20a1-4983-8855-52b96cd57d31",
+      "amount": "2.00"
+    }],
     "type": "card",
     "username": "johnsmith"
   },
@@ -194,7 +187,8 @@ Property     | Description
 id           | A unique ID on the Uphold Network associated with the transaction.
 type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 message      | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
-denomination | The funds to be transfered, as originally requested. See "Denomination" below.
+denomination | The funds to be transferred, as originally requested. See "Denomination" below.
+fees         | The fees that were applied to the transaction.
 status       | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
 params       | Other parameters of this transaction. See "Parameters" below.
 createdAt    | The date and time the transaction was initiated.
@@ -218,6 +212,20 @@ rate     | The quoted rate for converting between the denominated currency and t
 
 <aside class="notice">
   If the `denomination` and `origin` are the same currency, the `rate` will be '1.00'.
+</aside>
+
+### Fees
+The `fees` property contains an array of fees that were applied to the transaction. Each object in the array contains the following properties:
+
+Property | Description
+-------- | ---------------------------------------------------------------------------------
+amount   | The amount to be charged.
+currency | The currency for said amount.
+target   | Can be `origin` or `destination` and determines where the fee was applied.
+type     | The type of fee. Can be one of: `deposit`, `exchange`, `network` or `withdrawal`.
+
+<aside class="notice">
+  <strong>Important Notice</strong>: For further information on our fees, please visit our FAQ: <a href="https://support.uphold.com/hc/en-us/articles/202342496-Is-Uphold-a-free-service-">Is Uphold a free service?</a>
 </aside>
 
 ### Parameters
@@ -305,16 +313,14 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
   "identity": {},
   "lastName": "Skywalker",
   "name": "Luke Skywalker",
-  "phones": [
-    {
-      "e164Masked": "+XXXXXXXXX54",
-      "id": "03c46123-1f82-4bca-893d-d5de587c3135",
-      "internationalMasked": "+X XXX-XXX-XX54",
-      "nationalMasked": "(XXX) XXX-XX54",
-      "primary": true,
-      "verified": true
-    }
-  ],
+  "phones": [{
+    "e164Masked": "+XXXXXXXXX54",
+    "id": "03c46123-1f82-4bca-893d-d5de587c3135",
+    "internationalMasked": "+X XXX-XXX-XX54",
+    "nationalMasked": "(XXX) XXX-XX54",
+    "primary": true,
+    "verified": true
+  }],
   "settings": {
     "currency": "USD",
     "hasNewsSubscription": true,

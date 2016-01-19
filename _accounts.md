@@ -23,22 +23,19 @@ curl "https://api.uphold.com/v0/me/accounts" \
 > The above command returns the following JSON:
 
 ```json
-[
-  {
-    "currency": "USD",
-    "id": "bfef7422-9f3c-47e0-4d4b-569d92d29a5c",
-    "label": "My Chase card",
-    "status": "ok",
-    "type": "card"
-  },
-  {
-    "currency": "EUR",
-    "id": "0fa000c0-618a-4de1-ad0e-beb593f4d07d",
-    "label": "My checking account",
-    "status": "ok",
-    "type": "sepa"
-  }
-]
+[{
+  "currency": "USD",
+  "id": "bfef7422-9f3c-47e0-4d4b-569d92d29a5c",
+  "label": "My Chase card",
+  "status": "ok",
+  "type": "card"
+}, {
+  "currency": "EUR",
+  "id": "0fa000c0-618a-4de1-ad0e-beb593f4d07d",
+  "label": "My checking account",
+  "status": "ok",
+  "type": "sepa"
+}]
 ```
 
 Retrieves a list of accounts for the current user.
