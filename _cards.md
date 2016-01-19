@@ -57,6 +57,7 @@ Retrieves a list of cards for the current user.
 
 ### Request
 `GET https://api.uphold.com/v0/me/cards`
+<aside class="notice">Requires the `cards:read` scope for Uphold Connect applications.</aside>
 
 ### Response
 Returns an array of the current user's cards.
@@ -96,6 +97,8 @@ Retrieves the details about a specific card.
 
 ### Request
 `GET https://api.uphold.com/v0/me/cards/:id`
+<aside class="notice">Requires the `cards:read` scope for Uphold Connect applications.</aside>
+
 <aside class="notice">
   <code>:id</code> can either be the card ID or its bitcoin address and it must be owned by the user making the call.
 </aside>
@@ -115,6 +118,7 @@ curl https://api.uphold.com/v0/me/cards \
 
 ### Request
 `POST https://api.uphold.com/v0/me/cards`
+<aside class="notice">Requires the `cards:write` scope for Uphold Connect applications.</aside>
 
 Parameter | Description
 --------- | ----------------------------------------------------------------------------------------------------
@@ -136,6 +140,7 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
 
 ### Request
 `PATCH https://api.uphold.com/v0/me/cards/:id`
+<aside class="notice">Requires the `cards:write` scope for Uphold Connect applications.</aside>
 
 Parameter | Description
 --------- | -----------------------------------------------------------------
