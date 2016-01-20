@@ -8,6 +8,7 @@ Developers will need to [register their application](https://uphold.com/dashboar
 ## Considerations
 - For security reasons, your application **must** be secured with a valid _SSL_ certificate issued by a known Certificate Authority.
 - Likewise, the provided _Redirect URL_ when registering the application must be a valid static subresource. Notice that this property cannot be dynamically reconfigured during authorization requests for security reasons.
+- The _Redirect URL_ can also be a valid URI with a non-http/https protocol which is useful for mobile and desktop applications, for example: `my-app://uphold/connect`.
 - Users can revoke access to your application at any time. Your application **must** be prepared for this and, if necessary, should request authorization from the user again.
 - Your application may be suspended in an automated fashion in accordance with our [Terms of Service](https://uphold.com/en/legal/membership-agreement).
 - Standard [rate limits](#rate-limits) apply to all issued access tokens.
