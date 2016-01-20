@@ -84,11 +84,11 @@ In step one, one prepares the transaction by specifying:
 
 The following table describes the types of transactions currently supported:
 
-Type       | Origin                                          | Destination
----------- | ----------------------------------------------- | ------------------------------------------------------------------
-deposit    | _ACH_, _SEPA_ or _Credit/Debit Card_ account id | Uphold card id
-withdrawal | Uphold card id                                  | _ACH_, _SEPA_, _Credit/Debit Card_ account id or _Bitcoin_ address
-transfer   | Uphold card id                                  | An email address, an Uphold username, an Uphold card id
+Type       | Origin                     | Destination
+---------- | -------------------------- | -------------------------------------------------------
+deposit    | _ACH_ or _SEPA_ account id | Uphold card id
+withdrawal | Uphold card id             | _ACH_, _SEPA_ or _Bitcoin_ address
+transfer   | Uphold card id             | An email address, an Uphold username, an Uphold card id
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 <aside class="notice">
