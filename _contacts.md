@@ -2,7 +2,7 @@
 ## List Contacts
 
 ```bash
-curl "https://api.uphold.com/v0/me/contacts" \
+curl https://api.uphold.com/v0/me/contacts \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -42,7 +42,7 @@ Returns an array of contact objects associated with the current user.
 ## Get Contact
 
 ```bash
-curl "https://api.uphold.com/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4c079" \
+curl https://api.uphold.com/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4c079 \
   -H "Authorization: Bearer <token>"
 ```
 

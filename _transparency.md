@@ -6,7 +6,7 @@ We will provide our members with access to two different resources. The first is
 ## Reserve Status
 
 ```bash
-curl "https://api.uphold.com/v0/reserve/statistics"
+curl https://api.uphold.com/v0/reserve/statistics
 ```
 
 > Which returns the following:
@@ -279,7 +279,7 @@ Frequently one may find that changes to the Reserve's assets and liabilities are
 ### Request
 
 ```bash
-curl "https://api.uphold.com/v0/reserve/ledger"
+curl https://api.uphold.com/v0/reserve/ledger
 ```
 
 `GET https://api.uphold.com/v0/reserve/ledger`

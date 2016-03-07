@@ -7,7 +7,7 @@ You can provide the `Range` header specifying how many items you want to retriev
 > Here is an example:
 
 ```bash
-curl "https://api.uphold.com/v0/me/transactions" \
+curl https://api.uphold.com/v0/me/transactions \
   -H "Authorization: Bearer <token>" \
   -H "Range: items=0-4"
 ```
