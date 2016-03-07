@@ -75,7 +75,7 @@ Returns an associative array containing the details of the designated contact.
 curl https://api.uphold.com/v0/me/contacts \
   -X POST \
   -H "Authorization: Bearer <token>" \
-  -d "firstName=Luke&lastName=Skywalker&company=Lars+Moisture+Farm,+Inc.&emails=support@larsmoisturefarm.com"
+  -d "firstName=Luke&lastName=Skywalker&company=Lars+Moisture+Farm,+Inc.&emails[]=support@larsmoisturefarm.com"
 ```
 
 ### Request
