@@ -16,7 +16,7 @@ Please refer to our FAQ for estimated [ACH transaction times](https://support.up
 ## List Accounts
 
 ```bash
-curl "https://api.uphold.com/v0/me/accounts" \
+curl https://api.uphold.com/v0/me/accounts \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -50,7 +50,7 @@ Returns an array of the current user's accounts.
 ## Get Account Details
 
 ```bash
-curl "https://api.uphold.com/v0/me/accounts/0fa000c0-618a-4de1-ad0e-beb593f4d07d" \
+curl https://api.uphold.com/v0/me/accounts/0fa000c0-618a-4de1-ad0e-beb593f4d07d \
   -H "Authorization: Bearer <token>"
 ```
 

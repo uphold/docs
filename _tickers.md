@@ -4,7 +4,7 @@ Developers can query at any time the rates we utilize when exchanging one form o
 ## Get All Tickers
 
 ```bash
-curl "https://api.uphold.com/v0/ticker"
+curl https://api.uphold.com/v0/ticker
 ```
 
 > The above command returns the following JSON:
@@ -252,7 +252,7 @@ Returns an associative array containing the current rates Uphold has on record f
 ## Get Tickers for Currency
 
 ```bash
-curl "https://api.uphold.com/v0/ticker/USD"
+curl https://api.uphold.com/v0/ticker/USD
 ```
 
 > The above command returns the following JSON:

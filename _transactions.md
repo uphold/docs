@@ -3,7 +3,7 @@
 > Step 1: Create the Transaction
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions" \
+curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions \
   -X POST \
   -H "Authorization: Bearer <token>" \
   -d "denomination[currency]=BTC&denomination[amount]=0.1&destination=foo@bar.com"
@@ -67,7 +67,7 @@ curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
 > Step 2: Commit the Transaction
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/commit" \
+curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/commit \
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
@@ -119,7 +119,7 @@ Returns a [Transaction Object](#transaction-object).
 ## Cancel a Transaction
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/cancel" \
+curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/cancel \
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
@@ -139,7 +139,7 @@ Returns a [Transaction Object](#transaction-object).
 ## Resend a Transaction
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/resend" \
+curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/resend \
   -X POST \
   -H "Authorization: Bearer <token>"
 ```
@@ -159,7 +159,7 @@ Returns a [Transaction Object](#transaction-object).
 ## List User Transactions
 
 ```bash
-curl "https://api.uphold.com/v0/me/transactions" \
+curl https://api.uphold.com/v0/me/transactions \
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
@@ -221,7 +221,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## List Card Transactions
 
 ```bash
-curl "https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/transactions" \
+curl https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/transactions \
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
