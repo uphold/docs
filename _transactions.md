@@ -6,7 +6,8 @@
 curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions \
   -X POST \
   -H "Authorization: Bearer <token>" \
-  -d "denomination[currency]=BTC&denomination[amount]=0.1&destination=foo@bar.com"
+  -H "Content-Type: application/json" \
+  -d '{ "denomination": { "amount": 0.1, "currency": "USD" }, "destination": "foo@bar.com" }'
 ```
 
 > The above command returns the following JSON:
