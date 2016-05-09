@@ -107,7 +107,7 @@ Supported parameters:
 
 Parameter   | Required | Description
 ----------- | -------- | -----------------------------------------
-description | no       | A human-readable description of this PAT.
+description | yes      | A human-readable description of this PAT.
 
 <aside class="notice">
   <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme.
