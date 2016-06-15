@@ -149,3 +149,35 @@ settings  | An object with the card's `position` and whether it is `starred`.
 
 ### Response
 Returns a fully formed [Card Object](#card-object) representing the updated card.
+
+## Create Card Crypto Address
+
+```bash
+curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/addresses \
+  -X POST \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{ "network": "bitcoin" }'
+```
+
+> The above command returns the following JSON:
+
+```json
+{
+  "id":"145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
+  "network":"bitcoin"
+}
+```
+
+Generate a crypto address for a card.
+
+### Request
+`POST https://api.uphold.com/v0/me/cards/:id/addresses`
+<aside class="notice">Requires the `cards:write` scope for Uphold Connect applications.</aside>
+
+Parameter | Description
+--------- | -----------------------------------------------------------------
+network   | The type of crypto address. Possible values are: `bitcoin`, `ethereum`, `litecoin` or `voxel`.
+
+### Response
+Returns an object with the card address and the network.
