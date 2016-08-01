@@ -61,7 +61,7 @@ label             | The display name of the card as chosen by the user.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
 settings          | Contains the card's current `position` and whether the card is `starred` or not.
 addresses         | An associative array of all the known addresses associated with the card, including the primary card.
-normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
+normalized        | Contains the normalized `available` and `balance` values in USD.
 
 ## Contact Object
 > An example contact encoded in JSON looks like this:
@@ -190,9 +190,9 @@ message      | A message or note provided by the user at the time the transactio
 denomination | The funds to be transferred, as originally requested. See "Denomination" below.
 fees         | The fees that were applied to the transaction.
 status       | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
-params       | Other parameters of this transaction. See "Parameters" below.
+params       | Other parameters of this transaction. See [Parameters](#parameters).
 createdAt    | The date and time the transaction was initiated.
-normalized   | The transaction details in the overall selected currency by the user. See "Normalized" below.
+normalized   | The transaction details in USD. See [Normalized](#normalized).
 origin       | The sender of the funds. See "Origin and Destination" below.
 destination  | The recipient of the funds. See "Origin and Destination" below.
 
@@ -240,13 +240,13 @@ progress | In case a transaction is coming in from the outside, how many confirm
 ttl      | The time this quote is good for, in milliseconds.
 
 ### Normalized
-The `normalized` property contains the normalized amount and commission values in the currency chosen by the user in the settings:
+The `normalized` property contains the normalized amount and commission values in USD:
 
 Property   | Description
 ---------- | -----------------------------------------------------------------------------------
 amount     | The amount to be transacted.
 commission | The total commission taken on this transaction, either at origin or at destination.
-currency   | The currency in which the amount and commission are expressed.
+currency   | The currency in which the amount and commission are expressed. The value is always `USD`.
 rate       | The exchange rate for this pair.
 
 ### Origin
