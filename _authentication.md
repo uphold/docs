@@ -110,9 +110,9 @@ Parameter   | Required | Description
 description | yes      | A human-readable description of this PAT.
 
 <aside class="notice">
-  <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme.
+  <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme or via oAuth.
 
-  Additionally, if the account is secured with Two-Factor Authentication, the `X-Bitreserve-OTP` header is required.
+  The `X-Bitreserve-OTP` header is always required.
 </aside>
 
 ### Revoking a PAT
