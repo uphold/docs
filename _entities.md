@@ -61,7 +61,7 @@ label             | The display name of the card as chosen by the user.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
 settings          | Contains the card's current `position` and whether the card is `starred` or not.
 addresses         | An associative array of all the known addresses associated with the card, including the primary card.
-normalized        | Contains the normalized `available` and `balance` values in USD.
+normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 
 ## Contact Object
 > An example contact encoded in JSON looks like this:
