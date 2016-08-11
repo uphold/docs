@@ -196,3 +196,34 @@ network   | The type of crypto address. Possible values are: `bitcoin`, `ethereu
 ### Response
 
 Returns an object with the card address and the network.
+
+## List Card Crypto Addresses
+
+```bash
+curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/addresses \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json"
+```
+
+> The above command returns the following JSON:
+
+```json
+[
+  {
+    "id":"145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
+    "network":"bitcoin"
+  }
+]
+```
+
+Retrieves a list of crypto addresses for a specific card.
+
+### Request
+
+`GET https://api.uphold.com/v0/me/cards/:id/addresses`
+
+<aside class="notice">Requires the <code>cards:read</code> scope for Uphold Connect applications.</aside>
+
+### Response
+
+Returns an array with the card's crypto addresses and their networks.
