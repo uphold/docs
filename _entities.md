@@ -441,12 +441,11 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
         "rate": "1232.91175"
       }
     }
-  },
-  "cards": <snip>
+  }
 }
 ```
 
-The `user` object contains all information we have on record relating to the currently logged in user.
+The `user` object contains most of the information we have on record relating to the currently logged in user.
 <aside class="notice">
   <strong>Privacy Notice</strong>: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
 </aside>

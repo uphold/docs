@@ -64,31 +64,7 @@ curl "https://api.uphold.com/v0/me" \
         "rate": "900.00000"
       }
     }
-  },
-  "cards": [{
-    "address": {
-      "bitcoin": "mwvGZzRfgco7AVKajLkByGom5BTp6EMng7"
-    },
-    "available": "0.1",
-    "balance": "0.1",
-    "currency": "BTC",
-    "id": "b152a105-c47d-4a8f-8904-9838a3fed608",
-    "label": "BTC card",
-    "lastTransactionAt": "2015-07-01T19:43:58.824Z",
-    "settings": {
-      "position": 1,
-      "starred": true
-    },
-    "addresses": [{
-      "id": "mwvGZzRfgco7AVKajLkByGom5BTp6EMng7",
-      "network": "bitcoin"
-    }],
-    "normalized": [{
-      "available": "90.00",
-      "balance": "90.00",
-      "currency": "USD"
-    }]
-  }]
+  }
 }
 ```
 
@@ -99,6 +75,10 @@ curl "https://api.uphold.com/v0/me" \
 ### Response
 Returns the details associated the current user.
 <aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
+
+### Cards
+
+The `cards` property will be removed from the response. To access the cards of a given user please refer to the appropriate specific [endpoint](#list-cards).
 
 ## Get User Phone Numbers
 
