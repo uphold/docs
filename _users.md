@@ -35,7 +35,6 @@ curl "https://api.uphold.com/v0/me" \
   }],
   "settings": {
     "currency": "USD",
-    "hasOtpEnabled": true,
     "intl": {
       "dateTimeFormat": {
         "locale": "en-US"
@@ -45,6 +44,24 @@ curl "https://api.uphold.com/v0/me" \
       },
       "numberFormat": {
         "locale": "en-US"
+      }
+    },
+    "otp": {
+      "login": {
+        "enabled": true
+      },
+      "transactions": {
+        "transfer": {
+          "enabled": false
+        },
+        "send": {
+          "enabled": true
+        },
+        "withdraw": {
+          "crypto": {
+            "enabled": true
+          }
+        }
       }
     },
     "theme": "vintage"
