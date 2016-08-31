@@ -61,7 +61,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
     "fee": "0.00",
     "rate": "1.00",
     "type": "email"
-  },
+  }
 }
 ```
 

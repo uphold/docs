@@ -162,7 +162,7 @@ settings  | An object with the card's `position` and whether it is `starred`.
 
 Returns a fully formed [Card Object](#card-object) representing the updated card.
 
-## Create Card Crypto Address
+## Create Card Address
 
 ```bash
 curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/addresses \
@@ -181,7 +181,7 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 }
 ```
 
-Generate a crypto address for a card.
+Generate an address for a card.
 
 ### Request
 
@@ -191,13 +191,13 @@ Generate a crypto address for a card.
 
 Parameter | Description
 --------- | ----------------------------------------------------------------------------------------------
-network   | The type of crypto address. Possible values are: `bitcoin`, `ethereum`, `litecoin` or `voxel`.
+network   | The address network. Possible values are: `bitcoin`, `ethereum`, `litecoin` or `voxel`.
 
 ### Response
 
 Returns an object with the card address and the network.
 
-## List Card Crypto Addresses
+## List Card Addresses
 
 ```bash
 curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/addresses \
@@ -216,7 +216,7 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 ]
 ```
 
-Retrieves a list of crypto addresses for a specific card.
+Retrieves a list of addresses for a specific card.
 
 ### Request
 
@@ -226,4 +226,4 @@ Retrieves a list of crypto addresses for a specific card.
 
 ### Response
 
-Returns an array with the card's crypto addresses and their networks.
+Returns an array with the card addresses and their networks.
