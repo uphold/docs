@@ -88,8 +88,11 @@ The following table describes the types of transactions currently supported:
 Type       | Origin                     | Destination
 ---------- | -------------------------- | -------------------------------------------------------
 deposit    | _ACH_ or _SEPA_ account id | Uphold card id
+internal   | Uphold card id             | Uphold card id from the same user
 withdrawal | Uphold card id             | _ACH_, _SEPA_ or _Bitcoin_ address
-transfer   | Uphold card id             | An email address, an application id, an Uphold username or an Uphold card id
+transfer   | Uphold card id             | An email address, an application id, an Uphold username or an Uphold card id from a different user
+
+<aside class="notice">Note the difference between `internal` and `transfer` is essentially the destination user.</aside>
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 <aside class="notice">
@@ -317,7 +320,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "type": "transfer"
   },
   "status": "completed",
-  "type": "transfer",
+  "type": "internal",
   "normalized": [{
     "fee": "0.00",
     "rate": "0.91759",
@@ -465,7 +468,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions/a97bb994-6e24-4a89-b
     "rate": "1.00"
   },
   "status": "cancelled",
-  "type": "transfer",
+  "type": "internal",
   "origin": {
     "amount": "1.00",
     "base": "1.00",

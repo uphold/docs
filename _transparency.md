@@ -465,6 +465,54 @@ Given that this is a point in the chain at which there is a genesis of value, th
 }
 </code></pre>
 
+### Transfers
+A transfer documents movement of value within our network, between two parties or two denominations, or both.
+<pre class="inline"><code>{
+  "id": "1571fbef-d34e-447c-9b6e-4ad775953082",
+  "type": "transfer",
+  "params": {
+    "currency": "USD",
+    "margin": "0.45",
+    "pair": "BTCUSD",
+    "rate": "392.16000",
+    "txid": "1946783b396998f8f91c984431ecfecff6d0a72db68b32d0873c1024c7279254"
+  },
+  "denomination": {
+    "amount": "1.3",
+    "currency": "BTC"
+  },
+  "origin": {
+    "amount": "1.3001",
+    "base": "1.3",
+    "commission": "0.00",
+    "currency": "BTC",
+    "fee": "0.0001",
+    "rate": "0.00255",
+    "sources": [{
+      "id": "61cdccdf-cb6e-414e-aafc-7c42dc375cf6",
+      "amount": "0.73327414"
+    }, {
+      "id": "34f87520-49a4-4f46-8ee0-ba0522c06aa1",
+      "amount": "0.56682586"
+    }]
+  },
+  "destination": {
+    "amount": "507.51",
+    "base": "509.81",
+    "commission": "2.30",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "392.16000"
+  },
+  "status": "completed",
+  "createdAt": "2014-09-30T20:29:36.458Z"
+}
+</code></pre>
+
+<aside class="notice">
+  If the transfer is between cards of the same user, the `transaction.type` will be marked as `internal`.
+</aside>
+
 ### Withdrawals
 Withdrawal documents the flow of assets out of the system. The destination of the transaction would refer as completely as it can to any external sources that the Uphold transaction can be correlated against/with.
 
@@ -506,50 +554,6 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
   },
   "status": "completed",
   "createdAt": "2014-10-08T06:53:51.060Z"
-}
-</code></pre>
-
-### Transfers
-A transfer documents movement of value within our network, either between two parties or two denominations, or both.
-<pre class="inline"><code>{
-  "id": "1571fbef-d34e-447c-9b6e-4ad775953082",
-  "type": "transfer",
-  "params": {
-    "currency": "USD",
-    "margin": "0.45",
-    "pair": "BTCUSD",
-    "rate": "392.16000",
-    "txid": "1946783b396998f8f91c984431ecfecff6d0a72db68b32d0873c1024c7279254"
-  },
-  "denomination": {
-    "amount": "1.3",
-    "currency": "BTC"
-  },
-  "origin": {
-    "amount": "1.3001",
-    "base": "1.3",
-    "commission": "0.00",
-    "currency": "BTC",
-    "fee": "0.0001",
-    "rate": "0.00255",
-    "sources": [{
-      "id": "61cdccdf-cb6e-414e-aafc-7c42dc375cf6",
-      "amount": "0.73327414"
-    }, {
-      "id": "34f87520-49a4-4f46-8ee0-ba0522c06aa1",
-      "amount": "0.56682586"
-    }]
-  },
-  "destination": {
-    "amount": "507.51",
-    "base": "509.81",
-    "commission": "2.30",
-    "currency": "USD",
-    "fee": "0.00",
-    "rate": "392.16000"
-  },
-  "status": "completed",
-  "createdAt": "2014-09-30T20:29:36.458Z"
 }
 </code></pre>
 

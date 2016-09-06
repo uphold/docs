@@ -180,7 +180,7 @@ Transactions record the movement of value into, within and out of the Uphold net
 Property     | Description
 ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 id           | A unique ID on the Uphold Network associated with the transaction.
-type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
+type         | The nature of the transaction. Possible values are `deposit`, `internal`, `transfer` and `withdrawal`.
 message      | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
 denomination | The funds to be transferred, as originally requested. See "Denomination" below.
 fees         | The fees that were applied to the transaction.
