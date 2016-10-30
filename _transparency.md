@@ -46,8 +46,8 @@ curl https://api.uphold.com/v0/reserve/statistics
     "rate": "337.14500"
   }],
   "totals": {
-    "commissions": "7.47763",
-    "transactions": "1755.86701",
+    "amount": "1755.86701",
+    "count": "1136206",
     "assets": "493.75857302",
     "liabilities": "335.82190088"
   }
@@ -85,8 +85,8 @@ curl https://api.uphold.com/v0/reserve/statistics
     "rate": "0.16347"
   }],
   "totals": {
-    "commissions": "16282.33",
-    "transactions": "3823508.63",
+    "amount": "3823508.63",
+    "count": "1136206",
     "assets": "1018302.81",
     "liabilities": "692583.22"
   }
@@ -124,8 +124,8 @@ curl https://api.uphold.com/v0/reserve/statistics
     "rate": "1.26120"
   }],
   "totals": {
-    "commissions": "2093.29",
-    "transactions": "491498.28",
+    "amount": "491498.28",
+    "count": "1136206",
     "assets": "131991.93",
     "liabilities": "89772.20"
   }
@@ -163,8 +163,8 @@ curl https://api.uphold.com/v0/reserve/statistics
     "rate": "1.60040"
   }],
   "totals": {
-    "commissions": "1648.42",
-    "transactions": "387091.81",
+    "amount": "387091.81",
+    "count": "1136206",
     "assets": "104016.64",
     "liabilities": "70745.21"
   }
@@ -202,8 +202,8 @@ curl https://api.uphold.com/v0/reserve/statistics
     "rate": "0.00914"
   }],
   "totals": {
-    "commissions": "286882.91",
-    "transactions": "67366825.69",
+    "amount": "67366825.69",
+    "count": "1136206",
     "assets": "18205797.97",
     "liabilities": "12382365.53"
   }
@@ -241,8 +241,8 @@ curl https://api.uphold.com/v0/reserve/statistics
     "rate": "1.00"
   }],
   "totals": {
-    "commissions": "2652.43",
-    "transactions": "622844.43",
+    "amount": "622844.43",
+    "count": "1136206",
     "assets": "166468.23",
     "liabilities": "113220.67"
   }
