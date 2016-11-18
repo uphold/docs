@@ -176,7 +176,7 @@ Generate an address for a card.
 
 Parameter | Description
 --------- | ----------------------------------------------------------------------------------------------
-network   | The address network. Possible values are: `bitcoin`, `ethereum`, `litecoin` or `voxel`.
+network   | The address network. Possible values are: `bitcoin`, `ethereum` or `litecoin`.
 
 ### Response
 
