@@ -93,7 +93,7 @@ For **personal usage only** you may choose to use a PAT. This token establishes 
 ```bash
 curl https://api.uphold.com/v0/me/tokens \
   -X POST \
-  -H 'X-Bitreserve-OTP: <OTP-Token>' \
+  -H 'OTP-Token: <OTP-Token>' \
   -H "Content-Type: application/json" \
   -u <username-or-email>:<password> \
   -d '{ "description": "My command line script" }'
@@ -112,7 +112,7 @@ description | yes      | A human-readable description of this PAT.
 <aside class="notice">
   <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme or via OAuth.
 
-  Additionally, you always need to provide a valid OTP token via the `X-Bitreserve-OTP` header even if you have Two-Factor Authentication disabled.
+  Additionally, you always need to provide a valid OTP token via the `OTP-Token` header even if you have Two-Factor Authentication disabled.
 </aside>
 
 ### Revoking a PAT
@@ -151,10 +151,10 @@ The username should be set as the `token` and password should be set to `X-OAuth
 
 ```bash
 curl https://api.uphold.com/v0/me \
-  -H 'X-Bitreserve-OTP: <OTP-Token>' \
+  -H 'OTP-Token: <OTP-Token>' \
   -u <username-or-email>:<password>
 ```
 
 You can use Basic Authentication by providing your username or email and password combination.
 
-If you have OTP (One Time Password, also known as Two-Factor Authentication) enabled, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `X-Bitreserve-OTP: Required`. You will then automatically receive an SMS, or Push Notification with your verification code, depending on whether you have the Authy app installed or not. Then execute the command above again, this time passing your OTP verification code as a header, like so: `X-Bitreserve-OTP: <OTP-Token>`.
+If you have OTP (One Time Password, also known as Two-Factor Authentication) enabled, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `OTP-Token: Required`. You will then automatically receive an SMS, or Push Notification with your verification code, depending on whether you have the Authy app installed or not. Then execute the command above again, this time passing your OTP verification code as a header, like so: `OTP-Token: <OTP-Token>`.
