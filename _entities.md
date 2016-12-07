@@ -474,3 +474,61 @@ identity  | required, retry, review, running | n/a            | The status of id
 location  | required, blocked                | country, state | Whether the user has specified his/her location, which can be a blocked country/state.
 phone     | required, unconfirmed            | n/a            | The status of phone number verification.
 terms     | required                         | updated        | Whether the user has accepted the latest version of the terms of service.
+
+## Voucher Object
+
+> An example voucher encoded in JSON looks like this:
+
+```json
+{
+  "amount": "100.00",
+  "currency": "USD",
+  "beneficiary": {
+    "state": "PA",
+    "country": "US",
+    "lastName": "Hamilton",
+    "firstName": "Alexander"
+  },
+  "code": "UH19372030",
+  "id": "<VoucherId>",
+  "receiver": {},
+  "sender": {
+    "state": "VA",
+    "country": "US",
+    "lastName": "Washington",
+    "firstName": "George"
+  },
+  "status": "ready"
+}
+```
+
+Property | Description
+-------- | ----------------------------------------------------
+amount | The amount in the denominated currency that can be redeemed.
+beneficiary | The intended beneficiary.
+code | The identifier that the receiver should provide to redeem the voucher.
+currency | The currency by which the voucher is denominated.
+id | A unique ID associated with the voucher.
+receiver | Information about the person who actually redeemed the voucher. 
+sender | The details of the person sending the voucher.
+status | The current status of the voucher.
+transaction | Details of the underlying transaction. 
+
+### Sender, Recipient, Beneficiary
+
+Property | Description
+-------- | ----------------------------------------------------
+state | The person's state of residence. 
+country | The person's country of residence.
+firstName | The person's given name. 
+lastName | The person's family name. 
+
+### Voucher Status
+
+The list of permissible statuses are:
+
+* `ready`
+* `cancelled`
+* `redeemed`
+* `expired`
+* `pending` (default)
