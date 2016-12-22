@@ -352,7 +352,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "rate": "0.00111111",
     "type": "card",
     "username": "johndoe"
-  },
+  }
 },
 {
   "createdAt": "2016-01-19T12:07:01.611Z",
