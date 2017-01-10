@@ -286,6 +286,8 @@ curl https://api.uphold.com/v0/reserve/ledger
 
 This endpoint supports [Pagination](#pagination).
 
+To access this endpoint, an API key is required.
+
 ### Deposits
 The following entry shows how a deposit of 0.5 bitcoin by a user would be encoded on the Reserveledger. Every deposit results in two entries in the ledger. The first records the acquisition of a liability, and the second the genesis of an asset. Specifically, it shows the creation of 0.5 bitcoin as an obligation to the user, plus the acquisition of 0.5 bitcoin as an asset.
 <pre class="inline"><code>{

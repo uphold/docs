@@ -429,6 +429,8 @@ See also: [Transparency: Reservechain](#the-reservechain)
 
 Requests the public view of all transactions in the reserve.
 
+To access this endpoint, an API key is required.
+
 ### Request
 `GET https://api.uphold.com/v0/reserve/transactions`
 
