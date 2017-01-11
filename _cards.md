@@ -51,6 +51,8 @@ Retrieves a list of cards for the current user.
 
 <aside class="notice">Requires the <code>cards:read</code> scope for Uphold Connect applications.</aside>
 
+This endpoint supports [Pagination](#pagination).
+
 ### Response
 
 Returns an array of the current user's cards.
