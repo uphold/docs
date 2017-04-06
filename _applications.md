@@ -1,6 +1,6 @@
 # Applications
 ## Registering an application
-Developers will need to [register their application](https://uphold.com/dashboard/profile/applications/developer/new) before getting started. A registered application will be assigned a unique _Client Id_ and _Client Secret_.
+Developers will need to [register their application](https://support.uphold.com/hc/en-us/articles/217210266) before getting started. A registered application will be assigned a unique _Client Id_ and _Client Secret_.
 <aside class="notice">
   <strong>Security Notice</strong>: Your <i>Client Secret</i> should never be shared, must be kept secret at all times and should only be used from your server-side application.
 </aside>
