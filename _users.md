@@ -25,14 +25,6 @@ curl "https://api.uphold.com/v0/me" \
   "firstName": "Luke",
   "lastName": "Skywalker",
   "name": "Luke Skywalker",
-  "phones": [{
-    "e164Masked": "+XXXXXXXXX06",
-    "id": "7eb106e5-65c0-461a-8c1d-b6e1f44a7bc7",
-    "internationalMasked": "+X XXX-XXX-XX06",
-    "nationalMasked": "(XXX) XXX-XX06",
-    "primary": true,
-    "verified": true
-  }],
   "settings": {
     "currency": "USD",
     "intl": {
