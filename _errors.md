@@ -7,6 +7,7 @@ Code | Meaning
 401  | Unauthorized -- Bad credentials.
 403  | Forbidden -- Access forbidden.
 404  | Not Found -- Object not found.
+409  | Conflict -- Entity already exists.
 412  | Precondition Failed
 416  | Requested Range Not Satisfiable
 429  | Too Many Requests -- Rate limit exceeded.
