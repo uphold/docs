@@ -6,7 +6,7 @@ The follow libraries are available:
 
 - [Android SDK](https://github.com/uphold/uphold-sdk-android)
 - [iOS SDK](https://github.com/uphold/uphold-sdk-ios)
-- [Node SDK](https://github.com/DanWebb/uphold-sdk-node)
+- [JavaScript SDK](https://github.com/uphold/uphold-sdk-javascript)
 - [PHP SDK](https://github.com/seegno/uphold-sdk-php)
 - [Python SDK](https://github.com/byrnereese/uphold-sdk-python)
 - [Ruby SDK](https://github.com/subvisual/uphold-sdk-ruby)
