@@ -18,9 +18,10 @@ Or for sandbox applications:
 Supported query parameters:
 
 Parameter | Required | Description
---------- | -------- | ------------------------------------------------------------------------------------------------------------------
-state     | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
+--------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------
+intention | no       | Unauthenticated users will be redirected to the `login` page, this behavior can be changed by sending `signup` as the `intention` value.
 scope     | yes      | Permissions to request from the user.
+state     | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
 
 ### Step 2 - Requesting a Token
 > Exchanging the `code` for a `token`:
