@@ -192,7 +192,7 @@ origin       | The sender of the funds. See "Origin and Destination" below.
 destination  | The recipient of the funds. See "Origin and Destination" below.
 
 <aside class="notice">
-  A transaction can involve 3 different currencies: the currency as <strong>denominated</strong> by the user, the currency at the <strong>origin</strong> card and the currency at the <strong>destination</strong> card. For instance, <i>"transfer 1 BTC from my USD card to my EUR card"</i>. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is credited at the origin, then debited in EUR at the destination.
+  A transaction can involve 3 different currencies: the currency as <strong>denominated</strong> by the user, the currency at the <strong>origin</strong> card and the currency at the <strong>destination</strong> card. For instance, <i>"transfer 1 BTC from my USD card to my EUR card"</i>. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is debited at the origin, then credited in EUR at the destination.
 </aside>
 
 ### Denomination
