@@ -111,9 +111,7 @@ Parameter   | Required | Description
 description | yes      | A human-readable description of this PAT.
 
 <aside class="notice">
-  <strong>Import Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme or via OAuth.
-
-  Additionally, you always need to provide a valid OTP token via the `OTP-Token` header even if you have Two-Factor Authentication disabled.
+  <strong>Important Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme or via OAuth, and a valid OTP token via the `OTP-Token` header.
 </aside>
 
 ### Revoking a PAT
@@ -158,4 +156,4 @@ curl https://api.uphold.com/v0/me \
 
 You can use Basic Authentication by providing your username or email and password combination.
 
-If you have OTP (One Time Password, also known as Two-Factor Authentication) enabled, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `OTP-Token: Required`. You will then automatically receive an SMS, or Push Notification with your verification code, depending on whether you have the Authy app installed or not. Then execute the command above again, this time passing your OTP verification code as a header, like so: `OTP-Token: <OTP-Token>`.
+If OTP (One Time Password, also known as Two-Factor Authentication) is required, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `OTP-Token: Required`. Execute the command above again, this time passing your OTP verification code as a header, like so: `OTP-Token: <OTP-Token>`.
