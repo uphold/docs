@@ -88,6 +88,33 @@ Ideal for scripts, automated tools and command-line programs which remain under 
 
 For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your username/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
 
+### Listing PATs
+> To list active Personal Access Tokens, execute the following command:
+
+```bash
+curl https://api.uphold.com/v0/me/tokens \
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns the following JSON:
+
+```json
+[
+  {
+      "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
+      "description": "token 1"
+  },
+  {
+      "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
+      "description": "token 2"
+  }
+]
+```
+
+To list Personal Access Tokens you may use the following endpoint:
+
+`GET https://api.uphold.com/v0/me/tokens`
+
 ### Creating a PAT
 > To create a Personal Access Token, execute the following command:
 
