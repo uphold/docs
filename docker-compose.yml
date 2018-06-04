@@ -1,0 +1,6 @@
+app:
+  image: uphold/slate:1.2
+  ports:
+    - 4567:4567
+  volumes:
+    - .:/app/source/includes
