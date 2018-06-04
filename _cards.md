@@ -170,6 +170,18 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 
 Generate an address for a card.
 
+<aside class="notice">For the network `xrp-ledger` the response also returns the `tag` property, which is the corresponding `Destination Tag`.</aside>
+
+> For an XRP Ledger address, the following JSON is returned:
+
+```json
+{
+  "id":"rPoXQyM58eW6ujBxZRPzhm1q9Qfb9F1tKa",
+  "network":"xrp-ledger",
+  "tag":"3723925709"
+}
+```
+
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:id/addresses`
@@ -197,13 +209,30 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 ```json
 [
   {
-    "id":"145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
-    "network":"bitcoin"
+    "formats":[
+      {
+        "format":"pubkeyhash",
+        "value":"145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY"
+      }
+    ],
+    "type":"bitcoin"
+  },
+  {
+    "formats":[
+      {
+        "format":"pubkeyhash",
+        "value":"rPoXQyM58eW6ujBxZRPzhm1q9Qfb9F1tKa"
+      }
+    ],
+    "tag":"3390000518",
+    "type":"xrp-ledger"
   }
 ]
 ```
 
 Retrieves a list of addresses for a specific card.
+
+<aside class="notice">The property `tag` is defined only to allow the XRP Ledger network to identify the card's `Destination Tag`.</aside>
 
 ### Request
 
