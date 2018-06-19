@@ -247,7 +247,7 @@ curl https://api.uphold.com/v0/ticker
 `GET https://api.uphold.com/v0/ticker`
 
 ### Response
-Returns an associative array containing the current rates Uphold has on record for all currency pairs.
+Returns an associative array containing the current rates Uphold has on record for USD currency pair.
 
 ## Get Tickers for Currency
 
