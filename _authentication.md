@@ -1,7 +1,7 @@
 # Authentication
 Uphold is an OAuth 2.0 compliant service.
 
-Partners looking to integrate with our API must [register an application](#registering-an-application) and use the Web Application Flow. A sample implementation will be available soon.
+Partners looking to integrate with our API must [register an application](#registering-an-application). Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use use the [Client Credentials Flow](#client-credentials-flow).
 
 ## Web Application Flow
 Ideal for web applications that wish to retrieve information about a user's Uphold account or take actions on their behalf.
@@ -77,6 +77,57 @@ curl https://api.uphold.com/v0/me/cards \
 Once you have obtained an access token you may call any protected API method on behalf of the user using the "Authorization" HTTP header in the format:
 
 `Authorization: Bearer <token>`
+
+<aside class="notice">
+  <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
+
+  This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
+</aside>
+
+## Client Credentials Flow
+Ideal for backend integrations that do not require access to other Uphold user accounts.
+
+For **business usage only** you may choose to use client credentials authentication. This requires manual approval from Uphold.
+
+### Creating a Token
+> To create a client credentials token, execute the following command (make sure the application is set to use client credentials and not authorization code):
+
+```bash
+curl https://api.uphold.com/oauth2/token \
+  -X POST \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -u <clientId>:<clientSecret> \
+  -d 'grant_type=client_credentials'
+```
+
+To create a client credentials token you may use the following endpoint:
+
+`POST https://api.uphold.com/oauth2/token`
+
+Supported parameters:
+
+Parameter     | Required | Description
+------------- | -------- | -------------------------------------------------------------------------------------
+client_id     | yes      | The application's *clientId*. Please use HTTP Basic Authentication when possible.
+client_secret | yes      | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
+grant_type    | yes      | Must be set to *'client_credentials'*.
+
+<aside class="notice">
+  <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
+</aside>
+
+### Using the Token
+> Request using the 'Authorization header':
+
+```bash
+curl https://api.uphold.com/v0/me/cards \
+  -H "Authorization: Bearer <token>"
+```
+
+Once you have obtained a client credentials token you may call any protected API method on behalf of the user account owner of the application using the "Authorization" HTTP header in the format:
+
+`Authorization: Bearer <token>`
+
 <aside class="notice">
   <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
 
