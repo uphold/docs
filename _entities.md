@@ -32,23 +32,24 @@ type     | The type of the account. Possible values are: `card`, `sepa`.
 ```json
 {
   "address": {
-    "bitcoin": "muABokE5awaCFtHWiw68rKGuSViBKDXLmH"
+    "bitcoin": "ms22VBPSahNTxHZNkYo2d4Rmw1Tgfx6ojr"
   },
-  "available": "87.52",
-  "balance": "87.52",
+  "available": "146.38",
+  "balance": "146.38",
   "currency": "EUR",
-  "id": "c4a77706-7b3a-4b8b-968b-4190038d37e8",
+  "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
   "label": "EUR card",
-  "lastTransactionAt": "2015-06-03T12:25:21.809Z",
-  "settings": {
-    "position": 4,
-    "starred": true
-  },
+  "lastTransactionAt": "2018-08-01T09:53:51.258Z",
   "normalized": [{
-    "available": "99.04",
-    "balance": "99.04",
+    "available": "170.96",
+    "balance": "170.96",
     "currency": "USD"
-  }]
+  }],
+  "settings": {
+    "position": 2,
+    "protected": false,
+    "starred": true
+  }
 }
 ```
 

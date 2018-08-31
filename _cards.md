@@ -13,31 +13,44 @@ curl https://api.uphold.com/v0/me/cards \
 
 ```json
 [{
-  "id": "ade869d8-7913-4f67-bb4d-72719f0a2be0",
   "address": {
-    "bitcoin": "1GpBtJXXa1NdG94cYPGZTc3DfRY2P7EwzH"
+    "bitcoin": "mkZuBgFa4gAjJ2UckDA3Pms68rVBavAneF"
   },
-  "label": "USD card",
-  "currency": "USD",
-  "balance": "897.29",
-  "available": "897.29",
-  "lastTransactionAt": "2014-09-24T18:11:53.561Z",
+  "available": "5.00",
+  "balance": "5.00",
+  "currency": "BTC",
+  "id": "024e51fc-5513-4d82-882c-9b22024280cc",
+  "label": "BTC card",
+  "lastTransactionAt": "2018-08-01T09:53:44.617Z",
+  "normalized": [{
+    "available": "4500.00",
+    "balance": "4500.00",
+    "currency": "USD"
+  }],
   "settings": {
     "position": 1,
+    "protected": false,
     "starred": true
   }
-}, {
-  "id": "91380a1f-c6f1-4d81-a204-8b40538c1f0d",
+},
+{
   "address": {
-    "bitcoin": "1KHpy2xrscep4RiXPiM3jyjee82iBMyMan"
+    "bitcoin": "ms22VBPSahNTxHZNkYo2d4Rmw1Tgfx6ojr"
   },
-  "label": "BTC Card #2",
-  "currency": "BTC",
-  "balance": "0.00",
-  "available": "0.00",
-  "lastTransactionAt": "2014-07-07T05:40:46.624Z",
+  "available": "146.38",
+  "balance": "146.38",
+  "currency": "EUR",
+  "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+  "label": "EUR card",
+  "lastTransactionAt": "2018-08-01T09:53:51.258Z",
+  "normalized": [{
+    "available": "170.96",
+    "balance": "170.96",
+    "currency": "USD"
+  }],
   "settings": {
-    "position": 7,
+    "position": 2,
+    "protected": false,
     "starred": true
   }
 }]
@@ -60,7 +73,7 @@ Returns an array of the current user's cards.
 ## Get Card Details
 
 ```bash
-curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
+curl https://api.uphold.com/v0/me/cards/bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3 \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -68,17 +81,23 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
 
 ```json
 {
-  "id": "2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3",
   "address": {
-    "bitcoin": "145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY"
+    "bitcoin": "ms22VBPSahNTxHZNkYo2d4Rmw1Tgfx6ojr"
   },
-  "label": "CNY card",
-  "currency": "CNY",
-  "balance": "42.82",
-  "available": "42.82",
-  "lastTransactionAt": "2014-06-16T20:46:51.002Z",
+  "available": "146.38",
+  "balance": "146.38",
+  "currency": "EUR",
+  "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+  "label": "EUR card",
+  "lastTransactionAt": "2018-08-01T09:53:51.258Z",
+  "normalized": [{
+    "available": "170.96",
+    "balance": "170.96",
+    "currency": "USD"
+  }],
   "settings": {
-    "position": 5,
+    "position": 2,
+    "protected": false,
     "starred": true
   }
 }
@@ -152,19 +171,19 @@ Returns a fully formed [Card Object](#card-object) representing the updated card
 ## Create Card Address
 
 ```bash
-curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/addresses \
+curl https://api.uphold.com/v0/me/cards/024e51fc-5513-4d82-882c-9b22024280cc/addresses \
   -X POST \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
-  -d '{ "network": "bitcoin" }'
+  -d '{ "network": "ethereum" }'
 ```
 
 > The above command returns the following JSON:
 
 ```json
 {
-  "id":"145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY",
-  "network":"bitcoin"
+  "id": "0x807A30A52180c4172ddCE90816bc951D004CF737",
+  "network": "ethereum"
 }
 ```
 
@@ -176,9 +195,9 @@ Generate an address for a card.
 
 ```json
 {
-  "id":"rPoXQyM58eW6ujBxZRPzhm1q9Qfb9F1tKa",
-  "network":"xrp-ledger",
-  "tag":"3723925709"
+  "id": "rPjTZfLP3Qxwwd2xvXSALJzEFmmf7bEYgh",
+  "network": "xrp-ledger",
+  "tag": "1921241954"
 }
 ```
 
@@ -207,27 +226,28 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 > The above command returns the following JSON:
 
 ```json
-[
-  {
-    "formats":[
-      {
-        "format":"pubkeyhash",
-        "value":"145ZeN94MAtTmEgvhXEch3rRgrs7BdD2cY"
-      }
-    ],
-    "type":"bitcoin"
-  },
-  {
-    "formats":[
-      {
-        "format":"pubkeyhash",
-        "value":"rPoXQyM58eW6ujBxZRPzhm1q9Qfb9F1tKa"
-      }
-    ],
-    "tag":"3390000518",
-    "type":"xrp-ledger"
-  }
-]
+[{
+  "formats": [{
+    "format": "pubkeyhash",
+    "value": "mkZuBgFa4gAjJ2UckDA3Pms68rVBavAneF"
+  }],
+  "type": "bitcoin"
+},
+{
+  "formats": [{
+    "format": "pubkeyhash",
+    "value": "0x807A30A52180c4172ddCE90816bc951D004CF737"
+  }],
+  "type": "ethereum"
+},
+{
+  "formats": [{
+    "format": "pubkeyhash",
+    "value": "rPjTZfLP3Qxwwd2xvXSALJzEFmmf7bEYgh"
+  }],
+  "tag": "1921241954",
+  "type": "xrp-ledger"
+}]
 ```
 
 Retrieves a list of addresses for a specific card.
