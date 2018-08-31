@@ -285,40 +285,159 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
 
 ```json
 {
-  "address": {},
-  "birthdate": "2014-08-27",
+  "address": {
+    "city": "Ryleighfort",
+    "line1": "32167 Mohr Land",
+    "line2": "Suite 257",
+    "zipCode": "47890"
+  },
+  "balances": {
+    "currencies": {
+      "BCH": {
+        "amount": "4500.00",
+        "balance": "5.00",
+        "currency": "USD",
+        "rate": "900.00000"
+      },
+      "BTC": {
+        "amount": "4500.00",
+        "balance": "5.00",
+        "currency": "USD",
+        "rate": "900.00000"
+      },
+      "BTG": {
+        "amount": "57.65",
+        "balance": "5.00",
+        "currency": "USD",
+        "rate": "11.52945"
+      },
+      "CNY": {
+        "amount": "90.84",
+        "balance": "600.00",
+        "currency": "USD",
+        "rate": "0.15140"
+      },
+      "DASH": {
+        "amount": "57.65",
+        "balance": "5.00",
+        "currency": "USD",
+        "rate": "11.52945"
+      },
+      "ETH": {
+        "amount": "5000.00",
+        "balance": "10.00",
+        "currency": "USD",
+        "rate": "500.00000"
+      },
+      "EUR": {
+        "amount": "180.89",
+        "balance": "154.88",
+        "currency": "USD",
+        "rate": "1.16795"
+      },
+      "GBP": {
+        "amount": "1174.94",
+        "balance": "895.59",
+        "currency": "USD",
+        "rate": "1.31192"
+      },
+      "LTC": {
+        "amount": "1300.00",
+        "balance": "10.00",
+        "currency": "USD",
+        "rate": "130.00000"
+      },
+      "MXN": {
+        "amount": "7.88",
+        "balance": "149.99",
+        "currency": "USD",
+        "rate": "0.05257"
+      },
+      "USD": {
+        "amount": "97710.05",
+        "balance": "97710.05",
+        "currency": "USD",
+        "rate": "1.00000"
+      },
+      "VOX": {
+        "amount": "31.60",
+        "balance": "2.74066412",
+        "currency": "USD",
+        "rate": "11.52945"
+      },
+      "XAU": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "1235.46975"
+      },
+      "XRP": {
+        "amount": "0.00",
+        "balance": "0.00",
+        "currency": "USD",
+        "rate": "0.80000"
+      }
+    },
+    "total": "114611.50"
+  },
+  "birthdate": "2000-09-27",
   "country": "US",
   "currencies": [
+    "AED",
+    "ARS",
+    "AUD",
+    "BAT",
+    "BCH",
+    "BRL",
     "BTC",
+    "BTG",
+    "CAD",
     "CHF",
     "CNY",
+    "DASH",
+    "DKK",
+    "ETH",
     "EUR",
     "GBP",
+    "HKD",
+    "ILS",
     "INR",
     "JPY",
+    "KES",
+    "LTC",
     "MXN",
+    "NOK",
+    "NZD",
+    "PHP",
+    "PLN",
+    "SEK",
+    "SGD",
     "USD",
+    "VOX",
     "XAG",
     "XAU",
     "XPD",
-    "XPT"
+    "XPT",
+    "XRP"
   ],
-  "email": "luke.skywalker@uphold.com",
-  "firstName": "Luke",
-  "identity": {},
-  "lastName": "Skywalker",
-  "name": "Luke Skywalker",
+  "email": "malika.koss@example.com",
+  "firstName": "Malika",
+  "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+  "lastName": "Koss",
+  "memberAt": "2018-08-01T09:53:44.293Z",
+  "name": "Malika Koss",
   "phones": [{
-    "e164Masked": "+XXXXXXXXX54",
-    "id": "03c46123-1f82-4bca-893d-d5de587c3135",
-    "internationalMasked": "+X XXX-XXX-XX54",
-    "nationalMasked": "(XXX) XXX-XX54",
+    "e164Masked": "+XXXXXXXXX66",
+    "id": "abefe0b6-2f5d-45ba-97ac-3b07b08595a3",
+    "internationalMasked": "+X XXX-XXX-XX66",
+    "nationalMasked": "(XXX) XXX-XX66",
     "primary": true,
     "verified": true
   }],
   "settings": {
     "currency": "USD",
-    "hasNewsSubscription": true,
+    "hasMarketingConsent": false,
+    "hasNewsSubscription": false,
     "intl": {
       "dateTimeFormat": {
         "locale": "en-US"
@@ -346,97 +465,17 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
             "enabled": true
           }
         }
+      },
+      "vmc": {
+        "enabled": true
       }
     }
   },
-  "memberAt": "2015-07-10T15:36:20.288Z",
-  "state": "California",
+  "state": "US-UT",
   "status": "ok",
-  "username": "skywalker",
-  "verifications": {},
-  "balances": {
-    "total": "499.04",
-    "currencies": {
-      "BTC": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "440.49500"
-      },
-      "CHF": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1.08085"
-      },
-      "CNY": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.16017"
-      },
-      "EUR": {
-        "amount": "99.04",
-        "balance": "87.52",
-        "currency": "USD",
-        "rate": "1.13165"
-      },
-      "GBP": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1.52485"
-      },
-      "INR": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.01605"
-      },
-      "JPY": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.00837"
-      },
-      "MXN": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.06700"
-      },
-      "USD": {
-        "amount": "400.00",
-        "balance": "400.00",
-        "currency": "USD",
-        "rate": "1.00000"
-      },
-      "XAG": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "17.27900"
-      },
-      "XAU": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1235.46975"
-      },
-      "XPD": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "772.33385"
-      },
-      "XPT": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1232.91175"
-      }
-    }
-  }
+  "type": "individual",
+  "username": "malikakoss",
+  "verifications": {}
 }
 ```
 
@@ -455,6 +494,7 @@ memberAt | The date when the user has become a verified member.
 - **otp.transactions.send.enabled** - This will prompt the user to input an OTP token when creating a transaction to another user.
 - **otp.transactions.transfer.enabled** - This will prompt the user to input an OTP token when transacting between the user's own cards.
 - **otp.transactions.withdraw.crypto.enabled** - This will prompt the user to input an OTP token when withdrawing to the bitcoin network.
+- **otp.vmc.enabled** - This will prompt the user to input an OTP token when using VMCs.
 
 ### User Status
 We communicate a number of different user states through our API. At a high-level users can be in one of four states:
