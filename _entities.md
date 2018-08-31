@@ -122,60 +122,91 @@ pair     | The currency pair AB represents moving from A to B.
 
 ```json
 {
-  "createdAt": "2015-06-04T11:43:30.645Z",
+  "application": null,
+  "createdAt": "2018-08-01T09:53:47.020Z",
   "denomination": {
-    "amount": "2.00",
-    "currency": "USD",
-    "pair": "USDUSD",
-    "rate": "1.00"
-  },
-  "fees": [],
-  "id": "c1c46ee8-b196-4e0f-96cd-76278707ea3c",
-  "message": "Join Uphold!",
-  "normalized": [{
-    "amount": "2.00",
-    "commission": "0.00",
-    "currency": "USD",
-    "rate": "1.00"
-  }],
-  "params": {
-    "currency": "USD",
-    "margin": "0.00",
-    "pair": "USDUSD",
-    "progress": "0",
-    "rate": "1.00",
-    "ttl": 7000,
-    "type": "invite"
-  },
-  "status": "waiting",
-  "type": "transfer",
-  "origin": {
-    "amount": "2.00",
-    "base": "2.00",
-    "CardId": "718c7c81-ae87-46b3-97d5-131b78d76f05",
-    "commission": "0.00",
-    "currency": "USD",
-    "description": "John Smith",
-    "fee": "0.00",
-    "rate": "1.00",
-    "sources": [{
-      "id": "f66f0e7f-20a1-4983-8855-52b96cd57d31",
-      "amount": "2.00"
-    }],
-    "type": "card",
-    "username": "johnsmith"
+    "amount": "5.00",
+    "currency": "GBP",
+    "pair": "GBPUSD",
+    "rate": "1.31"
   },
   "destination": {
-    "amount": "2.00",
-    "base": "2.00",
+    "CardId": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+    "amount": "5.57",
+    "base": "5.61",
+    "commission": "0.04",
+    "currency": "EUR",
+    "description": "Angel Rath",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
+    },
+    "rate": "0.85620",
+    "type": "card",
+    "username": "angelrath"
+  },
+  "fees": [{
+    "amount": "0.04",
+    "currency": "EUR",
+    "percentage": "0.65",
+    "target": "destination",
+    "type": "exchange"
+  }],
+  "id": "2c326b15-7106-48be-a326-06f19e69746b",
+  "message": null,
+  "network": "uphold",
+  "normalized": [{
+    "amount": "6.56",
+    "commission": "0.05",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "1.00000",
+    "target": "destination"
+  }],
+  "origin": {
+    "CardId": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+    "amount": "6.56",
+    "base": "6.56",
     "commission": "0.00",
     "currency": "USD",
-    "description": "leia.organa@senate.coruscant.gov",
+    "description": "Angel Rath",
     "fee": "0.00",
-    "rate": "1.00",
-    "type": "email",
-    "username": null
-  }
+    "isMember": true,
+    "node": {
+      "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
+    },
+    "rate": "1.16795",
+    "sources": [{
+      "amount": "6.56",
+      "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
+    }],
+    "type": "card",
+    "username": "angelrath"
+  },
+  "params": {
+    "currency": "USD",
+    "margin": "0.65",
+    "pair": "EURUSD",
+    "progress": "1",
+    "rate": "1.16795",
+    "ttl": 18000,
+    "type": "transfer"
+  },
+  "priority": "normal",
+  "reference": null,
+  "status": "completed",
+  "type": "transfer"
 }
 ```
 
@@ -186,17 +217,21 @@ Transactions record the movement of value into, within and out of the Uphold net
 
 Property     | Description
 ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+application  | The application that created the transaction.
 id           | A unique ID on the Uphold Network associated with the transaction.
 type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 message      | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
-denomination | The funds to be transferred, as originally requested. See "Denomination" below.
-fees         | The fees that were applied to the transaction.
+denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
+fees         | The fees that were applied to the transaction. See [Fees](#fees).
 status       | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
 params       | Other parameters of this transaction. See [Parameters](#parameters).
 createdAt    | The date and time the transaction was initiated.
+network      | The network of the transaction (`uphold` for internal transactions).
 normalized   | The transaction details in USD. See [Normalized](#normalized).
-origin       | The sender of the funds. See "Origin and Destination" below.
-destination  | The recipient of the funds. See "Origin and Destination" below.
+priority     | The priority of the transaction. Possible values are `normal` and `fast`.
+reference    | A reference assigned to the transaction.
+origin       | The sender of the funds. See [Origin](#origin).
+destination  | The recipient of the funds. See [Destination](#destination).
 
 <aside class="notice">
   A transaction can involve 3 different currencies: the currency as <strong>denominated</strong> by the user, the currency at the <strong>origin</strong> card and the currency at the <strong>destination</strong> card. For instance, <i>"transfer 1 BTC from my USD card to my EUR card"</i>. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is debited at the origin, then credited in EUR at the destination.
@@ -219,12 +254,13 @@ rate     | The quoted rate for converting between the denominated currency and t
 ### Fees
 The `fees` property contains an array of fees that were applied to the transaction. Each object in the array contains the following properties:
 
-Property | Description
--------- | ---------------------------------------------------------------------------------
-amount   | The amount to be charged.
-currency | The currency for said amount.
-target   | Can be `origin` or `destination` and determines where the fee was applied.
-type     | The type of fee. Can be one of: `deposit`, `exchange`, `network` or `withdrawal`.
+Property   | Description
+---------- | ---------------------------------------------------------------------------------
+amount     | The amount to be charged.
+currency   | The currency for said amount.
+percentage | The percentage amount to be charged.
+target     | Can be `origin` or `destination` and determines where the fee was applied.
+type       | The type of fee. Can be one of: `deposit`, `exchange`, `network` or `withdrawal`.
 
 <aside class="notice">
   <strong>Important Notice</strong>: For further information on our fees, please visit our FAQ: <a href="https://support.uphold.com/hc/en-us/articles/202342496-Is-Uphold-a-free-service-">Is Uphold a free service?</a>
@@ -239,7 +275,9 @@ currency | The currency in which the total commission is expressed.
 margin   | Uphold's commission expressed in percentage.
 pair     | The currency pair associated with any exchange that took place, if any.
 progress | In case a transaction is coming in from the outside, how many confirmations have been received.
+rate     | The exchange rate of the transaction.
 ttl      | The time this quote is good for, in milliseconds.
+type     | The type of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 
 ### Normalized
 The `normalized` property contains the normalized amount and commission values in USD:
@@ -249,7 +287,9 @@ Property   | Description
 amount     | The amount to be transacted.
 commission | The total commission taken on this transaction, either at origin or at destination.
 currency   | The currency in which the amount and commission are expressed. The value is always `USD`.
+fee        | The normalized fee amount.
 rate       | The exchange rate for this pair.
+target     | Can be `origin` or `destination` and determines where the fee was applied.
 
 ### Origin
 The origin has properties regarding how the transaction affects the origin of the funds:
@@ -263,6 +303,8 @@ commission  | The commission charged by Uphold to process the transaction.
 currency    | The currency of the funds at the origin.
 description | The name of the sender.
 fee         | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Uphold Bitcoin Address.
+isMember    | A boolean signaling if the origin user has completed the membership process.
+node        | The details about the transaction origin node.
 rate        | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of `destination.rate`).
 sources     | The transactions where the value was originated from (id and amount).
 type        | The type of endpoint. Possible values are 'card' and 'external'.
@@ -284,6 +326,8 @@ commission  | The commission charged by Uphold to process the transaction. Commi
 currency    | The denomination of the funds at the time they were sent/received.
 description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient.
 fee         | The Bitcoin network Fee, if destination is a BTC address but origin is not.
+isMember    | A boolean signaling if the destination user has completed the membership process.
+node        | The details about the transaction destination node.
 rate        | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of `origin.rate`).
 type        | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 

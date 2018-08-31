@@ -14,54 +14,91 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
 
 ```json
 {
+  "application": null,
+  "createdAt": "2018-08-01T09:53:47.020Z",
   "denomination": {
-    "amount": "0.1",
-    "currency": "BTC",
-    "rate": "1.00",
-    "pair": "BTCBTC"
-  },
-  "fees": [],
-  "id": "7c377eba-cb1e-45a2-8c13-9807b4139bec",
-  "normalized": [{
-    "amount": "900.00",
-    "commission": "0.00",
-    "currency": "USD",
-    "fee": "0.00",
-    "rate": "900.00000"
-  }],
-  "params": {
-    "currency": "BTC",
-    "margin": "0.00",
-    "pair": "BTCBTC",
-    "rate": "1.00",
-    "ttl": 7000,
-    "type": "invite"
-  },
-  "status": "pending",
-  "type": "transfer",
-  "origin": {
-    "amount": "0.1",
-    "base": "0.1",
-    "CardId": "66cf2c86-8247-4094-bbec-ca29cea8220f",
-    "commission": "0.00",
-    "currency": "BTC",
-    "description": "John Doe",
-    "fee": "0.00",
-    "rate": "1.00",
-    "sources": [],
-    "type": "card",
-    "username": "johndoe"
+    "amount": "5.00",
+    "currency": "GBP",
+    "pair": "GBPUSD",
+    "rate": "1.31"
   },
   "destination": {
-    "amount": "0.1",
-    "base": "0.1",
-    "commission": "0.00",
-    "currency": "BTC",
-    "description": "foo@bar.com",
+    "CardId": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+    "amount": "5.57",
+    "base": "5.61",
+    "commission": "0.04",
+    "currency": "EUR",
+    "description": "Angel Rath",
     "fee": "0.00",
-    "rate": "1.00",
-    "type": "email"
-  }
+    "isMember": true,
+    "node": {
+      "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
+    },
+    "rate": "0.85620",
+    "type": "card",
+    "username": "angelrath"
+  },
+  "fees": [{
+    "amount": "0.04",
+    "currency": "EUR",
+    "percentage": "0.65",
+    "target": "destination",
+    "type": "exchange"
+  }],
+  "id": "2c326b15-7106-48be-a326-06f19e69746b",
+  "message": null,
+  "network": "uphold",
+  "normalized": [{
+    "amount": "6.56",
+    "commission": "0.05",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "1.00000",
+    "target": "destination"
+  }],
+  "origin": {
+    "CardId": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+    "amount": "6.56",
+    "base": "6.56",
+    "commission": "0.00",
+    "currency": "USD",
+    "description": "Angel Rath",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
+    },
+    "rate": "1.16795",
+    "sources": [{
+      "amount": "6.56",
+      "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
+    }],
+    "type": "card",
+    "username": "angelrath"
+  },
+  "params": {
+    "currency": "USD",
+    "margin": "0.65",
+    "pair": "EURUSD",
+    "progress": "1",
+    "rate": "1.16795",
+    "ttl": 18000,
+    "type": "transfer"
+  },
+  "priority": "normal",
+  "reference": null,
+  "status": "completed",
+  "type": "transfer"
 }
 ```
 
@@ -168,44 +205,93 @@ curl https://api.uphold.com/v0/me/transactions \
 > The above command returns the following JSON:
 
 ```json
-[
-  {
-    "createdAt": "2014-08-27T00:01:11.616Z",
-    "denomination": {
-      "amount": "1.00",
-      "currency": "USD",
-      "rate": "1.00",
-      "pair": "USDUSD"
-    },
-    "fees": [],
-    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-    "message": null,
-    "params": "<excluded for brevity>",
-    "status": "waiting",
-    "type": "transfer",
-    "origin": "<excluded for brevity>",
-    "destination": "<excluded for brevity>",
-    "RefundedById": null
+[{
+  "application": null,
+  "createdAt": "2018-08-01T09:53:47.020Z",
+  "denomination": {
+    "amount": "5.00",
+    "currency": "GBP",
+    "pair": "GBPUSD",
+    "rate": "1.31"
   },
-  {
-    "createdAt": "2014-08-27T00:01:12.616Z",
-    "denomination": {
-      "amount": "1.00",
-      "currency": "USD",
-      "rate": "1.00",
-      "pair": "USDUSD"
+  "destination": {
+    "CardId": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+    "amount": "5.57",
+    "base": "5.61",
+    "commission": "0.04",
+    "currency": "EUR",
+    "description": "Angel Rath",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
     },
-    "fees": [],
-    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-    "message": null,
-    "params": "<excluded for brevity>",
-    "status": "waiting",
-    "type": "transfer",
-    "origin": "<excluded for brevity>",
-    "destination": "<excluded for brevity>",
-    "RefundedById": null
-  }
-]
+    "rate": "0.85620",
+    "type": "card",
+    "username": "angelrath"
+  },
+  "fees": [{
+    "amount": "0.04",
+    "currency": "EUR",
+    "percentage": "0.65",
+    "target": "destination",
+    "type": "exchange"
+  }],
+  "id": "2c326b15-7106-48be-a326-06f19e69746b",
+  "message": null,
+  "network": "uphold",
+  "normalized": [{
+    "amount": "6.56",
+    "commission": "0.05",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "1.00000",
+    "target": "destination"
+  }],
+  "origin": {
+    "CardId": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+    "amount": "6.56",
+    "base": "6.56",
+    "commission": "0.00",
+    "currency": "USD",
+    "description": "Angel Rath",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
+    },
+    "rate": "1.16795",
+    "sources": [{
+      "amount": "6.56",
+      "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
+    }],
+    "type": "card",
+    "username": "angelrath"
+  },
+  "params": {
+    "currency": "USD",
+    "margin": "0.65",
+    "pair": "EURUSD",
+    "progress": "1",
+    "rate": "1.16795",
+    "ttl": 18000,
+    "type": "transfer"
+  },
+  "priority": "normal",
+  "reference": null,
+  "status": "completed",
+  "type": "transfer"
+}]
 ```
 
 Requests a list of transactions associated with the current user.
@@ -222,7 +308,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## List Card Transactions
 
 ```bash
-curl https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/transactions \
+curl https://api.uphold.com/v0/me/cards/48ce2ac5-c038-4426-b2f8-a2bdbcc93053/transactions \
   -X GET \
   -H "Authorization: Bearer <token>"
 ```
@@ -230,44 +316,93 @@ curl https://api.uphold.com/v0/me/cards/2b2eb351-b1cc-48f7-a3d0-cb4f1721f3a3/tra
 > The above command returns the following JSON:
 
 ```json
-[
-  {
-    "createdAt": "2014-08-27T00:01:11.616Z",
-    "denomination": {
-      "amount": "1.00",
-      "currency": "USD",
-      "rate": "1.00",
-      "pair": "USDUSD"
-    },
-    "fees": [],
-    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-    "message": null,
-    "params": "<excluded for brevity>",
-    "status": "waiting",
-    "type": "transfer",
-    "origin": "<excluded for brevity>",
-    "destination": "<excluded for brevity>",
-    "RefundedById": null
+[{
+  "application": null,
+  "createdAt": "2018-08-01T09:53:47.020Z",
+  "denomination": {
+    "amount": "5.00",
+    "currency": "GBP",
+    "pair": "GBPUSD",
+    "rate": "1.31"
   },
-  {
-    "createdAt": "2014-08-27T00:01:12.616Z",
-    "denomination": {
-      "amount": "1.00",
-      "currency": "USD",
-      "rate": "1.00",
-      "pair": "USDUSD"
+  "destination": {
+    "CardId": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+    "amount": "5.57",
+    "base": "5.61",
+    "commission": "0.04",
+    "currency": "EUR",
+    "description": "Angel Rath",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
     },
-    "fees": [],
-    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-    "message": null,
-    "params": "<excluded for brevity>",
-    "status": "waiting",
-    "type": "transfer",
-    "origin": "<excluded for brevity>",
-    "destination": "<excluded for brevity>",
-    "RefundedById": null
-  }
-]
+    "rate": "0.85620",
+    "type": "card",
+    "username": "angelrath"
+  },
+  "fees": [{
+    "amount": "0.04",
+    "currency": "EUR",
+    "percentage": "0.65",
+    "target": "destination",
+    "type": "exchange"
+  }],
+  "id": "2c326b15-7106-48be-a326-06f19e69746b",
+  "message": null,
+  "network": "uphold",
+  "normalized": [{
+    "amount": "6.56",
+    "commission": "0.05",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "1.00000",
+    "target": "destination"
+  }],
+  "origin": {
+    "CardId": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+    "amount": "6.56",
+    "base": "6.56",
+    "commission": "0.00",
+    "currency": "USD",
+    "description": "Angel Rath",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
+      "type": "card",
+      "user": {
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+        "username": "angelrath"
+      }
+    },
+    "rate": "1.16795",
+    "sources": [{
+      "amount": "6.56",
+      "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
+    }],
+    "type": "card",
+    "username": "angelrath"
+  },
+  "params": {
+    "currency": "USD",
+    "margin": "0.65",
+    "pair": "EURUSD",
+    "progress": "1",
+    "rate": "1.16795",
+    "ttl": 18000,
+    "type": "transfer"
+  },
+  "priority": "normal",
+  "reference": null,
+  "status": "completed",
+  "type": "transfer"
+}]
 ```
 
 Requests a list of transactions associated with a specific card.
