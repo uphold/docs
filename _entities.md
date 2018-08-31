@@ -4,9 +4,13 @@
 
 ```json
 {
+  "billing": {
+    "name": "Abigail Davis"
+  },
+  "brand": "visa",
   "currency": "USD",
-  "id": "bfef7422-9f3c-47e0-4d4b-569d92d29a5c",
-  "label": "My Chase card",
+  "id": "0874745c-f0bf-4973-a3d9-9832aeaae087",
+  "label": "Savings Account",
   "status": "ok",
   "type": "card"
 }
@@ -14,6 +18,8 @@
 
 Property | Description
 -------- | -----------------------------------------------------------------------
+billing  | The relevant billing details associated with the account.
+brand    | The brand of the `card` account.
 currency | The currency in which the account is denominated.
 id       | A unique ID associated with the account.
 label    | The display name of the account as chosen by the user.
