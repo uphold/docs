@@ -24,17 +24,23 @@ curl https://api.uphold.com/v0/me/accounts \
 
 ```json
 [{
-  "currency": "USD",
-  "id": "bfef7422-9f3c-47e0-4d4b-569d92d29a5c",
-  "label": "My Chase card",
-  "status": "ok",
-  "type": "card"
-}, {
+  "billing": {},
   "currency": "EUR",
-  "id": "0fa000c0-618a-4de1-ad0e-beb593f4d07d",
-  "label": "My checking account",
+  "id": "18843b6d-5a43-480f-8e2b-73b27d726bf0",
+  "label": "Checking Account",
   "status": "ok",
   "type": "sepa"
+},
+{
+  "billing": {
+    "name": "Makenna Ortiz"
+  },
+  "brand": "visa",
+  "currency": "USD",
+  "id": "0874745c-f0bf-4973-a3d9-9832aeaae087",
+  "label": "Savings Account",
+  "status": "ok",
+  "type": "card"
 }]
 ```
 
@@ -50,7 +56,7 @@ Returns an array of the current user's accounts.
 ## Get Account Details
 
 ```bash
-curl https://api.uphold.com/v0/me/accounts/0fa000c0-618a-4de1-ad0e-beb593f4d07d \
+curl https://api.uphold.com/v0/me/accounts/18843b6d-5a43-480f-8e2b-73b27d726bf0 \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -58,9 +64,10 @@ curl https://api.uphold.com/v0/me/accounts/0fa000c0-618a-4de1-ad0e-beb593f4d07d 
 
 ```json
 {
+  "billing": {},
   "currency": "EUR",
-  "id": "0fa000c0-618a-4de1-ad0e-beb593f4d07d",
-  "label": "My checking account",
+  "id": "18843b6d-5a43-480f-8e2b-73b27d726bf0",
+  "label": "Checking Account",
   "status": "ok",
   "type": "sepa"
 }
