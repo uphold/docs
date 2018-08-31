@@ -92,8 +92,8 @@ name      | The display name of the contact created by joining the first and las
 
 ```json
 {
-  "ask": "225.76",
-  "bid": "225.73",
+  "ask": "6420.05",
+  "bid": "6419",
   "currency": "USD",
   "pair": "BTCUSD"
 }
