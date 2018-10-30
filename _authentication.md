@@ -145,9 +145,9 @@ For **personal usage only** you may choose to use a PAT. This token establishes 
 ```bash
 curl https://api.uphold.com/v0/me/tokens \
   -X POST \
-  -H 'OTP-Token: <OTP-Token>' \
+  -H "Authorization: Bearer <token>"
   -H "Content-Type: application/json" \
-  -u <username-or-email>:<password> \
+  -H "OTP-Token: <OTP-Token>" \
   -d '{ "description": "My command line script" }'
 ```
 
@@ -162,7 +162,7 @@ Parameter   | Required | Description
 description | yes      | A human-readable description of this PAT.
 
 <aside class="notice">
-  <strong>Important Notice</strong>: This request must be authenticated with your username and password using the HTTP Basic Authentication scheme or via OAuth, and a valid OTP token via the `OTP-Token` header.
+  <strong>Important Notice</strong>: This request must be authenticated via OAuth, and a valid OTP token via the `OTP-Token` header.
 </aside>
 
 ### Revoking a PAT
