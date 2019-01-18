@@ -451,3 +451,47 @@ This method allows developers to find all exchanges rates relative to a given cu
 
 ### Response
 Returns an associative array containing the current rates Uphold has on record for the currency specified. If no currency is specified on the endpoint, USD currency pair will be returned by default.
+
+## Get Tickers for Currency Pair
+
+```bash
+curl https://api.uphold.com/v0/ticker/USDEUR
+```
+
+> The above command returns JSON in the following format:
+
+```json
+{
+  "ask":"0.87742",
+  "bid":"0.87742",
+  "currency":"EUR"
+}
+```
+
+```bash
+curl https://api.uphold.com/v0/ticker/EURUSD
+```
+
+> The above command returns JSON in the following format:
+
+```json
+{
+  "ask":"1.13985",
+  "bid":"1.13985",
+  "currency":"USD"
+}
+```
+
+This method allows developers to find the exchange rate of a currency relative to any other currency.
+
+<aside class="notice">
+The order of the currencies in the pair affects the output.
+</aside>
+
+As is shown in the example, the endpoint will provide the exchange rate from the first currency to the second currency.
+
+### Request
+`GET https://api.uphold.com/v0/ticker/:pair`
+
+### Response
+Returns an object containing the current rate Uphold has on record for the specified currency pair.
