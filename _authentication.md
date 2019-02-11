@@ -244,4 +244,5 @@ curl https://api.uphold.com/v0/me \
 
 You can use Basic Authentication by providing your username or email and password combination.
 
-If OTP (One Time Password, also known as Two-Factor Authentication) is required, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `OTP-Token: Required`. Execute the command above again, this time passing your OTP verification code as a header, like so: `OTP-Token: <OTP-Token>`.
+If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `OTP-Token: Required` and/or `OTP-Method-Id: Required`.
+In which case, execute the command above again, this time passing your OTP verification code and method id as a headers, like so: `OTP-Token: <OTP-Token>` and `OTP-Method-Id: <OTP-Method-Id>`.
