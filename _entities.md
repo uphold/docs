@@ -26,6 +26,29 @@ label    | The display name of the account as chosen by the user.
 status   | The current status of the account. Possible values are: `ok`, `failed`.
 type     | The type of the account. Possible values are: `card`, `sepa`.
 
+## Authentication Method Object
+> An example authentication method encoded in JSON looks like this:
+
+```json
+{
+  "default": false,
+  "id": "3f8f8264-2f5e-4b2b-8333-473715ab039a",
+  "label": "Authenticator TOTP",
+  "type": "totp",
+  "verified": true,
+  "verifiedAt": "2019-02-11T14:31:48.485Z"
+}
+```
+
+Property     | Description
+------------ | -----------------------------------------------------------------------
+default      | A boolean signalling whether or not the method is the default.
+id           | A unique ID associated with the account.
+label        | The display name of the authentication method.
+type         | The type of authentication method. Possible values are: `authy`, `totp`.
+verified     | A boolean signalling whether or not the authentication method has been verified.
+verifiedAt   | The date and time of verification of the authentication method.
+
 ## Card Object
 > An example card encoded in JSON looks like this:
 
