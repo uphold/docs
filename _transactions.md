@@ -154,6 +154,7 @@ Once a transaction has been created and a quote secured, commit the transaction 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
 <aside class="notice">Requires any of the following scopes, based on the type of transaction being committed: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self` or `transactions:withdraw` for Uphold Connect applications.</aside>
+<aside class="notice">If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons. This results in a 400 HTTP error with code <code>password_reset_restriction</code>. Your application must be prepared to handle this failure scenario.</aside>
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
