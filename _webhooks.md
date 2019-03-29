@@ -2,6 +2,7 @@
 For **business usage only** you may choose to use webhooks to get updates in real time instead of having to poll the API. This requires manual approval from Uphold.
 
 A webhooks integration requires the following details:
+
 * **Subscription URL:** the URL for Uphold to send webhook requests to;
 * **Secret:** the secret for Uphold to use to sign all requests and prove they have not been tampered (not the same as the client secret that is used for Uphold's API).
 
