@@ -130,8 +130,8 @@ transfer   | Uphold card id                     | An email address, an applicati
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 <aside class="notice">You may only send value from addresses that you own.</aside>
-<aside class="notice">If the deposit origin is a `CARD` account ID, you need to send the `securityCode` in the request body.</aside>
 <aside class="notice">Adding the query string parameter `?commit=true` to this request will create and commit the transaction in a single step.</aside>
+<aside class="notice">If the deposit origin is a `CARD` account ID and the query string parameter `?commit=true` is set, you need to send the `securityCode` in the request body.</aside>
 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
@@ -139,6 +139,7 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
+<aside class="notice">If the deposit origin is a `CARD` account ID and the query string parameter `?commit=true` is set, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
 
 ### Step 2: Commit Transaction
 Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
@@ -146,10 +147,12 @@ Once a transaction has been created and a quote secured, commit the transaction 
 ### Request
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
 <aside class="notice">Requires any of the following scopes, based on the type of transaction being committed: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self` or `transactions:withdraw` for Uphold Connect applications.</aside>
+<aside class="notice">If the deposit origin is a `CARD` account ID, you need to send the `securityCode` in the request body.</aside>
 <aside class="notice">If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons. This results in a 400 HTTP error with code <code>password_reset_restriction</code>. Your application must be prepared to handle this failure scenario.</aside>
 
 ### Response
 Returns a [Transaction Object](#transaction-object).
+<aside class="notice">If the deposit origin is a `CARD` account ID, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
 
 ## Cancel a Transaction
 
