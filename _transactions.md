@@ -154,6 +154,61 @@ Once a transaction has been created and a quote secured, commit the transaction 
 Returns a [Transaction Object](#transaction-object).
 <aside class="notice">If the deposit origin is a `CARD` account ID, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
 
+## Confirm a Credit Card Deposit
+> Example of `redirect` found in `transaction.params` for credit card deposit responses:
+
+```bash
+"redirect":{
+  "url":"https://test.ppipe.net/connectors/demo/simulator.link?ndcid=8a8294175d602369015d73bf009f1808_7cbc8f0f400b421ab5bab3a8570a3fdf&REMOTEADDRESS=10.71.36.31",
+  "parameters":[
+    {
+      "name":"TermUrl",
+      "value":"https://test.ppipe.net/connectors/asyncresponse_simulator;jsessionid=89C6327A4B2FE425A8C375CF1C474521.uat01-vm-con04?asyncsource=THREEDSECURE&ndcid=8a8294175d602369015d73bf009f1808_7cbc8f0f400b421ab5bab3a8570a3fdf"
+    },
+    {
+      "name":"PaReq",
+      "value":"IT8ubu+5z4YupUCOEHKsbiPep8UzIAcPKJEjpwGlzD8#KioqKioqKioqKioqMDAwMCMxMi41MCBFVVIj"
+    },
+    {
+      "name":"connector",
+      "value":"THREEDSECURE"
+    },
+    {
+      "name":"MD",
+      "value":"8ac7a49f6a268259016a26953eca1b87"
+    }
+  ]
+}
+```
+
+> Example of a request for 3DSecure confirmation using the given `redirect` details:
+
+```bash
+-X POST 'https://test.ppipe.net/connectors/demo/simulator.link?ndcid=8a8294175d602369015d73bf009f1808_7cbc8f0f400b421ab5bab3a8570a3fdf&REMOTEADDRESS=10.71.36.31' \
+-d 'MD=8ac7a49f6a268259016a26953eca1b87' \
+-d 'TermUrl=https://test.ppipe.net/connectors/asyncresponse_simulator;jsessionid=89C6327A4B2FE425A8C375CF1C474521.uat01-vm-con04?asyncsource=THREEDSECURE&ndcid=8a8294175d602369015d73bf009f1808_7cbc8f0f400b421ab5bab3a8570a3fdf' \
+-d 'PaReq=IT8ubu+5z4YupUCOEHKsbiPep8UzIAcPKJEjpwGlzD8#KioqKioqKioqKioqMDAwMCMxMi41MCBFVVIj' \
+-d 'connector=THREEDSECURE'
+```
+
+When committing a transaction from a `CARD` account ID, the transaction's `params` will include a `redirect` field with information to be used to accept with 3DSecure and complete the credit card deposit.
+
+The following table describes the data included in the returned `redirect` field:
+
+Property   | Description
+---------- | -----------------------------------------------------------------------------------------------------
+parameters | List of objects with `name` and `value` properties to send to the 3DSecure confirmation request body.
+url        | The URL of the 3DSecure confirmation request.
+
+<aside class="notice">This feature requires approval from Uphold's compliance team. Partners using this feature must not store the provided `securityCode`, in compliance with PCI DSS standards.</aside>
+
+### Request
+`POST <transaction.params.redirect.url>`
+<aside class="notice">Requires passing in the request body the parameters found in `transaction.params.redirect.parameters` in the format `name=value`.</aside>
+
+### Response
+A webpage for 3DSecure confirmation for the user to interact with.
+
 ## Cancel a Transaction
 
 ```bash
