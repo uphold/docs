@@ -9,10 +9,9 @@ The following table indicates the current rate limits:
 
 Endpoint                                  | Requests (per IP) / window | Requests (per user) / window
 ----------------------------------------- | -------------------------: | ---------------------------:
-*Global*                                  |         300 / 5-min window |                          N/A
+*Global*                                  |         500 / 5-min window |                          N/A
 POST /cards/:card/transactions            |         300 / 5-min window |                          N/A
 POST /cards/:card/transactions/:id/commit |         300 / 5-min window |                          N/A
-POST /oauth2/token                        |          10 / 1-min window |            10 / 1-min window
 POST /password/forgot                     |         10 / 10-min window |             3 / 5-min window
 POST /users                               |         10 / 10-min window |                          N/A
 
@@ -39,8 +38,8 @@ curl -I -X GET "https://api.uphold.com/v0/ticker"
 > Rate limit details on response headers:
 
 ```
-Rate-Limit-Total: 300
-Rate-Limit-Remaining: 299
+Rate-Limit-Total: 500
+Rate-Limit-Remaining: 499
 Rate-Limit-Reset: 1422288284
 ```
 
