@@ -166,13 +166,11 @@ pair     | The currency pair AB represents moving from A to B.
       "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "0.85620",
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "fees": [{
     "amount": "0.04",
@@ -205,8 +203,7 @@ pair     | The currency pair AB represents moving from A to B.
       "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "1.16795",
@@ -214,8 +211,7 @@ pair     | The currency pair AB represents moving from A to B.
       "amount": "6.56",
       "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
     }],
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "params": {
     "currency": "USD",
@@ -331,7 +327,6 @@ node        | The details about the transaction origin node.
 rate        | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of `destination.rate`).
 sources     | The transactions where the value was originated from (id and amount).
 type        | The type of endpoint. Possible values are 'card' and 'external'.
-username    | The username from the user that performed the transaction.
 
 <aside class="notice">
   Commissions are incurred only when a currency conversion is required. A commission is charged at origin when the denomination currency is different from the origin currency, and it's deducted at destination when the denomination currency is different from the destination currency.
@@ -548,7 +543,6 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
   "state": "US-UT",
   "status": "ok",
   "type": "individual",
-  "username": "malikakoss",
   "verifications": {}
 }
 ```

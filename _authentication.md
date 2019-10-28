@@ -137,7 +137,7 @@ Once you have obtained a client credentials token you may call any protected API
 ## Personal Access Tokens (PAT)
 Ideal for scripts, automated tools and command-line programs which remain under your control.
 
-For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your username/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
+For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
 
 ### Listing PATs
 > To list active Personal Access Tokens, execute the following command:
@@ -234,16 +234,16 @@ A PAT may be used for authenticating a request via the OAuth scheme.
 The `<token>` should be set as the `accessToken` received during creation.
 
 ## Basic Authentication
-> Simple request using username or email and password:
+> Simple request using email and password:
 
 ```bash
 curl https://api.uphold.com/v0/me \
   -H 'OTP-Method-Id: <Method-Id>' \
   -H 'OTP-Token: <OTP-Token>' \
-  -u <username-or-email>:<password>
+  -u <email>:<password>
 ```
 
-You can use Basic Authentication by providing your username or email and password combination.
+You can use Basic Authentication by providing your email and password combination.
 
 If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get an HTTP 401 (Unauthorized) response, along with the HTTP header `OTP-Token: Required` and/or `OTP-Method-Id: Required`.
 In which case, execute the command above again, this time passing your OTP verification code and method id as a headers, like so: `OTP-Token: <OTP-Token>` and `OTP-Method-Id: <OTP-Method-Id>`.
