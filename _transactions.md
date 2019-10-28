@@ -35,13 +35,11 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
       "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "0.85620",
     "type": "card",
-    "username": "angelrath"
   },
   "fees": [{
     "amount": "0.04",
@@ -74,8 +72,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
       "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "1.16795",
@@ -83,8 +80,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
       "amount": "6.56",
       "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
     }],
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "params": {
     "currency": "USD",
@@ -118,7 +114,7 @@ In step one, one prepares the transaction by specifying:
 - The _currency_ to denominate the transaction by.
 - The _amount_ of value to send in the denominated currency.
 - The _origin_ of the transaction can be an account id in the case of a _deposit_.
-- The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id, an application id or an Uphold username.
+- The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id, an application id or an Uphold user email.
 
 The following table describes the types of transactions currently supported:
 
@@ -126,7 +122,7 @@ Type       | Origin                             | Destination
 ---------- | ---------------------------------- | ----------------------------------------------------------------------------
 deposit    | _ACH_, _CARD_ or _SEPA_ account id | Uphold card id
 withdrawal | Uphold card id                     | _ACH_, _SEPA_ or _Bitcoin_ address
-transfer   | Uphold card id                     | An email address, an application id, an Uphold username or an Uphold card id
+transfer   | Uphold card id                     | An email address, an application id or an Uphold card id
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
 <aside class="notice">You may only send value from addresses that you own.</aside>
@@ -282,13 +278,11 @@ curl https://api.uphold.com/v0/me/transactions \
       "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "0.85620",
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "fees": [{
     "amount": "0.04",
@@ -321,8 +315,7 @@ curl https://api.uphold.com/v0/me/transactions \
       "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "1.16795",
@@ -330,8 +323,7 @@ curl https://api.uphold.com/v0/me/transactions \
       "amount": "6.56",
       "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
     }],
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "params": {
     "currency": "USD",
@@ -393,13 +385,11 @@ curl https://api.uphold.com/v0/me/cards/48ce2ac5-c038-4426-b2f8-a2bdbcc93053/tra
       "id": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "0.85620",
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "fees": [{
     "amount": "0.04",
@@ -432,8 +422,7 @@ curl https://api.uphold.com/v0/me/cards/48ce2ac5-c038-4426-b2f8-a2bdbcc93053/tra
       "id": "48ce2ac5-c038-4426-b2f8-a2bdbcc93053",
       "type": "card",
       "user": {
-        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
-        "username": "angelrath"
+        "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945"
       }
     },
     "rate": "1.16795",
@@ -441,8 +430,7 @@ curl https://api.uphold.com/v0/me/cards/48ce2ac5-c038-4426-b2f8-a2bdbcc93053/tra
       "amount": "6.56",
       "id": "3db4ef24-c529-421f-8e8f-eb9da1b9a582"
     }],
-    "type": "card",
-    "username": "angelrath"
+    "type": "card"
   },
   "params": {
     "currency": "USD",
@@ -528,8 +516,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
       "id": "4586e3f6-5fff-473f-b479-4e7ce2ba14cf",
       "amount": "25.00"
     }],
-    "type": "card",
-    "username": "johndoe"
+    "type": "card"
   },
   "destination": {
     "amount": "0.02777777",
@@ -540,8 +527,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "description": "Nuno Sousa",
     "fee": "0.00",
     "rate": "0.00111111",
-    "type": "card",
-    "username": "johndoe"
+    "type": "card"
   }
 },
 {
@@ -598,8 +584,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
       "id": "390ed0ab-c014-43f3-868a-8ea3ea56025e",
       "amount": "0.0102"
     }],
-    "type": "card",
-    "username": "johndoe"
+    "type": "card"
   },
   "destination": {
     "address": "n2eMqTT929pb1RDNuqEnxdaLau1rxy3efi",

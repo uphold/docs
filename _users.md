@@ -61,7 +61,6 @@ curl "https://api.uphold.com/v0/me" \
   "memberAt": "2015-07-10T15:36:20.288Z",
   "state": "WA",
   "status": "ok",
-  "username": "skywalker",
   "verifications": {},
   "balances": {
     "total": "90.00",
