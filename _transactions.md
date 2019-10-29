@@ -114,7 +114,7 @@ In step one, one prepares the transaction by specifying:
 - The _currency_ to denominate the transaction by.
 - The _amount_ of value to send in the denominated currency.
 - The _origin_ of the transaction can be an account id in the case of a _deposit_.
-- The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id, an application id or an Uphold user email.
+- The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id or an application id.
 
 The following table describes the types of transactions currently supported:
 
