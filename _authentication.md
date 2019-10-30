@@ -1,7 +1,7 @@
 # Authentication
 Uphold is an OAuth 2.0 compliant service.
 
-Partners looking to integrate with our API must [register an application](#registering-an-application). Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use use the [Client Credentials Flow](#client-credentials-flow).
+Partners looking to integrate with our API must [register an application](#registering-an-application). Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
 
 ## Web Application Flow
 Ideal for web applications that wish to retrieve information about a user's Uphold account or take actions on their behalf.
