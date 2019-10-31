@@ -53,6 +53,10 @@ You may then exchange this `code` for an `access token` using the following endp
 
 `POST https://api.uphold.com/oauth2/token`
 
+Or for sandbox applications:
+
+`https://api-sandbox.uphold.com/oauth2/token`
+
 Supported parameters:
 
 Parameter     | Required | Description
