@@ -17,7 +17,7 @@ Developers will need to [register their application](https://support.uphold.com/
 ## Permissions
 When requesting authorization from a user the application must specify the level of access needed. These _scopes_ are displayed to the user on the authorization form and currently the user cannot opt-out of individual scopes.
 
-The following _scopes_ are supported by the API:
+The API supports the following _scopes_:
 
 Scope                             | Description
 --------------------------------- | -------------------------------------------------------------------------------------
