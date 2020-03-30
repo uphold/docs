@@ -455,7 +455,7 @@ Returns an associative array containing the current rates Uphold has on record f
 ## Get Tickers for Currency Pair
 
 ```bash
-curl https://api.uphold.com/v0/ticker/USDEUR
+curl https://api.uphold.com/v0/ticker/USD-EUR
 ```
 
 > The above command returns JSON in the following format:
@@ -469,7 +469,7 @@ curl https://api.uphold.com/v0/ticker/USDEUR
 ```
 
 ```bash
-curl https://api.uphold.com/v0/ticker/EURUSD
+curl https://api.uphold.com/v0/ticker/EUR-USD
 ```
 
 > The above command returns JSON in the following format:
