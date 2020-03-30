@@ -1,5 +1,5 @@
 # Tickers
-Developers can query at any time the rates we utilize when exchanging one form of value for another. These are expressed in "currency pairs."
+Developers can query at any time the rates we utilize when exchanging one form of value for another. These are expressed in "currency pairs".
 
 ## Get Tickers for Currency
 

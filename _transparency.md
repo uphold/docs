@@ -272,7 +272,7 @@ rate        | The rate we used when computing the holding to the corresponding c
 ## The Reserveledger
 Our ledger provides a detailed record of the obligations (a.k.a. "liabilities") flowing into our network via our members, and the resulting changes we as a company make to the assets in our reserve to secure the value of those obligations.
 
-The ledger is made up of "entries," each of which contains information about the change to an asset, a liability, or both, and references the related transactions that affected the change whenever possible.
+The ledger is made up of "entries", each of which contains information about the change to an asset, a liability, or both, and references the related transactions that affected the change whenever possible.
 
 Frequently one may find that changes to the Reserve's assets and liabilities are not made in lock step with one another, and that the Reserve may accrue liabilities of one asset type or another, and then have those liabilities offset by a single change to the Reserve's assets.
 
@@ -318,7 +318,7 @@ The following entry shows how a deposit of 0.5 bitcoin by a user would be encode
 </code></pre>
 
 ### Transfer of Value
-The entry below shows how a user transferring 1.3 bitcoin to a "dollar card," effectively exchanging bitcoin for dollars, would be encoded on the ledger. In this entry, two liabilities are affected. The first is a loss of 1.3 BTC as an obligation, and the second is a gain of $507.51 USD as an obligation. Which makes sense: when a user transfers the bitcoin to their dollar card, Uphold no longer owes them that bitcoin. Instead, Uphold owes them the $507.51 they exchanged for that bitcoin.
+The entry below shows how a user transferring 1.3 bitcoin to a "dollar card", effectively exchanging bitcoin for dollars, would be encoded on the ledger. In this entry, two liabilities are affected. The first is a loss of 1.3 BTC as an obligation, and the second is a gain of $507.51 USD as an obligation. Which makes sense: when a user transfers the bitcoin to their dollar card, Uphold no longer owes them that bitcoin. Instead, Uphold owes them the $507.51 they exchanged for that bitcoin.
 <pre class="inline"><code>{
   "type": "liability",
   "out": {
