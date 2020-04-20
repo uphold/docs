@@ -392,7 +392,7 @@ Uphold may decide to secure the value of its Reserve by holding value in asset c
     "amount": "1",
     "currency": "T-Bill"
     "meta": {
-      "maturityDate": '2016-05-01 00:00:00 UTC',
+      "maturityDate": "2016-05-01 00:00:00 UTC",
       "principal": 1000000,
       "rate": 1.5,
       "cusip": 345370860
@@ -504,7 +504,7 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
     "commission": "0.00",
     "currency": "BTC",
     "fee": "0.00",
-    "rate": "1.00",
+    "rate": "1.00"
   },
   "status": "completed",
   "createdAt": "2014-10-08T06:53:51.060Z"
