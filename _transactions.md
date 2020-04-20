@@ -7,7 +7,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
   -X POST \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
-  -d '{ "denomination": { "amount": 0.1, "currency": "USD" }, "destination": "foo@bar.com" }'
+  -d '{ "denomination": { "amount": "0.1", "currency": "USD" }, "destination": "foo@bar.com" }'
 ```
 
 > The above command returns the following JSON:
@@ -39,7 +39,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
       }
     },
     "rate": "0.85620",
-    "type": "card",
+    "type": "card"
   },
   "fees": [{
     "amount": "0.04",
