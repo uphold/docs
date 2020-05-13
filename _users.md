@@ -1,4 +1,5 @@
 # Users
+
 ## Get User
 
 ```bash
@@ -77,10 +78,12 @@ curl "https://api.uphold.com/v0/me" \
 ```
 
 ### Request
+
 `GET https://api.uphold.com/v0/me`
 <aside class="notice">Requires the `user:read` scope for Uphold Connect applications.</aside>
 
 ### Response
+
 Returns the details associated the current user.
 <aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
 
@@ -109,7 +112,9 @@ curl "https://api.uphold.com/v0/me/phones" \
 ```
 
 ### Request
+
 `GET https://api.uphold.com/v0/me/phones`
 
 ### Response
+
 Returns an array of all the phone numbers associated with the current user.

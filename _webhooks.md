@@ -1,4 +1,5 @@
 # Webhooks
+
 For **business usage only** you may choose to use webhooks to get updates in real time instead of having to poll the API. This requires manual approval from Uphold.
 
 A webhooks integration requires the following details:

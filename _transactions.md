@@ -1,5 +1,7 @@
 # Transactions
+
 ## Create &amp; Commit a Transaction
+
 > Step 1: Create the Transaction
 
 ```bash
@@ -109,6 +111,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/
 > Returns a [Transaction Object](#transaction-object).
 
 ### Step 1: Create Transaction
+
 In step one, one prepares the transaction by specifying:
 
 - The _currency_ to denominate the transaction by.
@@ -130,27 +133,33 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 <aside class="notice">If the deposit origin is a `CARD` account ID and the query string parameter `?commit=true` is set, you need to send the `securityCode` in the request body.</aside>
 
 ### Request
+
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
 <aside class="notice">Requires any of the following scopes: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self` or `transactions:withdraw` for Uphold Connect applications. If creating with the query string parameter `?commit=true`, the scope has to match the type of transaction being committed.</aside>
 
 ### Response
+
 Returns a [Transaction Object](#transaction-object).
 <aside class="notice">If the deposit origin is a `CARD` account ID and the query string parameter `?commit=true` is set, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
 
 ### Step 2: Commit Transaction
+
 Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
 
 ### Request
+
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
 <aside class="notice">Requires any of the following scopes, based on the type of transaction being committed: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self` or `transactions:withdraw` for Uphold Connect applications.</aside>
 <aside class="notice">If the deposit origin is a `CARD` account ID, you need to send the `securityCode` in the request body.</aside>
 <aside class="notice">If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons. This results in a 400 HTTP error with code <code>password_reset_restriction</code>. Your application must be prepared to handle this failure scenario.</aside>
 
 ### Response
+
 Returns a [Transaction Object](#transaction-object).
 <aside class="notice">If the deposit origin is a `CARD` account ID, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
 
 ## Confirm a Credit Card Deposit
+
 > Example of `redirect` found in `transaction.params` for credit card deposit responses:
 
 ```bash
@@ -199,10 +208,12 @@ url        | The URL of the 3DSecure confirmation request.
 <aside class="notice">This feature requires approval from Uphold's compliance team. Partners using this feature must not store the provided `securityCode`, in compliance with PCI DSS standards.</aside>
 
 ### Request
+
 `POST <transaction.params.redirect.url>`
 <aside class="notice">Requires passing in the request body the parameters found in `transaction.params.redirect.parameters` in the format `name=value`.</aside>
 
 ### Response
+
 A webpage for 3DSecure confirmation for the user to interact with.
 
 ## Cancel a Transaction
@@ -218,10 +229,12 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/
 Cancels a transaction that has not yet been redeemed.
 
 ### Request
+
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/cancel`
 <aside class="notice">Requires the `transactions:transfer:others` scope for Uphold Connect applications.</aside>
 
 ### Response
+
 Returns a [Transaction Object](#transaction-object).
 <aside class="notice">Only transactions with status `waiting` can be cancelled.</aside>
 
@@ -238,10 +251,12 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/
 Triggers a reminder for a transaction that hasn't been redeemed yet.
 
 ### Request
+
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/resend`
 <aside class="notice">Requires the `transactions:transfer:others` scope for Uphold Connect applications.</aside>
 
 ### Response
+
 Returns a [Transaction Object](#transaction-object).
 <aside class="notice">Only transactions with status `waiting` can be resent.</aside>
 
@@ -344,12 +359,14 @@ curl https://api.uphold.com/v0/me/transactions \
 Requests a list of transactions associated with the current user.
 
 ### Request
+
 `GET https://api.uphold.com/v0/me/transactions`
 <aside class="notice">Requires the `transactions:read` scope for Uphold Connect applications.</aside>
 
 This endpoint supports [Pagination](#pagination).
 
 ### Response
+
 Returns an array of [Transaction Objects](#transaction-object).
 
 ## List Card Transactions
@@ -451,12 +468,14 @@ curl https://api.uphold.com/v0/me/cards/48ce2ac5-c038-4426-b2f8-a2bdbcc93053/tra
 Requests a list of transactions associated with a specific card.
 
 ### Request
+
 `GET https://api.uphold.com/v0/me/cards/:card/transactions`
 <aside class="notice">Requires the `transactions:read` scope for Uphold Connect applications.</aside>
 
 This endpoint supports [Pagination](#pagination).
 
 ### Response
+
 Returns an array of [Transaction Objects](#transaction-object).
 
 ## Get All Transactions (Public)
@@ -607,11 +626,13 @@ Requests the public view of all transactions in the reserve.
 To access this endpoint, an API key is required.
 
 ### Request
+
 `GET https://api.uphold.com/v0/reserve/transactions`
 
 This endpoint supports [Pagination](#pagination).
 
 ### Response
+
 Returns an array of [Transaction Objects](#transaction-object).
 <aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
 
@@ -671,8 +692,10 @@ See also: [Transparency: Reservechain](#the-reservechain)
 Requests the public view of a specific transaction.
 
 ### Request
+
 `GET https://api.uphold.com/v0/reserve/transactions/:id`
 
 ### Response
+
 Returns a [Transaction Object](#transaction-object).
 <aside class="notice">Note that you will only receive the list of committed transactions.</aside>

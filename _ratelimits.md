@@ -1,4 +1,5 @@
 # Rate Limits
+
 The API applies rate limits based on the number of requests per a predefined interval (i.e. a time-window). We currently do not differentiate between authenticated and unauthenticated requests. The global rate limit takes into account the remote client IP only.
 
 We plan on changing this policy in the future to one that limits on an account-by-account basis. For now, please be advised that those operating from corporate networks may hit their limit faster given that everyone may present the same IP address to our network.
@@ -20,6 +21,7 @@ POST /users                               |         10 / 10-min window |        
 </aside>
 
 ## Response Headers
+
 The current rate limit in effect is explained via custom HTTP headers as described in the table below. Additionally, the standard HTTP `Retry-After` header field will be appended when the rate limit is exhausted and indicates, in delta-seconds, how long until the rate limit window is reset.
 
 Header               | Description

@@ -1,12 +1,15 @@
 # Authentication
+
 Uphold is an OAuth 2.0 compliant service.
 
 Partners looking to integrate with our API must [register an application](#registering-an-application). Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
 
 ## Web Application Flow
+
 Ideal for web applications that wish to retrieve information about a user's Uphold account or take actions on their behalf.
 
 ### Step 1 - Authorization
+
 The authenticating web application should redirect users to the following URL:
 
 `https://uphold.com/authorize/<client_id>`
@@ -24,6 +27,7 @@ scope     | yes      | Permissions to request from the user.
 state     | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
 
 ### Step 2 - Requesting a Token
+
 > Exchanging the `code` for a `token`:
 
 ```bash
@@ -71,6 +75,7 @@ grant_type    | yes      | Must be set to *'authorization_code'*.
 </aside>
 
 ### Step 3 - Using the Access Token
+
 > Request using the 'Authorization' header:
 
 ```bash
@@ -89,11 +94,13 @@ Once you have obtained an access token you may call any protected API method on 
 </aside>
 
 ## Client Credentials Flow
+
 Ideal for backend integrations that do not require access to other Uphold user accounts.
 
 For **business usage only** you may choose to use client credentials authentication. This requires manual approval from Uphold.
 
 ### Creating a Token
+
 > To create a client credentials token, execute the following command (make sure the application is set to use client credentials and not authorization code):
 
 ```bash
@@ -121,6 +128,7 @@ grant_type    | yes      | Must be set to *'client_credentials'*.
 </aside>
 
 ### Using the Token
+
 > Request using the 'Authorization header':
 
 ```bash
@@ -139,11 +147,13 @@ Once you have obtained a client credentials token you may call any protected API
 </aside>
 
 ## Personal Access Tokens (PAT)
+
 Ideal for scripts, automated tools and command-line programs which remain under your control.
 
 For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
 
 ### Listing PATs
+
 > To list active Personal Access Tokens, execute the following command:
 
 ```bash
@@ -171,6 +181,7 @@ To list Personal Access Tokens you may use the following endpoint:
 `GET https://api.uphold.com/v0/me/tokens`
 
 ### Creating a PAT
+
 > To create a Personal Access Token, execute the following command:
 
 ```bash
@@ -207,6 +218,7 @@ description | yes      | A human-readable description of this PAT.
 <aside class="notice">Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token, belonging to the authentication method specified in <code>OTP-Method-Id</code>.</aside>
 
 ### Revoking a PAT
+
 > To revoke a Personal Access Token, execute the following command:
 
 ```bash
@@ -226,6 +238,7 @@ Parameter | Required | Description
 token     | yes      | The PAT you wish to revoke.
 
 ### Using a PAT
+
 > Example of using a personal access token to make requests to our API:
 
 ```bash
@@ -238,6 +251,7 @@ A PAT may be used for authenticating a request via the OAuth scheme.
 The `<token>` should be set as the `accessToken` received during creation.
 
 ## Basic Authentication
+
 > Simple request using email and password:
 
 ```bash
