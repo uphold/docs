@@ -128,19 +128,34 @@ withdrawal | Uphold card id                     | _ACH_, _SEPA_ or _Bitcoin_ add
 transfer   | Uphold card id                     | An email address, an application id or an Uphold card id
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
-<aside class="notice">You may only send value from addresses that you own.</aside>
-<aside class="notice">Adding the query string parameter `?commit=true` to this request will create and commit the transaction in a single step.</aside>
-<aside class="notice">If the deposit origin is a `CARD` account ID and the query string parameter `?commit=true` is set, you need to send the `securityCode` in the request body.</aside>
+
+<aside class="notice">
+  You may only send value from addresses that you own.
+</aside>
+<aside class="notice">
+  Adding the query string parameter <code>?commit=true</code> to this request will create and commit the transaction in a single step.
+</aside>
+<aside class="notice">
+  If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the <code>securityCode</code> in the request body.
+</aside>
 
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
-<aside class="notice">Requires any of the following scopes: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self` or `transactions:withdraw` for Uphold Connect applications. If creating with the query string parameter `?commit=true`, the scope has to match the type of transaction being committed.</aside>
+
+<aside class="notice">
+  Requires any of the following scopes: <code>transactions:deposit</code>, <code>transactions:transfer:application</code>, <code>transactions:transfer:others</code>, <code>transactions:transfer:self</code> or <code>transactions:withdraw</code> for Uphold Connect applications.
+  If creating with the query string parameter <code>?commit=true</code>, the scope has to match the type of transaction being committed.
+</aside>
 
 ### Response
 
 Returns a [Transaction Object](#transaction-object).
-<aside class="notice">If the deposit origin is a `CARD` account ID and the query string parameter `?commit=true` is set, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
+
+<aside class="notice">
+  If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set,
+  the transaction's <code>params</code> will include a <code>redirect</code> field with information of a redirect URI to be followed to complete the credit card deposit.
+</aside>
 
 ### Step 2: Commit Transaction
 
@@ -149,14 +164,28 @@ Once a transaction has been created and a quote secured, commit the transaction 
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
-<aside class="notice">Requires any of the following scopes, based on the type of transaction being committed: `transactions:deposit`, `transactions:transfer:application`, `transactions:transfer:others`, `transactions:transfer:self` or `transactions:withdraw` for Uphold Connect applications.</aside>
-<aside class="notice">If the deposit origin is a `CARD` account ID, you need to send the `securityCode` in the request body.</aside>
-<aside class="notice">If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons. This results in a 400 HTTP error with code <code>password_reset_restriction</code>. Your application must be prepared to handle this failure scenario.</aside>
+
+<aside class="notice">
+  Requires any of the following scopes, based on the type of transaction being committed:
+  <code>transactions:deposit</code>, <code>transactions:transfer:application</code>, <code>transactions:transfer:others</code>, <code>transactions:transfer:self</code> or <code>transactions:withdraw</code>
+  for Uphold Connect applications.
+</aside>
+<aside class="notice">
+  If the deposit origin is a <code>CARD</code> account ID, you need to send the <code>securityCode</code> in the request body.
+</aside>
+<aside class="notice">
+  If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons.
+  This results in a 400 HTTP error with code <code>password_reset_restriction</code>.
+  Your application must be prepared to handle this failure scenario.
+</aside>
 
 ### Response
 
 Returns a [Transaction Object](#transaction-object).
-<aside class="notice">If the deposit origin is a `CARD` account ID, the transaction's `params` will include a `redirect` field with information of a redirect URI to be followed to complete the credit card deposit.</aside>
+
+<aside class="notice">
+  If the deposit origin is a <code>CARD</code> account ID, the transaction's <code>params</code> will include a <code>redirect</code> field with information of a redirect URI to be followed to complete the credit card deposit.
+</aside>
 
 ## Confirm a Credit Card Deposit
 
@@ -205,12 +234,18 @@ Property   | Description
 parameters | List of objects with `name` and `value` properties to send to the 3DSecure confirmation request body.
 url        | The URL of the 3DSecure confirmation request.
 
-<aside class="notice">This feature requires approval from Uphold's compliance team. Partners using this feature must not store the provided `securityCode`, in compliance with PCI DSS standards.</aside>
+<aside class="notice">
+  This feature requires approval from Uphold's compliance team.
+  Partners using this feature must not store the provided <code>securityCode</code>, in compliance with PCI DSS standards.
+</aside>
 
 ### Request
 
 `POST <transaction.params.redirect.url>`
-<aside class="notice">Requires passing in the request body the parameters found in `transaction.params.redirect.parameters` in the format `name=value`.</aside>
+
+<aside class="notice">
+  Requires passing in the request body the parameters found in <code>transaction.params.redirect.parameters</code> in the format <code>name=value</code>.
+</aside>
 
 ### Response
 
@@ -231,12 +266,18 @@ Cancels a transaction that has not yet been redeemed.
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/cancel`
-<aside class="notice">Requires the `transactions:transfer:others` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>transactions:transfer:others</code> scope for Uphold Connect applications.
+</aside>
 
 ### Response
 
 Returns a [Transaction Object](#transaction-object).
-<aside class="notice">Only transactions with status `waiting` can be cancelled.</aside>
+
+<aside class="notice">
+  Only transactions with status <code>waiting</code> can be cancelled.
+</aside>
 
 ## Resend a Transaction
 
@@ -253,12 +294,18 @@ Triggers a reminder for a transaction that hasn't been redeemed yet.
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/resend`
-<aside class="notice">Requires the `transactions:transfer:others` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>transactions:transfer:others</code> scope for Uphold Connect applications.
+</aside>
 
 ### Response
 
 Returns a [Transaction Object](#transaction-object).
-<aside class="notice">Only transactions with status `waiting` can be resent.</aside>
+
+<aside class="notice">
+  Only transactions with status <code>waiting</code> can be resent.
+</aside>
 
 ## List User Transactions
 
@@ -361,7 +408,10 @@ Requests a list of transactions associated with the current user.
 ### Request
 
 `GET https://api.uphold.com/v0/me/transactions`
-<aside class="notice">Requires the `transactions:read` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>transactions:read</code> scope for Uphold Connect applications.
+</aside>
 
 This endpoint supports [Pagination](#pagination).
 
@@ -470,7 +520,10 @@ Requests a list of transactions associated with a specific card.
 ### Request
 
 `GET https://api.uphold.com/v0/me/cards/:card/transactions`
-<aside class="notice">Requires the `transactions:read` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>transactions:read</code> scope for Uphold Connect applications.
+</aside>
 
 This endpoint supports [Pagination](#pagination).
 
@@ -634,7 +687,10 @@ This endpoint supports [Pagination](#pagination).
 ### Response
 
 Returns an array of [Transaction Objects](#transaction-object).
-<aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
+
+<aside class="notice">
+  Be advised that this method has the potential to return a great deal of data.
+</aside>
 
 ## Get Transaction (Public)
 
@@ -698,4 +754,7 @@ Requests the public view of a specific transaction.
 ### Response
 
 Returns a [Transaction Object](#transaction-object).
-<aside class="notice">Note that you will only receive the list of committed transactions.</aside>
+
+<aside class="notice">
+  Note that you will only receive the list of committed transactions.
+</aside>

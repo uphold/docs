@@ -61,7 +61,9 @@ Retrieves a list of accounts for the current user.
 
 `GET https://api.uphold.com/v0/me/accounts`
 
-<aside class="notice">Requires the `accounts:read` scope for Uphold Connect applications.</aside>
+<aside class="notice">
+  Requires the <code>accounts:read</code> scope for Uphold Connect applications.
+</aside>
 
 You can filter the list of returned accounts using query string parameters.
 Supported filters are `status:` and `type:`, with either a single value or a comma-separated list.
@@ -98,8 +100,12 @@ Retrieves the details about a specific account.
 
 `GET https://api.uphold.com/v0/me/accounts/:id`
 
-<aside class="notice">Requires the `accounts:read` scope for Uphold Connect applications.</aside>
-<aside class="notice">The account id must be owned by the user performing the API call.</aside>
+<aside class="notice">
+  Requires the <code>accounts:read</code> scope for Uphold Connect applications.
+</aside>
+<aside class="notice">
+  The account id must be owned by the user performing the API call.
+</aside>
 
 ### Response
 

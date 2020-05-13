@@ -36,7 +36,10 @@ curl https://api.uphold.com/v0/me/contacts \
 ### Request
 
 `GET https://api.uphold.com/v0/me/contacts`
-<aside class="notice">Requires the `contacts:read` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>contacts:read</code> scope for Uphold Connect applications.
+</aside>
 
 ### Response
 
@@ -68,7 +71,10 @@ curl https://api.uphold.com/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4c079 
 ### Request
 
 `GET https://api.uphold.com/v0/me/contacts/:id`
-<aside class="notice">Requires the `contacts:read` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>contacts:read</code> scope for Uphold Connect applications.
+</aside>
 
 ### Response
 
@@ -87,7 +93,10 @@ curl https://api.uphold.com/v0/me/contacts \
 ### Request
 
 `POST https://api.uphold.com/v0/me/contacts`
-<aside class="notice">Requires the `contacts:write` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>contacts:write</code> scope for Uphold Connect applications.
+</aside>
 
 Parameter | Description
 --------- | --------------------------------------

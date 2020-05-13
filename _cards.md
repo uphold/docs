@@ -77,7 +77,9 @@ Retrieves a list of cards for the current user.
 
 `GET https://api.uphold.com/v0/me/cards`
 
-<aside class="notice">Requires the <code>cards:read</code> scope for Uphold Connect applications.</aside>
+<aside class="notice">
+  Requires the <code>cards:read</code> scope for Uphold Connect applications.
+</aside>
 
 You can filter the list of returned cards using query string parameters.
 Supported filters are `currency:` (which accepts a comma-separated list of currencies) and `settings.starred:` (which accepts `true` or `false`).
@@ -128,9 +130,11 @@ Retrieves the details about a specific card.
 
 `GET https://api.uphold.com/v0/me/cards/:id`
 
-<aside class="notice">Requires the <code>cards:read</code> scope for Uphold Connect applications.</aside>
-
-<aside class="notice"><code>:id</code> can either be the card ID or its bitcoin address and it must be owned by the user making the call.
+<aside class="notice">
+  Requires the <code>cards:read</code> scope for Uphold Connect applications.
+</aside>
+<aside class="notice">
+  <code>:id</code> can either be the card ID or its bitcoin address and it must be owned by the user making the call.
 </aside>
 
 ### Response
@@ -151,7 +155,9 @@ curl https://api.uphold.com/v0/me/cards \
 
 `POST https://api.uphold.com/v0/me/cards`
 
-<aside class="notice">Requires the <code>cards:write</code> scope for Uphold Connect applications.</aside>
+<aside class="notice">
+  Requires the <code>cards:write</code> scope for Uphold Connect applications.
+</aside>
 
 Parameter | Description
 --------- | ----------------------------------------------------------------------------------------------------
@@ -176,7 +182,9 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
 
 `PATCH https://api.uphold.com/v0/me/cards/:id`
 
-<aside class="notice">Requires the <code>cards:write</code> scope for Uphold Connect applications.</aside>
+<aside class="notice">
+  Requires the <code>cards:write</code> scope for Uphold Connect applications.
+</aside>
 
 Parameter | Description
 --------- | -----------------------------------------------------------------
@@ -208,7 +216,9 @@ curl https://api.uphold.com/v0/me/cards/024e51fc-5513-4d82-882c-9b22024280cc/add
 
 Generate an address for a card.
 
-<aside class="notice">For the network `xrp-ledger` the response also returns the `tag` property, which is the corresponding `Destination Tag`.</aside>
+<aside class="notice">
+  For the network <code>xrp-ledger</code> the response also returns the <code>tag</code> property, which is the corresponding <code>Destination Tag</code>.
+</aside>
 
 > For an XRP Ledger address, the following JSON is returned:
 
@@ -224,7 +234,9 @@ Generate an address for a card.
 
 `POST https://api.uphold.com/v0/me/cards/:id/addresses`
 
-<aside class="notice">Requires the <code>cards:write</code> scope for Uphold Connect applications.</aside>
+<aside class="notice">
+  Requires the <code>cards:write</code> scope for Uphold Connect applications.
+</aside>
 
 Parameter | Description
 --------- | ----------------------------------------------------------------------------------------------
@@ -271,13 +283,17 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 
 Retrieves a list of addresses for a specific card.
 
-<aside class="notice">The property `tag` is defined only to allow the XRP Ledger network to identify the card's `Destination Tag`.</aside>
+<aside class="notice">
+  The property <code>tag</code> is defined only to allow the XRP Ledger network to identify the card's <code>Destination Tag</code>.
+</aside>
 
 ### Request
 
 `GET https://api.uphold.com/v0/me/cards/:id/addresses`
 
-<aside class="notice">Requires the <code>cards:read</code> scope for Uphold Connect applications.</aside>
+<aside class="notice">
+  Requires the <code>cards:read</code> scope for Uphold Connect applications.
+</aside>
 
 ### Response
 
