@@ -1,6 +1,12 @@
 # Cards
 
-Uphold uses the concept of a "card" as a store of value. Each card is denominated by a currency or store of value, and every card is automatically provisioned one or more addresses to which value can be sent. Whenever value flows into a card, Uphold automatically converts that value into the value determined by the card's denomination. In the world of bitcoin for example, this allows one to preserve the original value sent by the sender and shields the recipient from any volatility they might be exposed to by holding bitcoin directly. This also allows recipients of funds to normalize all incoming funds to a single store of value regardless of how the value was originally sent.
+Uphold uses the concept of a "card" as a store of value.
+Each card is denominated by a currency or store of value, and every card is automatically provisioned one or more addresses to which value can be sent.
+(Note that there can be multiple cards for the same currency.)
+
+Whenever value flows into a card, Uphold automatically converts that value into the value determined by the card's denomination.
+In the world of bitcoin, for example, this allows one to preserve the original value sent by the sender, and shields the recipient from any volatility they might be exposed to by holding bitcoin directly.
+This also allows recipients of funds to normalize all incoming funds to a single store of value, regardless of how the value was originally sent.
 
 ## List Cards
 

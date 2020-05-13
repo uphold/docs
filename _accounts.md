@@ -1,7 +1,9 @@
 # Accounts
+
 Uphold allows users to deposit value into a specific card from an external source (ACH account, debit/credit card or wire transfer) or withdraw to an external source (ACH account or wire transfer).
 
-Whenever a deposit is made into an Uphold card, it will be automatically converted into the value determined by the card's denomination. Likewise, when a withdrawal is made, the currency will be converted to the currency of the destination account, thus minimizing fees and currency conversions.
+Whenever a deposit is made into an Uphold card, it will be automatically converted into the value determined by the card's denomination.
+Likewise, when a withdrawal is made, the currency will be converted to the currency of the destination account, thus minimizing fees and currency conversions.
 
 We support the following account types:
 
@@ -56,7 +58,9 @@ curl https://api.uphold.com/v0/me/accounts?q=type:sepa,card
 Retrieves a list of accounts for the current user.
 
 ### Request
+
 `GET https://api.uphold.com/v0/me/accounts`
+
 <aside class="notice">Requires the `accounts:read` scope for Uphold Connect applications.</aside>
 
 You can filter the list of returned accounts using query string parameters.
@@ -65,6 +69,7 @@ For a list of valid values for these parameters, refer to the [Account Object](#
 See the code to the right for an example.
 
 ### Response
+
 Returns an array of the current user's accounts.
 
 ## Get Account Details
@@ -90,9 +95,12 @@ curl https://api.uphold.com/v0/me/accounts/18843b6d-5a43-480f-8e2b-73b27d726bf0 
 Retrieves the details about a specific account.
 
 ### Request
+
 `GET https://api.uphold.com/v0/me/accounts/:id`
+
 <aside class="notice">Requires the `accounts:read` scope for Uphold Connect applications.</aside>
 <aside class="notice">The account id must be owned by the user performing the API call.</aside>
 
 ### Response
+
 Returns a fully formed [Account Object](#account-object) representing the requested account.
