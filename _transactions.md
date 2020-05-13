@@ -769,3 +769,82 @@ Returns a [Transaction Object](#transaction-object).
 <aside class="notice">
   Note that you will only receive the list of committed transactions.
 </aside>
+
+## Transaction Limit Errors
+
+> Example of a transaction that fails due to insufficient funds in the origin card:
+
+```bash
+curl 'https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions?commit=true' \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{ "denomination": { "amount": "1000", "currency": "EUR" }, "destination": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3" }'
+```
+
+> The above command returns the following JSON:
+
+```json
+{
+  "code": "validation_failed",
+  "errors": {
+    "denomination": {
+      "code": "validation_failed",
+      "errors": {
+        "amount": [
+          {
+            "code": "sufficient_funds",
+            "message": "Not enough funds for the specified amount"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+> Example of a transaction that hits the maximum amount for the currency of the destination card:
+
+```bash
+curl 'https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions?commit=true' \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{ "denomination": { "amount": "1000", "currency": "BTC" }, "destination": "bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3" }'
+```
+
+> The above command returns the following JSON (truncated for brevity):
+
+```json
+{
+  "code": "validation_failed",
+  "errors": {
+    "destination": {
+      "code": "validation_failed",
+      "errors": {
+        "amount": [
+          {
+            "code": "less_than_or_equal_to",
+            "message": "This value should be less than or equal to 25",
+            "args": {
+              "threshold": "25"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+When committing a transaction you may bump into various limits, such as the minimum or maximum amount for a given currency, maximum cumulative daily/weekly amount, etc.
+These are expressed as different errors, depending on the triggering conditions, as shown in the examples to the side;
+but in general, in such cases you will get a [400 HTTP error](#errors), and the response will have the code `validation_failed` and an `errors` field with the details.
+
+For an overview of the current limits for transactions, refer to
+[this article in our FAQ](https://support.uphold.com/hc/en-us/articles/206118653-Account-funding-withdrawal-costs-and-limits).
+Following the table in that page will allow you to validate transaction values on your side, before making API requests.
+Besides the limits listed there, it's also recommended to preemptively [check a card's available balance](#get-card-details) to avoid hitting the "insufficient funds" error.
+
+<aside class="notice">
+  We currently do not expose an endpoint that lists all the limits that would apply for a given transaction.
+  Your application should be prepared to handle these limit errors and forward the relevant information to the user so they can adjust the transaction properties accordingly.
+</aside>
