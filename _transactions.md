@@ -161,6 +161,11 @@ Returns a [Transaction Object](#transaction-object).
 
 Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
 
+<aside class="notice">
+  This must be done within the time window specified (in miliseconds) by the <a href="parameters"><code>params.ttl</code></a> field of the transaction object.
+  Attempting to commit a transaction past this timeframe results in a <a href="#errors">404 HTTP error</a>.
+</aside>
+
 ### Request
 
 `POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/commit`
