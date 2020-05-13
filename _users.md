@@ -80,12 +80,18 @@ curl "https://api.uphold.com/v0/me" \
 ### Request
 
 `GET https://api.uphold.com/v0/me`
-<aside class="notice">Requires the `user:read` scope for Uphold Connect applications.</aside>
+
+<aside class="notice">
+  Requires the <code>user:read</code> scope for Uphold Connect applications.
+</aside>
 
 ### Response
 
 Returns the details associated the current user.
-<aside class="notice">Be advised that this method has the potential to return a great deal of data.</aside>
+
+<aside class="notice">
+  Be advised that this method has the potential to return a great deal of data.
+</aside>
 
 ### Cards
 

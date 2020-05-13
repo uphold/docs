@@ -236,8 +236,11 @@ pair     | The currency pair AB represents moving from A to B.
 ```
 
 Transactions record the movement of value into, within and out of the Uphold network. Transactions have the following properties:
+
 <aside class="notice">
-  There are two views of a transaction: public and private. The private view of information only privy to those who were a party to the transaction. Public views suppress and hide any private or personally identifiable information in order for Uphold to protect user privacy.
+  There are two views of a transaction: public and private.
+  The private view of information only privy to those who were a party to the transaction.
+  Public views suppress and hide any private or personally identifiable information in order for Uphold to protect user privacy.
 </aside>
 
 Property     | Description
@@ -274,7 +277,7 @@ pair     | The currency pair representing the denominated currency and the curre
 rate     | The quoted rate for converting between the denominated currency and the currency at `origin`.
 
 <aside class="notice">
-  If the `denomination` and `origin` are the same currency, the `rate` will be '1.00'.
+  If the <code>denomination</code> and <code>origin</code> are the same currency, the <code>rate</code> will be '1.00'.
 </aside>
 
 ### Fees
@@ -561,8 +564,10 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
 ```
 
 The `user` object contains most of the information we have on record relating to the currently logged in user.
+
 <aside class="notice">
-  <strong>Privacy Notice</strong>: Users are only permitted to access information about themselves. Our API does not allow accessing information about other users.
+  <strong>Privacy Notice</strong>: Users are only permitted to access information about themselves.
+  Our API does not allow accessing information about other users.
 </aside>
 
 Property | Description
