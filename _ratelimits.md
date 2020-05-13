@@ -45,7 +45,7 @@ Rate-Limit-Remaining: 499
 Rate-Limit-Reset: 1422288284
 ```
 
-When the API limit is reached, a status code of [429 Too Many Requests](http://tools.ietf.org/html/rfc6585#section-4) is returned with the aforementioned `Retry-After` header:
+When the API limit is reached, a [429 HTTP error](#errors) is returned with the aforementioned `Retry-After` header:
 
 > Example response for a rate limited request:
 
