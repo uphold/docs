@@ -15,8 +15,17 @@ Please refer to our FAQ for estimated [ACH transaction times](https://support.up
 
 ## List Accounts
 
+> The basic request to this endpoint lists all accounts for the current user:
+
 ```bash
 curl https://api.uphold.com/v0/me/accounts \
+  -H "Authorization: Bearer <token>"
+```
+
+> This list can be filtered. For example, to list only accounts of the `sepa` or `card` types, you can specify the types in the query string, like so:
+
+```bash
+curl https://api.uphold.com/v0/me/accounts?q=type:sepa,card
   -H "Authorization: Bearer <token>"
 ```
 
@@ -49,6 +58,11 @@ Retrieves a list of accounts for the current user.
 ### Request
 `GET https://api.uphold.com/v0/me/accounts`
 <aside class="notice">Requires the `accounts:read` scope for Uphold Connect applications.</aside>
+
+You can filter the list of returned accounts using query string parameters.
+Supported filters are `status:` and `type:`, with either a single value or a comma-separated list.
+For a list of valid values for these parameters, refer to the [Account Object](#account-object) documentation.
+See the code to the right for an example.
 
 ### Response
 Returns an array of the current user's accounts.
