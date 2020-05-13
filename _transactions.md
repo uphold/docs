@@ -112,17 +112,17 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/
 
 ### Step 1: Create Transaction
 
-In step one, one prepares the transaction by specifying:
+The first step is to prepare the transaction by specifying:
 
 - The _currency_ to denominate the transaction by.
 - The _amount_ of value to send in the denominated currency.
-- The _origin_ of the transaction can be an account id in the case of a _deposit_.
+- The _origin_ of the transaction, which can be an account id in the case of a _deposit_.
 - The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id or an application id.
 
 The following table describes the types of transactions currently supported:
 
 Type       | Origin                             | Destination
----------- | ---------------------------------- | ----------------------------------------------------------------------------
+---------- | ---------------------------------- | --------------------------------------------------------
 deposit    | _ACH_, _CARD_ or _SEPA_ account id | Uphold card id
 withdrawal | Uphold card id                     | _ACH_, _SEPA_ or _Bitcoin_ address
 transfer   | Uphold card id                     | An email address, an application id or an Uphold card id
@@ -136,7 +136,7 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
   Adding the query string parameter <code>?commit=true</code> to this request will create and commit the transaction in a single step.
 </aside>
 <aside class="notice">
-  If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the <code>securityCode</code> in the request body.
+  If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the credit card's <code>securityCode</code> in the request body.
 </aside>
 
 ### Request
@@ -159,7 +159,8 @@ Returns a [Transaction Object](#transaction-object).
 
 ### Step 2: Commit Transaction
 
-Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
+Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`.
+An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
 
 Once the transaction is committed, its status will change to `processing`.
 
@@ -184,11 +185,11 @@ Once the transaction is committed, its status will change to `processing`.
   for Uphold Connect applications.
 </aside>
 <aside class="notice">
-  If the deposit origin is a <code>CARD</code> account ID, you need to send the <code>securityCode</code> in the request body.
+  If the deposit origin is a <code>CARD</code> account ID, you need to send the credit card's <code>securityCode</code> in the request body.
 </aside>
 <aside class="notice">
   If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons.
-  This results in a 400 HTTP error with code <code>password_reset_restriction</code>.
+  This results in a <a href="#errors">400 HTTP error</a>, with code <code>password_reset_restriction</code>.
   Your application must be prepared to handle this failure scenario.
 </aside>
 
@@ -416,7 +417,7 @@ curl https://api.uphold.com/v0/me/transactions \
 }]
 ```
 
-Requests a list of transactions associated with the current user.
+Requests a list of committed transactions associated with the current user.
 
 ### Request
 
@@ -528,7 +529,7 @@ curl https://api.uphold.com/v0/me/cards/48ce2ac5-c038-4426-b2f8-a2bdbcc93053/tra
 }]
 ```
 
-Requests a list of transactions associated with a specific card.
+Retrieves a list of committed transactions associated with a specific card.
 
 ### Request
 
@@ -550,7 +551,7 @@ Returns an array of [Transaction Objects](#transaction-object).
 curl -X GET "https://api.uphold.com/v0/reserve/transactions"
 ```
 
-> The above command returns the following JSON, truncated for brevity:
+> The above command returns the following JSON (truncated for brevity):
 
 ```json
 [{
