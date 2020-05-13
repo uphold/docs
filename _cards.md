@@ -4,8 +4,17 @@ Uphold uses the concept of a "card" as a store of value. Each card is denominate
 
 ## List Cards
 
+> The basic request to this endpoint lists all cards for the current user:
+
 ```bash
 curl https://api.uphold.com/v0/me/cards \
+  -H "Authorization: Bearer <token>"
+```
+
+> This list can be filtered. For example, to list only cards denominated in BTC or EUR, you can specify the currencies in the query string, like so:
+
+```bash
+curl https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR
   -H "Authorization: Bearer <token>"
 ```
 
@@ -63,6 +72,10 @@ Retrieves a list of cards for the current user.
 `GET https://api.uphold.com/v0/me/cards`
 
 <aside class="notice">Requires the <code>cards:read</code> scope for Uphold Connect applications.</aside>
+
+You can filter the list of returned cards using query string parameters.
+Supported filters are `currency:` (which accepts a comma-separated list of currencies) and `settings.starred:` (which accepts `true` or `false`).
+See the code to the right for an example.
 
 This endpoint supports [Pagination](#pagination).
 
