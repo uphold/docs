@@ -165,6 +165,12 @@ Once a transaction has been created and a quote secured, commit the transaction 
   This must be done within the time window specified (in miliseconds) by the <a href="parameters"><code>params.ttl</code></a> field of the transaction object.
   Attempting to commit a transaction past this timeframe results in a <a href="#errors">404 HTTP error</a>.
 </aside>
+<aside class="notice">
+  If the <a href="#permissions"><code>transactions:commit:otp</code> permission</a> has been granted by the user, and an OTP is not provided with the request,
+  you will get a <a href="#errors">401 HTTP error</a>, along with the HTTP header <code>OTP-Token: Required</code> and/or <code>OTP-Method-Id: Required</code>.
+  In that case, re-send the request, including the OTP verification code and method id as headers, like so:
+  <code>OTP-Token: &lt;OTP-Token&gt;</code> and <code>OTP-Method-Id: &lt;OTP-Method-Id&gt;</code>.
+</aside>
 
 ### Request
 
