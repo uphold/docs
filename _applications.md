@@ -1,11 +1,14 @@
 # Applications
+
 ## Registering an application
+
 Developers will need to [register their application](https://support.uphold.com/hc/en-us/articles/217210266) before getting started. A registered application will be assigned a unique _Client Id_ and _Client Secret_.
 <aside class="notice">
   <strong>Security Notice</strong>: Your <i>Client Secret</i> should never be shared, must be kept secret at all times and should only be used from your server-side application.
 </aside>
 
 ## Considerations
+
 - For security reasons, your application **must** be secured with a valid _SSL_ certificate issued by a known Certificate Authority.
 - Likewise, the provided _Redirect URL_ when registering the application must be a valid static subresource. Notice that this property cannot be dynamically reconfigured during authorization requests for security reasons.
 - The _Redirect URL_ can also be a valid URI with a non-http/https protocol which is useful for mobile and desktop applications, for example: `my-app://uphold/connect`.
@@ -15,6 +18,7 @@ Developers will need to [register their application](https://support.uphold.com/
 - Standard [rate limits](#rate-limits) apply to all issued access tokens.
 
 ## Permissions
+
 When requesting authorization from a user the application must specify the level of access needed. These _scopes_ are displayed to the user on the authorization form and currently the user cannot opt-out of individual scopes.
 
 The API supports the following _scopes_:
@@ -35,6 +39,7 @@ transactions:withdraw             | Can create a withdrawal [transaction](#trans
 user:read                         | Can view the [user](#user-object) and their information.
 
 ### Deprecated scopes
+
 The following _scopes_ are deprecated and will be removed in a future version of the API:
 
 Scope              | Description
@@ -48,6 +53,7 @@ transactions:write | Can create a [transaction](#transaction-object) from any or
 </aside>
 
 ## Resources
+
 We prefer that you use these image resources when connecting your applications to Uphold.
 
 <img alt="Connect" src="images/buttons/green_bg/connect.png" srcset="images/buttons/green_bg/connect.png 1x, images/buttons/green_bg/connect@2x.png 2x"><br> [small (129x40)](images/buttons/green_bg/connect.png), [large (258x80)](images/buttons/green_bg/connect@2x.png), [vector (SVG)](images/buttons/green_bg/connect.svg)

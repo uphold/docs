@@ -1,4 +1,5 @@
 # Entities
+
 ## Account Object
 > An example account encoded in JSON looks like this:
 
@@ -27,6 +28,7 @@ status   | The current status of the account. Possible values are: `ok`, `failed
 type     | The type of the account. Possible values are: `card`, `sepa`.
 
 ## Authentication Method Object
+
 > An example authentication method encoded in JSON looks like this:
 
 ```json
@@ -50,6 +52,7 @@ verified     | A boolean signalling whether or not the authentication method has
 verifiedAt   | The date and time of verification of the authentication method.
 
 ## Card Object
+
 > An example card encoded in JSON looks like this:
 
 ```json
@@ -89,6 +92,7 @@ settings          | Contains the card's current `position` and whether the card 
 normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 
 ## Contact Object
+
 > An example contact encoded in JSON looks like this:
 
 ```json
@@ -118,6 +122,7 @@ lastName  | The last name of this contact provided by the user.
 name      | The display name of the contact created by joining the first and last names.
 
 ## Currency Pair Object
+
 > An example currency pair encoded in JSON looks like this:
 
 ```json
@@ -141,6 +146,7 @@ currency | The currency that is used in the `ask` and `bid` prices.
 pair     | The currency pair AB represents moving from A to B.
 
 ## Transaction Object
+
 > An example transaction encoded in JSON looks like this:
 
 ```json
@@ -257,6 +263,7 @@ destination  | The recipient of the funds. See [Destination](#destination).
 </aside>
 
 ### Denomination
+
 The actual value being transacted is denominated in a certain currency, as expressed by the `denomination` field with the following properties:
 
 Property | Description
@@ -271,6 +278,7 @@ rate     | The quoted rate for converting between the denominated currency and t
 </aside>
 
 ### Fees
+
 The `fees` property contains an array of fees that were applied to the transaction. Each object in the array contains the following properties:
 
 Property   | Description
@@ -286,6 +294,7 @@ type       | The type of fee. Can be one of: `deposit`, `exchange`, `network` or
 </aside>
 
 ### Parameters
+
 The `params` property associated with a transaction records additional meta data relating to the respective transaction. It contains the following properties:
 
 Property | Description
@@ -299,6 +308,7 @@ ttl      | The time this quote is good for, in milliseconds.
 type     | The type of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 
 ### Normalized
+
 The `normalized` property contains the normalized amount and commission values in USD:
 
 Property   | Description
@@ -311,6 +321,7 @@ rate       | The exchange rate for this pair.
 target     | Can be `origin` or `destination` and determines where the fee was applied.
 
 ### Origin
+
 The origin has properties regarding how the transaction affects the origin of the funds:
 
 Property    | Description
@@ -333,6 +344,7 @@ type        | The type of endpoint. Possible values are 'card' and 'external'.
 </aside>
 
 ### Destination
+
 The destination of a transaction has its own set of properties describing how the destination is affected, which include:
 
 Property    | Description
@@ -350,6 +362,7 @@ rate        | The rate for conversion between origin and destination, as express
 type        | The type of endpoint. Possible values are 'email', 'card' and 'external'.
 
 ## User Object
+
 > An example user encoded in JSON looks like this:
 
 ```json
@@ -565,6 +578,7 @@ memberAt | The date when the user has become a verified member.
 - **otp.vmc.enabled** - This will prompt the user to input an OTP token when using VMCs.
 
 ### User Status
+
 We communicate a number of different user states through our API. At a high-level users can be in one of four states:
 
 - **pending** - This state is present while the user is creating an account.

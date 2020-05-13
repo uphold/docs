@@ -1,4 +1,5 @@
 # Errors
+
 Uphold API uses the following error codes:
 
 Code | Meaning
