@@ -251,7 +251,7 @@ type         | The nature of the transaction. Possible values are `deposit`, `tr
 message      | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
 denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
 fees         | The fees that were applied to the transaction. See [Fees](#fees).
-status       | The current status of the transaction. Possible values are: `pending`, `waiting`, `cancelled` or `completed`.
+status       | The current status of the transaction. Possible values are: `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
 params       | Other parameters of this transaction. See [Parameters](#parameters).
 createdAt    | The date and time the transaction was initiated.
 network      | The network of the transaction (`uphold` for internal transactions).
