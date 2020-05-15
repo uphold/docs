@@ -127,7 +127,7 @@ deposit    | _ACH_, _CARD_ or _SEPA_ account id | Uphold card id
 withdrawal | Uphold card id                     | _ACH_, _SEPA_ or _Bitcoin_ address
 transfer   | Uphold card id                     | An email address, an application id or an Uphold card id
 
-Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`.
+Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`, and a status of `pending`.
 
 <aside class="notice">
   You may only send value from addresses that you own.
@@ -160,6 +160,8 @@ Returns a [Transaction Object](#transaction-object).
 ### Step 2: Commit Transaction
 
 Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`. An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
+
+Once the transaction is committed, its status will change to `processing`.
 
 <aside class="notice">
   This must be done within the time window specified (in miliseconds) by the <a href="parameters"><code>params.ttl</code></a> field of the transaction object.
