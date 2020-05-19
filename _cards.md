@@ -17,10 +17,10 @@ curl https://api.uphold.com/v0/me/cards \
   -H "Authorization: Bearer <token>"
 ```
 
-> This list can be filtered. For example, to list only cards denominated in BTC or EUR, you can specify the currencies in the query string, like so:
+> Example of filtering the list to show only starred cards denominated in BTC or EUR:
 
 ```bash
-curl https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR
+curl 'https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR%20settings.starred:true'
   -H "Authorization: Bearer <token>"
 ```
 
@@ -83,6 +83,7 @@ Retrieves a list of cards for the current user.
 
 You can filter the list of returned cards using query string parameters.
 Supported filters are `currency:` (which accepts a comma-separated list of currencies) and `settings.starred:` (which accepts `true` or `false`).
+Multiple filters can be used together, separated with a space.
 See the code to the right for an example.
 
 This endpoint supports [Pagination](#pagination).
