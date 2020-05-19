@@ -24,10 +24,10 @@ curl https://api.uphold.com/v0/me/accounts \
   -H "Authorization: Bearer <token>"
 ```
 
-> This list can be filtered. For example, to list only accounts of the `sepa` or `card` types, you can specify the types in the query string, like so:
+> Example of filtering the list to show only accounts of the `sepa` or `card` types, and in the `ok` status:
 
 ```bash
-curl https://api.uphold.com/v0/me/accounts?q=type:sepa,card
+curl 'https://api.uphold.com/v0/me/accounts?q=type:sepa,card%20status:ok'
   -H "Authorization: Bearer <token>"
 ```
 
@@ -68,6 +68,7 @@ Retrieves a list of accounts for the current user.
 You can filter the list of returned accounts using query string parameters.
 Supported filters are `status:` and `type:`, with either a single value or a comma-separated list.
 For a list of valid values for these parameters, refer to the [Account Object](#account-object) documentation.
+Multiple filters can be used together, separated with a space.
 See the code to the right for an example.
 
 ### Response
