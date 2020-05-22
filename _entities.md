@@ -479,8 +479,14 @@ The `user` object contains most of the information we have on record relating to
 </aside>
 
 Property | Description
--------- | ----------------------------------------------------
-memberAt | The date when the user has become a verified member.
+-------- | ----------------------------------------------------------------------------------------------------------
+memberAt | The date when the user became a [verified member](https://support.uphold.com/hc/en-us/articles/206119603).
+
+<aside class="notice">
+  The <code>memberAt</code> field can be <code>null</code> if the user hasn't completed the membership process.
+  Any information needed for membership will be included in the <a href="user-verifications">verifications</a> field.
+  Note that this is distinct from the <code>pending</code> <a href="user-status">user status</a>, which is related to the initial signup process.
+</aside>
 
 ### User Settings
 
@@ -494,12 +500,15 @@ memberAt | The date when the user has become a verified member.
 
 We communicate a number of different user statuses through our API. At a high-level users can be in one of four statuses:
 
-- **pending** - This status is present while the user is creating an account.
-- **restricted** - When a user is in this status they are allowed to login to the application and receive money, but they are not permitted to initiate transactions. This status exists to allow users to satisfy additional data requirements.
+- **pending** - This status applies to a user that is in the process of creating an account; it means the signup process is not yet finalized.
+- **restricted** - This status means the user is allowed to login to the application, deposit or receive money, and perform trades, but they are not permitted to withdraw nor send money to other users. This status exists to allow users to satisfy additional data requirements.
 - **blocked** - This status is present when a user has violated our terms of service. In this status users are unable to login or access the product.
 - **ok** - Everything is ay-ok.
 
-When users are in a specific status, the `verifications` field can help communicate the reasons for account status and potential suspension. These verifications have permissible values and in some cases, an associated reason. Here is an overview of the verifications field:
+### User Verifications
+
+The `verifications` field can help communicate the reasons for a given user status, or what's missing to complete the membership process.
+These verifications have permissible values and in some cases, an associated reason. Here is an overview of the verifications field:
 
 Flag      | Permissible Values               | Reason         | Description
 --------- | -------------------------------- | -------------- | --------------------------------------------------------------------------------------
