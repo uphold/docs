@@ -492,14 +492,14 @@ memberAt | The date when the user has become a verified member.
 
 ### User Status
 
-We communicate a number of different user states through our API. At a high-level users can be in one of four states:
+We communicate a number of different user statuses through our API. At a high-level users can be in one of four statuses:
 
-- **pending** - This state is present while the user is creating an account.
-- **restricted** - When a user is in this state they are allowed to login to the application and receive money, but they are not permitted to initiate transactions. This state exists to allow users to satisfy additional data requirements.
-- **blocked** - This state is present when a user has violated our terms of service. In this state users are unable to login or access the product.
+- **pending** - This status is present while the user is creating an account.
+- **restricted** - When a user is in this status they are allowed to login to the application and receive money, but they are not permitted to initiate transactions. This status exists to allow users to satisfy additional data requirements.
+- **blocked** - This status is present when a user has violated our terms of service. In this status users are unable to login or access the product.
 - **ok** - Everything is ay-ok.
 
-When users are in a specific state, the `verifications` field can help communicate the reasons for account status and potential suspension. These verifications have permissible values and in some cases, an associated reason. Here is an overview of the verifications field:
+When users are in a specific status, the `verifications` field can help communicate the reasons for account status and potential suspension. These verifications have permissible values and in some cases, an associated reason. Here is an overview of the verifications field:
 
 Flag      | Permissible Values               | Reason         | Description
 --------- | -------------------------------- | -------------- | --------------------------------------------------------------------------------------
