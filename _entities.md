@@ -378,41 +378,11 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
   },
   "balances": {
     "currencies": {
-      "BCH": {
-        "amount": "4500.00",
-        "balance": "5.00",
-        "currency": "USD",
-        "rate": "900.00000"
-      },
       "BTC": {
         "amount": "4500.00",
         "balance": "5.00",
         "currency": "USD",
         "rate": "900.00000"
-      },
-      "BTG": {
-        "amount": "57.65",
-        "balance": "5.00",
-        "currency": "USD",
-        "rate": "11.52945"
-      },
-      "CNY": {
-        "amount": "90.84",
-        "balance": "600.00",
-        "currency": "USD",
-        "rate": "0.15140"
-      },
-      "DASH": {
-        "amount": "57.65",
-        "balance": "5.00",
-        "currency": "USD",
-        "rate": "11.52945"
-      },
-      "ETH": {
-        "amount": "5000.00",
-        "balance": "10.00",
-        "currency": "USD",
-        "rate": "500.00000"
       },
       "EUR": {
         "amount": "180.89",
@@ -420,89 +390,27 @@ type        | The type of endpoint. Possible values are 'email', 'card' and 'ext
         "currency": "USD",
         "rate": "1.16795"
       },
-      "GBP": {
-        "amount": "1174.94",
-        "balance": "895.59",
-        "currency": "USD",
-        "rate": "1.31192"
-      },
-      "LTC": {
-        "amount": "1300.00",
-        "balance": "10.00",
-        "currency": "USD",
-        "rate": "130.00000"
-      },
-      "MXN": {
-        "amount": "7.88",
-        "balance": "149.99",
-        "currency": "USD",
-        "rate": "0.05257"
-      },
       "USD": {
-        "amount": "97710.05",
-        "balance": "97710.05",
+        "amount": "17710.05",
+        "balance": "17710.05",
         "currency": "USD",
         "rate": "1.00000"
-      },
-      "VOX": {
-        "amount": "31.60",
-        "balance": "2.74066412",
-        "currency": "USD",
-        "rate": "11.52945"
-      },
-      "XAU": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "1235.46975"
-      },
-      "XRP": {
-        "amount": "0.00",
-        "balance": "0.00",
-        "currency": "USD",
-        "rate": "0.80000"
       }
     },
-    "total": "114611.50"
+    "total": "22390.94"
   },
   "birthdate": "2000-09-27",
   "country": "US",
   "currencies": [
-    "AED",
-    "ARS",
-    "AUD",
-    "BAT",
-    "BCH",
-    "BRL",
     "BTC",
-    "BTG",
-    "CAD",
-    "CHF",
     "CNY",
-    "DASH",
-    "DKK",
     "ETH",
     "EUR",
     "GBP",
-    "HKD",
-    "ILS",
-    "INR",
     "JPY",
-    "KES",
     "LTC",
-    "MXN",
-    "NOK",
-    "NZD",
-    "PHP",
-    "PLN",
-    "SEK",
-    "SGD",
     "USD",
-    "VOX",
-    "XAG",
     "XAU",
-    "XPD",
-    "XPT",
     "XRP"
   ],
   "email": "malika.koss@example.com",
