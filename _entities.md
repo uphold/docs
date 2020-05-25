@@ -484,8 +484,8 @@ memberAt | The date when the user became a [verified member](https://support.uph
 
 <aside class="notice">
   The <code>memberAt</code> field can be <code>null</code> if the user hasn't completed the membership process.
-  Any information needed for membership will be included in the <a href="user-verifications">verifications</a> field.
-  Note that this is distinct from the <code>pending</code> <a href="user-status">user status</a>, which is related to the initial signup process.
+  Any information needed for membership will be included in the <a href="#user-verifications">verifications</a> field.
+  Note that this is distinct from the <code>pending</code> <a href="#user-status">user status</a>, which is related to the initial signup process.
 </aside>
 
 ### User Settings
