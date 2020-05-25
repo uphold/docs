@@ -165,7 +165,7 @@ An optional parameter `message` can also be sent which will overwrite the value 
 Once the transaction is committed, its status will change to `processing`.
 
 <aside class="notice">
-  This must be done within the time window specified (in miliseconds) by the <a href="parameters"><code>params.ttl</code></a> field of the transaction object.
+  This must be done within the time window specified (in miliseconds) by the <a href="#parameters"><code>params.ttl</code></a> field of the transaction object.
   Attempting to commit a transaction past this timeframe results in a <a href="#errors">404 HTTP error</a>.
 </aside>
 <aside class="notice">
