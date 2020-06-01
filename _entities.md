@@ -244,11 +244,11 @@ Transactions record the movement of value into, within and out of the Uphold net
 </aside>
 
 Property     | Description
------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------ | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 application  | The application that created the transaction.
 id           | A unique ID on the Uphold Network associated with the transaction.
 type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
-message      | A message or note provided by the user at the time the transaction was initiated, with the intent of communicating additional information and context about the nature/purpose of the transaction.
+message      | An optional note added when initiating the transaction. Expected to be human-readable prose, e.g. for providing additional information and context about the nature/purpose of the transaction.
 denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
 fees         | The fees that were applied to the transaction. See [Fees](#fees).
 status       | The current status of the transaction. Possible values are: `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
@@ -257,7 +257,7 @@ createdAt    | The date and time the transaction was initiated.
 network      | The network of the transaction (`uphold` for internal transactions).
 normalized   | The transaction details in USD. See [Normalized](#normalized).
 priority     | The priority of the transaction. Possible values are `normal` and `fast`.
-reference    | A reference assigned to the transaction.
+reference    | A reference code assigned to the transaction. Can be any string, up to 100 characters. This is not exposed to the user; a possible use case is to reference an external ID in another system.
 origin       | The sender of the funds. See [Origin](#origin).
 destination  | The recipient of the funds. See [Destination](#destination).
 

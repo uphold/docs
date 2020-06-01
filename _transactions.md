@@ -118,6 +118,8 @@ The first step is to prepare the transaction by specifying:
 - The _amount_ of value to send in the denominated currency.
 - The _origin_ of the transaction, which can be an account id in the case of a _deposit_.
 - The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id or an application id.
+- An optional _message_, which is shown to the user to provide additional context.
+- An optional _reference_ code, which can be used as a unique identifier of the transaction in an external system, or for similar purposes.
 
 The following table describes the types of transactions currently supported:
 
