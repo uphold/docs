@@ -167,7 +167,7 @@ An optional parameter `message` can also be sent which will overwrite the value 
 Once the transaction is committed, its status will change to `processing`.
 
 <aside class="notice">
-  This must be done within the time window specified (in miliseconds) by the <a href="#parameters"><code>params.ttl</code></a> field of the transaction object.
+  This must be done within the time window specified (in milliseconds) by the <a href="#parameters"><code>params.ttl</code></a> field of the transaction object.
   Attempting to commit a transaction past this timeframe results in a <a href="#errors">404 HTTP error</a>.
 </aside>
 <aside class="notice">
@@ -266,6 +266,144 @@ url        | The URL of the 3DSecure confirmation request.
 ### Response
 
 A webpage for 3DSecure confirmation for the user to interact with.
+
+## Beneficiary Information
+
+> Example of a transaction creation payload including `beneficiary` and `purpose` fields:
+
+```json
+{
+  "beneficiary": {
+    "relationship": "child",
+    "name": "Harper Wilson",
+    "address": {
+      "line1": "Bar",
+      "zipCode": "12345",
+      "city": "Braga",
+      "country": "PT",
+      "state": "PT-03"
+    }
+  },
+  "purpose": "donations",
+  "denomination": {
+    "amount": "3000",
+    "currency": "USD"
+  },
+  "destination": "invite-user@mail.com"
+}
+```
+
+When creating a transaction, it may be required to send additional information
+regarding the beneficiary and purpose of the transaction.
+This is required if **both** the following conditions are met:
+
+- The transaction is either a withdrawal to an external account (crypto networks, SEPA bank accounts, etc.) or a transfer to another user; and
+- The transaction amount is over _$3000 USD_ (or over $1000 USD, if the origin user is from Arizona, United States).
+
+<aside class="notice">
+  The threshold value is calculated from the <a href="#normalized">normalized</a> USD amount of the transaction,
+  which can differ from the amount specified in the <code>denomination.amount</code> field
+  if the transaction implies a currency conversion.
+</aside>
+<aside class="notice">
+  Note: ACH withdrawals are <b>not required</b> to send beneficiary information,
+  since we only support personal bank accounts, so the beneficiary (ACH account holder)
+  is assumed to be the Uphold user who added that account.
+</aside>
+
+The beneficiary information should be provided in the `beneficiary` object of the request payload.
+The `beneficiary.relationship` field must always be filled whenever beneficiary information is required.
+The other fields can be omitted if the data is already present in the Uphold platform
+(e.g. if the transaction is to an existing Uphold user, or the `beneficiary.relationship` is set to "myself").
+
+The `relationship` field is a string reflecting the beneficiary's relationship to the transaction originator.
+Two particular types of transactions are recognized by the platform:
+business transactions (indicated by a `relationship` field with the value `business`)
+and personal transactions (indicated by the values `child`, `co_worker`, `friend`, `parent`, or `sibling`).
+The value `myself` can also be used when applicable.
+
+Depending on the conditions of the transaction, additional fields may be required — namely, the beneficiary `name` and `address` (with subfields `city`, `country`, `line1`, `line2`, `state`, `zipCode`),
+as well as a `purpose` object indicating the reason for the transaction.
+
+To obtain the beneficiary requirements (or validate the `beneficiary` object) when preparing a transaction,
+use the `?validate=true` parameter in the query string of the request to create a transaction.
+This will generate a validation error if any required beneficiary information is missing.
+Otherwise, the transaction will fail at the commit step with a similar error message.
+
+<aside class="notice">
+  Please note that at this moment, even with the <code>validate=true</code> parameter,
+  the validation is only performed if a <code>beneficiary</code> object is passed.
+</aside>
+
+> Example of including the beneficiary information when creating an uncommitted transaction (i.e. quote), alongside the remaining transaction data:
+
+```bash
+curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions' \
+  -H 'authorization: Bearer <bearer-token>' \
+  -H 'content-type: application/json' \
+  -d '{ "beneficiary": { "relationship": "child", "name": "Harper Wilson", "address": { "line1": "Bar", "zipCode": "12345", "city": "Braga", "country": "PT", "state": "PT-03" } }, "purpose": "donations", "denomination": { "amount": "3000", "currency": "USD" }, "destination": "invite-user@mail.com" }'
+```
+
+> Example of adding the beneficiary information when committing a previously created transaction:
+
+```bash
+curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions/<transaction-id>/commit' \
+  -H 'authorization: Bearer <bearer-token>' \
+  -H 'content-type: application/json' \
+  -d '{ "beneficiary": { "relationship": "child", "name": "Harper Wilson", "address": { "line1": "Bar", "zipCode": "12345", "city": "Braga", "country": "PT", "state": "PT-03" } }, "purpose": "donations" }'
+```
+
+> In both cases, incomplete beneficiary information will be reported in a format similar to this:
+
+```json
+{
+  "code": "validation_failed",
+  "errors": {
+    "beneficiary": {
+      "code": "validation_failed",
+      "errors": {
+        "name": [
+          {
+            "code": "required",
+            "message": "This value is required"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+The beneficiary information can be passed either when creating an uncommitted transaction (i.e. a quote)
+or when [committing it](#step-2-commit-transaction).
+
+> Invalid beneficiary information will be reported like this:
+
+```json
+{
+  "code": "validation_failed",
+  "errors": {
+    "beneficiary": {
+      "code": "validation_failed",
+      "errors": {
+        "name": [
+          {
+            "code": "invalid_beneficiary",
+            "message": "The provided beneficiary is invalid"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+<aside class="notice">
+  For regulatory compliance reasons, the beneficiary name is checked by a sanctions screening process,
+  and is expected to consist entirely of characters in the Latin, Cyrillic, Greek or Georgian alphabets,
+  along with a limited set of special characters.
+  These validations may result in an <code>invalid_beneficiary</code> error.
+</aside>
 
 ## Cancel a Transaction
 
