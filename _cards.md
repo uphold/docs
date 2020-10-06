@@ -161,9 +161,9 @@ curl https://api.uphold.com/v0/me/cards \
 </aside>
 
 Parameter | Description
---------- | ----------------------------------------------------------------------------------------------------
+--------- | -------------------------------------------------------------------------------------------------------------
 label     | The display name of the card. Max length: 140 characters.
-currency  | The currency to denominate value stored by the card, represented as a three character currency code.
+currency  | The [currency](#currencies) to denominate the value stored by the card, represented by its code (e.g. "USD").
 
 ### Response
 
