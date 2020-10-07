@@ -19,6 +19,6 @@ curl https://api.uphold.com/v0/me/transactions \
 ## Response
 
 The endpoints that support pagination will return a `Content-Range` header.
-For instance, if you make a request with the `Range: items=0-4` header, the response will contain the header `Content-Range: 0-4/*`, where `*` will be the total number of items available for listing.
+For instance, if you make a request with the `Range: items=0-4` header, the response will contain the header `Content-Range: items 0-4/<total>`, where `<total>` will be the total number of items available for listing.
 
 If the `Range` header is malformed or if the range cannot be satisfied, you will receive a 412 error or a 416 error, respectively.
