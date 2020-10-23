@@ -117,7 +117,7 @@ The first step is to prepare the transaction by specifying:
 - The _currency_ to denominate the transaction by.
 - The _amount_ of value to send in the denominated currency.
 - The _origin_ of the transaction, which can be an account id in the case of a _deposit_.
-- The _destination_ of the transaction, which can be in the form of a bitcoin address, an email address, an account id or an application id.
+- The _destination_ of the transaction, which can be in the form of a [crypto network address](#create-card-address), an email address, an account id, an application id, or a [card id](#card-object).
 - An optional _message_, which is shown to the user to provide additional context.
 - An optional _reference_ code, which can be used as a unique identifier of the transaction in an external system, or for similar purposes.
 
@@ -202,6 +202,71 @@ Returns a [Transaction Object](#transaction-object).
 <aside class="notice">
   If the deposit origin is a <code>CARD</code> account ID, the transaction's <code>params</code> will include a <code>redirect</code> field with information of a redirect URI to be followed to complete the credit card deposit.
 </aside>
+
+## Specify destination currency
+
+> Example of creating a EUR to BTC transaction denominated in USD (i.e. buying 10 USD worth of BTC with and EUR card), by using the address of a EUR card as the `origin` in the URL parameter, and the address of an BTC card in the `destination` field, in the body of the request:
+
+```bash
+curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions \
+  -X POST \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{ "denomination": { "amount": "10", "currency": "USD" }, "destination": "e9225c6a-48b6-4e2e-ba36-beffdb5eb54e" }'
+```
+
+> The response to the above request would look like the following JSON (truncated for conciseness):
+
+```json
+{
+  "denomination": {
+    "amount": "10.00",
+    "currency": "USD",
+    "pair": "USDEUR",
+    "rate": "0.84452"
+  },
+  "destination": {
+    "amount": "0.00075846",
+    "base": "0.00076651",
+    "CardId": "e9225c6a-48b6-4e2e-ba36-beffdb5eb54e",
+    "commission": "0.00000805",
+    "currency": "BTC",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "e9225c6a-48b6-4e2e-ba36-beffdb5eb54e",
+      "type": "card",
+      "user": {
+        "id": "5a5bc3a3-d945-47ce-8984-a569dff282af"
+      }
+    },
+    "rate": "0.00009071",
+    "type": "card"
+  },
+  "origin": {
+    "amount": "8.45",
+    "base": "8.45",
+    "CardId": "a6d35fcd-0ef3-41ed-acce-9c9d1dda6d57",
+    "commission": "0.00",
+    "currency": "EUR",
+    "fee": "0.00",
+    "isMember": true,
+    "node": {
+      "id": "a6d35fcd-0ef3-41ed-acce-9c9d1dda6d57",
+      "type": "card",
+      "user": {
+        "id": "5a5bc3a3-d945-47ce-8984-a569dff282af"
+      }
+    },
+    "rate": "11023.87858",
+    "sources": [],
+    "type": "card"
+  }
+}
+```
+
+By using a [card](#card-object) id as the destination of a transaction, it is possible to determine the destination currency, independently from the denomination.
+For example, to convert 10 USD worth of EUR to BTC, one could create a transaction from an EUR card to a BTC card, and denominate it in USD. An example is shown to the side.
 
 ## Confirm a Credit Card Deposit
 
