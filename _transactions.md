@@ -120,6 +120,9 @@ The first step is to prepare the transaction by specifying:
 - The _destination_ of the transaction, which can be in the form of a [crypto network address](#create-card-address), an email address, an account id, an application id, or a [card id](#card-object).
 - An optional _message_, which is shown to the user to provide additional context.
 - An optional _reference_ code, which can be used as a unique identifier of the transaction in an external system, or for similar purposes.
+- An optional _priority_ for the transaction ("normal" or "fast", with the default being "normal"),
+  to signal the intent to fast-track its completion in exchange for a higher fee.
+  This is currently only supported for the Dash network.
 
 The following table describes the types of transactions currently supported:
 
@@ -139,6 +142,10 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 </aside>
 <aside class="notice">
   If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the credit card's <code>securityCode</code> in the request body.
+</aside>
+<aside class="notice">
+  When creating a transaction to an email address destination, a <code>ContactId</code> field can be added to specify the ID of the associated <a href="#contact-object">contact</a>, if one already exists.
+  This is entirely optional, and does <b>not</b> remove the need to provide the actual email address in the <code>destination</code> field.
 </aside>
 
 ### Request
