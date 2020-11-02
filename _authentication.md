@@ -2,33 +2,57 @@
 
 Uphold is an OAuth 2.0 compliant service.
 
-Partners looking to integrate with our API must [register an application](#registering-an-application). Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
+Partners with Business Accounts looking to integrate with our API **must request** Uphold to [register an application](#registering-an-application). 
 
-## Web Application Flow
+Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
 
-Ideal for web applications that wish to retrieve information about a user's Uphold account or take actions on their behalf.
+## Web Application Flow 
 
-### Step 1 - Authorization
+Ideal for web/mobile applications that wish to retrieve information about a user's Uphold account or take actions on their behalf. 
 
-The authenticating web application should redirect users to the following URL:
+### Scenario
 
-`https://uphold.com/authorize/<client_id>`
+Web/Mobile application that implement a user-facing web interface, to provide custom functionality for multiple Uphold users. This Auth-flow is usualy used by Partners with Business Accounts looking to integrate with Uphold API.
 
-Or for sandbox applications:
+Before any attemp is made to test this scenario the Partner **must request** Uphold to [register an application](#registering-an-application). 
 
-`https://sandbox.uphold.com/authorize/<client_id>`
+### Workflow
 
-Supported query parameters:
+#### Step 1 - Authorization request!
+
+The Partner **application** should redirect users to the following URL:
+
+`https://uphold.com/authorize/<client_id>` (Production)
+
+`https://sandbox.uphold.com/authorize/<client_id>` (Sandbox, for testing purposes)
+
+<u>Parameters:</u>
 
 Parameter | Required | Description
 --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------
 intention | no       | Unauthenticated users will be redirected to the `login` page, this behavior can be changed by sending `signup` as the `intention` value.
-scope     | yes      | Permissions to request from the user.
-state     | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
+scope     | **yes**  | Permissions to request from the user.
+state     | **yes**  | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
 
-### Step 2 - Requesting a Token
+<u>Example:</u>
 
-> Exchanging the `code` for a `token`:
+`https://sandbox.uphold.com/authorize/MY_CLIENT_ID?scope=user:read&state=MY_UNGUESSABLE_STATE`
+
+![Authorization](assets/Authorization.png)
+
+If everything goes well the Uphold API executes a callback URL **previously** defined when a Partner sets up an application.
+
+![flow](assets/flow.png) 
+
+#### Step 2 - Requesting an access Token
+
+If the user accepts your request, Uphold will redirect the user back to your callback URL with a temporary `code` and the previously provided `state`, _as is_.
+
+This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
+
+Your application is **now** responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
+
+> Here is a curl example to request exchanging the `code` for a `token`:
 
 ```bash
 curl https://api.uphold.com/oauth2/token \
@@ -47,34 +71,28 @@ curl https://api.uphold.com/oauth2/token \
 }
 ```
 
-If the user accepts your request, Uphold will redirect the user back to your site with a temporary `code` and the previously provided `state`, _as is_.
 
-This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
-
-Your application is responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
 
 You may then exchange this `code` for an `access token` using the following endpoint:
 
-`POST https://api.uphold.com/oauth2/token`
+`POST https://api.uphold.com/oauth2/token` (Production)
 
-Or for sandbox applications:
+`https://api-sandbox.uphold.com/oauth2/token` (Sandbox, for testing purposes)
 
-`https://api-sandbox.uphold.com/oauth2/token`
-
-Supported parameters:
+<u>Parameters:</u>
 
 Parameter     | Required | Description
 ------------- | -------- | -------------------------------------------------------------------------------------
-client_id     | yes      | The application's *clientId*. Please use HTTP Basic Authentication when possible.
-client_secret | yes      | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
-code          | yes      | The code acquired in step 1.
-grant_type    | yes      | Must be set to *'authorization_code'*.
+client_id     | **yes** | The application's *clientId*. Please use HTTP Basic Authentication when possible.
+client_secret | **yes**  | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
+code          | **yes**  | The code acquired in step 1.
+grant_type    | **yes**  | Must be set to *'authorization_code'*.
 
 <aside class="notice">
   <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
 </aside>
 
-### Step 3 - Using the Access Token
+#### Step 3 - Using the Access Token
 
 > Request using the 'Authorization' header:
 
@@ -90,7 +108,7 @@ Once you have obtained an access token you may call any protected API method on 
 <aside class="notice">
   <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
 
-  This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
+This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
 </aside>
 
 ## Client Credentials Flow
