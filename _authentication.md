@@ -2,29 +2,36 @@
 
 Uphold is an OAuth 2.0 compliant service.
 
-Partners with Business Accounts looking to integrate with our API **must request** Uphold to [register an application](#registering-an-application). 
+It is mandatory that partners with **Business Accounts** looking to integrate with our API <u>**must request**</u> Uphold to [register an application](#registering-an-application). 
 
-Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
+## Production/Sandbox
 
-## Web Application Flow 
+- Production - Site/API
+  - `https://uphold.com` 
+  - `https://api-uphold.com` 
+- Sandbox - Site/API
+  - `https://sandbox.uphold.com` 
+  - `https://api-sandbox.com` 
 
-Ideal for web/mobile applications that wish to retrieve information about a user's Uphold account or take actions on their behalf. 
+**Please use the correct URL for your scenario.** For documentation proposes we are going to use the sandbox Urls.
 
-### Scenario
+## Web application flow 
 
-Web/Mobile application that implement a user-facing web interface, to provide custom functionality for multiple Uphold users. This Auth-flow is usualy used by Partners with Business Accounts looking to integrate with Uphold API.
+Ideal for Partner web/mobile applications that wish to retrieve information about a user's Uphold account or take actions on their behalf. 
 
-Before any attemp is made to test this scenario the Partner **must request** Uphold to [register an application](#registering-an-application). 
+### Use case
 
-### Workflow
+Web/Mobile application that implement a user-facing web interface, to provide custom functionality for multiple Uphold users. This Auth-flow is usually used by Partners looking to integrate with Uphold API.
+
+[Uphold javascript web application authentication sample](https://github.com/uphold/rest-api-examples/rest-api/javascript/authentication/web-application-flow)
+
+### Workflow after Uphold request approval 
 
 #### Step 1 - Authorization request!
 
-The Partner **application** should redirect users to the following URL:
+Partner **application** should redirect users to the following URL:
 
-`https://uphold.com/authorize/<client_id>` (Production)
-
-`https://sandbox.uphold.com/authorize/<client_id>` (Sandbox, for testing purposes)
+`https://sandbox.uphold.com/authorize/<client_id>` 
 
 <u>Parameters:</u>
 
@@ -50,12 +57,12 @@ If the user accepts your request, Uphold will redirect the user back to your cal
 
 This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
 
-Your application is **now** responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
+The Partner application is **now** responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
 
 > Here is a curl example to request exchanging the `code` for a `token`:
 
 ```bash
-curl https://api.uphold.com/oauth2/token \
+curl https://api-sandbox.uphold.com/oauth2/token \
   -X POST \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -u <clientId>:<clientSecret> \
@@ -71,13 +78,9 @@ curl https://api.uphold.com/oauth2/token \
 }
 ```
 
+**Now**, you may then exchange this `code` for an `access token` using the following endpoint:
 
-
-You may then exchange this `code` for an `access token` using the following endpoint:
-
-`POST https://api.uphold.com/oauth2/token` (Production)
-
-`https://api-sandbox.uphold.com/oauth2/token` (Sandbox, for testing purposes)
+`POST https://api-sandbox.uphold.com/oauth2/token` 
 
 <u>Parameters:</u>
 
@@ -91,38 +94,36 @@ grant_type    | **yes**  | Must be set to *'authorization_code'*.
 <aside class="notice">
   <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
 </aside>
-
-#### Step 3 - Using the Access Token
-
-> Request using the 'Authorization' header:
-
-```bash
-curl https://api.uphold.com/v0/me/cards \
-  -H "Authorization: Bearer <token>"
-```
-
 Once you have obtained an access token you may call any protected API method on behalf of the user using the "Authorization" HTTP header in the format:
 
 `Authorization: Bearer <token>`
 
-<aside class="notice">
-  <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
+#### Step 3 - Using the access token to get my cards
 
-This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
-</aside>
-
-## Client Credentials Flow
-
-Ideal for backend integrations that do not require access to other Uphold user accounts.
-
-For **business usage only** you may choose to use client credentials authentication. This requires manual approval from Uphold.
-
-### Creating a Token
-
-> To create a client credentials token, execute the following command (make sure the application is set to use client credentials and not authorization code):
+> Request using the 'Authorization' header:
 
 ```bash
-curl https://api.uphold.com/oauth2/token \
+curl https://api-sandbox.uphold.com/v0/me/cards \
+  -H "Authorization: Bearer <token>"
+```
+
+
+## Client credentials flow
+
+For **business usage only**.  Partners may choose to use client credentials authentication, this requires manual approval from Uphold and a **particular role approval**.
+
+### Use case
+
+Ideal for backend integrations that do not require access to **other** Uphold user accounts.
+
+[Uphold javascript client credential authentication sample](https://github.com/uphold/rest-api-examples/rest-api/javascript/authentication/client-credential-flow)
+
+#### Step 1 - Creating a token
+
+> To create a client credentials token, execute the following command (make sure the application is set to use <u>client credentials</u> and not authorization code):
+
+```bash
+curl https://api-sandbox.uphold.com/oauth2/token \
   -X POST \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -u <clientId>:<clientSecret> \
@@ -131,51 +132,90 @@ curl https://api.uphold.com/oauth2/token \
 
 To create a client credentials token you may use the following endpoint:
 
-`POST https://api.uphold.com/oauth2/token`
+`POST https://api-sandbox.uphold.com/oauth2/token` 
 
-Supported parameters:
+<u>Parameters:</u>
 
 Parameter     | Required | Description
 ------------- | -------- | -------------------------------------------------------------------------------------
-client_id     | yes      | The application's *clientId*. Please use HTTP Basic Authentication when possible.
-client_secret | yes      | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
-grant_type    | yes      | Must be set to *'client_credentials'*.
+client_id     | **yes**  | The application's *clientId*. Please use HTTP Basic Authentication when possible.
+client_secret | **yes**  | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
+grant_type    | **yes**  | Must be set to ***'client_credentials'***. 
 
 <aside class="notice">
   <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
 </aside>
+Once you have obtained an access token you may call any protected API method on behalf of the user using the "Authorization" HTTP header in the format:
 
-### Using the Token
+`Authorization: Bearer <token>`
+
+#### Step 2 - Using the token to get my cards
 
 > Request using the 'Authorization header':
 
 ```bash
-curl https://api.uphold.com/v0/me/cards \
+curl https://api-sandbox.uphold.com/v0/me/cards \
   -H "Authorization: Bearer <token>"
 ```
 
-Once you have obtained a client credentials token you may call any protected API method on behalf of the user account owner of the application using the "Authorization" HTTP header in the format:
-
-`Authorization: Bearer <token>`
-
-<aside class="notice">
-  <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
-
-  This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
-</aside>
-
 ## Personal Access Tokens (PAT)
+
+For **personal usage only** you may choose to use a **PAT**. This token establishes who you are, provides full access to your user account and <u>bypasses Two Factor Authentication, if enabled</u>. For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
+
+### Use case
 
 Ideal for scripts, automated tools and command-line programs which remain under your control.
 
-For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
+[Uphold javascript PAT authentication sample](https://github.com/uphold/rest-api-examples/rest-api/javascript/authentication/client-credential-pat)
 
-### Listing PATs
+#### Step 1 - Creating a PAT
+
+> To create a Personal Access Token, execute the following command:
+
+```bash
+curl https://api-sandbox.uphold.com/v0/me/tokens \
+  -X POST \
+  -H "Authorization: Basic <username:password>" \
+  -H "Content-Type: application/json" \
+  -H "OTP-Method-Id: <Method-Id>" \
+  -H "OTP-Token: <OTP-Token>" \
+  -d '{ "description": "My command line script" }'
+```
+
+**IMPORTANT**
+
+1. Uses **Basic Authentication** to create the PAT.
+2.  **username:password** combination should be encoded with **Base64**
+3. **OTP-Method-ID** and **OTP-Token** are <u>mandatory</u> if the account has 2FA enabled.
+
+> The above command returns the following JSON:
+
+```json
+{
+    "accessToken":"c386ae9c4557c1c661b15911071b06d9e6c3fc9a",
+    "description":"My command line script",
+    "id":"a97bb994-6e24-4a89-b653-e0a6d0bcf634"
+}
+```
+
+To create a Personal Access Token you may use the following endpoint:
+
+`POST https://api-sandbox.uphold.com/v0/me/tokens` 
+
+<u>Parameters:</u>
+
+| Parameter   | Required | Description                               |
+| ----------- | -------- | ----------------------------------------- |
+| description | **yes**  | A human-readable description of this PAT. |
+
+#### Step 2 - Managing PAT
+
+##### Listing PAT's
 
 > To list active Personal Access Tokens, execute the following command:
 
 ```bash
-curl https://api.uphold.com/v0/me/tokens \
+curl https://api-sandbox.uphold.com/v0/me/tokens \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -196,75 +236,34 @@ curl https://api.uphold.com/v0/me/tokens \
 
 To list Personal Access Tokens you may use the following endpoint:
 
-`GET https://api.uphold.com/v0/me/tokens`
+`GET https://api-sandbox.uphold.com/v0/me/tokens`
 
-### Creating a PAT
-
-> To create a Personal Access Token, execute the following command:
-
-```bash
-curl https://api.uphold.com/v0/me/tokens \
-  -X POST \
-  -H "Authorization: Bearer <token>" \
-  -H "Content-Type: application/json" \
-  -H "OTP-Method-Id: <Method-Id>" \
-  -H "OTP-Token: <OTP-Token>" \
-  -d '{ "description": "My command line script" }'
-```
-
-> The above command returns the following JSON:
-
-```json
-{
-    "accessToken":"c386ae9c4557c1c661b15911071b06d9e6c3fc9a",
-    "description":"My command line script",
-    "id":"a97bb994-6e24-4a89-b653-e0a6d0bcf634"
-}
-```
-
-To create a Personal Access Token you may use the following endpoint:
-
-`POST https://api.uphold.com/v0/me/tokens`
-
-Supported parameters:
-
-Parameter   | Required | Description
------------ | -------- | -----------------------------------------
-description | yes      | A human-readable description of this PAT.
-
-<aside class="notice">
-  Requires the <code>OTP-Method-Id</code> header to be sent with the id of a verified authentication method that belongs to the user.
-</aside>
-<aside class="notice">
-  Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token, belonging to the authentication method specified in <code>OTP-Method-Id</code>.
-</aside>
-
-### Revoking a PAT
+##### Revoking a PAT
 
 > To revoke a Personal Access Token, execute the following command:
 
 ```bash
-curl https://api.uphold.com/v0/me/tokens/:token \
+curl https://api-sandbox.uphold.com/v0/me/tokens/:token \
   -X DELETE \
   -H "Authorization: Bearer <token>"
 ```
 
 To revoke a Personal Access Token you may use the following endpoint:
 
-`DELETE https://api.uphold.com/v0/me/tokens/:token`
+`DELETE https://api-sandbox.uphold.com/v0/me/tokens/:token` 
 
-Supported parameters:
+<u>Parameters:</u>
 
 Parameter | Required | Description
 --------- | -------- | ---------------------------
-token     | yes      | The PAT you wish to revoke.
+token     | **yes**  | The PAT you wish to revoke.
 
-### Using a PAT
+#### Step 3 - Using a PAT to get my data
 
 > Example of using a personal access token to make requests to our API:
 
 ```bash
-curl https://api.uphold.com/v0/me \
+curl https://api-sandbox.uphold.com/v0/me \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -272,18 +271,33 @@ A PAT may be used for authenticating a request via the OAuth scheme.
 
 The `<token>` should be set as the `accessToken` received during creation.
 
+## Security Notice (Web Flow/Client Credential/PAT)- Token Header
+
+Once you have obtained a **token** you may call any protected API method using the "Authorization" HTTP header in the format:
+
+`Authorization: Bearer <token>`
+
+<aside class="notice">
+No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
+
+This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other insecure locations when credentials are sent via query URLs.
+</aside>
+
 ## Basic Authentication
 
-> Simple request using email and password:
-
-```bash
-curl https://api.uphold.com/v0/me \
-  -H 'OTP-Method-Id: <Method-Id>' \
-  -H 'OTP-Token: <OTP-Token>' \
-  -u <email>:<password>
-```
+For **personal usage only** you may choose to use a **Basic Authentication**. Uphold strongly discourage the use of this authentication option. This is normally used to test some endpoint using `curl`.
 
 You can use Basic Authentication by providing your email and password combination.
 
 If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP headers `OTP-Token: Required` and `OTP-Method-Id: Required`.
 In which case, execute the command above again, this time passing your OTP verification code and method id as a headers, like so: `OTP-Token: <OTP-Token>` and `OTP-Method-Id: <OTP-Method-Id>`.
+
+> Request my data using email and password combination in clear text:
+
+```bash
+curl https://api-sandbox.uphold.com/v0/me \
+  -H 'OTP-Method-Id: <Method-Id>' \
+  -H 'OTP-Token: <OTP-Token>' \
+  -u <email>:<password>
+```
+
