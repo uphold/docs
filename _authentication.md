@@ -2,22 +2,26 @@
 
 Uphold is an OAuth 2.0 compliant service.
 
-It is mandatory that partners with **Business Accounts** looking to integrate with our API <u>**must request**</u> Uphold to [register an application](#registering-an-application). 
+It is mandatory that partners with **Business Accounts** looking to integrate with this API <u>**must request**</u> Uphold to [register an application](https://support.uphold.com/hc/en-us/articles/217210266) and access roles. 
 
-## Production/Sandbox
+![register](assets/register.png) 
 
-- Production - Site/API
+## Production/Sandbox Endpoints
+
+- **Production** - Site/API
   - `https://uphold.com` 
   - `https://api-uphold.com` 
-- Sandbox - Site/API
+- **Sandbox** - Site/API
   - `https://sandbox.uphold.com` 
   - `https://api-sandbox.com` 
 
-**Please use the correct URL for your scenario.** For documentation proposes we are going to use the sandbox Urls.
+**Please use the correct Endpoint for your scenario.** For documentation proposes we are going to use the sandbox Urls.
+
+
 
 ## Web application flow 
 
-Ideal for Partner web/mobile applications that wish to retrieve information about a user's Uphold account or take actions on their behalf. 
+Ideal for Partner web/mobile applications that wish to retrieve information about a user's Uphold account or take actions <u>on their behalf</u>. 
 
 ### Use case
 
@@ -45,19 +49,32 @@ state     | **yes**  | An unguessable, cryptographically secure random string us
 
 `https://sandbox.uphold.com/authorize/MY_CLIENT_ID?scope=user:read&state=MY_UNGUESSABLE_STATE`
 
-![Authorization](assets/Authorization.png)
+![Authorization](assets/authorization.png)
 
-If everything goes well the Uphold API executes a callback URL **previously** defined when a Partner sets up an application.
+If everything goes well the Uphold API executes a callback URL **previously** defined by the Partner after Uphold **application/roles** request approval.
 
 ![flow](assets/flow.png) 
 
 #### Step 2 - Requesting an access Token
 
-If the user accepts your request, Uphold will redirect the user back to your callback URL with a temporary `code` and the previously provided `state`, _as is_.
+If the user accepts your request, Uphold will redirect the user back to the Partner callback URL with a temporary `code` and the previously provided `state`, _as is_.
 
 This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
 
 The Partner application is **now** responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
+
+**Now**, you may then exchange this `code` for an `access token` using the following endpoint:
+
+`POST https://api-sandbox.uphold.com/oauth2/token` 
+
+<u>Parameters:</u>
+
+| Parameter     | Required | Description                                                  |
+| ------------- | -------- | ------------------------------------------------------------ |
+| client_id     | **yes**  | The application's *clientId*. Please use HTTP Basic Authentication when possible. |
+| client_secret | **yes**  | The application's *clientSecret*. Please use HTTP Basic Authentication when possible. |
+| code          | **yes**  | The code acquired in step 1.                                 |
+| grant_type    | **yes**  | Must be set to *'authorization_code'*.                       |
 
 > Here is a curl example to request exchanging the `code` for a `token`:
 
@@ -78,19 +95,6 @@ curl https://api-sandbox.uphold.com/oauth2/token \
 }
 ```
 
-**Now**, you may then exchange this `code` for an `access token` using the following endpoint:
-
-`POST https://api-sandbox.uphold.com/oauth2/token` 
-
-<u>Parameters:</u>
-
-Parameter     | Required | Description
-------------- | -------- | -------------------------------------------------------------------------------------
-client_id     | **yes** | The application's *clientId*. Please use HTTP Basic Authentication when possible.
-client_secret | **yes**  | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
-code          | **yes**  | The code acquired in step 1.
-grant_type    | **yes**  | Must be set to *'authorization_code'*.
-
 <aside class="notice">
   <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
 </aside>
@@ -100,6 +104,8 @@ Once you have obtained an access token you may call any protected API method on 
 
 #### Step 3 - Using the access token to get my cards
 
+Finally, the Partner application can now use the provided **token** to query other protected endpoints of Uphold API.
+
 > Request using the 'Authorization' header:
 
 ```bash
@@ -108,9 +114,10 @@ curl https://api-sandbox.uphold.com/v0/me/cards \
 ```
 
 
+
 ## Client credentials flow
 
-For **business usage only**.  Partners may choose to use client credentials authentication, this requires manual approval from Uphold and a **particular role approval**.
+For **business usage only**.  Partners may choose to use client credentials authentication, this requires manual approval from Uphold with a **particular custom role approval**.
 
 ### Use case
 
@@ -130,10 +137,6 @@ curl https://api-sandbox.uphold.com/oauth2/token \
   -d 'grant_type=client_credentials'
 ```
 
-To create a client credentials token you may use the following endpoint:
-
-`POST https://api-sandbox.uphold.com/oauth2/token` 
-
 <u>Parameters:</u>
 
 Parameter     | Required | Description
@@ -151,12 +154,16 @@ Once you have obtained an access token you may call any protected API method on 
 
 #### Step 2 - Using the token to get my cards
 
+Finally, the Partner application can now use the provided **token** to query other protected endpoints of Uphold API.
+
 > Request using the 'Authorization header':
 
 ```bash
 curl https://api-sandbox.uphold.com/v0/me/cards \
   -H "Authorization: Bearer <token>"
 ```
+
+
 
 ## Personal Access Tokens (PAT)
 
@@ -197,10 +204,6 @@ curl https://api-sandbox.uphold.com/v0/me/tokens \
     "id":"a97bb994-6e24-4a89-b653-e0a6d0bcf634"
 }
 ```
-
-To create a Personal Access Token you may use the following endpoint:
-
-`POST https://api-sandbox.uphold.com/v0/me/tokens` 
 
 <u>Parameters:</u>
 
@@ -271,6 +274,8 @@ A PAT may be used for authenticating a request via the OAuth scheme.
 
 The `<token>` should be set as the `accessToken` received during creation.
 
+
+
 ## Security Notice (Web Flow/Client Credential/PAT)- Token Header
 
 Once you have obtained a **token** you may call any protected API method using the "Authorization" HTTP header in the format:
@@ -279,13 +284,13 @@ Once you have obtained a **token** you may call any protected API method using t
 
 <aside class="notice">
 No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
-
 This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other insecure locations when credentials are sent via query URLs.
-</aside>
+
+
 
 ## Basic Authentication
 
-For **personal usage only** you may choose to use a **Basic Authentication**. Uphold strongly discourage the use of this authentication option. This is normally used to test some endpoint using `curl`.
+For **personal usage only** you may choose to use **Basic Authentication**. Uphold <u>**strongly discourage**</u> the use of basic authentication. This is normally used to test some endpoint using `curl`.
 
 You can use Basic Authentication by providing your email and password combination.
 
