@@ -15,7 +15,7 @@ It is mandatory that partners with **Business Accounts** looking to integrate wi
   - `https://sandbox.uphold.com` 
   - `https://api-sandbox.com` 
 
-**Please use the correct Endpoint for your scenario.** For documentation proposes we are going to use the sandbox Urls.
+Please use the correct **endpoint** for your scenario. For documentation proposes we are going to use the sandbox Urls.
 
 
 
@@ -25,7 +25,7 @@ Ideal for Partner web/mobile applications that wish to retrieve information abou
 
 ### Use case
 
-Web/Mobile application that implement a user-facing web interface, to provide custom functionality for multiple Uphold users. This Auth-flow is usually used by Partners looking to integrate with Uphold API.
+Web/Mobile application that implement a user-facing web interface, to provide custom functionality for multiple Uphold users. This Auth-flow is used by Partners looking to integrate with Uphold API.
 
 [Uphold javascript web application authentication sample](https://github.com/uphold/rest-api-examples/rest-api/javascript/authentication/web-application-flow)
 
@@ -59,11 +59,11 @@ If everything goes well the Uphold API executes a callback URL **previously** de
 
 If the user accepts your request, Uphold will redirect the user back to the Partner callback URL with a temporary `code` and the previously provided `state`, _as is_.
 
-This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
+This temporary `code` is valid has  a duration of **5 minutes** and **can only be used once**.
 
 The Partner application is **now** responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
 
-**Now**, you may then exchange this `code` for an `access token` using the following endpoint:
+**Finally**, you may exchange this `code` for an `access token` using the following endpoint:
 
 `POST https://api-sandbox.uphold.com/oauth2/token` 
 
@@ -104,7 +104,7 @@ Once you have obtained an access token you may call any protected API method on 
 
 #### Step 3 - Using the access token to get my cards
 
-Finally, the Partner application can now use the provided **token** to query other protected endpoints of Uphold API.
+The Partner application can now use the provided **token** to query other protected endpoints of Uphold API.
 
 > Request using the 'Authorization' header:
 
@@ -262,6 +262,8 @@ Parameter | Required | Description
 token     | **yes**  | The PAT you wish to revoke.
 
 #### Step 3 - Using a PAT to get my data
+
+As stated, after "having" a PAT token there is no need to pass the 2FA headers if this security extra layer is active.
 
 > Example of using a personal access token to make requests to our API:
 
