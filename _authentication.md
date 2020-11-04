@@ -1,6 +1,6 @@
 # Authentication
 
-Uphold is an OAuth 2.0 compliant service.
+Uphold is an [OAuth 2.0](https://tools.ietf.org/html/rfc6749) compliant service.
 
 It is mandatory that partners with **Business Accounts** looking to integrate with this API <u>**must request**</u> Uphold to [register an application](https://support.uphold.com/hc/en-us/articles/217210266) and access roles. 
 
