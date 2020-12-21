@@ -215,10 +215,7 @@ Parameter   | Required | Description
 description | yes      | A human-readable description of this PAT.
 
 <aside class="notice">
-  Requires the <code>OTP-Method-Id</code> header to be sent with the id of a verified authentication method that belongs to the user.
-</aside>
-<aside class="notice">
-  Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token, belonging to the authentication method specified in <code>OTP-Method-Id</code>.
+  Requires the <code>OTP-Method-Id</code> header with the id of a verified authentication method that belongs to the user, and the <code>OTP-Token</code> header with a valid TOTP token associated to that authentication method.
 </aside>
 
 ### Revoking a PAT
