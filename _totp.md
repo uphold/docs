@@ -70,12 +70,8 @@ curl https://api.uphold.com/v0/me/authentication_methods/totp \
 `POST https://api.uphold.com/v0/me/authentication_methods/totp`
 
 <aside class="notice">
-  Requires the <code>OTP-Method-Id</code> header to be sent with the id of a verified authentication method that belongs to the user.
+  Requires the <code>OTP-Method-Id</code> header with the id of a verified authentication method that belongs to the user, and the <code>OTP-Token</code> header with a valid TOTP token associated to that authentication method.
 </aside>
-<aside class="notice">
-  Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token, belonging to the authentication method specified in <code>OTP-Method-Id</code>.
-</aside>
-
 
 ### Response
 
@@ -107,7 +103,6 @@ curl https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333
 ### Request
 
 `POST https://api.uphold.com/v0/me/authentication_methods/:id/verify`
-
 
 ### Response
 
