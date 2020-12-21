@@ -7,7 +7,7 @@ The following section documents how the Authentication Methods API works to prov
 
 ```bash
 curl https://api.uphold.com/v0/me/authentication_methods \
-  -H "Authorization: Bearer <token>"
+  -u <email>:<password>
 ```
 
 > The above command returns the following JSON:

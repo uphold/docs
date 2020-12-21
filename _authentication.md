@@ -187,10 +187,10 @@ To list Personal Access Tokens you may use the following endpoint:
 ```bash
 curl https://api.uphold.com/v0/me/tokens \
   -X POST \
-  -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -H "OTP-Method-Id: <Method-Id>" \
   -H "OTP-Token: <OTP-Token>" \
+  -u <email>:<password> \
   -d '{ "description": "My command line script" }'
 ```
 
