@@ -26,7 +26,7 @@ curl https://api.uphold.com/v0/countries
 
 ### Response
 
-> The above command returns the following JSON:
+> The above command returns the following JSON (truncated for conciseness):
 
 ```json
 [
@@ -40,7 +40,6 @@ curl https://api.uphold.com/v0/countries
     },
     "status": "ok"
   },
-  // ...
   {
     "alpha2": "PT",
     "currency": "EUR",
@@ -51,7 +50,6 @@ curl https://api.uphold.com/v0/countries
     },
     "status": "ok"
   },
-  // ...
   {
     "alpha2": "ZW",
     "currency": "ZWL",
