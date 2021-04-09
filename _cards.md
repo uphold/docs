@@ -240,8 +240,8 @@ Generate an address for a card.
 </aside>
 
 Parameter | Description
---------- | ----------------------------------------------------------------------------------------------
-network   | The address network. Possible values are: `bitcoin`, `ethereum` or `litecoin`.
+--------- | -----------------------------------------------------------------------------------------------------------------------------------------------------
+network   | The address network. Possible values are: `bitcoin`, `bitcoin-cash`, `bitcoin-gold`, `dash`, `ethereum`, `interledger`, `litecoin`, and `xrp-ledger`.
 
 ### Response
 
