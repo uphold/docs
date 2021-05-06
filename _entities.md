@@ -273,7 +273,7 @@ Property | Description
 -------- | ---------------------------------------------------------------------------------------------
 amount   | The amount to be transacted.
 currency | The currency for said amount.
-pair     | The currency pair representing the denominated currency and the currency at `origin`.
+pair     | The [currency pair](#currency-pair-object) representing the denominated currency and the currency at `origin`.
 rate     | The quoted rate for converting between the denominated currency and the currency at `origin`.
 
 <aside class="notice">
@@ -304,7 +304,7 @@ Property | Description
 -------- | -----------------------------------------------------------------------------------------------
 currency | The currency in which the total commission is expressed.
 margin   | Uphold's commission expressed in percentage.
-pair     | The currency pair associated with any exchange that took place, if any.
+pair     | The [currency pair](#currency-pair-object) associated with any exchange that took place, if any.
 progress | In case a transaction is coming in from the outside, how many confirmations have been received.
 rate     | The exchange rate of the transaction.
 ttl      | The time this quote is good for, in milliseconds.
@@ -320,7 +320,7 @@ amount     | The amount to be transacted.
 commission | The total commission taken on this transaction, either at origin or at destination.
 currency   | The currency in which the amount and commission are expressed. The value is always `USD`.
 fee        | The normalized fee amount.
-rate       | The exchange rate for this pair.
+rate       | The exchange rate for this [currency pair](#currency-pair-object).
 target     | Can be `origin` or `destination` and determines where the fee was applied.
 
 ### Origin
