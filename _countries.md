@@ -145,7 +145,7 @@ currency   | The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the 
 method     | The type of payment method. One of "[ach](https://en.wikipedia.org/wiki/ACH_Network)", "[card](https://en.wikipedia.org/wiki/Credit_card)", or "[sepa](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area)".
 
 <aside class="notice">
-  Each method+currency pair is represented as a separate entry in this list. For example, if both USD and EUR are supported for the <code>card</code> method, the list will contain two entries, one with the USD-card pair, and one with the EUR-card pair.
+  Each method+currency pair is represented as a separate entry in this list. For example, if both <code>USD</code> and <code>EUR</code> are supported for the <code>card</code> method, the list will contain two entries, one with the <code>USD</code>-<code>card</code> pair, and one with the <code>EUR</code>-<code>card</code> pair.
 </aside>
 
 ## Get Country Subdivisions
