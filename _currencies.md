@@ -31,7 +31,7 @@ curl https://api.uphold.com/v0/assets
     },
     "name": "Bitcoin",
     "status": "open",
-    "symbol": "฿",
+    "symbol": "₿",
     "type": "cryptocurrency"
   },
   {
@@ -90,7 +90,7 @@ code       | Uppercase abbreviation of the asset, e.g. "BTC", USD", "C", or "BRK
 formatting | Specification for user-facing display, including number formatting and placement of the code and symbol.
 name       | Full name of the asset, e.g. "Euro", "Basic Attention Token", or "0x".
 status     | Current trading status. See [below](#asset-status) for more details.
-symbol     | A short and well-known representation of the asset, if one exists — e.g. "$", "฿", or "Kč".
+symbol     | A short and well-known representation of the asset, if one exists — e.g. "$", "₿", or "Kč".
 type       | Type of asset — one of `commodity`, `equity`, `cryptocurrency`, `fiat`, `stablecoin`, or `utility_token`.
 
 If the request is unauthenticated, the full list of assets supported by Uphold is returned.
