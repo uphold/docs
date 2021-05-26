@@ -87,6 +87,12 @@ curl https://api.uphold.com/v0/assets \
   -H "Authorization: Bearer <token>"
 ```
 
+> Example of filtering the list to show only assets of specific `type`s:
+
+```bash
+curl https://api.uphold.com/v0/assets?q=type:cryptocurrency,fiat,equity
+```
+
 Get the list of supported currencies and other financial assets, with details as described by the table below:
 
 Property   | Description
@@ -102,6 +108,9 @@ If the request is unauthenticated, the full list of assets supported by Uphold i
 Authenticated requests, on the other hand, will filter the output,
 returning only the assets available for the current user,
 which can depend on factors such as their country and state of residency.
+
+The list of assets returned can also be filtered by `type` using a query string parameter,
+as shown in the example to the side.
 
 Please note that this endpoint is [paginated](#pagination), due to the large number of supported assets (hundreds),
 so multiple requests may be required to get the complete list.
