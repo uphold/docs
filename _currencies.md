@@ -1,7 +1,7 @@
 # Currencies
 
 Uphold [supports](https://uphold.com/en/transparency) multiple financial assets,
- including traditional currencies, cryptocurrencies, stablecoins, precious metals, U.S. equities, and more.
+including traditional currencies, cryptocurrencies, stablecoins, precious metals, U.S. equities, and more.
 
 <aside class="notice">
   For brevity and convenience, we may refer to any such asset simply as "currency" throughout the API documentation.
@@ -96,12 +96,15 @@ formatting | Specification for user-facing display, including number formatting 
 name       | Full name of the asset, e.g. "Euro", "Basic Attention Token", or "0x".
 status     | Current trading status. See [below](#asset-status) for more details.
 symbol     | A short and well-known representation of the asset, if one exists — e.g. "$", "₿", or "Kč".
-type       | Type of asset. Possible values are `commodity`, `equity`, `cryptocurrency`, `fiat`, `stablecoin` and `utility_token`.
+type       | Type of asset. Possible values are `commodity`, `cryptocurrency`, `equity`, `fiat`, `stablecoin` and `utility_token`.
 
 If the request is unauthenticated, the full list of assets supported by Uphold is returned.
-Authenticated requests, on the other hand, will filter the output, returning only the assets available for the current user, which can depend on factors such as their country and state of residency.
+Authenticated requests, on the other hand, will filter the output,
+returning only the assets available for the current user,
+which can depend on factors such as their country and state of residency.
 
-Please note that this endpoint is [paginated](#pagination), due to the large number of supported assets (hundreds), so multiple requests may be required to get the complete list.
+Please note that this endpoint is [paginated](#pagination), due to the large number of supported assets (hundreds),
+so multiple requests may be required to get the complete list.
 
 ### Asset status
 
