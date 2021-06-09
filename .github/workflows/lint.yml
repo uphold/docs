@@ -1,0 +1,44 @@
+name: Documentation linting and notify parent on merge success
+
+on: 
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+  
+jobs:
+  lint-changelog:
+    name: Lint docs files
+    runs-on: [self-hosted, linux, x64, ec2]
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      
+    - name: Lint docs files
+      uses: docker://avtodev/markdown-lint:v1 # fastest way
+      with:
+        #rules: '/lint/rules/changelog.js'
+        config: './markdownlint.jsonc'
+        args: './docs'
+
+  notify:
+    name: 'Submodule Notify Parent'
+    needs: lint-changelog
+    runs-on: [self-hosted, linux, x64, ec2]
+    if: github.ref == 'refs/heads/master'
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - name: Github REST API Call
+      env:
+        CI_TOKEN: ${{ secrets.GH_API_TOKEN }}
+        PARENT_REPO: uphold/internship-slate
+        PARENT_BRANCH: master
+        WORKFLOW_ID: 9199176
+      run: |
+        curl -fL --retry 3 -X POST -H "Accept: application/vnd.github.v3+json" -H "Authorization: token ${{ env.CI_TOKEN }}" https://api.github.com/repos/${{ env.PARENT_REPO }}/actions/workflows/${{ env.WORKFLOW_ID }}/dispatches -d '{"ref":"${{ env.PARENT_BRANCH }}"}'
