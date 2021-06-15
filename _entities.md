@@ -24,8 +24,8 @@ brand    | The brand of the `card` account.
 currency | The currency in which the account is denominated.
 id       | A unique ID associated with the account.
 label    | The display name of the account as chosen by the user.
-status   | The current status of the account. Possible values are: `ok`, `failed`.
-type     | The type of the account. Possible values are: `card`, `sepa`.
+status   | The current status of the account. Possible values are `ok` and `failed`.
+type     | The type of the account. Possible values are `card` and `sepa`.
 
 ## Authentication Method Object
 
@@ -47,7 +47,7 @@ Property     | Description
 default      | A boolean signalling whether or not the method is the default.
 id           | A unique ID associated with the account.
 label        | The display name of the authentication method.
-type         | The type of authentication method. Possible values are: `authy`, `totp`.
+type         | The type of authentication method. Possible values are `authy` and `totp`.
 verified     | A boolean signalling whether or not the authentication method has been verified.
 verifiedAt   | The date and time of verification of the authentication method.
 
@@ -281,7 +281,7 @@ type         | The nature of the transaction. Possible values are `deposit`, `tr
 message      | An optional note added when initiating the transaction. Expected to be human-readable prose, e.g. for providing additional information and context about the nature/purpose of the transaction.
 denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
 fees         | The fees that were applied to the transaction. See [Fees](#fees).
-status       | The current status of the transaction. Possible values are: `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
+status       | The current status of the transaction. Possible values are `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
 params       | Other parameters of this transaction. See [Parameters](#parameters).
 createdAt    | The date and time the transaction was initiated.
 network      | The network of the transaction (`uphold` for internal transactions).
@@ -370,7 +370,7 @@ isMember    | A boolean signaling if the origin user has completed the membershi
 node        | The details about the transaction origin node.
 rate        | The rate for conversion between origin and destination, as expressed in the currency at origin (the inverse of `destination.rate`).
 sources     | The transactions where the value was originated from (id and amount).
-type        | The type of endpoint. Possible values are 'card' and 'external'.
+type        | The type of endpoint. Possible values are `card` and `external`.
 
 <aside class="notice">
   Commissions are incurred only when a currency conversion is required. A commission is charged at origin when the denomination currency is different from the origin currency, and it's deducted at destination when the denomination currency is different from the destination currency.
@@ -392,7 +392,7 @@ fee         | The Bitcoin network Fee, if destination is a BTC address but origi
 isMember    | A boolean signaling if the destination user has completed the membership process.
 node        | The details about the transaction destination node.
 rate        | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of `origin.rate`).
-type        | The type of endpoint. Possible values are 'email', 'card' and 'external'.
+type        | The type of endpoint. Possible values are `email`, `card` and `external`.
 
 ## User Object
 
