@@ -91,7 +91,7 @@ formatting | Specification for user-facing display, including number formatting 
 name       | Full name of the asset, e.g. "Euro", "Basic Attention Token", or "0x".
 status     | Current trading status. See [below](#asset-status) for more details.
 symbol     | A short and well-known representation of the asset, if one exists — e.g. "$", "₿", or "Kč".
-type       | Type of asset — one of `commodity`, `equity`, `cryptocurrency`, `fiat`, `stablecoin`, or `utility_token`.
+type       | Type of asset. Possible values are `commodity`, `equity`, `cryptocurrency`, `fiat`, `stablecoin` and `utility_token`.
 
 If the request is unauthenticated, the full list of assets supported by Uphold is returned.
 Authenticated requests, on the other hand, will filter the output, returning only the assets available for the current user, which can depend on factors such as their country and state of residency.
