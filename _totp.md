@@ -138,4 +138,5 @@ curl https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333
 
 ### Response
 
-Returns an HTTP status code of <code>204</code> and no JSON body, in case of success.
+Returns an HTTP status code of `204` ([No Content](https://datatracker.ietf.org/doc/html/rfc7231#section-6.3.5))
+and no JSON body, in case of success.
