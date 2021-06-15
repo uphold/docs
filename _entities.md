@@ -1,6 +1,7 @@
 # Entities
 
 ## Account Object
+
 > An example account encoded in JSON looks like this:
 
 ```json
@@ -20,12 +21,12 @@
 Property | Description
 -------- | -----------------------------------------------------------------------
 billing  | The relevant billing details associated with the account.
-brand    | The brand of the `card` account.
+brand    | The brand of the account (if it is of type `card`).
 currency | The currency in which the account is denominated.
 id       | A unique ID associated with the account.
 label    | The display name of the account as chosen by the user.
-status   | The current status of the account. Possible values are `ok` and `failed`.
-type     | The type of the account. Possible values are `card` and `sepa`.
+status   | The current status of the account. Possible values are `blocked`, `expired`, `failed`, `ok` and `pending`.
+type     | The type of the account. Possible values are `ach`, `card` and `sepa`.
 
 ## Authentication Method Object
 
@@ -150,7 +151,7 @@ pair     | The currency pair AB represents moving from A to B.
 
 > An example phone encoded in JSON looks like this:
 
-```
+```json
 {
   "e164Masked": "+XXXXXXXXX04",
   "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
