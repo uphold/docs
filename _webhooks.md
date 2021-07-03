@@ -1,11 +1,13 @@
 # Webhooks
 
-For **business usage only** you may choose to use webhooks to get updates in real time instead of having to poll the API. This requires manual approval from Uphold.
+For **business usage only** you may choose to use webhooks to get updates in real time instead of having to poll the API.
+This requires manual approval from Uphold.
 
 A webhooks integration requires the following details:
 
 * **Subscription URL:** the URL for Uphold to send webhook requests to;
-* **Secret:** the secret for Uphold to use to sign all requests and prove they have not been tampered (not the same as the client secret that is used for Uphold's API).
+* **Secret:** the secret for Uphold to use to sign all requests and prove they have not been tampered
+  (not the same as the client secret that is used for Uphold's API).
 
 Each webhook uses the following format:
 
@@ -24,7 +26,8 @@ userId    | Unique identifier of the Uphold user that owns the resource.
 sha512=040518ad86dd4bea08ba6d23240f53a9f35175bcb3c548e83f33acc792aabcafe29954f92b0e1d6ede9192c851b3ba0768f760f516e168c7b318a17d2714bf52
 ```
 
-In addition, the request also includes a signature header, that can be used to verify the request body has not been tampered. That header is built by signing the request body with the previously provided secret, using the SHA512 algorithm.
+In addition, the request also includes a signature header, that can be used to verify the request body has not been tampered.
+That header is built by signing the request body with the previously provided secret, using the SHA512 algorithm.
 
 ## Card Updated
 
@@ -49,7 +52,8 @@ In addition, the request also includes a signature header, that can be used to v
 
 ```
 
-Returns the card details and context whenever a card has changed its `available` or `balance`, i.e. whenever it sends or receives a transaction. The context includes the id of that transaction.
+Returns the card details and context whenever a card has changed its `available` or `balance`, i.e. whenever it sends or receives a transaction.
+The context includes the id of that transaction.
 
 This webhook returns the following payload:
 

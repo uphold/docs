@@ -1,10 +1,17 @@
 # Rate Limits
 
-The API applies rate limits based on the number of requests per a predefined interval (i.e. a time-window). We currently do not differentiate between authenticated and unauthenticated requests. The global rate limit takes into account the remote client IP only.
+The API applies rate limits based on the number of requests per a predefined interval (i.e. a time-window).
+We currently do not differentiate between authenticated and unauthenticated requests.
+The global rate limit takes into account the remote client IP only.
 
-We plan on changing this policy in the future to one that limits on an account-by-account basis. For now, please be advised that those operating from corporate networks may hit their limit faster given that everyone may present the same IP address to our network.
+We plan on changing this policy in the future to one that limits on an account-by-account basis.
+For now, please be advised that those operating from corporate networks may hit their limit faster,
+given that everyone may present the same IP address to our network.
 
-Some endpoints have stricter rules as it relates to rate limits. These endpoints may additionally take into consideration the user's account or email address. For example, there can be 10 requests per 10 minute time period per IP to the `/password/forgot` endpoint; but multiple IPs can only make 3 requests per 5 minute time period per user account (e.g. `foo@bar.com`).
+Some endpoints have stricter rules as it relates to rate limits.
+These endpoints may additionally take into consideration the user's account or email address.
+For example, there can be 10 requests per 10 minute time period per IP to the `/password/forgot` endpoint;
+but multiple IPs can only make 3 requests per 5 minute time period per user account (e.g. `foo@bar.com`).
 
 The following table indicates the current rate limits:
 
@@ -22,7 +29,9 @@ POST /users                               |         10 / 10-min window |        
 
 ## Response Headers
 
-The current rate limit in effect is explained via custom HTTP headers as described in the table below. Additionally, the standard HTTP `Retry-After` header field will be appended when the rate limit is exhausted and indicates, in delta-seconds, how long until the rate limit window is reset.
+The current rate limit in effect is explained via custom HTTP headers as described in the table below.
+Additionally, the standard HTTP `Retry-After` header field will be appended when the rate limit is exhausted,
+and indicates, in delta-seconds, how long until the rate limit window is reset.
 
 Header               | Description
 -------------------- | ----------------------------------------------------------------------------------------------------------------------

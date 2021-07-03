@@ -1,6 +1,8 @@
 # Introduction
 
-Welcome to the Uphold API — we're glad to have you! Here you can find all the documentation you need to help you create custom and revolutionary new services powered by the Uphold Platform. Together, with your ingenuity, we can serve the needs of individuals and organizations across the globe and change the financial services ecosystem forever.
+Welcome to the Uphold API — we're glad to have you!
+Here you can find all the documentation you need to help you create custom and revolutionary new services powered by the Uphold Platform.
+Together, with your ingenuity, we can serve the needs of individuals and organizations across the globe and change the financial services ecosystem forever.
 
 ## API code samples
 

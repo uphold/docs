@@ -1,6 +1,7 @@
 # One-Time Password
 
-Uphold provides a TOTP (Time-Based One-Time Password) mechanism to secure user accounts. Adopting and adhering to this mechanism is recommended for safety reasons.
+Uphold provides a TOTP (Time-Based One-Time Password) mechanism to secure user accounts.
+Adopting and adhering to this mechanism is recommended for safety reasons.
 The following section documents how the Authentication Methods API works to provide support for this security mechanism.
 
 ## List Authentication Methods
