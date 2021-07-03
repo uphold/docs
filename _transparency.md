@@ -254,7 +254,7 @@ curl https://api.uphold.com/v0/reserve/statistics
 ```
 
 To assist developers with tracking the overall status of our Reserve, we provide a summary of all the obligations and assets within it.
-Then for convenience's sake we compute the value of each our holdings in all of the currencies we support, making it easy for example to display our total US dollar liabilities, but expressed in Euros.
+Then, for convenience's sake, we compute the value of each our holdings in all of the currencies we support, making it easy for example to display our total US dollar liabilities, but expressed in Euros.
 For example, a request to fetch a summary will return an array of assets with the following properties:
 
 Property | Description
@@ -354,7 +354,7 @@ Instead, Uphold owes them the $507.51 they exchanged for that bitcoin.
 </code></pre>
 
 This transfer of value affects our liabilities immediately and in real-time, and thus is reflected in real-time in the ledger.
-But when our obligations to our members change a possible imbalance in our Reserve is introduced.
+But when our obligations to our members change, a possible imbalance in our Reserve is introduced.
 To compensate for this, we must make changes to the assets as well.
 These changes to our assets may or may not happen in real-time.
 This would therefore be recorded in our ledger at some point in the future as follows:
@@ -469,7 +469,7 @@ By following these transactions you walk backwards down different paths of the R
 ### Security and Privacy
 
 All transactions are made public, but specific details about the transaction may be withheld from parties who were not a party to said transaction.
-To control this we would require developers to authenticate prior to retrieving privileged information relating to a transaction.
+To control this, we require developers to authenticate prior to retrieving privileged information relating to a transaction.
 
 ### Deposits
 

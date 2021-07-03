@@ -1,6 +1,6 @@
 # Authentication
 
-Uphold is an OAuth 2.0 compliant service.
+Uphold is an [OAuth 2.0](https://oauth.net/2/)-compliant service.
 
 Partners looking to integrate with our API must [register an application](#registering-an-application).
 Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow).
@@ -20,12 +20,18 @@ Or for sandbox applications:
 
 `https://sandbox.uphold.com/authorize/<client_id>`
 
+> Example of an authorization request URL:
+
+```
+https://uphold.com/authorize/<client_id>?state=<state_string>&scope=accounts:read%20cards:read
+```
+
 Supported query parameters:
 
 Parameter | Required | Description
---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------
-intention | no       | Unauthenticated users will be redirected to the `login` page, this behavior can be changed by sending `signup` as the `intention` value.
-scope     | yes      | Permissions to request from the user.
+--------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------
+intention | no       | By default, unauthenticated users will be redirected to the `login` page. This behavior can be changed by sending `signup` as the `intention` value.
+scope     | yes      | Permissions to request from the user. Multiple scopes [should be](https://tools.ietf.org/html/rfc6749#section-3.3) separated by spaces.
 state     | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
 
 ### Step 2 - Requesting a Token
@@ -92,7 +98,7 @@ Once you have obtained an access token you may call any protected API method on 
 <aside class="notice">
   <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
 
-  This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
+  This prevents attackers from stealing tokens from the user's browser history, logs, referrer headers and other insecure locations when credentials are sent via query URLs.
 </aside>
 
 ## Client Credentials Flow
@@ -100,7 +106,7 @@ Once you have obtained an access token you may call any protected API method on 
 Ideal for backend integrations that do not require access to other Uphold user accounts.
 
 For **business usage only** you may choose to use client credentials authentication.
-This requires manual approval from Uphold.
+This requires [manual approval](#support) from Uphold.
 
 ### Creating a Token
 
@@ -146,7 +152,7 @@ Once you have obtained a client credentials token you may call any protected API
 <aside class="notice">
   <strong>Security Notice</strong>: No other method of authentication is supported.
   For security reasons only the "Authorization" header will be processed.
-  This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
+  This prevents attackers from stealing tokens from the user's browser history, logs, referrer headers and other insecure locations when credentials are sent via query URLs.
 </aside>
 
 ## Personal Access Tokens (PAT)
@@ -270,5 +276,5 @@ curl https://api.uphold.com/v0/me \
 
 You can use Basic Authentication by providing your email and password combination.
 
-If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP headers `OTP-Token: Required` and `OTP-Method-Id: Required`.
-In which case, execute the command above again, this time passing your OTP verification code and method id as a headers, like so: `OTP-Token: <OTP-Token>` and `OTP-Method-Id: <OTP-Method-Id>`.
+If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP header `OTP-Token: Required` and/or `OTP-Method-Id: Required`.
+In which case, execute the command above again, this time passing your OTP verification code and method id as headers, like so: `OTP-Token: <OTP-Token>` and `OTP-Method-Id: <OTP-Method-Id>`.

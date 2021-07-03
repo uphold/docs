@@ -1,6 +1,6 @@
 # Tickers
 
-Developers can query at any time the rates we utilize when exchanging one form of value for another.
+At any time, you can query the rates we utilize when exchanging one form of value for another.
 These are expressed in [currency pairs](#currency-pair-object).
 
 ## Get Tickers for Currency
@@ -446,7 +446,7 @@ curl https://api.uphold.com/v0/ticker/USD
 }]
 ```
 
-This method allows developers to find all exchanges rates relative to a given currency.
+Lists all exchange rates relative to a given currency.
 
 ### Request
 
@@ -487,7 +487,7 @@ curl https://api.uphold.com/v0/ticker/EUR-USD
 }
 ```
 
-This method allows developers to find the exchange rate of a currency relative to any other currency.
+Retrieves the exchange rate of a currency relative to any other currency.
 
 <aside class="notice">
 The order of the currencies in the pair affects the output.
