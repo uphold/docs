@@ -134,7 +134,8 @@ name      | The display name of the contact created by joining the first and las
 }
 ```
 
-A currency pair is the combination of two currencies, encoded as two currency codes, e.g. USD, GBP, EUR, concatenated together to represent the current status of converting the first currency into the second. For example, the currency pair "BTCUSD" represents moving from bitcoin to US dollars.
+A currency pair is the combination of two currencies, encoded as two currency codes, e.g. USD, GBP, EUR, concatenated together to represent the current status of converting the first currency into the second.
+For example, the currency pair "BTCUSD" represents moving from bitcoin to US dollars.
 
 Each currency pair has four properties:
 
@@ -265,7 +266,8 @@ verified            | A boolean indicating if this phone number has been verifie
 }
 ```
 
-Transactions record the movement of value into, within and out of the Uphold network. Transactions have the following properties:
+Transactions record the movement of value into, within and out of the Uphold network.
+Transactions have the following properties:
 
 <aside class="notice">
   There are two views of a transaction: public and private.
@@ -312,7 +314,8 @@ rate     | The quoted rate for converting between the denominated currency and t
 
 ### Fees
 
-The `fees` property contains an array of fees that were applied to the transaction. Each object in the array contains the following properties:
+The `fees` property contains an array of fees that were applied to the transaction.
+Each object in the array contains the following properties:
 
 Property   | Description
 ---------- | ---------------------------------------------------------------------------------
@@ -528,17 +531,22 @@ memberAt | The date when the user became a [verified member](https://support.uph
 
 ### User Status
 
-We communicate a number of different user statuses through our API. At a high-level users can be in one of four statuses:
+We communicate a number of different user statuses through our API.
+At a high-level users can be in one of four statuses:
 
-- **pending** - This status applies to a user that is in the process of creating an account; it means the signup process is not yet finalized.
-- **restricted** - This status means the user is allowed to login to the application, deposit or receive money, and perform trades, but they are not permitted to withdraw nor send money to other users. This status exists to allow users to satisfy additional data requirements.
-- **blocked** - This status is present when a user has violated our terms of service. In this status users are unable to login or access the product.
+- **pending** - This status applies to a user that is in the process of creating an account;
+  it means the signup process is not yet finalized.
+- **restricted** - This status means the user is allowed to login to the application, deposit or receive money, and perform trades, but they are not permitted to withdraw nor send money to other users.
+  This status exists to allow users to satisfy additional data requirements.
+- **blocked** - This status is present when a user has violated our terms of service.
+  In this status users are unable to login or access the product.
 - **ok** - Everything is ay-ok.
 
 ### User Verifications
 
 The `verifications` field can help communicate the reasons for a given user status, or what's missing to complete the membership process.
-These verifications have permissible values and in some cases, an associated reason. Here is an overview of the verifications field:
+These verifications have permissible values and in some cases, an associated reason.
+Here is an overview of the verifications field:
 
 Flag      | Permissible Values               | Reason         | Description
 --------- | -------------------------------- | -------------- | --------------------------------------------------------------------------------------

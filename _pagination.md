@@ -5,7 +5,8 @@ Collection endpoints with large dataset supports [Range Pagination Headers](http
 ## Request
 
 You can provide the `Range` header in your request to specify how many items you want to retrieve.
-The maximum number of items per page is 50. That is also the default value if you leave it unspecified.
+The maximum number of items per page is 50.
+That is also the default value if you leave it unspecified.
 
 > For example, here's how you'd fetch the five most recent transactions associated with the current user.
 > Note that the items are indexed from zero:

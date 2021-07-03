@@ -1,13 +1,18 @@
 # Currencies
 
-Uphold [supports](https://uphold.com/en/transparency) multiple financial assets, including traditional currencies, cryptocurrencies, stablecoins, precious metals, U.S. equities, and more.
+Uphold [supports](https://uphold.com/en/transparency) multiple financial assets,
+ including traditional currencies, cryptocurrencies, stablecoins, precious metals, U.S. equities, and more.
 
 <aside class="notice">
   For brevity and convenience, we may refer to any such asset simply as "currency" throughout the API documentation.
   In cases that only apply to specific classes of assets, we will clarify accordingly.
 </aside>
 
-In Uphold's API, various endpoints include currencies in their input or output. We represent all such currencies by an abbreviation **code** of variable length, typically containing uppercase letters (for example, a currency's [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code, an equity's [ticker symbol](https://en.wikipedia.org/wiki/Ticker_symbol), or other similar well-known representation).
+In Uphold's API, various endpoints include currencies in their input or output.
+We represent all such currencies by an abbreviation **code** of variable length, typically containing uppercase letters
+(for example, a currency's [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code,
+an equity's [ticker symbol](https://en.wikipedia.org/wiki/Ticker_symbol),
+or other similar well-known representation).
 
 ## List Supported Assets
 

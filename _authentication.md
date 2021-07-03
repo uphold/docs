@@ -2,7 +2,9 @@
 
 Uphold is an OAuth 2.0 compliant service.
 
-Partners looking to integrate with our API must [register an application](#registering-an-application). Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow). Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
+Partners looking to integrate with our API must [register an application](#registering-an-application).
+Applications that implement a user-facing web interface, to provide custom functionality for multiple Uphold users, should use the [Web Application Flow](#web-application-flow).
+Applications that implement a backend interface for a corporate partner (and therefore represent an Uphold user themselves) should use the [Client Credentials Flow](#client-credentials-flow).
 
 ## Web Application Flow
 
@@ -97,7 +99,8 @@ Once you have obtained an access token you may call any protected API method on 
 
 Ideal for backend integrations that do not require access to other Uphold user accounts.
 
-For **business usage only** you may choose to use client credentials authentication. This requires manual approval from Uphold.
+For **business usage only** you may choose to use client credentials authentication.
+This requires manual approval from Uphold.
 
 ### Creating a Token
 
@@ -141,8 +144,8 @@ Once you have obtained a client credentials token you may call any protected API
 `Authorization: Bearer <token>`
 
 <aside class="notice">
-  <strong>Security Notice</strong>: No other method of authentication is supported. For security reasons only the "Authorization" header will be processed.
-
+  <strong>Security Notice</strong>: No other method of authentication is supported.
+  For security reasons only the "Authorization" header will be processed.
   This prevents attackers from stealing tokens from the user's browser history, logs, referer headers and other unsecure locations when credentials are sent via query URLs.
 </aside>
 
@@ -150,7 +153,10 @@ Once you have obtained a client credentials token you may call any protected API
 
 Ideal for scripts, automated tools and command-line programs which remain under your control.
 
-For **personal usage only** you may choose to use a PAT. This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled. For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties. PATs can be issued and revoked individually.
+For **personal usage only** you may choose to use a PAT.
+This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled.
+For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties.
+PATs can be issued and revoked individually.
 
 ### Listing PATs
 

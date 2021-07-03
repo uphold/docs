@@ -1,6 +1,7 @@
 # Tickers
 
-Developers can query at any time the rates we utilize when exchanging one form of value for another. These are expressed in [currency pairs](#currency-pair-object).
+Developers can query at any time the rates we utilize when exchanging one form of value for another.
+These are expressed in [currency pairs](#currency-pair-object).
 
 ## Get Tickers for Currency
 
@@ -453,7 +454,8 @@ This method allows developers to find all exchanges rates relative to a given cu
 
 ### Response
 
-Returns an associative array containing the current rates Uphold has on record for the currency specified. If no currency is specified on the endpoint, USD currency pair will be returned by default.
+Returns an associative array containing the current rates Uphold has on record for the currency specified.
+If no currency is specified on the endpoint, USD currency pair will be returned by default.
 
 ## Get Tickers for Currency Pair
 

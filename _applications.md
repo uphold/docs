@@ -2,7 +2,8 @@
 
 ## Registering an application
 
-Developers will need to [register their application](https://support.uphold.com/hc/en-us/articles/217210266) before getting started. A registered application will be assigned a unique _Client Id_ and _Client Secret_.
+Developers will need to [register their application](https://support.uphold.com/hc/en-us/articles/217210266) before getting started.
+A registered application will be assigned a unique _Client Id_ and _Client Secret_.
 
 <aside class="notice">
   <strong>Security Notice</strong>: Your <i>Client Secret</i> should never be shared, must be kept secret at all times and should only be used from your server-side application.
@@ -20,7 +21,8 @@ Developers will need to [register their application](https://support.uphold.com/
 
 ## Permissions
 
-When requesting authorization from a user the application must specify the level of access needed. These _scopes_ are displayed to the user on the authorization form and currently the user cannot opt-out of individual scopes.
+When requesting authorization from a user the application must specify the level of access needed.
+These _scopes_ are displayed to the user on the authorization form and currently the user cannot opt-out of individual scopes.
 
 The API supports the following _scopes_:
 

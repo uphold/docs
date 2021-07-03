@@ -96,7 +96,8 @@ See the [user object](#user-object) documentation for details about the format o
 
 ### Cards
 
-The `cards` property will be removed from the response. To access the cards of a given user please refer to the appropriate specific [endpoint](#list-cards).
+The `cards` property will be removed from the response.
+To access the cards of a given user please refer to the appropriate specific [endpoint](#list-cards).
 
 ## Get User Phone Numbers
 
