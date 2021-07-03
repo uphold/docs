@@ -134,7 +134,7 @@ name      | The display name of the contact created by joining the first and las
 }
 ```
 
-A currency pair is the combination of two currencies, encoded as two currency codes, e.g. USD, GBP, EUR, concatenated together to represent the current status of converting the first currency into the second.
+A currency pair is the combination of two currencies, encoded as two [currency codes](#currencies) concatenated together to represent the current status of converting the first currency into the second.
 For example, the currency pair "BTCUSD" represents moving from bitcoin to US dollars.
 
 Each currency pair has four properties:

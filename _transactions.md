@@ -126,11 +126,11 @@ The first step is to prepare the transaction by specifying:
 
 The following table describes the types of transactions currently supported:
 
-Type       | Origin                             | Destination
----------- | ---------------------------------- | --------------------------------------------------------
-deposit    | _ACH_, _CARD_ or _SEPA_ account id | Uphold card id
-withdrawal | Uphold card id                     | _ACH_, _SEPA_ or _Bitcoin_ address
-transfer   | Uphold card id                     | An email address, an application id or an Uphold card id
+Type       | Origin                              | Destination
+---------- | ----------------------------------- | --------------------------------------------------------
+deposit    | ACH, credit card or SEPA account id | Uphold card id
+withdrawal | Uphold card id                      | ACH or SEPA account id, or cryptocurrency address
+transfer   | Uphold card id                      | Email address, Application id or Uphold card id
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`, and a status of `pending`.
 
@@ -777,7 +777,7 @@ This endpoint supports [Pagination](#pagination).
 Returns an array of [Transaction Objects](#transaction-object).
 
 <aside class="notice">
-  Be advised that this method has the potential to return a great deal of data.
+  Be advised that this method can potentially return a large amount of data.
 </aside>
 
 ## Get Transaction (Public)

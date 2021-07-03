@@ -91,7 +91,7 @@ Returns the data associated with the current user.
 See the [user object](#user-object) documentation for details about the format of the response.
 
 <aside class="notice">
-  Be advised that this method has the potential to return a great deal of data.
+  Be advised that this method can potentially return a large amount of data.
 </aside>
 
 ### Cards
