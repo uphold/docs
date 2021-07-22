@@ -339,6 +339,166 @@ url        | The URL of the 3DSecure confirmation request.
 
 A webpage for 3DSecure confirmation for the user to interact with.
 
+## Beneficiary Information
+
+As the cryptocurrency market grows and starts interacting more and more with the traditional finance world new rules are applied to the FinTech sector.
+As such, under the regulatory action of The Financial Action Task Force [FATF](https://www.fatf-gafi.org/), we are required to comply with the [travel rule](https://www.fatf-gafi.org/media/fatf/documents/recommendations/RBA-VA-VASPs.pdf) which requires us to "obtain, hold, and transmit required originator and beneficiary information in order to identify and report suspicious transactions, monitor the availability of information, take freezing actions, and prohibit transactions with designated persons and entities."
+
+> Example of a transaction creation payload including `beneficiary` and `purpose` fields:
+
+```json
+{
+  "beneficiary": {
+    "address": {
+      "city": "Ryleighfort",
+      "country": "US",
+      "line1": "32167 Mohr Land",
+      "state": "US-CA",
+      "zipCode": "47890"
+    },
+    "name": "Han Solo",
+    "relationship": "child"
+  },
+  "denomination": {
+    "amount": "3000",
+    "currency": "USD"
+  },
+  "destination": "invite-user@mail.com",
+  "purpose": "donations"
+}
+```
+
+Parameter | Required | Description
+--------- | -------- | -----------
+beneficiary | yes/no | The transaction beneficiary information. See [Beneficiary](#beneficiary). <br><br> <b>Required</b> for transfers to other users (invites included) and withdrawals above _$3000 USD_ (or _$1000 USD_, if the origin user is from Arizona, United States). <br><br>   <b>Note:</b> ACH withdrawals do <b>not require</b> the beneficiary information to be sent. We only support personal bank accounts therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
+purpose | yes/no | The reason for the transaction. <br><br> <b>Required</b> for transactions in which the relationship is not set to `myself`.
+
+### Beneficiary
+
+This beneficiary field has the following properties:
+
+Parameter | Required | Description
+--------- | ----------- | -----------
+address | yes/no | The transaction beneficiary address information. See [Address](#address). <br><br> <b>Required</b> for invites and external beneficiaries.
+name | yes/no | The beneficiary full name. <br><br> <b>Required</b> for invites and external beneficiaries.
+relationship | yes | Reflects the beneficiary's relationship to the transaction originator. <br><br> Possible values are `business`, `child`, `co_worker`, `friend`, `myself`, `parent`, `sibling`.
+
+### Address
+
+Property | Required | Description
+-------- |--------- | -----------
+city | yes | The beneficiary address city.
+country | yes | The beneficiary address country.
+line1 | yes | The beneficiary address line 1.
+line2 | no | The beneficiary address line 2.
+state | yes | The beneficiary address state.
+zipCode | yes | The beneficiary address zip code.
+
+### Beneficiary Requirements
+
+To obtain the transaction beneficiary requirements (or validate the `beneficiary` object) use the `?validate=true` query parameter when creating the quote. This will generate a validation error if any required beneficiary information is missing. Otherwise, the transaction will fail at the commit step with a similar error message.
+
+<aside class="notice">
+  Please note that at this moment, even with the <code>validate=true</code> parameter, the validation is only performed if a <code>beneficiary</code> object is passed.
+</aside>
+
+> Example of including the beneficiary information when creating a quote, alongside the remaining transaction data:
+
+```bash
+curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions' \
+  -H 'Authorization: Bearer <bearer-token>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "beneficiary": {
+      "address": {
+        "city": "Ryleighfort",
+        "country": "US",
+        "line1": "32167 Mohr Land",
+        "state": "US-CA",
+        "zipCode": "47890"
+      },
+      "name": "Han Solo",
+      "relationship": "child"
+    },
+    "denomination": {
+      "amount": "3000",
+      "currency": "USD"
+    },
+    "destination": "invite-user@mail.com",
+    "purpose": "donations"
+  }'
+```
+
+> Example of adding the beneficiary information when committing a quote:
+
+```bash
+curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions/<transaction-id>/commit' \
+  -H 'Authorization: Bearer <bearer-token>' \
+  -H 'Content-Type: application/json' \
+  -H 'OTP-Method-Id: <Method-Id>' \
+  -H 'OTP-Token: <OTP-Token>' \
+  -d '{
+    "beneficiary": {
+      "address": {
+        "city": "Ryleighfort",
+        "country": "US",
+        "line1": "32167 Mohr Land",
+        "state": "US-CA",
+        "zipCode": "47890"
+      },
+      "name": "Han Solo",
+      "relationship": "child"
+    },
+    "purpose": "donations"
+  }'
+```
+
+> In both cases, incomplete beneficiary information will be reported in a format similar to this:
+
+```json
+{
+  "code": "validation_failed",
+  "errors": {
+    "beneficiary": {
+      "code": "validation_failed",
+      "errors": {
+        "name": [
+          {
+            "code": "required",
+            "message": "This value is required"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+> Invalid beneficiary information will be reported like this:
+
+```json
+{
+  "code": "validation_failed",
+  "errors": {
+    "beneficiary": {
+      "code": "validation_failed",
+      "errors": {
+        "name": [
+          {
+            "code": "invalid_beneficiary",
+            "message": "The provided beneficiary is invalid"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+<aside class="notice">
+  For regulatory compliance reasons, the beneficiary name is checked by a sanctions screening process, and is expected to consist entirely of characters in the Latin, Cyrillic, Greek or Georgian alphabets, along with a limited set of special characters. These validations may result in an <code>invalid_beneficiary</code> error.
+</aside>
+
 ## Cancel a Transaction
 
 ```bash
