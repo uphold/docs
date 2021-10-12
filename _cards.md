@@ -190,7 +190,9 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b \
 Parameter | Description
 --------- | -----------------------------------------------------------------
 label     | The display name of the card. Max length: 140 characters.
-settings  | An object with the card's `position` and whether it is `starred`.
+settings  | This property contains the following keys:
+|         | `starred`: Indicates whether the card is starred or not.
+|         | <code class="notice">DEPRECATED</code> `position`: The card's current position.
 
 ### Response
 
