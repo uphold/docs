@@ -88,7 +88,9 @@ currency          | The currency by which the card is denominated.
 id                | A unique ID associated with the card.
 label             | The display name of the card as chosen by the user.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
-settings          | Contains the card's current `position` and whether the card is `starred` or not.
+settings          | This property contains the following keys:
+|                 | `starred`: Indicates whether the card is `starred` or not.
+|                 | <code class="notice">DEPRECATED</code> `position`: The card's current position.
 normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 
 ## Contact Object
