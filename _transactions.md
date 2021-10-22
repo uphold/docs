@@ -233,9 +233,9 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
     "rate": "0.84452"
   },
   "destination": {
+    "CardId": "e9225c6a-48b6-4e2e-ba36-beffdb5eb54e",
     "amount": "0.00075846",
     "base": "0.00076651",
-    "CardId": "e9225c6a-48b6-4e2e-ba36-beffdb5eb54e",
     "commission": "0.00000805",
     "currency": "BTC",
     "fee": "0.00",
@@ -251,9 +251,9 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
     "type": "card"
   },
   "origin": {
+    "CardId": "a6d35fcd-0ef3-41ed-acce-9c9d1dda6d57",
     "amount": "8.45",
     "base": "8.45",
-    "CardId": "a6d35fcd-0ef3-41ed-acce-9c9d1dda6d57",
     "commission": "0.00",
     "currency": "EUR",
     "fee": "0.00",
@@ -793,18 +793,51 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
   "denomination": {
     "amount": "25.00",
     "currency": "USD",
-    "rate": "1.00",
-    "pair": "USDUSD"
+    "pair": "USDUSD",
+    "rate": "1.00"
+  },
+  "destination": {
+    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
+    "amount": "0.02777777",
+    "base": "0.02777777",
+    "commission": "0.00",
+    "currency": "BTC",
+    "description": "Nuno Sousa",
+    "fee": "0.00",
+    "rate": "0.00111111",
+    "type": "card"
   },
   "fees": [{
-    "type": "exchange",
     "amount": "0.00",
-    "target": "destination",
     "currency": "BTC",
-    "percentage": "0.00"
+    "percentage": "0.00",
+    "target": "destination",
+    "type": "exchange"
   }],
   "id": "63dc7ccb-0e57-400d-8ea7-7d903753801c",
   "message": null,
+  "normalized": [{
+    "amount": "22.94",
+    "commission": "0.00",
+    "currency": "EUR",
+    "fee": "0.00",
+    "rate": "0.91759"
+  }],
+  "origin": {
+    "CardId": "f4dbc023-61bb-43e9-9ce6-7f34efd9e688",
+    "amount": "25.00",
+    "base": "25.00",
+    "commission": "0.00",
+    "currency": "USD",
+    "description": "Nuno Sousa",
+    "fee": "0.00",
+    "rate": "900.00000",
+    "sources": [{
+      "amount": "25.00",
+      "id": "4586e3f6-5fff-473f-b479-4e7ce2ba14cf"
+    }],
+    "type": "card"
+  },
   "params": {
     "currency": "USD",
     "margin": "0.00",
@@ -815,96 +848,15 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "type": "transfer"
   },
   "status": "completed",
-  "type": "transfer",
-  "normalized": [{
-    "fee": "0.00",
-    "rate": "0.91759",
-    "amount": "22.94",
-    "currency": "EUR",
-    "commission": "0.00"
-  }],
-  "origin": {
-    "amount": "25.00",
-    "base": "25.00",
-    "CardId": "f4dbc023-61bb-43e9-9ce6-7f34efd9e688",
-    "commission": "0.00",
-    "currency": "USD",
-    "description": "Nuno Sousa",
-    "fee": "0.00",
-    "rate": "900.00000",
-    "sources": [{
-      "id": "4586e3f6-5fff-473f-b479-4e7ce2ba14cf",
-      "amount": "25.00"
-    }],
-    "type": "card"
-  },
-  "destination": {
-    "amount": "0.02777777",
-    "base": "0.02777777",
-    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
-    "commission": "0.00",
-    "currency": "BTC",
-    "description": "Nuno Sousa",
-    "fee": "0.00",
-    "rate": "0.00111111",
-    "type": "card"
-  }
+  "type": "transfer"
 },
 {
   "createdAt": "2016-01-19T12:07:01.611Z",
   "denomination": {
     "amount": "0.01",
     "currency": "BTC",
-    "rate": "1.00",
-    "pair": "BTCBTC"
-  },
-  "fees": [{
-    "type": "network",
-    "amount": "0.0002",
-    "target": "origin",
-    "currency": "BTC"
-  }, {
-    "type": "withdrawal",
-    "amount": "0.00",
-    "target": "origin",
-    "currency": "BTC",
-    "percentage": "0.5"
-  }],
-  "id": "99191bf6-52d8-4f29-92e8-676b68c9a85b",
-  "message": null,
-  "network": "bitcoin",
-  "normalized": [{
-    "amount": "9.18",
-    "commission": "0.00",
-    "currency": "USD",
-    "fee": "0.18",
-    "rate": "900.00000"
-  }],
-  "params": {
-    "currency": "BTC",
-    "margin": "0.00",
     "pair": "BTCBTC",
-    "progress": "1",
-    "rate": "1.00",
-    "ttl": 7000,
-    "type": "external/out"
-  },
-  "status": "completed",
-  "type": "withdrawal",
-  "origin": {
-    "amount": "0.0102",
-    "base": "0.01",
-    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
-    "commission": "0.00",
-    "currency": "BTC",
-    "description": "Nuno Sousa",
-    "fee": "0.0002",
-    "rate": "1.00",
-    "sources": [{
-      "id": "390ed0ab-c014-43f3-868a-8ea3ea56025e",
-      "amount": "0.0102"
-    }],
-    "type": "card"
+    "rate": "1.00"
   },
   "destination": {
     "address": "n2eMqTT929pb1RDNuqEnxdaLau1rxy3efi",
@@ -916,7 +868,55 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "fee": "0.00",
     "rate": "1.00",
     "type": "external"
-  }
+  },
+  "fees": [{
+    "amount": "0.0002",
+    "currency": "BTC",
+    "target": "origin",
+    "type": "network"
+  }, {
+    "amount": "0.00",
+    "currency": "BTC",
+    "percentage": "0.5",
+    "target": "origin",
+    "type": "withdrawal"
+  }],
+  "id": "99191bf6-52d8-4f29-92e8-676b68c9a85b",
+  "message": null,
+  "network": "bitcoin",
+  "normalized": [{
+    "amount": "9.18",
+    "commission": "0.00",
+    "currency": "USD",
+    "fee": "0.18",
+    "rate": "900.00000"
+  }],
+  "origin": {
+    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
+    "amount": "0.0102",
+    "base": "0.01",
+    "commission": "0.00",
+    "currency": "BTC",
+    "description": "Nuno Sousa",
+    "fee": "0.0002",
+    "rate": "1.00",
+    "sources": [{
+      "amount": "0.0102",
+      "id": "390ed0ab-c014-43f3-868a-8ea3ea56025e"
+    }],
+    "type": "card"
+  },
+  "params": {
+    "currency": "BTC",
+    "margin": "0.00",
+    "pair": "BTCBTC",
+    "progress": "1",
+    "rate": "1.00",
+    "ttl": 7000,
+    "type": "external/out"
+  },
+  "status": "completed",
+  "type": "withdrawal"
 }]
 ```
 
@@ -955,30 +955,8 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions/a97bb994-6e24-4a89-b
   "denomination": {
     "amount": "1.00",
     "currency": "USD",
-    "rate": "1.00",
-    "pair": "USDUSD"
-  },
-  "fees": [],
-  "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-  "params": {
-    "currency": "USD",
-    "margin": "0.00",
     "pair": "USDUSD",
     "rate": "1.00"
-  },
-  "status": "cancelled",
-  "type": "transfer",
-  "origin": {
-    "amount": "1.00",
-    "base": "1.00",
-    "commission": "0.00",
-    "currency": "USD",
-    "fee": "0.00",
-    "rate": "1.00",
-    "sources": [{
-      "id": "35325c99-edeb-4625-9cd8-f56d4783c352",
-      "amount": "1"
-    }]
   },
   "destination": {
     "amount": "1.00",
@@ -987,7 +965,29 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions/a97bb994-6e24-4a89-b
     "currency": "USD",
     "fee": "0.00",
     "rate": "1.00"
-  }
+  },
+  "fees": [],
+  "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
+  "origin": {
+    "amount": "1.00",
+    "base": "1.00",
+    "commission": "0.00",
+    "currency": "USD",
+    "fee": "0.00",
+    "rate": "1.00",
+    "sources": [{
+      "amount": "1",
+      "id": "35325c99-edeb-4625-9cd8-f56d4783c352"
+    }]
+  },
+  "params": {
+    "currency": "USD",
+    "margin": "0.00",
+    "pair": "USDUSD",
+    "rate": "1.00"
+  },
+  "status": "cancelled",
+  "type": "transfer"
 }
 ```
 
@@ -1059,11 +1059,11 @@ curl 'https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions
       "errors": {
         "amount": [
           {
-            "code": "less_than_or_equal_to",
-            "message": "This value should be less than or equal to 25",
             "args": {
               "threshold": "25"
-            }
+            },
+            "code": "less_than_or_equal_to",
+            "message": "This value should be less than or equal to 25"
           }
         ]
       }

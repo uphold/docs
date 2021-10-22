@@ -178,12 +178,12 @@ curl https://api.uphold.com/v0/me/tokens \
 ```json
 [
   {
-      "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634",
-      "description": "token 1"
+    "description": "token 1",
+    "id": "a97bb994-6e24-4a89-b653-e0a6d0bcf634"
   },
   {
-      "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635",
-      "description": "token 2"
+    "description": "token 2",
+    "id": "b97bb994-6e24-4a89-b653-e0a6d0bcf635"
   }
 ]
 ```
@@ -210,9 +210,9 @@ curl https://api.uphold.com/v0/me/tokens \
 
 ```json
 {
-    "accessToken":"c386ae9c4557c1c661b15911071b06d9e6c3fc9a",
-    "description":"My command line script",
-    "id":"a97bb994-6e24-4a89-b653-e0a6d0bcf634"
+  "accessToken":"c386ae9c4557c1c661b15911071b06d9e6c3fc9a",
+  "description":"My command line script",
+  "id":"a97bb994-6e24-4a89-b653-e0a6d0bcf634"
 }
 ```
 

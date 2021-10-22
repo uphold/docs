@@ -120,10 +120,6 @@ so multiple requests may be required to get the complete list.
 The `status` field of an asset indicates whether it can be transacted at the moment.
 The possible values are:
 
-* `open` — the asset is in regular operation and transactions can be made with it.
-  Most assets remain in this status save for exceptional circumstances, where they can become `halted`.
-  Equities, on the other hand, will regularly transition between `open` and either `closed` or `extended`,
-  depending on their availability for 24/7 operation. See below for details on these statuses.
 * `closed` — the asset is temporarily disabled for trading;
   used for equities during periods outside the U.S. stock market's trading hours
   ([typically](https://www.nasdaq.com/stock-market-trading-hours-for-nasdaq) from 9:30am to 4:00pm ET on weekdays).
@@ -132,3 +128,7 @@ The possible values are:
   but will have a higher spread, as Uphold takes financial risk to provide this service.
 * `halted` — trading has been temporarily disabled due to extraordinary circumstances.
   This can be the case e.g. if a provider is down, or when a cryptocurrency is undergoing a fork.
+* `open` — the asset is in regular operation and transactions can be made with it.
+  Most assets remain in this status save for exceptional circumstances, where they can become `halted`.
+  Equities, on the other hand, will regularly transition between `open` and either `closed` or `extended`,
+  depending on their availability for 24/7 operation.
