@@ -11,24 +11,24 @@ curl https://api.uphold.com/v0/me/contacts \
 
 ```json
 [{
-  "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
-  "firstName": "Han",
-  "lastName": "Solo",
+  "addresses": [],
   "company": "Rebel Alliance",
   "emails": [
     "han.solo@rebelalliance.org"
   ],
-  "addresses": [],
+  "firstName": "Han",
+  "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
+  "lastName": "Solo",
   "name": "Han Solo"
 }, {
-  "id": "2f3b26bf-4621-4fe9-ab7d-565105b22588",
-  "firstName": "Leia",
-  "lastName": "Organa",
+  "addresses": [],
   "company": "Galactic Senate",
   "emails": [
     "leia.organa@senate.coruscant.gov"
   ],
-  "addresses": [],
+  "firstName": "Leia",
+  "id": "2f3b26bf-4621-4fe9-ab7d-565105b22588",
+  "lastName": "Organa",
   "name": "Leia Organa"
 }]
 ```
@@ -56,14 +56,14 @@ curl https://api.uphold.com/v0/me/contacts/9fae84eb-712d-4b6a-9b2c-764bdde4c079 
 
 ```json
 {
-  "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
-  "firstName": "Han",
-  "lastName": "Solo",
+  "addresses": [],
   "company": "Rebel Alliance",
   "emails": [
     "han.solo@rebelalliance.org"
   ],
-  "addresses": [],
+  "firstName": "Han",
+  "id": "9fae84eb-712d-4b6a-9b2c-764bdde4c079",
+  "lastName": "Solo",
   "name": "Han Solo"
 }
 ```
@@ -100,11 +100,11 @@ curl https://api.uphold.com/v0/me/contacts \
 
 Parameter | Description
 --------- | --------------------------------------
-firstName | Contact's first name. (max: 255 chars)
-lastName  | Contact's last name. (max: 255 chars)
+addresses | List of bitcoin addresses.
 company   | Contact's company. (max: 255 chars)
 emails    | List of email addresses.
-addresses | List of bitcoin addresses.
+firstName | Contact's first name. (max: 255 chars)
+lastName  | Contact's last name. (max: 255 chars)
 
 ### Response
 

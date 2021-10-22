@@ -35,9 +35,9 @@ and indicates, in delta-seconds, how long until the rate limit window is reset.
 
 Header               | Description
 -------------------- | ----------------------------------------------------------------------------------------------------------------------
-Rate-Limit-Total     | The total number of requests possible in the current window duration
 Rate-Limit-Remaining | The number of requests remaining in the current window duration
 Rate-Limit-Reset     | The time, in UTC [epoch seconds](http://en.wikipedia.org/wiki/Unix_time), until the end of the current window duration
+Rate-Limit-Total     | The total number of requests possible in the current window duration
 Retry-After          | The time, in seconds, until the end of the current window duration
 
 > Example request:
@@ -49,9 +49,9 @@ curl -I -X GET "https://api.uphold.com/v0/ticker"
 > Rate limit details on response headers:
 
 ```
-Rate-Limit-Total: 500
 Rate-Limit-Remaining: 499
 Rate-Limit-Reset: 1422288284
+Rate-Limit-Total: 500
 ```
 
 When the API limit is reached, a [429 HTTP error](#errors) is returned with the aforementioned `Retry-After` header:
@@ -61,9 +61,9 @@ When the API limit is reached, a [429 HTTP error](#errors) is returned with the 
 ```
 HTTP/1.1 429 Too Many Requests
 
-Rate-Limit-Total: 300
 Rate-Limit-Remaining: 0
 Rate-Limit-Reset: 1422288284
+Rate-Limit-Total: 300
 Retry-After: 85
 ```
 

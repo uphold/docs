@@ -18,6 +18,12 @@ curl https://api.uphold.com/v0/reserve/statistics
 ```json
 [{
   "currency": "BTC",
+  "totals": {
+    "amount": "1755.86701",
+    "assets": "493.75857302",
+    "count": "1136206",
+    "liabilities": "335.82190088"
+  },
   "values": [{
     "assets": "287.24725",
     "currency": "BTC",
@@ -48,15 +54,15 @@ curl https://api.uphold.com/v0/reserve/statistics
     "currency": "USD",
     "liabilities": "45106.32",
     "rate": "337.14500"
-  }],
-  "totals": {
-    "amount": "1755.86701",
-    "count": "1136206",
-    "assets": "493.75857302",
-    "liabilities": "335.82190088"
-  }
+  }]
 }, {
   "currency": "CNY",
+  "totals": {
+    "amount": "3823508.63",
+    "assets": "1018302.81",
+    "count": "1136206",
+    "liabilities": "692583.22"
+  },
   "values": [{
     "assets": "0.00",
     "currency": "BTC",
@@ -87,15 +93,15 @@ curl https://api.uphold.com/v0/reserve/statistics
     "currency": "USD",
     "liabilities": "347.02",
     "rate": "0.16347"
-  }],
-  "totals": {
-    "amount": "3823508.63",
-    "count": "1136206",
-    "assets": "1018302.81",
-    "liabilities": "692583.22"
-  }
+  }]
 }, {
   "currency": "EUR",
+  "totals": {
+    "amount": "491498.28",
+    "assets": "131991.93",
+    "count": "1136206",
+    "liabilities": "89772.20"
+  },
   "values": [{
     "assets": "0.00",
     "currency": "BTC",
@@ -126,15 +132,15 @@ curl https://api.uphold.com/v0/reserve/statistics
     "currency": "USD",
     "liabilities": "4382.81",
     "rate": "1.26120"
-  }],
-  "totals": {
-    "amount": "491498.28",
-    "count": "1136206",
-    "assets": "131991.93",
-    "liabilities": "89772.20"
-  }
+  }]
 }, {
   "currency": "GBP",
+  "totals": {
+    "amount": "387091.81",
+    "assets": "104016.64",
+    "count": "1136206",
+    "liabilities": "70745.21"
+  },
   "values": [{
     "assets": "0.00",
     "currency": "BTC",
@@ -165,15 +171,15 @@ curl https://api.uphold.com/v0/reserve/statistics
     "currency": "USD",
     "liabilities": "2246.99",
     "rate": "1.60040"
-  }],
-  "totals": {
-    "amount": "387091.81",
-    "count": "1136206",
-    "assets": "104016.64",
-    "liabilities": "70745.21"
-  }
+  }]
 }, {
   "currency": "JPY",
+  "totals": {
+    "amount": "67366825.69",
+    "assets": "18205797.97",
+    "count": "1136206",
+    "liabilities": "12382365.53"
+  },
   "values": [{
     "assets": "0.00",
     "currency": "BTC",
@@ -204,15 +210,15 @@ curl https://api.uphold.com/v0/reserve/statistics
     "currency": "USD",
     "liabilities": "600.84",
     "rate": "0.00914"
-  }],
-  "totals": {
-    "amount": "67366825.69",
-    "count": "1136206",
-    "assets": "18205797.97",
-    "liabilities": "12382365.53"
-  }
+  }]
 }, {
   "currency": "USD",
+  "totals": {
+    "amount": "622844.43",
+    "assets": "166468.23",
+    "count": "1136206",
+    "liabilities": "113220.67"
+  },
   "values": [{
     "assets": "206.51132302",
     "currency": "BTC",
@@ -243,13 +249,7 @@ curl https://api.uphold.com/v0/reserve/statistics
     "currency": "USD",
     "liabilities": "60536.69",
     "rate": "1.00"
-  }],
-  "totals": {
-    "amount": "622844.43",
-    "count": "1136206",
-    "assets": "166468.23",
-    "liabilities": "113220.67"
-  }
+  }]
 }]
 ```
 
@@ -260,16 +260,16 @@ For example, a request to fetch a summary will return an array of assets with th
 Property | Description
 -------- | ------------------------------------------------------------------------------
 currency | The asset class of the holding being summarized.
-values   | Expresses the value of held in the associated currency in all supported forms.
 totals   | Lists the commissions, transaction volume, assets and liabilities.
+values   | Expresses the value of held in the associated currency in all supported forms.
 
 Each normalized holding has the following properties:
 
 Property    | Description
 ----------- | -------------------------------------------------------------------------------------------------
 assets      | The quantity of assets held for the corresponding holding, but converted to a different currency.
-liabilities | The quantity of liabilities for the corresponding holding, but converted to a different currency.
 currency    | The currency we are computing the current holding in.
+liabilities | The quantity of liabilities for the corresponding holding, but converted to a different currency.
 rate        | The rate we used when computing the holding to the corresponding currency.
 
 ### Request
@@ -304,29 +304,29 @@ The first records the acquisition of a liability, and the second the genesis of 
 Specifically, it shows the creation of 0.5 bitcoin as an obligation to the user, plus the acquisition of 0.5 bitcoin as an asset.
 
 <pre class="inline"><code>{
-  "type": "liability",
-  "out": {
-    "amount": "0.00",
-    "currency": "BTC"
-  },
+  "TransactionId": "e205b50e-6649-416d-82c1-98f0ba44dcd9",
+  "createdAt": "2014-10-08T12:26:29.844Z",
   "in": {
     "amount": "0.5",
     "currency": "BTC"
   },
-  "TransactionId": "e205b50e-6649-416d-82c1-98f0ba44dcd9",
-  "createdAt": "2014-10-08T12:26:29.844Z"
+  "out": {
+    "amount": "0.00",
+    "currency": "BTC"
+  },
+  "type": "liability"
 },
 {
-  "type": "asset",
-  "out": {
-    "amount": "0.00",
-    "currency": "BTC"
-  },
+  "createdAt": "2014-10-08T12:26:29.844Z",
   "in": {
     "amount": "0.5",
     "currency": "BTC"
   },
-  "createdAt": "2014-10-08T12:26:29.844Z"
+  "out": {
+    "amount": "0.00",
+    "currency": "BTC"
+  },
+  "type": "asset"
 }
 </code></pre>
 
@@ -339,17 +339,17 @@ Which makes sense: when a user transfers the bitcoin to their dollar card, Uphol
 Instead, Uphold owes them the $507.51 they exchanged for that bitcoin.
 
 <pre class="inline"><code>{
-  "type": "liability",
-  "out": {
-    "amount": "1.3",
-    "currency": "BTC"
-  },
+  "TransactionId": "1571fbef-d34e-447c-9b6e-4ad775953082",
+  "createdAt": "2014-09-30T20:29:36.575Z"
   "in": {
     "amount": "507.51",
     "currency": "USD"
   },
-  "TransactionId": "1571fbef-d34e-447c-9b6e-4ad775953082",
-  "createdAt": "2014-09-30T20:29:36.575Z"
+  "out": {
+    "amount": "1.3",
+    "currency": "BTC"
+  },
+  "type": "liability"
 }
 </code></pre>
 
@@ -360,16 +360,16 @@ These changes to our assets may or may not happen in real-time.
 This would therefore be recorded in our ledger at some point in the future as follows:
 
 <pre class="inline"><code>{
-  "type": "asset",
-  "out": {
-    "amount": "1.3",
-    "currency": "BTC"
-  },
+  "createdAt": "2014-09-30T20:29:36.575Z",
   "in": {
     "amount": "507.51",
     "currency": "USD"
   },
-  "createdAt": "2014-09-30T20:29:36.575Z"
+  "out": {
+    "amount": "1.3",
+    "currency": "BTC"
+  },
+  "type": "asset"
 }
 </code></pre>
 
@@ -384,29 +384,29 @@ The following entry shows how a user transmitting some bitcoin to an external ne
 It shows the removal of a liability of bitcoin to the user, and the subsequent removal of bitcoin as an asset.
 
 <pre class="inline"><code>{
-  "type": "asset",
-    "out": {
-    "amount": "0.10359178",
-    "currency": "BTC"
-  },
+  "createdAt": "2014-10-08T06:53:51.080Z",
   "in": {
     "amount": "0.00",
     "currency": "BTC"
   },
-  "createdAt": "2014-10-08T06:53:51.080Z"
-},
-{
-  "type": "liability",
   "out": {
     "amount": "0.10359178",
     "currency": "BTC"
   },
+  "type": "asset"
+},
+{
+  "TransactionId": "6ab1f3e8-3b84-40b0-aec7-8008117c9f86",
+  "createdAt": "2014-10-08T06:53:51.080Z",
   "in": {
     "amount": "0.00",
     "currency": "BTC"
   },
-  "TransactionId": "6ab1f3e8-3b84-40b0-aec7-8008117c9f86",
-  "createdAt": "2014-10-08T06:53:51.080Z"
+  "out": {
+    "amount": "0.10359178",
+    "currency": "BTC"
+  },
+  "type": "liability"
 }
 </code></pre>
 
@@ -419,22 +419,22 @@ What follows is how we could encode shifting 1M dollars into a US Treasury Bill.
 Take note that we can optionally include additional data relating to the asset class.
 
 <pre class="inline"><code>{
-  "type": "asset",
-  "out": {
-    amount: "1000000",
-    currency: "USD"
-  },
+  "createdAt": "2014-10-08T06:53:51.080Z"
   "in": {
     "amount": "1",
     "currency": "T-Bill"
     "meta": {
+      "cusip": 345370860,
       "maturityDate": "2016-05-01 00:00:00 UTC",
       "principal": 1000000,
-      "rate": 1.5,
-      "cusip": 345370860
+      "rate": 1.5
     }
   },
-  "createdAt": "2014-10-08T06:53:51.080Z"
+  "out": {
+    amount: "1000000",
+    currency: "USD"
+  },
+  "type": "asset"
 }
 </code></pre>
 
@@ -479,27 +479,10 @@ Given that this is a point in the chain at which there is a genesis of value, th
 However, we will provide a link to the external authority documenting the source of the value whenever possible.
 
 <pre class="inline"><code>{
-  "id": "e205b50e-6649-416d-82c1-98f0ba44dcd9",
-  "type": "deposit",
-  "params": {
-    "currency": "BTC",
-    "margin": "0.00",
-    "pair": "BTCBTC",
-    "rate": "1.00",
-    "txid": "ffb51cc62944f334aa56ef7339a8df9ba08c712d9db609207f2f1f2105b914b2"
-  },
+  "createdAt": "2014-10-08T12:26:29.807Z"
   "denomination": {
     "amount": "0.5",
     "currency": "BTC"
-  },
-  "origin": {
-    "amount": "0.5",
-    "base": "0.5",
-    "commission": "0.00",
-    "currency": "BTC",
-    "fee": "0.00",
-    "rate": "1.00",
-    "sources": []
   },
   "destination": {
     "amount": "0.5",
@@ -509,8 +492,25 @@ However, we will provide a link to the external authority documenting the source
     "fee": "0.00",
     "rate": "1.00"
   },
+  "id": "e205b50e-6649-416d-82c1-98f0ba44dcd9",
+  "origin": {
+    "amount": "0.5",
+    "base": "0.5",
+    "commission": "0.00",
+    "currency": "BTC",
+    "fee": "0.00",
+    "rate": "1.00",
+    "sources": []
+  },
+  "params": {
+    "currency": "BTC",
+    "margin": "0.00",
+    "pair": "BTCBTC",
+    "rate": "1.00",
+    "txid": "ffb51cc62944f334aa56ef7339a8df9ba08c712d9db609207f2f1f2105b914b2"
+  },
   "status": "completed",
-  "createdAt": "2014-10-08T12:26:29.807Z"
+  "type": "deposit"
 }
 </code></pre>
 
@@ -522,30 +522,10 @@ The destination of the transaction would refer as completely as it can to any ex
 Withdrawals also account for value leaving the Reservechain, and is thus a terminus point with regards to traceability.
 
 <pre class="inline"><code>{
-  "id": "6ab1f3e8-3b84-40b0-aec7-8008117c9f86",
-  "type": "withdrawal",
-  "params": {
-    "currency": "BTC",
-    "margin": "0.00",
-    "pair": "BTCBTC",
-    "rate": "1.00",
-    "txid": "5ee2a05a4af8bef5090ee8974798c097a7d6a75be7564d17e6a330bc1c434bab"
-  },
+  "createdAt": "2014-10-08T06:53:51.060Z",
   "denomination": {
     "amount": "34.00",
     "currency": "USD"
-  },
-  "origin": {
-    "amount": "0.10359178",
-    "base": "0.10349178",
-    "commission": "0.00",
-    "currency": "BTC",
-    "fee": "0.0001",
-    "rate": "1.00",
-    "sources": [{
-      "id": "33eef226-1c1e-4b38-be2f-28d9a57aecdb",
-      "amount": "0.10359178"
-    }]
   },
   "destination": {
     "address": "1BSrDxeTL9ViJBrAb1QHjK2wsGShjSGVeb",
@@ -556,8 +536,28 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
     "fee": "0.00",
     "rate": "1.00"
   },
+  "id": "6ab1f3e8-3b84-40b0-aec7-8008117c9f86",
+  "origin": {
+    "amount": "0.10359178",
+    "base": "0.10349178",
+    "commission": "0.00",
+    "currency": "BTC",
+    "fee": "0.0001",
+    "rate": "1.00",
+    "sources": [{
+      "amount": "0.10359178",
+      "id": "33eef226-1c1e-4b38-be2f-28d9a57aecdb"
+    }]
+  },
+  "params": {
+    "currency": "BTC",
+    "margin": "0.00",
+    "pair": "BTCBTC",
+    "rate": "1.00",
+    "txid": "5ee2a05a4af8bef5090ee8974798c097a7d6a75be7564d17e6a330bc1c434bab"
+  },
   "status": "completed",
-  "createdAt": "2014-10-08T06:53:51.060Z"
+  "type": "withdrawal"
 }
 </code></pre>
 
@@ -566,33 +566,10 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
 A transfer documents movement of value within our network, either between two parties or two denominations, or both.
 
 <pre class="inline"><code>{
-  "id": "1571fbef-d34e-447c-9b6e-4ad775953082",
-  "type": "transfer",
-  "params": {
-    "currency": "USD",
-    "margin": "0.45",
-    "pair": "BTCUSD",
-    "rate": "392.16000",
-    "txid": "1946783b396998f8f91c984431ecfecff6d0a72db68b32d0873c1024c7279254"
-  },
+  "createdAt": "2014-09-30T20:29:36.458Z",
   "denomination": {
     "amount": "1.3",
     "currency": "BTC"
-  },
-  "origin": {
-    "amount": "1.3001",
-    "base": "1.3",
-    "commission": "0.00",
-    "currency": "BTC",
-    "fee": "0.0001",
-    "rate": "0.00255",
-    "sources": [{
-      "id": "61cdccdf-cb6e-414e-aafc-7c42dc375cf6",
-      "amount": "0.73327414"
-    }, {
-      "id": "34f87520-49a4-4f46-8ee0-ba0522c06aa1",
-      "amount": "0.56682586"
-    }]
   },
   "destination": {
     "amount": "507.51",
@@ -602,8 +579,31 @@ A transfer documents movement of value within our network, either between two pa
     "fee": "0.00",
     "rate": "392.16000"
   },
+  "id": "1571fbef-d34e-447c-9b6e-4ad775953082",
+  "origin": {
+    "amount": "1.3001",
+    "base": "1.3",
+    "commission": "0.00",
+    "currency": "BTC",
+    "fee": "0.0001",
+    "rate": "0.00255",
+    "sources": [{
+      "amount": "0.73327414",
+      "id": "61cdccdf-cb6e-414e-aafc-7c42dc375cf6"
+    }, {
+      "amount": "0.56682586",
+      "id": "34f87520-49a4-4f46-8ee0-ba0522c06aa1"
+    }]
+  },
+  "params": {
+    "currency": "USD",
+    "margin": "0.45",
+    "pair": "BTCUSD",
+    "rate": "392.16000",
+    "txid": "1946783b396998f8f91c984431ecfecff6d0a72db68b32d0873c1024c7279254"
+  },
   "status": "completed",
-  "createdAt": "2014-09-30T20:29:36.458Z"
+  "type": "transfer"
 }
 </code></pre>
 

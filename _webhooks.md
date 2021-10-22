@@ -15,9 +15,9 @@ Parameter | Description
 ----------|--------------------------------------------------------------------------------------
 createdAt | Timestamp of the notification, can be used to verify message ordering.
 id        | Unique identifier of the notification, can be used to ignore duplicate notifications.
+payload   | JSON with the actual model data being sent by the webhook.
 retries   | Number of retries of the notification, in case of failure of previous requests (e.g. the request getting an HTTP response not in the 2xx range).
 type      | Type of the notification (e.g. `card:updated`).
-payload   | JSON with the actual model data being sent by the webhook.
 userId    | Unique identifier of the Uphold user that owns the resource.
 
 > Example of signature header:
@@ -37,16 +37,16 @@ That header is built by signing the request body with the previously provided se
 {
   "createdAt": "2018-05-03T12:25:21.809Z",
   "id": "c4db98e4-c9e1-46dc-a927-17a26fb9772c",
-  "retries": 0,
-  "type": "card:updated",
   "payload": {
-    "id": "c4a77706-7b3a-4b8b-968b-4190038d37e8",
     "context": {
       "transaction": {
         "id": "fd2907af-5bcd-488e-9310-42993d0e375e"
       }
-    }
+    },
+    "id": "c4a77706-7b3a-4b8b-968b-4190038d37e8"
   },
+  "retries": 0,
+  "type": "card:updated",
   "userId": "e5b23ad5-6c1e-44d0-a49d-a080135fc083"
 }
 
@@ -59,8 +59,8 @@ This webhook returns the following payload:
 
 Parameter | Description
 ----------|---------------------------------------
+context   | A JSON object with additional context.
 id        | The id of the updated card.
-context   | a JSON object with additional context.
 
 The additional context includes the following details:
 

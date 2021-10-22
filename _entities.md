@@ -88,10 +88,10 @@ currency          | The currency by which the card is denominated.
 id                | A unique ID associated with the card.
 label             | The display name of the card as chosen by the user.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
+normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 settings          | This property contains the following keys:
 |                 | `starred`: Indicates whether the card is `starred` or not.
 |                 | <code class="notice">DEPRECATED</code> `position`: The card's current position.
-normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 
 ## Contact Object
 
@@ -280,20 +280,20 @@ Transactions have the following properties:
 Property     | Description
 ------------ | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 application  | The application that created the transaction.
-id           | A unique ID on the Uphold Network associated with the transaction.
-type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
-message      | An optional note added when initiating the transaction. Expected to be human-readable prose, e.g. for providing additional information and context about the nature/purpose of the transaction.
-denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
-fees         | The fees that were applied to the transaction. See [Fees](#fees).
-status       | The current status of the transaction. Possible values are `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
-params       | Other parameters of this transaction. See [Parameters](#parameters).
 createdAt    | The date and time the transaction was initiated.
+denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
+destination  | The recipient of the funds. See [Destination](#destination).
+fees         | The fees that were applied to the transaction. See [Fees](#fees).
+id           | A unique ID on the Uphold Network associated with the transaction.
+message      | An optional note added when initiating the transaction. Expected to be human-readable prose, e.g. for providing additional information and context about the nature/purpose of the transaction.
 network      | The network of the transaction (`uphold` for internal transactions).
 normalized   | The transaction details in USD. See [Normalized](#normalized).
+origin       | The sender of the funds. See [Origin](#origin).
+params       | Other parameters of this transaction. See [Parameters](#parameters).
 priority     | The priority of the transaction. Possible values are `normal` and `fast`.
 reference    | A reference code assigned to the transaction. Can be any string, up to 100 characters. This is not exposed to the user; a possible use case is to reference an external ID in another system.
-origin       | The sender of the funds. See [Origin](#origin).
-destination  | The recipient of the funds. See [Destination](#destination).
+status       | The current status of the transaction. Possible values are `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
+type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 
 <aside class="notice">
   A transaction can involve 3 different currencies: the currency as <strong>denominated</strong> by the user, the currency at the <strong>origin</strong> card and the currency at the <strong>destination</strong> card. For instance, <i>"transfer 1 BTC from my USD card to my EUR card"</i>. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is debited at the origin, then credited in EUR at the destination.
@@ -536,13 +536,13 @@ memberAt | The date when the user became a [verified member](https://support.uph
 We communicate a number of different user statuses through our API.
 At a high-level users can be in one of four statuses:
 
+- **blocked** - This status is present when a user has violated our terms of service.
+- **ok** - Everything is ay-ok.
 - **pending** - This status applies to a user that is in the process of creating an account;
   it means the signup process is not yet finalized.
 - **restricted** - This status means the user is allowed to login to the application, deposit or receive money, and perform trades, but they are not permitted to withdraw nor send money to other users.
   This status exists to allow users to satisfy additional data requirements.
-- **blocked** - This status is present when a user has violated our terms of service.
   In this status users are unable to login or access the product.
-- **ok** - Everything is ay-ok.
 
 ### User Verifications
 

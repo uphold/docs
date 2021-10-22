@@ -17,6 +17,17 @@ curl "https://api.uphold.com/v0/me" \
     "line2": "Apt. 366",
     "zipCode": "53059"
   },
+  "balances": {
+    "currencies": {
+      "BTC": {
+        "amount": "90.00",
+        "balance": "0.1",
+        "currency": "USD",
+        "rate": "900.00000"
+      }
+    },
+    "total": "90.00"
+  },
   "birthdate": "2014-08-27",
   "country": "US",
   "currencies": [
@@ -25,6 +36,7 @@ curl "https://api.uphold.com/v0/me" \
   "email": "luke.skywalker@uphold.com",
   "firstName": "Luke",
   "lastName": "Skywalker",
+  "memberAt": "2015-07-10T15:36:20.288Z",
   "name": "Luke Skywalker",
   "settings": {
     "currency": "USD",
@@ -44,11 +56,11 @@ curl "https://api.uphold.com/v0/me" \
         "enabled": true
       },
       "transactions": {
-        "transfer": {
-          "enabled": false
-        },
         "send": {
           "enabled": true
+        },
+        "transfer": {
+          "enabled": false
         },
         "withdraw": {
           "crypto": {
@@ -59,21 +71,9 @@ curl "https://api.uphold.com/v0/me" \
     },
     "theme": "vintage"
   },
-  "memberAt": "2015-07-10T15:36:20.288Z",
   "state": "WA",
   "status": "ok",
-  "verifications": {},
-  "balances": {
-    "total": "90.00",
-    "currencies": {
-      "BTC": {
-        "amount": "90.00",
-        "balance": "0.1",
-        "currency": "USD",
-        "rate": "900.00000"
-      }
-    }
-  }
+  "verifications": {}
 }
 ```
 
@@ -110,12 +110,12 @@ curl "https://api.uphold.com/v0/me/phones" \
 
 ```json
 [{
-  "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
-  "verified": "true",
-  "primary": "true",
   "e164Masked": "+XXXXXXXXX04",
+  "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
+  "internationalMasked": "+X XXX-XXX-XX04",
   "nationalMasked": "(XXX) XXX-XX04",
-  "internationalMasked": "+X XXX-XXX-XX04"
+  "primary": "true",
+  "verified": "true"
 }]
 ```
 
