@@ -69,7 +69,7 @@ transaction | A JSON object with the id of the transaction that triggered the up
 It returns the card details and context whenever a card has changed its `available` or `balance`, i.e. whenever it sends or receives a transaction.
 The context includes the id of that transaction.
 
-## Oauth authorization revoked
+## OAuth authorization revoked
 
 This webhook is triggered when a user that had previously authorized your app decides to remove said authorization. When this happens, you'll receive a request informing you of which user has removed the authorization. To subscribe to these updates, you'll need to configure a webhook with the "OAuth Authorization Revoked" scope.
 
