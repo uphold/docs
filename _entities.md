@@ -550,11 +550,17 @@ The `verifications` field can help communicate the reasons for a given user stat
 These verifications have permissible values and in some cases, an associated reason.
 Here is an overview of the verifications field:
 
-Flag      | Permissible Values               | Reason         | Description
---------- | -------------------------------- | -------------- | --------------------------------------------------------------------------------------
-birthdate | required                         | n/a            | Whether the user needs to provide his/her date of birth.
-email     | unconfirmed                      | n/a            | Whether the user needs to confirm his/her email.
-identity  | required, retry, review, running | n/a            | The status of identity verification during membership application process.
-location  | required, blocked                | country, state | Whether the user has specified his/her location, which can be a blocked country/state.
-phone     | required, unconfirmed            | n/a            | The status of phone number verification.
-terms     | required                         | updated        | Whether the user has accepted the latest version of the terms of service.
+Flag                            | Permissible Values               | Reason                                      | Description
+------------------------------- | -------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------
+address                         | null, required                   | n/a                                         | Required for individual users.
+birthdate                       | required                         | n/a                                         | Whether the user needs to provide their date of birth.
+customerDueDiligence            | null, optional, required         | n/a                                         | CDD is required if the user is from an European country otherwise, it's optional.
+documents                       | null, optional, required         | identity-country-mismatch, invalid, missing | Required when the user must submit SSN or Tax ID.
+email                           | unconfirmed                      | n/a                                         | Whether the user needs to confirm their email.
+identity                        | required, retry, review, running | n/a                                         | The status of identity verification during the membership application process.
+location                        | blocked, required                | country, state                              | Whether the user has specified their location, which can be a blocked country/state.
+permanentAddress                | null, required                   | n/a                                         | Required for non-US citizens with US residence.
+phone                           | required, unconfirmed            | n/a                                         | The status of phone number verification.
+terms                           | required                         | updated                                     | Whether the user has accepted the latest version of the terms of service.
+termsEquities                   | null, required                   | n/a                                         | Required when the user hasn't accepted the terms of service for equities trading.
+usTaxPayer                      | null, required                   | n/a                                         | Required for non-US citizens with US residence.
