@@ -368,31 +368,31 @@ As such, under the regulatory action of The Financial Action Task Force [FATF](h
 }
 ```
 
-Parameter | Required | Description
---------- | -------- | -----------
-beneficiary | yes/no | The transaction beneficiary information. See [Beneficiary](#beneficiary). <br><br> <b>Required</b> for transfers to other users (invites included) and withdrawals above _$3000 USD_ (or _$1000 USD_, if the origin user is from Arizona, United States). <br><br>   <b>Note:</b> ACH withdrawals do <b>not require</b> the beneficiary information to be sent. We only support personal bank accounts therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
-purpose | yes/no | The reason for the transaction. <br><br> <b>Required</b> for transactions in which the relationship is not set to `myself`.<br><br>For business relationships, the possible values are: `business_expenses`, `business_travel`, `consultancy_expenses`, `education_expenses`, `family_expenses`, `funding_investments`, `gift_or_donations`, `invoice_payment`, `loan_payment`, `personal_expenses`, `salary_payments`, and `technology_expenses`.<br><br>For personal relationships, the possible values are: `bill_payments`, `donations`, `expenses`, `gift`, `living_expenses`, `payment_for_goods_or_services`, and `supporting_family_internationally`.
+Parameter   | Required | Description
+----------- | -------- | -----------
+beneficiary | yes/no   | The transaction beneficiary information. See [Beneficiary](#beneficiary). <br><br> <b>Required</b> for transfers to other users (invites included) and withdrawals above _$3000 USD_ (or _$1000 USD_, if the origin user is from Arizona, United States). <br><br>   <b>Note:</b> ACH withdrawals do <b>not require</b> the beneficiary information to be sent. We only support personal bank accounts therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
+purpose     | yes/no   | The reason for the transaction. <br><br> <b>Required</b> for transactions in which the relationship is not set to `myself`.<br><br>For business relationships, the possible values are: `business_expenses`, `business_travel`, `consultancy_expenses`, `education_expenses`, `family_expenses`, `funding_investments`, `gift_or_donations`, `invoice_payment`, `loan_payment`, `personal_expenses`, `salary_payments`, and `technology_expenses`.<br><br>For personal relationships, the possible values are: `bill_payments`, `donations`, `expenses`, `gift`, `living_expenses`, `payment_for_goods_or_services`, and `supporting_family_internationally`.
 
 ### Beneficiary
 
 This beneficiary field has the following properties:
 
-Parameter | Required | Description
---------- | ----------- | -----------
-address | yes/no | The transaction beneficiary address information. See [Address](#address). <br><br> <b>Required</b> for invites and external beneficiaries.
-name | yes/no | The beneficiary full name. <br><br> <b>Required</b> for invites and external beneficiaries.
-relationship | yes | Reflects the beneficiary's relationship to the transaction originator. <br><br> Possible values are `business`, `child`, `co_worker`, `friend`, `myself`, `parent`, `sibling`.
+Parameter    | Required    | Description
+------------ | ----------- | -----------
+address      | yes/no      | The transaction beneficiary address information. See [Address](#address). <br><br> <b>Required</b> for invites and external beneficiaries.
+name         | yes/no      | The beneficiary's full name. <br><br> <b>Required</b> for invites and external beneficiaries. <br><br> For all transactions, except those with `relationship` type `business`, the name must be composed of at least, 2 words with a minimum of 2 characters each, for the first and last word.
+relationship | yes         | Reflects the beneficiary's relationship to the transaction originator. <br><br> Possible values are `business`, `child`, `co_worker`, `friend`, `myself`, `parent`, `sibling`.
 
 ### Address
 
 Property | Required | Description
 -------- |--------- | -----------
-city | yes | The beneficiary address city.
-country | yes | The beneficiary address country.
-line1 | yes | The beneficiary address line 1.
-line2 | no | The beneficiary address line 2.
-state | yes | The beneficiary address state.
-zipCode | yes | The beneficiary address zip code.
+city     | yes      | The beneficiary address city.
+country  | yes      | The beneficiary address country.
+line1    | yes      | The beneficiary address line 1.
+line2    | no       | The beneficiary address line 2.
+state    | yes      | The beneficiary address state.
+zipCode  | yes      | The beneficiary address zip code.
 
 ### Beneficiary Requirements
 
