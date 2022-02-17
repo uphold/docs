@@ -14,16 +14,16 @@ Ideal for web applications that wish to retrieve information about a user's Upho
 
 The authenticating web application should redirect users to the following URL:
 
-`https://uphold.com/authorize/<client_id>`
+`https://wallet.uphold.com/authorize/<client_id>`
 
 Or for sandbox applications:
 
-`https://sandbox.uphold.com/authorize/<client_id>`
+`https://wallet-sandbox.uphold.com/authorize/<client_id>`
 
 > Example of an authorization request URL:
 
 ```
-https://uphold.com/authorize/<client_id>?state=<state_string>&scope=accounts:read%20cards:read
+https://wallet.uphold.com/authorize/<client_id>?state=<state_string>&scope=accounts:read%20cards:read
 ```
 
 Supported query parameters:
