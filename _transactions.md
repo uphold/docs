@@ -179,9 +179,9 @@ Once the transaction is committed, its status will change to `processing`.
 </aside>
 <aside class="notice">
   If the <a href="#permissions"><code>transactions:commit:otp</code> permission</a> has been granted by the user, and an OTP is not provided with the request,
-  you will get a <a href="#errors">401 HTTP error</a>, along with the HTTP header <code>OTP-Token: Required</code> and/or <code>OTP-Method-Id: Required</code>.
-  In that case, re-send the request, including the OTP verification code and method id as headers, like so:
-  <code>OTP-Token: &lt;OTP-Token&gt;</code> and <code>OTP-Method-Id: &lt;OTP-Method-Id&gt;</code>.
+  you will get a <a href="#errors">401 HTTP error</a>, along with the HTTP header <code>OTP-Token: Required</code>.
+  In that case, re-send the request, including the OTP verification code like so:
+  <code>OTP-Token: &lt;OTP-Token&gt;</code>.
 </aside>
 
 ### Request
@@ -435,7 +435,6 @@ curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions' \
 curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions/<transaction-id>/commit' \
   -H 'Authorization: Bearer <bearer-token>' \
   -H 'Content-Type: application/json' \
-  -H 'OTP-Method-Id: <Method-Id>' \
   -H 'OTP-Token: <OTP-Token>' \
   -d '{
     "beneficiary": {
