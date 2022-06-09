@@ -200,7 +200,6 @@ To list Personal Access Tokens you may use the following endpoint:
 curl https://api.uphold.com/v0/me/tokens \
   -X POST \
   -H "Content-Type: application/json" \
-  -H "OTP-Method-Id: <Method-Id>" \
   -H "OTP-Token: <OTP-Token>" \
   -u <email>:<password> \
   -d '{ "description": "My command line script" }'
@@ -227,7 +226,7 @@ Parameter   | Required | Description
 description | yes      | A human-readable description of this PAT.
 
 <aside class="notice">
-  Requires the <code>OTP-Method-Id</code> header with the id of a verified authentication method that belongs to the user, and the <code>OTP-Token</code> header with a valid TOTP token associated to that authentication method.
+  Requires the <code>OTP-Token</code> header with a valid TOTP token.
 </aside>
 
 ### Revoking a PAT
@@ -269,12 +268,11 @@ The `<token>` should be set as the `accessToken` received during creation.
 
 ```bash
 curl https://api.uphold.com/v0/me \
-  -H 'OTP-Method-Id: <Method-Id>' \
   -H 'OTP-Token: <OTP-Token>' \
   -u <email>:<password>
 ```
 
 You can use Basic Authentication by providing your email and password combination.
 
-If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP header `OTP-Token: Required` and/or `OTP-Method-Id: Required`.
-In which case, execute the command above again, this time passing your OTP verification code and method id as headers, like so: `OTP-Token: <OTP-Token>` and `OTP-Method-Id: <OTP-Method-Id>`.
+If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP header `OTP-Token: Required`.
+In which case, execute the command above again, this time passing your OTP verification code header, like so: `OTP-Token: <OTP-Token>`.

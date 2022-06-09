@@ -48,7 +48,6 @@ Returns an array of the current user's authentication methods.
 curl https://api.uphold.com/v0/me/authentication_methods/totp \
   -X POST \
   -H "Authorization: Bearer <token>" \
-  -H 'OTP-Method-Id: <OTP-Method-Id>'
   -H 'OTP-Token: <OTP-Token>'
 ```
 
@@ -71,7 +70,7 @@ curl https://api.uphold.com/v0/me/authentication_methods/totp \
 `POST https://api.uphold.com/v0/me/authentication_methods/totp`
 
 <aside class="notice">
-  Requires the <code>OTP-Method-Id</code> header with the id of a verified authentication method that belongs to the user, and the <code>OTP-Token</code> header with a valid TOTP token associated to that authentication method.
+  Requires the <code>OTP-Token</code> header with a valid TOTP token.
 </aside>
 
 ### Response
@@ -116,7 +115,6 @@ curl https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333
   -X DELETE \
   -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
-  -H "OTP-Method-Id: <Method-Id>" \
   -H "OTP-Token: <OTP-Token>"
 ```
 
@@ -127,10 +125,7 @@ curl https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333
 `DELETE https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333-473715ab039a`
 
 <aside class="notice">
-  Requires the <code>OTP-Method-Id</code> header to be sent with the id of a verified authentication method that belongs to the user.
-</aside>
-<aside class="notice">
-  Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token, belonging to the authentication method specified in <code>OTP-Method-Id</code>.
+  Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token.
 </aside>
 <aside class="notice">
   You cannot delete all of a user's authentication methods as trying to delete the last verified method of a user will return an error.
