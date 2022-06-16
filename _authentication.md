@@ -73,14 +73,10 @@ Supported parameters:
 
 Parameter     | Required | Description
 ------------- | -------- | -------------------------------------------------------------------------------------
-client_id     | yes      | The application's *clientId*. Please use HTTP Basic Authentication when possible.
-client_secret | yes      | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
+client_id     | yes      | The application's *clientId*.
+client_secret | yes      | The application's *clientSecret*.
 code          | yes      | The code acquired in step 1.
 grant_type    | yes      | Must be set to *'authorization_code'*.
-
-<aside class="notice">
-  <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
-</aside>
 
 ### Step 3 - Using the Access Token
 
@@ -128,13 +124,9 @@ Supported parameters:
 
 Parameter     | Required | Description
 ------------- | -------- | -------------------------------------------------------------------------------------
-client_id     | yes      | The application's *clientId*. Please use HTTP Basic Authentication when possible.
-client_secret | yes      | The application's *clientSecret*. Please use HTTP Basic Authentication when possible.
+client_id     | yes      | The application's *clientId*.
+client_secret | yes      | The application's *clientSecret*.
 grant_type    | yes      | Must be set to *'client_credentials'*.
-
-<aside class="notice">
-  <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
-</aside>
 
 ### Using the Token
 
@@ -261,18 +253,3 @@ curl https://api.uphold.com/v0/me \
 A PAT may be used for authenticating a request via the OAuth scheme.
 
 The `<token>` should be set as the `accessToken` received during creation.
-
-## Basic Authentication
-
-> Simple request using email and password:
-
-```bash
-curl https://api.uphold.com/v0/me \
-  -H 'OTP-Token: <OTP-Token>' \
-  -u <email>:<password>
-```
-
-You can use Basic Authentication by providing your email and password combination.
-
-If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP header `OTP-Token: Required`.
-In which case, execute the command above again, this time passing your OTP verification code header, like so: `OTP-Token: <OTP-Token>`.
