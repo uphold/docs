@@ -31,8 +31,6 @@ Scope                             | Description
 accounts:read                     | Can view all [accounts](#account-object) and their information.
 cards:read                        | Can view all [cards](#card-object) and their information.
 cards:write                       | Can create and update any [card](#card-object).
-contacts:read                     | Can view all [contacts](#contact-object) and their information.
-contacts:write                    | Can create and update any [contact](#contact-object).
 phones:read                       | Can view all [phone](#phone-object) numbers and their information.
 phones:write                      | Can add new [phone](#phone-object) numbers.
 transactions:deposit              | Can create a deposit [transaction](#transaction-object).
