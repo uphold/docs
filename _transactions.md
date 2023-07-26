@@ -143,10 +143,6 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 <aside class="notice">
   If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the credit card's <code>securityCode</code> in the request body.
 </aside>
-<aside class="notice">
-  When creating a transaction to an email address destination, a <code>ContactId</code> field can be added to specify the ID of the associated <a href="#contact-object">contact</a>, if one already exists.
-  This is entirely optional, and does <b>not</b> remove the need to provide the actual email address in the <code>destination</code> field.
-</aside>
 
 ### Request
 

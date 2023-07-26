@@ -93,36 +93,6 @@ settings          | This property contains the following keys:
 |                 | `starred`: Indicates whether the card is `starred` or not.
 |                 | <code class="notice">DEPRECATED</code> `position`: The card's current position.
 
-## Contact Object
-
-> An example contact encoded in JSON looks like this:
-
-```json
-{
-  "addresses": [
-    "mtRwYWGKe1hYqNJ5fSTogXWPnFxoQrPYo6"
-  ],
-  "company": "Independent",
-  "emails": [
-    "han.solo@rebelalliance.org"
-  ],
-  "firstName": "Han",
-  "id": "c4db98e4-c9e1-46dc-a927-17a26fb9772c",
-  "lastName": "Solo",
-  "name": "Han Solo"
-}
-```
-
-Property  | Description
---------- | ----------------------------------------------------------------------------
-addresses | An array of known addresses associated with this contact.
-company   | The company of this contact provided by the user.
-emails    | An array of known email addresses associated with this contact.
-firstName | The first name of this contact provided by the user.
-id        | A unique ID in the Uphold network identifying the contact.
-lastName  | The last name of this contact provided by the user.
-name      | The display name of the contact created by joining the first and last names.
-
 ## Currency Pair Object
 
 > An example currency pair encoded in JSON looks like this:
