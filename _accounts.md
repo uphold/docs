@@ -111,3 +111,37 @@ Retrieves the details about a specific account.
 ### Response
 
 Returns a fully formed [Account Object](#account-object) representing the requested account.
+
+## Remove Account
+
+```bash
+curl https://api.uphold.com/v0/me/accounts/18843b6d-5a43-480f-8e2b-73b27d726bf0 \
+  -X DELETE
+  -H "Authorization: Bearer <token>"
+```
+
+> The above command returns a response with no body, and HTTP status code `204`
+([No Content](https://datatracker.ietf.org/doc/html/rfc7231#section-6.3.5)).
+
+Deletes a specific account.
+
+### Request
+
+`DELETE https://api.uphold.com/v0/me/accounts/:id`
+
+<aside class="notice">
+  Requires the <code>accounts:write</code> scope for Uphold Connect applications.
+</aside>
+<aside class="notice">
+  The account id must be owned by the user performing the API call.
+</aside>
+
+### Response
+
+In case of success, returns a response with no body and an HTTP status code of `204`
+([No Content](https://datatracker.ietf.org/doc/html/rfc7231#section-6.3.5)).
+
+If the account doesn't exist under the authorization-granting user, returns a <a href="#errors">404 HTTP error</a>.
+
+If the token lacks the `accounts:write` scope, returns a <a href="#errors">404 HTTP error</a>
+with the JSON body `{ "error": "invalid_scope" }`.
