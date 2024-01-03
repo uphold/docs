@@ -16,7 +16,7 @@ The authenticating web application should redirect users to the following URL:
 
 `https://wallet.uphold.com/authorize/<client_id>`
 
-Or for sandbox applications:
+Or for Sandbox applications:
 
 `https://wallet-sandbox.uphold.com/authorize/<client_id>`
 
@@ -65,7 +65,7 @@ You may then exchange this `code` for an `access token` using the following endp
 
 `POST https://api.uphold.com/oauth2/token`
 
-Or for sandbox applications:
+Or for Sandbox applications:
 
 `https://api-sandbox.uphold.com/oauth2/token`
 
