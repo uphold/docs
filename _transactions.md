@@ -143,6 +143,9 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 <aside class="notice">
   If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the credit card's <code>securityCode</code> in the request body.
 </aside>
+<aside class="notice">
+  <strong>Important Notice</strong>: In compliance with PCI standards, the Uphold Sandbox environment does not accept real credit/debit card data. For a list of accepted card data, please refer to the <a href="#adding-credit-debit-card-accounts">Adding credit/debit card accounts</a> section of the documentation.
+</aside>
 
 ### Request
 
