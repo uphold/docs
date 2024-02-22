@@ -24,7 +24,7 @@ POST /password/forgot                     |         10 / 10-min window |        
 POST /users                               |         10 / 10-min window |                          N/A
 
 <aside class="notice">
-  <strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/206118653-Transaction-Trading-Limits">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
+  <strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/360038404532">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
 </aside>
 
 ## Response Headers
