@@ -130,36 +130,33 @@ The following is a list of valid card data that can be used to add a card accoun
 
 Number           | Brand      | Type   | Country | OCT settlement |
 ---------------- | ---------- | ------ | ------- | -------------- |
-5502514549870410 | mastercard | debit  | FR      | standard       |
-5355223761921186 | mastercard | debit  | GB      | instant        |
-5573606426146833 | mastercard | debit  | GB      | instant        |
-5318773012490080 | mastercard | debit  | US      | instant        |
-4921817844445119 | visa       | debit  | GB      | instant        |
-4659105569051157 | visa       | debit  | GB      | instant        |
-4024764449971519 | visa       | debit  | US      | instant        |
-5355224542121849 | mastercard | debit  | GB      | N/A            |
-5574357535453624 | mastercard | debit  | GB      | N/A            |
-5573606426146833 | mastercard | debit  | GB      | N/A            |
-5355223761921186 | mastercard | debit  | GB      | N/A            |
-5436031030606378 | mastercard | credit | MU      | N/A            |
-5518832400606463 | mastercard | debit  | US      | N/A            |
-5385308360135181 | mastercard | credit | US      | N/A            |
-5259410220714099 | mastercard | credit | US      | N/A            |
-5121073611487018 | mastercard | credit | US      | N/A            |
-5291144083573579 | mastercard | credit | US      | N/A            |
-5569757734785691 | mastercard | debit  | SG      | N/A            |
-4658584090000001 | visa       | debit  | GB      | N/A            |
-4659465888705671 | visa       | debit  | GB      | N/A            |
-4242424242424242 | visa       | credit | GB      | N/A            |
-4447336775378848 | visa       | debit  | US      | N/A            |
-4111111111111111 | visa       | debit  | PL      | N/A            |
-4485040371536584 | visa       | credit | US      | N/A            |
 4024007186645015 | visa       | credit | US      | N/A            |
-4452927588210665 | visa       | credit | US      | N/A            |
-4485597929486000 | visa       | credit | US      | N/A            |
+4024764449971519 | visa       | debit  | US      | instant        |
+4111111111111111 | visa       | debit  | PL      | N/A            |
+4242424242424242 | visa       | credit | GB      | N/A            |
 4243754271700719 | visa       | credit | US      | N/A            |
-4024007181869214 | visa       | credit | US      | N/A            |
-
+4447336775378848 | visa       | debit  | US      | N/A            |
+4452927588210665 | visa       | credit | US      | N/A            |
+4485040371536584 | visa       | credit | US      | N/A            |
+4485597929486000 | visa       | credit | US      | N/A            |
+4658584090000001 | visa       | debit  | GB      | N/A            |
+4659105569051157 | visa       | debit  | GB      | instant        |
+4659465888705671 | visa       | debit  | GB      | N/A            |
+4757337282365488 | visa       | debit  | DE      | N/A         |  
+4921817844445119 | visa       | debit  | GB      | instant        |
+5121073611487018 | mastercard | credit | US      | N/A            |
+5259410220714099 | mastercard | credit | US      | N/A            |
+5291144083573579 | mastercard | credit | US      | N/A            |
+5318773012490080 | mastercard | debit  | US      | instant        |
+5355223761921186 | mastercard | debit  | GB      | instant        |
+5355224542121849 | mastercard | debit  | GB      | N/A            |
+5385308360135181 | mastercard | credit | US      | N/A            |
+5436031030606378 | mastercard | credit | MU      | N/A            |
+5502514549870410 | mastercard | debit  | FR      | standard       |
+5518832400606463 | mastercard | debit  | US      | N/A            |
+5569757734785691 | mastercard | debit  | SG      | N/A            |
+5573606426146833 | mastercard | debit  | GB      | instant        |
+5574357535453624 | mastercard | debit  | GB      | N/A            |
 
 ### 3DS test cards
 
