@@ -10,18 +10,20 @@ given that everyone may present the same IP address to our network.
 
 Some endpoints have stricter rules as it relates to rate limits.
 These endpoints may additionally take into consideration the user's account or email address.
-For example, there can be 10 requests per 10 minute time period per IP to the `/password/forgot` endpoint;
-but multiple IPs can only make 3 requests per 5 minute time period per user account (e.g. `foo@bar.com`).
+For example, there can be 5 requests per 60 minute time period per IP to the `/password/forgot` endpoint;
+but multiple IPs can only make 5 requests per 60 minute time period per user account (e.g. `foo@bar.com`).
 
 The following table indicates the current rate limits:
 
 Endpoint                                  | Requests (per IP) / window | Requests (per user) / window
 ----------------------------------------- | -------------------------: | ---------------------------:
-*Global*                                  |         500 / 5-min window |                          N/A
-POST /cards/:card/transactions            |         300 / 5-min window |                          N/A
-POST /cards/:card/transactions/:id/commit |         300 / 5-min window |                          N/A
-POST /password/forgot                     |         10 / 10-min window |             3 / 5-min window
-POST /users                               |         10 / 10-min window |                          N/A
+*Global*                                  |         250 / 1-min window |                          N/A
+POST /me/confirm                          |         10 / 10-min window |                          N/A
+POST /me/reports                          |         10 / 10-min window |           10 / 10-min window
+POST /oauth2/token                        |          50 / 5-min window |            50 / 5-min window
+POST /password/change                     |          5 / 60-min window |            5 / 60-min window
+POST /password/forgot                     |          5 / 60-min window |            5 / 60-min window
+POST /password/reset                      |          5 / 60-min window |                          N/A
 
 <aside class="notice">
   <strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/360038404532">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
