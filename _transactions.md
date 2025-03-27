@@ -362,14 +362,14 @@ As such, under the regulatory action of The Financial Action Task Force [FATF](h
     "amount": "3000",
     "currency": "USD"
   },
-  "destination": "invite-user@mail.com",
+  "destination": "1c857998-6ddf-4236-986b-71db03711bc9",
   "purpose": "donations"
 }
 ```
 
 Parameter   | Required | Description
 ----------- | -------- | -----------
-beneficiary | yes/no   | The transaction beneficiary information. See [Beneficiary](#beneficiary). <br><br> <b>Required</b> for transfers to other users (invites included) and withdrawals above _$3000 USD_ (or _$1000 USD_, if the origin user is from Arizona, United States). <br><br>   <b>Note:</b> ACH withdrawals do <b>not require</b> the beneficiary information to be sent. We only support personal bank accounts therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
+beneficiary | yes/no   | The transaction beneficiary information. See [Beneficiary](#beneficiary). <br><br> <b>Required</b> for transfers to other users and withdrawals above _$3000 USD_ (or _$1000 USD_, if the origin user is from Arizona, United States). <br><br>   <b>Note:</b> ACH withdrawals do <b>not require</b> the beneficiary information to be sent. We only support personal bank accounts therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
 purpose     | yes/no   | The reason for the transaction. <br><br> <b>Required</b> for transactions in which the relationship is not set to `myself`.<br><br>For business relationships, the possible values are: `business_expenses`, `business_travel`, `consultancy_expenses`, `education_expenses`, `family_expenses`, `funding_investments`, `gift_or_donations`, `invoice_payment`, `loan_payment`, `personal_expenses`, `salary_payments`, and `technology_expenses`.<br><br>For personal relationships, the possible values are: `bill_payments`, `donations`, `expenses`, `gift`, `living_expenses`, `payment_for_goods_or_services`, and `supporting_family_internationally`.
 
 ### Beneficiary
@@ -378,8 +378,8 @@ This beneficiary field has the following properties:
 
 Parameter    | Required    | Description
 ------------ | ----------- | -----------
-address      | yes/no      | The transaction beneficiary address information. See [Address](#address). <br><br> <b>Required</b> for invites and external beneficiaries.
-name         | yes/no      | The beneficiary's full name. <br><br> <b>Required</b> for invites and external beneficiaries. <br><br> For all transactions, except those with `relationship` type `business`, the name must be composed of at least, 2 words with a minimum of 2 characters each, for the first and last word.
+address      | yes/no      | The transaction beneficiary address information. See [Address](#address). <br><br> <b>Required</b> for external beneficiaries.
+name         | yes/no      | The beneficiary's full name. <br><br> <b>Required</b> for external beneficiaries. <br><br> For all transactions, except those with `relationship` type `business`, the name must be composed of at least, 2 words with a minimum of 2 characters each, for the first and last word.
 relationship | yes         | Reflects the beneficiary's relationship to the transaction originator. <br><br> Possible values are `business`, `child`, `co_worker`, `friend`, `myself`, `parent`, `sibling`.
 
 ### Address
@@ -423,7 +423,7 @@ curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions' \
       "amount": "3000",
       "currency": "USD"
     },
-    "destination": "invite-user@mail.com",
+    "destination": "1c857998-6ddf-4236-986b-71db03711bc9",
     "purpose": "donations"
   }'
 ```
@@ -495,62 +495,6 @@ curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions/<transac
 
 <aside class="notice">
   For regulatory compliance reasons, the beneficiary name is checked by a sanctions screening process, and is expected to consist entirely of characters in the Latin, Cyrillic, Greek or Georgian alphabets, along with a limited set of special characters. These validations may result in an <code>invalid_beneficiary</code> error.
-</aside>
-
-## Cancel a Transaction
-
-```bash
-curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/cancel \
-  -X POST \
-  -H "Authorization: Bearer <token>"
-```
-
-> Returns a [Transaction Object](#transaction-object).
-
-Cancels a transaction that has not yet been redeemed.
-
-### Request
-
-`POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/cancel`
-
-<aside class="notice">
-  Requires the <code>transactions:transfer:others</code> scope for Uphold Connect applications.
-</aside>
-
-### Response
-
-Returns a [Transaction Object](#transaction-object).
-
-<aside class="notice">
-  Only transactions with status <code>waiting</code> can be cancelled.
-</aside>
-
-## Resend a Transaction
-
-```bash
-curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions/d51b4e4e-9827-40fb-8763-e0ea2880085b/resend \
-  -X POST \
-  -H "Authorization: Bearer <token>"
-```
-
-> Returns a [Transaction Object](#transaction-object).
-
-Triggers a reminder for a transaction that hasn't been redeemed yet.
-
-### Request
-
-`POST https://api.uphold.com/v0/me/cards/:card/transactions/:id/resend`
-
-<aside class="notice">
-  Requires the <code>transactions:transfer:others</code> scope for Uphold Connect applications.
-</aside>
-
-### Response
-
-Returns a [Transaction Object](#transaction-object).
-
-<aside class="notice">
-  Only transactions with status <code>waiting</code> can be resent.
 </aside>
 
 ## List User Transactions

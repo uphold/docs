@@ -47,7 +47,7 @@ The following _scopes_ are deprecated and will be removed in a future version of
 
 Scope              | Description
 ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-transactions:write | Can create a [transaction](#transaction-object) from any origin to any destination (another card or an external address), cancel and resend transactions. This scope is now deprecated in favor of the more fine-grained write scopes above (deposit, transfer and withdraw).
+transactions:write | Can create a [transaction](#transaction-object) from any origin to any destination (another card or an external address). This scope is now deprecated in favor of the more fine-grained write scopes above (deposit, transfer and withdraw).
 
 <aside class="notice">
   <strong>Important Notice</strong>: Only specify scopes that your application absolutely needs.
