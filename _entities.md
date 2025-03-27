@@ -262,7 +262,7 @@ origin       | The sender of the funds. See [Origin](#origin).
 params       | Other parameters of this transaction. See [Parameters](#parameters).
 priority     | The priority of the transaction. Possible values are `normal` and `fast`.
 reference    | A reference code assigned to the transaction. Can be any string, up to 100 characters. This is not exposed to the user; a possible use case is to reference an external ID in another system.
-status       | The current status of the transaction. Possible values are `pending`, `processing`, `waiting`, `cancelled`, `failed` and `completed`.
+status       | The current status of the transaction. Possible values are `pending`, `processing`, `cancelled`, `failed` and `completed`.
 type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 
 <aside class="notice">

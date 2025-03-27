@@ -122,6 +122,6 @@ Parameter | Description
 ----------|-------------------------------------------------------------------------
 id        | The id of the transaction.
 status    | A string with the transaction status that triggered the hook.
-|         | Possible values are: `cancelled`, `completed`, `failed` and `waiting`.
+|         | Possible values are: `cancelled`, `completed` and `failed`.
 
 It returns the `id` of the created transaction, along with its current `status`.
