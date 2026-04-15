@@ -100,6 +100,21 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
 }
 ```
 
+> When the Travel Rule applies to the transaction, the response also includes:
+
+```json
+{
+  "requirements": [
+    "user-subject-to-extended-travel-rule"
+  ],
+  "requirementsDetails": {
+    "isAddressVerified": false,
+    "isRequired": true,
+    "requestForInformationId": "dbff3776-7528-450d-bc9f-e78ae3695949"
+  }
+}
+```
+
 > Step 2: Commit the Transaction
 
 ```bash
@@ -163,6 +178,10 @@ Returns a [Transaction Object](#transaction-object).
 <aside class="notice">
   If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set,
   the transaction's <code>params</code> will include a <code>redirect</code> field with information of a redirect URI to be followed to complete the credit card deposit.
+</aside>
+<aside class="notice">
+  If the withdrawal is subject to the Travel Rule, the response will include a <code>requirements</code> array and a <code>requirementsDetails</code> object containing the <code>requestForInformationId</code>.
+  The travel rule information must be submitted via the <a href="#submit-travel-rule-information">Submit Travel Rule Information</a> endpoint before <a href="#step-2-commit-transaction">committing the transaction</a>.
 </aside>
 
 ### Step 2: Commit Transaction

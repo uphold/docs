@@ -260,10 +260,12 @@ network      | The network of the transaction (`uphold` for internal transaction
 normalized   | The transaction details in USD. See [Normalized](#normalized).
 origin       | The sender of the funds. See [Origin](#origin).
 params       | Other parameters of this transaction. See [Parameters](#parameters).
-priority     | The priority of the transaction. Possible values are `normal` and `fast`.
-reference    | A reference code assigned to the transaction. Can be any string, up to 100 characters. This is not exposed to the user; a possible use case is to reference an external ID in another system.
-status       | The current status of the transaction. Possible values are `pending`, `processing`, `cancelled`, `failed` and `completed`.
-type         | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
+priority             | The priority of the transaction. Possible values are `normal` and `fast`.
+reference            | A reference code assigned to the transaction. Can be any string, up to 100 characters. This is not exposed to the user; a possible use case is to reference an external ID in another system.
+requirements         | An array of requirement codes that must be fulfilled before the transaction can be committed. May include `user-subject-to-extended-travel-rule`. Absent when no requirements apply.
+requirementsDetails  | An object with additional details about each requirement. See [Requirements Details](#requirements-details). Absent when no requirements apply.
+status               | The current status of the transaction. Possible values are `pending`, `processing`, `cancelled`, `failed` and `completed`.
+type                 | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 
 <aside class="notice">
   A transaction can involve 3 different currencies: the currency as <strong>denominated</strong> by the user, the currency at the <strong>origin</strong> card and the currency at the <strong>destination</strong> card. For instance, <i>"transfer 1 BTC from my USD card to my EUR card"</i>. In this case, 1 BTC would be the denominated amount, but the equivalent in USD is debited at the origin, then credited in EUR at the destination.
@@ -368,6 +370,16 @@ isMember    | A boolean signaling if the destination user has completed the memb
 node        | The details about the transaction destination node.
 rate        | The rate for conversion between origin and destination, as expressed in the currency at destination (the inverse of `origin.rate`).
 type        | The type of endpoint. Possible values are `email`, `card` and `external`.
+
+### Requirements Details
+
+When a transaction is subject to the Travel Rule, the `requirementsDetails` object contains the following properties:
+
+Property                 | Description
+------------------------ | -----------
+isAddressVerified        | Whether the destination address has already been verified by the Travel Rule service.
+isRequired               | Whether the Travel Rule information is required before the transaction can be committed.
+requestForInformationId  | The ID of the pending travel rule request. Use this value with the [Get Travel Rule Details](#get-travel-rule-details) and [Submit Travel Rule Information](#submit-travel-rule-information) endpoints.
 
 ## User Object
 
