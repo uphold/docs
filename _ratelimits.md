@@ -22,6 +22,7 @@ POST /me/authentication_methods/:id/request_challenge   |                       
 POST /me/cards/:card/transactions *(email destination)* |                        N/A |            5 / 60-min window
 POST /me/confirm                                        |         10 / 10-min window |                          N/A
 POST /me/reports/:type                                  |         10 / 10-min window |           10 / 10-min window
+GET /oauth2/authorize/start                             |          30 / 5-min window |                          N/A
 POST /oauth2/token                                      |          50 / 5-min window |            50 / 5-min window
 POST /password/change                                   |          5 / 60-min window |            5 / 60-min window
 POST /password/forgot                                   |          5 / 60-min window |            5 / 60-min window
