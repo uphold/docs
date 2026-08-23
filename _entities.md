@@ -12,20 +12,24 @@
   "currency": "USD",
   "id": "0874745c-f0bf-4973-a3d9-9832aeaae087",
   "label": "Savings Account",
+  "provider": "credit-card-gateway",
   "status": "ok",
   "type": "card"
 }
 ```
 
-Property | Description
--------- | -----------------------------------------------------------------------
-billing  | The relevant billing details associated with the account.
-brand    | The brand of the `card` account.
-currency | The currency in which the account is denominated.
-id       | A unique ID associated with the account.
-label    | The display name of the account as chosen by the user.
-status   | The current status of the account. Possible values are `ok` and `failed`.
-type     | The type of the account. Possible values are `card` and `sepa`.
+Property    | Description
+----------- | -----------------------------------------------------------------------
+billing     | The relevant billing details associated with the account.
+brand       | The brand of the `card` account.
+currency    | The currency in which the account is denominated.
+errors      | A list of errors associated with the account, if any. Each error contains a `detail` message and a `type`, which can be `deposit`, `registration` or `withdrawal`.
+id          | A unique ID associated with the account.
+institution | The financial institution the bank account is held at, when available. Contains the institution's `name`.
+label       | The display name of the account as chosen by the user.
+provider    | The provider that services the account. Possible values are `bank-gateway`, `credit-card-gateway`, `lhv`, `tradeview` and `uphold`.
+status      | The current status of the account. Possible values are `blocked`, `expired`, `failed`, `ok`, `pending` and `restricted`. In API responses, `blocked` is surfaced as `failed` and `restricted` as `pending`.
+type        | The type of the account. Possible values are `bank`, `card` and `exchange`. For `bank` accounts, responses return the account's network — `ach`, `fps`, `sepa`, `swift` or `wire` — as the `type`. The values `ach`, `fps` and `sepa` are deprecated as account types, but are still accepted when filtering accounts by type.
 
 ## Authentication Method Object
 
@@ -45,9 +49,9 @@ type     | The type of the account. Possible values are `card` and `sepa`.
 Property     | Description
 ------------ | -----------------------------------------------------------------------
 default      | A boolean signalling whether or not the method is the default.
-id           | A unique ID associated with the account.
+id           | A unique ID associated with the authentication method.
 label        | The display name of the authentication method.
-type         | The type of authentication method. Possible values are `authy` and `totp`.
+type         | The type of authentication method. Possible values are `authy`, `sms` and `totp`.
 verified     | A boolean signalling whether or not the authentication method has been verified.
 verifiedAt   | The date and time of verification of the authentication method.
 
@@ -72,8 +76,9 @@ verifiedAt   | The date and time of verification of the authentication method.
     "currency": "USD"
   }],
   "settings": {
-    "position": 2,
+    "position": 0,
     "protected": false,
+    "staking": false,
     "starred": true
   }
 }
@@ -90,8 +95,10 @@ label             | The display name of the card as chosen by the user.
 lastTransactionAt | A timestamp of the last time a transaction on this card was conducted.
 normalized        | Contains the normalized `available` and `balance` values in the currency set by the user in the settings.
 settings          | This property contains the following keys:
+|                 | `protected`: Indicates whether the card is protected. Transactions originating from a protected card must be signed with the card's registered key.
+|                 | `staking`: Indicates whether the card is a staking card, which holds staked assets.
 |                 | `starred`: Indicates whether the card is `starred` or not.
-|                 | <code class="notice">DEPRECATED</code> `position`: The card's current position.
+|                 | <code class="notice">DEPRECATED</code> `position`: Always `0`. Kept for backwards compatibility.
 
 ## Currency Pair Object
 
@@ -106,8 +113,10 @@ settings          | This property contains the following keys:
 }
 ```
 
-A currency pair is the combination of two currencies, encoded as two [currency codes](#currencies) concatenated together to represent the current status of converting the first currency into the second.
-For example, the currency pair "BTCUSD" represents moving from bitcoin to US dollars.
+A currency pair is the combination of two currencies, encoded as two [currency codes](#currencies) to represent the current status of converting the first currency into the second.
+Pairs between two of the currencies supported early in Uphold's history (such as BTC, ETH, EUR, or USD) are encoded as the two codes concatenated together — for example, the currency pair "BTCUSD" represents moving from bitcoin to US dollars.
+All other pairs are encoded as the two codes separated by a hyphen, in the format `FROM-TO` — for example, "SOL-USD".
+This applies both to the `pair` field of [ticker](#tickers) responses and to the pair used in request paths.
 
 Each currency pair has four properties:
 
@@ -250,12 +259,14 @@ Transactions have the following properties:
 Property     | Description
 ------------ | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 application  | The application that created the transaction.
+completedAt  | The date and time the transaction was completed, if applicable.
 createdAt    | The date and time the transaction was initiated.
 denomination | The funds to be transferred, as originally requested. See [Denomination](#denomination).
 destination  | The recipient of the funds. See [Destination](#destination).
+failedAt     | The date and time the transaction failed, if applicable.
 fees         | The fees that were applied to the transaction. See [Fees](#fees).
 id           | A unique ID on the Uphold Network associated with the transaction.
-message      | An optional note added when initiating the transaction. Expected to be human-readable prose, e.g. for providing additional information and context about the nature/purpose of the transaction.
+message      | An optional note added when initiating the transaction. Expected to be human-readable prose, e.g. for providing additional information and context about the nature/purpose of the transaction. Only returned to applications with access to the user's personally identifiable information (PII).
 network      | The network of the transaction (`uphold` for internal transactions).
 normalized   | The transaction details in USD. See [Normalized](#normalized).
 origin       | The sender of the funds. See [Origin](#origin).
@@ -264,7 +275,7 @@ priority             | The priority of the transaction. Possible values are `nor
 reference            | A reference code assigned to the transaction. Can be any string, up to 100 characters. This is not exposed to the user; a possible use case is to reference an external ID in another system.
 requirements         | An array of requirement codes that must be fulfilled before the transaction can be committed. May include `user-subject-to-extended-travel-rule`. Absent when no requirements apply.
 requirementsDetails  | An object with additional details about each requirement. See [Requirements Details](#requirements-details). Absent when no requirements apply.
-status               | The current status of the transaction. Possible values are `pending`, `processing`, `cancelled`, `failed` and `completed`.
+status               | The current status of the transaction. Possible values are `cancelled`, `completed`, `failed`, `on-hold`, `processing` and `waiting`. An uncommitted transaction (quote) is returned with the transient status `pending` until it is [committed](#step-2-commit-transaction).
 type                 | The nature of the transaction. Possible values are `deposit`, `transfer` and `withdrawal`.
 
 <aside class="notice">
@@ -297,7 +308,7 @@ amount     | The amount to be charged.
 currency   | The currency for said amount.
 percentage | The percentage amount to be charged.
 target     | Can be `origin` or `destination` and determines where the fee was applied.
-type       | The type of fee. Can be one of: `deposit`, `exchange`, `network` or `withdrawal`.
+type       | The type of fee. Can be one of: `deposit`, `exchange`, `external`, `network`, `special`, `transfer`, `unstake`, `voucher` or `withdrawal`.
 
 <aside class="notice">
   <strong>Important Notice</strong>: For further information on our fees, please visit our FAQ: <a href="https://support.uphold.com/hc/en-us/articles/202342496-Is-Uphold-a-free-service-">Is Uphold a free service?</a>
@@ -341,7 +352,7 @@ amount      | The amount debited, including commissions and fees.
 base        | The amount to debit, before commissions or fees.
 commission  | The commission charged by Uphold to process the transaction.
 currency    | The currency of the funds at the origin.
-description | The name of the sender.
+description | The name of the sender. Only returned to applications with access to the user's personally identifiable information (PII).
 fee         | The Bitcoin network Fee, if origin is in BTC but destination is not, or is a non-Uphold Bitcoin Address.
 isMember    | A boolean signaling if the origin user has completed the membership process.
 node        | The details about the transaction origin node.
@@ -359,12 +370,15 @@ The destination of a transaction has its own set of properties describing how th
 
 Property    | Description
 ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------
+AccountId   | The ID of the account credited, when the destination of the funds is an account.
 CardId      | The ID of the card credited. Only visible to the user who receives the transaction.
+accountType | The type of the account, when the destination of the funds is an account. Possible values are `bank`, `card` and `exchange`.
+address     | The address the funds were sent to, when the destination is an external address.
 amount      | The amount credited, including commissions and fees.
 base        | The amount to credit, before commissions or fees.
 commission  | The commission charged by Uphold to process the transaction. Commissions are only charged when currency is converted into a different denomination.
 currency    | The denomination of the funds at the time they were sent/received.
-description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient.
+description | The name of the recipient. In the case where money is sent via email, the description will contain the email address of the recipient. Only returned to applications with access to the user's personally identifiable information (PII).
 fee         | The Bitcoin network Fee, if destination is a BTC address but origin is not.
 isMember    | A boolean signaling if the destination user has completed the membership process.
 node        | The details about the transaction destination node.
@@ -394,26 +408,31 @@ requestForInformationId  | The ID of the pending travel rule request. Use this v
     "zipCode": "47890"
   },
   "balances": {
+    "available": "22390.94",
     "currencies": {
       "BTC": {
         "amount": "4500.00",
+        "available": "5.00",
         "balance": "5.00",
         "currency": "USD",
         "rate": "900.00000"
       },
       "EUR": {
         "amount": "180.89",
+        "available": "154.88",
         "balance": "154.88",
         "currency": "USD",
         "rate": "1.16795"
       },
       "USD": {
         "amount": "17710.05",
+        "available": "17710.05",
         "balance": "17710.05",
         "currency": "USD",
         "rate": "1.00000"
       }
     },
+    "pending": "0.00",
     "total": "22390.94"
   },
   "birthdate": "2000-09-27",
@@ -432,7 +451,9 @@ requestForInformationId  | The ID of the pending travel rule request. Use this v
   ],
   "email": "malika.koss@example.com",
   "firstName": "Malika",
+  "fullName": "Malika Koss",
   "id": "21e65c4d-55e4-41be-97a1-ff38d8f3d945",
+  "identityCountry": "US",
   "lastName": "Koss",
   "memberAt": "2018-08-01T09:53:44.293Z",
   "name": "Malika Koss",
@@ -460,6 +481,11 @@ requestForInformationId  | The ID of the pending travel rule request. Use this v
       }
     },
     "otp": {
+      "email": {
+        "update": {
+          "enabled": true
+        }
+      },
       "login": {
         "enabled": true
       },
@@ -475,11 +501,9 @@ requestForInformationId  | The ID of the pending travel rule request. Use this v
             "enabled": true
           }
         }
-      },
-      "vmc": {
-        "enabled": true
       }
-    }
+    },
+    "theme": "minimalistic"
   },
   "state": "US-UT",
   "status": "ok",
@@ -495,9 +519,11 @@ The `user` object contains most of the information we have on record relating to
   Our API does not allow accessing information about other users.
 </aside>
 
-Property | Description
--------- | ----------------------------------------------------------------------------------------------------------
-memberAt | The date when the user became a [verified member](https://support.uphold.com/hc/en-us/articles/206119603).
+Property        | Description
+--------------- | ----------------------------------------------------------------------------------------------------------
+fullName        | The user's full name.
+identityCountry | The country of the user's identity document, as determined during identity verification.
+memberAt        | The date when the user became a [verified member](https://support.uphold.com/hc/en-us/articles/206119603).
 
 <aside class="notice">
   The <code>memberAt</code> field can be <code>null</code> if the user hasn't completed the membership process.
@@ -507,11 +533,12 @@ memberAt | The date when the user became a [verified member](https://support.uph
 
 ### User Settings
 
+- **otp.email.update.enabled** - This will prompt the user to input an OTP token when updating their email address.
 - **otp.login.enabled** - This will prompt the user to input an OTP token when creating an OAuth token.
 - **otp.transactions.send.enabled** - This will prompt the user to input an OTP token when creating a transaction to another user.
 - **otp.transactions.transfer.enabled** - This will prompt the user to input an OTP token when transacting between the user's own cards.
 - **otp.transactions.withdraw.crypto.enabled** - This will prompt the user to input an OTP token when withdrawing to the bitcoin network.
-- **otp.vmc.enabled** - This will prompt the user to input an OTP token when using VMCs.
+- **theme** - The user's chosen theme. Possible values are `artwork`, `digital`, `minimalistic`, `realistic` and `vintage`.
 
 ### User Status
 
@@ -524,25 +551,29 @@ At a high-level users can be in one of four statuses:
   it means the signup process is not yet finalized.
 - **restricted** - This status means the user is allowed to login to the application, deposit or receive money, and perform trades, but they are not permitted to withdraw nor send money to other users.
   This status exists to allow users to satisfy additional data requirements.
-  In this status users are unable to login or access the product.
 
 ### User Verifications
 
 The `verifications` field can help communicate the reasons for a given user status, or what's missing to complete the membership process.
-These verifications have permissible values and in some cases, an associated reason.
-Here is an overview of the verifications field:
+Each verification is an object with a `status` field and, in some cases, additional fields such as a `reason`.
+A verification is only present when there is something to communicate about it.
+Here is an overview of the most common verifications:
 
-Flag                            | Permissible Values               | Reason                                      | Description
-------------------------------- | -------------------------------- | ------------------------------------------- | --------------------------------------------------------------------------------------
-address                         | null, required                   | n/a                                         | Required for individual users.
-birthdate                       | required                         | n/a                                         | Whether the user needs to provide their date of birth.
-customerDueDiligence            | null, optional, required         | n/a                                         | CDD is required if the user is from an European country otherwise, it's optional.
-documents                       | null, optional, required         | identity-country-mismatch, invalid, missing | Required when the user must submit SSN or Tax ID.
-email                           | unconfirmed                      | n/a                                         | Whether the user needs to confirm their email.
-identity                        | required, retry, review, running | n/a                                         | The status of identity verification during the membership application process.
-location                        | blocked, required                | country, state                              | Whether the user has specified their location, which can be a blocked country/state.
-permanentAddress                | null, required                   | n/a                                         | Required for non-US citizens with US residence.
-phone                           | required, unconfirmed            | n/a                                         | The status of phone number verification.
-terms                           | required                         | updated                                     | Whether the user has accepted the latest version of the terms of service.
-termsEquities                   | null, required                   | n/a                                         | Required when the user hasn't accepted the terms of service for equities trading.
-usTaxPayer                      | null, required                   | n/a                                         | Required for non-US citizens with US residence.
+Flag                 | Statuses                      | Reasons                            | Description
+-------------------- | ----------------------------- | ---------------------------------- | --------------------------------------------------------------------------------------
+address              | required                      | n/a                                | Present when an individual user needs to provide their address.
+birthdate            | required                      | n/a                                | Present when the user needs to provide their date of birth.
+customerDueDiligence | optional, required            | n/a                                | Present when the Customer Due Diligence (CDD) questionnaire applies to the user. Whether completing it is `required` or `optional` depends on the user's CDD status.
+documents            | required, running             | identity-country-mismatch, missing | Present when the user must submit a document, such as an SSN, Tax ID or W-9 form.
+email                | pending, unconfirmed          | n/a                                | `unconfirmed` when the user needs to confirm their email; `pending` when an email address change is awaiting confirmation.
+identity             | required, review, running     | various                            | The status of identity verification during the membership application process. May include a `reason` and the list of accepted `providers`.
+location             | blocked, required             | country, state                     | Whether the user has specified their location, which can be a blocked country/state.
+permanentAddress     | required                      | n/a                                | Present for users residing in the US without US citizenship who declared not being US taxpayers.
+phone                | required, review, unconfirmed | various                            | The status of phone number verification.
+terms                | required                      | n/a                                | Present when the user hasn't accepted the latest version of the terms of service.
+termsEquities        | required                      | n/a                                | Present when the user hasn't accepted the terms of service for equities trading.
+usTaxpayer           | required                      | n/a                                | Present when the user must declare whether they are a US taxpayer.
+
+<aside class="notice">
+  Additional verification keys — such as <code>citizenshipCountry</code>, <code>livenessCheck</code>, <code>marketing</code>, <code>name</code>, <code>password</code>, <code>proofOfAddress</code> and <code>termsFpsSepaDeposits</code> — may also be present, following the same object structure.
+</aside>
