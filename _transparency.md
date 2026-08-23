@@ -18,14 +18,16 @@ Frequently one may find that changes to the Reserve's assets and liabilities are
 ### Request
 
 ```bash
-curl https://api.uphold.com/v0/reserve/ledger
+curl https://api.uphold.com/v0/reserve/ledger \
+  -H "Authorization: Bearer <token>"
 ```
 
 `GET https://api.uphold.com/v0/reserve/ledger`
 
 This endpoint supports [Pagination](#pagination).
 
-To access this endpoint, an API key is required.
+To access this endpoint, an OAuth access token with the `reserve:read` scope is required,
+issued to an application using the `authorization_code` grant.
 
 ### Deposits
 
@@ -33,6 +35,7 @@ The following entry shows how a deposit of 0.5 bitcoin by a user would be encode
 Every deposit results in two entries in the ledger.
 The first records the acquisition of a liability, and the second the genesis of an asset.
 Specifically, it shows the creation of 0.5 bitcoin as an obligation to the user, plus the acquisition of 0.5 bitcoin as an asset.
+Since a deposit only adds value to the Reserve, each entry contains only the `in` side.
 
 <pre class="inline"><code>{
   "TransactionId": "e205b50e-6649-416d-82c1-98f0ba44dcd9",
@@ -41,20 +44,12 @@ Specifically, it shows the creation of 0.5 bitcoin as an obligation to the user,
     "amount": "0.5",
     "currency": "BTC"
   },
-  "out": {
-    "amount": "0.00",
-    "currency": "BTC"
-  },
   "type": "liability"
 },
 {
   "createdAt": "2014-10-08T12:26:29.844Z",
   "in": {
     "amount": "0.5",
-    "currency": "BTC"
-  },
-  "out": {
-    "amount": "0.00",
     "currency": "BTC"
   },
   "type": "asset"
@@ -71,7 +66,7 @@ Instead, Uphold owes them the $507.51 they exchanged for that bitcoin.
 
 <pre class="inline"><code>{
   "TransactionId": "1571fbef-d34e-447c-9b6e-4ad775953082",
-  "createdAt": "2014-09-30T20:29:36.575Z"
+  "createdAt": "2014-09-30T20:29:36.575Z",
   "in": {
     "amount": "507.51",
     "currency": "USD"
@@ -104,7 +99,7 @@ This would therefore be recorded in our ledger at some point in the future as fo
 }
 </code></pre>
 
-The examples above are nearly identical from one another due to the simplicity of the use case it elucidates.
+The examples above are nearly identical to one another due to the simplicity of the use case it elucidates.
 Consider however that when operating normally it is likely that a series of changes to our liabilities will be aggregated and accounted for in a single change to our assets in order to restore balance to the reserve.
 
 ### Withdrawal of Bitcoin
@@ -113,13 +108,10 @@ When value is removed from the Reserve, two entries are added.
 One accounting for the change in assets, and the other for the change in liabilities.
 The following entry shows how a user transmitting some bitcoin to an external network/wallet would be encoded on the ledger.
 It shows the removal of a liability of bitcoin to the user, and the subsequent removal of bitcoin as an asset.
+Since a withdrawal only removes value from the Reserve, each entry contains only the `out` side.
 
 <pre class="inline"><code>{
   "createdAt": "2014-10-08T06:53:51.080Z",
-  "in": {
-    "amount": "0.00",
-    "currency": "BTC"
-  },
   "out": {
     "amount": "0.10359178",
     "currency": "BTC"
@@ -129,10 +121,6 @@ It shows the removal of a liability of bitcoin to the user, and the subsequent r
 {
   "TransactionId": "6ab1f3e8-3b84-40b0-aec7-8008117c9f86",
   "createdAt": "2014-10-08T06:53:51.080Z",
-  "in": {
-    "amount": "0.00",
-    "currency": "BTC"
-  },
   "out": {
     "amount": "0.10359178",
     "currency": "BTC"
@@ -150,10 +138,10 @@ What follows is how we could encode shifting 1M dollars into a US Treasury Bill.
 Take note that we can optionally include additional data relating to the asset class.
 
 <pre class="inline"><code>{
-  "createdAt": "2014-10-08T06:53:51.080Z"
+  "createdAt": "2014-10-08T06:53:51.080Z",
   "in": {
     "amount": "1",
-    "currency": "T-Bill"
+    "currency": "T-Bill",
     "meta": {
       "cusip": 345370860,
       "maturityDate": "2016-05-01 00:00:00 UTC",
@@ -162,21 +150,21 @@ Take note that we can optionally include additional data relating to the asset c
     }
   },
   "out": {
-    amount: "1000000",
-    currency: "USD"
+    "amount": "1000000",
+    "currency": "USD"
   },
   "type": "asset"
 }
 </code></pre>
 
 <aside class="notice">
-  For the time being this "reallocation" example is merely theoretical, but speaks to the potential for us to records assets of various types.
+  For the time being this "reallocation" example is merely theoretical, but speaks to the potential for us to record assets of various types.
 </aside>
 
 ## The Reservechain
 
 Uphold's Reservechain is a record of all of the transactions made by its Members that move value through the network.
-It is a "chain" in that any value moved in a transaction can be easily traced back to it's origin.
+It is a "chain" in that any value moved in a transaction can be easily traced back to its origin.
 
 At a high level, each transaction in the Reservechain contains the following key pieces of information:
 
@@ -210,7 +198,7 @@ Given that this is a point in the chain at which there is a genesis of value, th
 However, we will provide a link to the external authority documenting the source of the value whenever possible.
 
 <pre class="inline"><code>{
-  "createdAt": "2014-10-08T12:26:29.807Z"
+  "createdAt": "2014-10-08T12:26:29.807Z",
   "denomination": {
     "amount": "0.5",
     "currency": "BTC"
@@ -297,6 +285,7 @@ Withdrawals also account for value leaving the Reservechain, and is thus a termi
 A transfer documents movement of value within our network, either between two parties or two denominations, or both.
 
 <pre class="inline"><code>{
+  "application": null,
   "createdAt": "2014-09-30T20:29:36.458Z",
   "denomination": {
     "amount": "1.3",
@@ -310,6 +299,13 @@ A transfer documents movement of value within our network, either between two pa
     "fee": "0.00",
     "rate": "392.16000"
   },
+  "fees": [{
+    "amount": "2.30",
+    "currency": "USD",
+    "percentage": "0.45",
+    "target": "destination",
+    "type": "exchange"
+  }],
   "id": "1571fbef-d34e-447c-9b6e-4ad775953082",
   "origin": {
     "amount": "1.3001",
@@ -333,6 +329,7 @@ A transfer documents movement of value within our network, either between two pa
     "rate": "392.16000",
     "txid": "1946783b396998f8f91c984431ecfecff6d0a72db68b32d0873c1024c7279254"
   },
+  "priority": "normal",
   "status": "completed",
   "type": "transfer"
 }
