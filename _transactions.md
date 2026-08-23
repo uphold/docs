@@ -100,7 +100,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
 }
 ```
 
-> When the Travel Rule applies to the transaction, the response also includes:
+> When the Travel Rule applies to a transaction created without `?commit=true`, the response also includes:
 
 ```json
 {
@@ -131,21 +131,25 @@ The first step is to prepare the transaction by specifying:
 
 - The _currency_ to denominate the transaction by.
 - The _amount_ of value to send in the denominated currency.
+- An optional denomination _target_ (`origin` or `destination`), determining which side of the transaction the denominated amount applies to:
+  when set to `destination`, fees are added on top of the denominated amount, so that the destination receives that exact amount;
+  when set to `origin`, fees are deducted from it instead.
+  By default, the target is the `destination` when converting to a different currency while denominating in the destination currency, and the `origin` otherwise.
 - The _origin_ of the transaction, which can be an account id in the case of a _deposit_.
 - The _destination_ of the transaction, which can be in the form of a [crypto network address](#create-card-address), an email address, an account id, an application id, or a [card id](#card-object).
 - An optional _message_, which is shown to the user to provide additional context.
 - An optional _reference_ code, which can be used as a unique identifier of the transaction in an external system, or for similar purposes.
 - An optional _priority_ for the transaction ("normal" or "fast", with the default being "normal"),
   to signal the intent to fast-track its completion in exchange for a higher fee.
-  This is currently only supported for the Dash network.
+  Notably, this enables instant withdrawals to US bank accounts via ACH; for withdrawals on the Dash network, it results in a higher network fee.
 
 The following table describes the types of transactions currently supported:
 
-Type       | Origin                              | Destination
----------- | ----------------------------------- | --------------------------------------------------------
-deposit    | ACH, credit card or SEPA account id | Uphold card id
-withdrawal | Uphold card id                      | ACH or SEPA account id, or cryptocurrency address
-transfer   | Uphold card id                      | Email address, Application id or Uphold card id
+Type       | Origin                                                                                            | Destination
+---------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+deposit    | Bank account id (ACH, FPS or SEPA; SWIFT or WIRE for unlinked accounts) or credit card account id | Uphold card id
+withdrawal | Uphold card id                                                                                    | Bank account id (ACH, FPS or SEPA; SWIFT or WIRE for unlinked accounts), credit/debit card account id, alternative payment method (e.g. Interac or Apple Pay), or cryptocurrency address
+transfer   | Uphold card id                                                                                    | Email address, Application id or Uphold card id
 
 Upon preparing a transaction, a [Transaction Object](#transaction-object) will be returned with a newly-generated `id`, and a status of `pending`.
 
@@ -156,7 +160,8 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
   Adding the query string parameter <code>?commit=true</code> to this request will create and commit the transaction in a single step.
 </aside>
 <aside class="notice">
-  If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, you need to send the credit card's <code>securityCode</code> in the request body.
+  If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set, the credit card's <code>securityCode</code> may be required in the request body.
+  This API accepts it as an optional field, but the card gateway may still require it to process the deposit.
 </aside>
 <aside class="notice">
   <strong>Important Notice</strong>: In compliance with PCI standards, the Uphold Sandbox environment does not accept real credit/debit card data. For a list of accepted card data, please refer to the <a href="#adding-credit-debit-card-accounts">Adding credit/debit card accounts</a> section of the documentation.
@@ -167,39 +172,41 @@ Upon preparing a transaction, a [Transaction Object](#transaction-object) will b
 `POST https://api.uphold.com/v0/me/cards/:card/transactions`
 
 <aside class="notice">
-  Requires any of the following scopes: <code>transactions:deposit</code>, <code>transactions:transfer:application</code>, <code>transactions:transfer:others</code>, <code>transactions:transfer:self</code> or <code>transactions:withdraw</code> for Uphold Connect applications.
+  Requires any of the following scopes: <code>transactions:transfer:application</code>, <code>transactions:transfer:others</code>, <code>transactions:transfer:self</code>, <code>transactions:withdraw</code> or <code>transactions:write</code> for Uphold Connect applications.
   If creating with the query string parameter <code>?commit=true</code>, the scope has to match the type of transaction being committed.
+  Deposits additionally require the <code>transactions:deposit</code> scope, which is checked based on the type of transaction, after route authorization.
 </aside>
 
 ### Response
 
-Returns a [Transaction Object](#transaction-object).
+Returns a [Transaction Object](#transaction-object), with HTTP status code `202` when the transaction is created without the query string parameter `?commit=true`, or `200` when it is created and committed in a single step.
 
 <aside class="notice">
   If the deposit origin is a <code>CARD</code> account ID and the query string parameter <code>?commit=true</code> is set,
   the transaction's <code>params</code> will include a <code>redirect</code> field with information of a redirect URI to be followed to complete the credit card deposit.
 </aside>
 <aside class="notice">
-  If the withdrawal is subject to the Travel Rule, the response will include a <code>requirements</code> array and a <code>requirementsDetails</code> object containing the <code>requestForInformationId</code>.
+  If the withdrawal is subject to the Travel Rule and the transaction is created without the query string parameter <code>?commit=true</code>, the response will include a <code>requirements</code> array and a <code>requirementsDetails</code> object with the <code>isAddressVerified</code>, <code>isRequired</code> and <code>requestForInformationId</code> fields, along with an optional <code>reason</code> explaining why the requirement applies.
   The travel rule information must be submitted via the <a href="#submit-travel-rule-information">Submit Travel Rule Information</a> endpoint before <a href="#step-2-commit-transaction">committing the transaction</a>.
 </aside>
 
 ### Step 2: Commit Transaction
 
 Once a transaction has been created and a quote secured, commit the transaction using the previously returned `id`.
-An optional parameter `message` can also be sent which will overwrite the value currently stored in the transaction.
+The optional parameters `beneficiary`, `message`, `purpose` and `reference` can also be sent, which will overwrite the values currently stored in the transaction.
 
 Once the transaction is committed, its status will change to `processing`.
 
 <aside class="notice">
-  This must be done within the time window specified (in miliseconds) by the <a href="#parameters"><code>params.ttl</code></a> field of the transaction object.
+  This must be done within the time window specified (in milliseconds) by the <a href="#parameters"><code>params.ttl</code></a> field of the transaction object.
   Attempting to commit a transaction past this timeframe results in a <a href="#errors">404 HTTP error</a>.
 </aside>
 <aside class="notice">
   If the <a href="#permissions"><code>transactions:commit:otp</code> permission</a> has been granted by the user, and an OTP is not provided with the request,
-  you will get a <a href="#errors">401 HTTP error</a>, along with the HTTP header <code>OTP-Token: Required</code>.
+  you will get a <a href="#errors">401 HTTP error</a>, along with the HTTP header <code>OTP-Token: required</code>.
   In that case, re-send the request, including the OTP verification code like so:
   <code>OTP-Token: &lt;OTP-Token&gt;</code>.
+  Note that this OTP challenge can also occur at the create step, when using the query string parameter <code>?commit=true</code>.
 </aside>
 
 ### Request
@@ -208,11 +215,13 @@ Once the transaction is committed, its status will change to `processing`.
 
 <aside class="notice">
   Requires any of the following scopes, based on the type of transaction being committed:
-  <code>transactions:deposit</code>, <code>transactions:transfer:application</code>, <code>transactions:transfer:others</code>, <code>transactions:transfer:self</code> or <code>transactions:withdraw</code>
+  <code>transactions:transfer:application</code>, <code>transactions:transfer:others</code>, <code>transactions:transfer:self</code>, <code>transactions:withdraw</code> or <code>transactions:write</code>
   for Uphold Connect applications.
+  Deposits additionally require the <code>transactions:deposit</code> scope, which is checked based on the type of transaction, after route authorization.
 </aside>
 <aside class="notice">
-  If the deposit origin is a <code>CARD</code> account ID, you need to send the credit card's <code>securityCode</code> in the request body.
+  If the deposit origin is a <code>CARD</code> account ID, the credit card's <code>securityCode</code> may be required in the request body.
+  This API accepts it as an optional field, but the card gateway may still require it to process the deposit.
 </aside>
 <aside class="notice">
   If the user has recently changed their password, they may be in a cool-down period where outbound transactions are not allowed, for security reasons.
@@ -230,7 +239,7 @@ Returns a [Transaction Object](#transaction-object).
 
 ## Specify destination currency
 
-> Example of creating a EUR to BTC transaction denominated in USD (i.e. buying 10 USD worth of BTC with and EUR card), by using the address of a EUR card as the `origin` in the URL parameter, and the address of an BTC card in the `destination` field, in the body of the request:
+> Example of creating a EUR to BTC transaction denominated in USD (i.e. buying 10 USD worth of BTC with a EUR card), by using the address of a EUR card as the `origin` in the URL parameter, and the address of a BTC card in the `destination` field, in the body of the request:
 
 ```bash
 curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions \
@@ -291,7 +300,7 @@ curl https://api.uphold.com/v0/me/cards/a6d35fcd-xxxx-9c9d1dda6d57/transactions 
 ```
 
 By using a [card](#card-object) id as the destination of a transaction, it is possible to determine the destination currency, independently from the denomination.
-For example, to convert 10 USD worth of EUR to BTC, one could create a transaction from an EUR card to a BTC card, and denominate it in USD. An example is shown to the side.
+For example, to convert 10 USD worth of EUR to BTC, one could create a transaction from a EUR card to a BTC card, and denominate it in USD. An example is shown to the side.
 
 ## Confirm a Credit Card Deposit
 
@@ -362,19 +371,14 @@ A webpage for 3DSecure confirmation for the user to interact with.
 As the cryptocurrency market grows and starts interacting more and more with the traditional finance world new rules are applied to the FinTech sector.
 As such, under the regulatory action of The Financial Action Task Force [FATF](https://www.fatf-gafi.org/), we are required to comply with the [travel rule](https://www.fatf-gafi.org/media/fatf/documents/recommendations/RBA-VA-VASPs.pdf) which requires us to "obtain, hold, and transmit required originator and beneficiary information in order to identify and report suspicious transactions, monitor the availability of information, take freezing actions, and prohibit transactions with designated persons and entities."
 
+For cryptocurrency withdrawals, the originator and beneficiary information is collected via the [Get Travel Rule Details](#get-travel-rule-details) and [Submit Travel Rule Information](#submit-travel-rule-information) endpoints.
+Independently of that process, the following complementary fields can be sent when [creating](#step-1-create-transaction) or [committing](#step-2-commit-transaction) a transaction:
+
 > Example of a transaction creation payload including `beneficiary` and `purpose` fields:
 
 ```json
 {
   "beneficiary": {
-    "address": {
-      "city": "Ryleighfort",
-      "country": "US",
-      "line1": "32167 Mohr Land",
-      "state": "US-CA",
-      "zipCode": "47890"
-    },
-    "name": "Han Solo",
     "relationship": "child"
   },
   "denomination": {
@@ -388,8 +392,8 @@ As such, under the regulatory action of The Financial Action Task Force [FATF](h
 
 Parameter   | Required | Description
 ----------- | -------- | -----------
-beneficiary | yes/no   | The transaction beneficiary information. See [Beneficiary](#beneficiary). <br><br> <b>Required</b> for transfers to other users and withdrawals above _$3000 USD_ (or _$1000 USD_, if the origin user is from Arizona, United States). <br><br>   <b>Note:</b> ACH withdrawals do <b>not require</b> the beneficiary information to be sent. We only support personal bank accounts therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
-purpose     | yes/no   | The reason for the transaction. <br><br> <b>Required</b> for transactions in which the relationship is not set to `myself`.<br><br>For business relationships, the possible values are: `business_expenses`, `business_travel`, `consultancy_expenses`, `education_expenses`, `family_expenses`, `funding_investments`, `gift_or_donations`, `invoice_payment`, `loan_payment`, `personal_expenses`, `salary_payments`, and `technology_expenses`.<br><br>For personal relationships, the possible values are: `bill_payments`, `donations`, `expenses`, `gift`, `living_expenses`, `payment_for_goods_or_services`, and `supporting_family_internationally`.
+beneficiary | no       | The transaction beneficiary information. See [Beneficiary](#beneficiary).
+purpose     | no       | The reason for the transaction. It is ignored when the beneficiary `relationship` is set to `myself`.<br><br>For business relationships, the possible values are: `business_expenses`, `business_travel`, `consultancy_expenses`, `education_expenses`, `family_expenses`, `funding_investments`, `gift_or_donations`, `invoice_payment`, `loan_payment`, `personal_expenses`, `salary_payments`, `sale_of_nfts_or_return_of_credits`, and `technology_expenses`.<br><br>For personal relationships, the possible values are: `bill_payments`, `donations`, `expenses`, `gift`, `living_expenses`, `payment_for_goods_or_services`, and `supporting_family_internationally`.
 
 ### Beneficiary
 
@@ -397,45 +401,28 @@ This beneficiary field has the following properties:
 
 Parameter    | Required    | Description
 ------------ | ----------- | -----------
-address      | yes/no      | The transaction beneficiary address information. See [Address](#address). <br><br> <b>Required</b> for external beneficiaries.
-name         | yes/no      | The beneficiary's full name. <br><br> <b>Required</b> for external beneficiaries. <br><br> For all transactions, except those with `relationship` type `business`, the name must be composed of at least, 2 words with a minimum of 2 characters each, for the first and last word.
-relationship | yes         | Reflects the beneficiary's relationship to the transaction originator. <br><br> Possible values are `business`, `child`, `co_worker`, `friend`, `myself`, `parent`, `sibling`.
-
-### Address
-
-Property | Required | Description
--------- |--------- | -----------
-city     | yes      | The beneficiary address city.
-country  | yes      | The beneficiary address country.
-line1    | yes      | The beneficiary address line 1.
-line2    | no       | The beneficiary address line 2.
-state    | yes      | The beneficiary address state.
-zipCode  | yes      | The beneficiary address zip code.
-
-### Beneficiary Requirements
-
-To obtain the transaction beneficiary requirements (or validate the `beneficiary` object) use the `?validate=true` query parameter when creating the quote. This will generate a validation error if any required beneficiary information is missing. Otherwise, the transaction will fail at the commit step with a similar error message.
+email        | yes/no      | The beneficiary's email address. <br><br> <b>Required</b> for Interac withdrawals only.
+name         | yes/no      | The beneficiary's full name. <br><br> <b>Required</b> for Interac withdrawals only; it is not stored for any other type of transaction.
+relationship | yes         | Reflects the beneficiary's relationship to the transaction originator, as a free-form string of 1 to 255 characters. <br><br> Common values are `business`, `child`, `co_worker`, `friend`, `myself`, `parent`, `sibling`.
 
 <aside class="notice">
-  Please note that at this moment, even with the <code>validate=true</code> parameter, the validation is only performed if a <code>beneficiary</code> object is passed.
+  The beneficiary's <code>name</code> and <code>address</code> are not persisted with the transaction: only the <code>relationship</code> is kept. For Interac withdrawals, the <code>email</code> and <code>name</code> are kept instead.
+  ACH withdrawals always record the beneficiary with <code>relationship</code> set to <code>myself</code>: we only support personal bank accounts, therefore the beneficiary (ACH account holder) is assumed to be the Uphold user who added that account.
 </aside>
 
-> Example of including the beneficiary information when creating a quote, alongside the remaining transaction data:
+### Validating a Transaction
+
+To validate a transaction without committing it, use the `?validate=true` query string parameter when [creating](#step-1-create-transaction) it.
+This runs the generic quote validation, along with the scope and OTP checks that would otherwise be performed when committing the transaction, based on its type.
+
+> Example of validating a quote with beneficiary information, using the `?validate=true` query string parameter:
 
 ```bash
-curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions' \
+curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions?validate=true' \
   -H 'Authorization: Bearer <bearer-token>' \
   -H 'Content-Type: application/json' \
   -d '{
     "beneficiary": {
-      "address": {
-        "city": "Ryleighfort",
-        "country": "US",
-        "line1": "32167 Mohr Land",
-        "state": "US-CA",
-        "zipCode": "47890"
-      },
-      "name": "Han Solo",
       "relationship": "child"
     },
     "denomination": {
@@ -456,65 +443,11 @@ curl 'https://api-sandbox.uphold.com/v0/me/cards/<card-id>/transactions/<transac
   -H 'OTP-Token: <OTP-Token>' \
   -d '{
     "beneficiary": {
-      "address": {
-        "city": "Ryleighfort",
-        "country": "US",
-        "line1": "32167 Mohr Land",
-        "state": "US-CA",
-        "zipCode": "47890"
-      },
-      "name": "Han Solo",
       "relationship": "child"
     },
     "purpose": "donations"
   }'
 ```
-
-> In both cases, incomplete beneficiary information will be reported in a format similar to this:
-
-```json
-{
-  "code": "validation_failed",
-  "errors": {
-    "beneficiary": {
-      "code": "validation_failed",
-      "errors": {
-        "name": [
-          {
-            "code": "required",
-            "message": "This value is required"
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
-> Invalid beneficiary information will be reported like this:
-
-```json
-{
-  "code": "validation_failed",
-  "errors": {
-    "beneficiary": {
-      "code": "validation_failed",
-      "errors": {
-        "name": [
-          {
-            "code": "invalid_beneficiary",
-            "message": "The provided beneficiary is invalid"
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
-<aside class="notice">
-  For regulatory compliance reasons, the beneficiary name is checked by a sanctions screening process, and is expected to consist entirely of characters in the Latin, Cyrillic, Greek or Georgian alphabets, along with a limited set of special characters. These validations may result in an <code>invalid_beneficiary</code> error.
-</aside>
 
 ## List User Transactions
 
@@ -623,6 +556,14 @@ Requests a list of committed transactions associated with the current user.
 </aside>
 
 This endpoint supports [Pagination](#pagination).
+
+You can filter the list of returned transactions using the `q` query string parameter. Supported filters are:
+
+- `createdAt:`, which accepts the comparison operators `>`, `>=`, `<` and `<=` (e.g. `createdAt:>=2024-01-01`), as well as date ranges (e.g. `createdAt:2024-01-01..2024-03-31`).
+- `origin.CardId:` and `destination.CardId:`, which accept a single card id or a comma-separated list of card ids.
+
+Multiple filters can be used together, separated with a space.
+The `origin.CardId:` and `destination.CardId:` filters can also be combined with the `OR` keyword, e.g. `origin.CardId:"<card-id>" OR destination.CardId:"<card-id>"`.
 
 ### Response
 
@@ -743,30 +684,27 @@ Returns an array of [Transaction Objects](#transaction-object).
 ## Get All Transactions (Public)
 
 ```bash
-curl -X GET "https://api.uphold.com/v0/reserve/transactions"
+curl -X GET "https://api.uphold.com/v0/reserve/transactions" \
+  -H "Authorization: Bearer <token>"
 ```
 
 > The above command returns the following JSON (truncated for brevity):
 
 ```json
 [{
+  "application": null,
   "createdAt": "2014-09-25T19:19:51.201Z",
   "denomination": {
     "amount": "25.00",
-    "currency": "USD",
-    "pair": "USDUSD",
-    "rate": "1.00"
+    "currency": "USD"
   },
   "destination": {
-    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
     "amount": "0.02777777",
     "base": "0.02777777",
     "commission": "0.00",
     "currency": "BTC",
-    "description": "Nuno Sousa",
     "fee": "0.00",
-    "rate": "0.00111111",
-    "type": "card"
+    "rate": "0.00111111"
   },
   "fees": [{
     "amount": "0.00",
@@ -776,48 +714,34 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "type": "exchange"
   }],
   "id": "63dc7ccb-0e57-400d-8ea7-7d903753801c",
-  "message": null,
-  "normalized": [{
-    "amount": "22.94",
-    "commission": "0.00",
-    "currency": "EUR",
-    "fee": "0.00",
-    "rate": "0.91759"
-  }],
   "origin": {
-    "CardId": "f4dbc023-61bb-43e9-9ce6-7f34efd9e688",
     "amount": "25.00",
     "base": "25.00",
     "commission": "0.00",
     "currency": "USD",
-    "description": "Nuno Sousa",
     "fee": "0.00",
     "rate": "900.00000",
     "sources": [{
       "amount": "25.00",
       "id": "4586e3f6-5fff-473f-b479-4e7ce2ba14cf"
-    }],
-    "type": "card"
+    }]
   },
   "params": {
     "currency": "USD",
     "margin": "0.00",
     "pair": "BTCUSD",
-    "progress": "1",
-    "rate": "900.00000",
-    "ttl": 7000,
-    "type": "transfer"
+    "rate": "900.00000"
   },
+  "priority": "normal",
   "status": "completed",
   "type": "transfer"
 },
 {
+  "application": null,
   "createdAt": "2016-01-19T12:07:01.611Z",
   "denomination": {
     "amount": "0.01",
-    "currency": "BTC",
-    "pair": "BTCBTC",
-    "rate": "1.00"
+    "currency": "BTC"
   },
   "destination": {
     "address": "n2eMqTT929pb1RDNuqEnxdaLau1rxy3efi",
@@ -825,10 +749,8 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "base": "0.01",
     "commission": "0.00",
     "currency": "BTC",
-    "description": "n2eMqTT929pb1RDNuqEnxdaLau1rxy3efi",
     "fee": "0.00",
-    "rate": "1.00",
-    "type": "external"
+    "rate": "1.00"
   },
   "fees": [{
     "amount": "0.0002",
@@ -843,39 +765,25 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions"
     "type": "withdrawal"
   }],
   "id": "99191bf6-52d8-4f29-92e8-676b68c9a85b",
-  "message": null,
-  "network": "bitcoin",
-  "normalized": [{
-    "amount": "9.18",
-    "commission": "0.00",
-    "currency": "USD",
-    "fee": "0.18",
-    "rate": "900.00000"
-  }],
   "origin": {
-    "CardId": "d42999c4-30c9-4a61-889c-62a4050bce88",
     "amount": "0.0102",
     "base": "0.01",
     "commission": "0.00",
     "currency": "BTC",
-    "description": "Nuno Sousa",
     "fee": "0.0002",
     "rate": "1.00",
     "sources": [{
       "amount": "0.0102",
       "id": "390ed0ab-c014-43f3-868a-8ea3ea56025e"
-    }],
-    "type": "card"
+    }]
   },
   "params": {
     "currency": "BTC",
     "margin": "0.00",
     "pair": "BTCBTC",
-    "progress": "1",
-    "rate": "1.00",
-    "ttl": 7000,
-    "type": "external/out"
+    "rate": "1.00"
   },
+  "priority": "normal",
   "status": "completed",
   "type": "withdrawal"
 }]
@@ -885,11 +793,15 @@ See also: [Transparency: Reservechain](#the-reservechain)
 
 Requests the public view of all transactions in the reserve.
 
-To access this endpoint, an API key is required.
+To access this endpoint, an OAuth access token obtained by a client with the `authorization_code` grant is required.
 
 ### Request
 
 `GET https://api.uphold.com/v0/reserve/transactions`
+
+<aside class="notice">
+  Requires the <code>reserve:read</code> scope for Uphold Connect applications.
+</aside>
 
 This endpoint supports [Pagination](#pagination).
 
@@ -915,9 +827,7 @@ curl -X GET "https://api.uphold.com/v0/reserve/transactions/a97bb994-6e24-4a89-b
   "createdAt": "2014-08-27T00:01:11.616Z",
   "denomination": {
     "amount": "1.00",
-    "currency": "USD",
-    "pair": "USDUSD",
-    "rate": "1.00"
+    "currency": "USD"
   },
   "destination": {
     "amount": "1.00",
@@ -956,6 +866,8 @@ See also: [Transparency: Reservechain](#the-reservechain)
 
 Requests the public view of a specific transaction.
 
+Unlike [Get All Transactions (Public)](#get-all-transactions-public), this endpoint requires no authentication.
+
 ### Request
 
 `GET https://api.uphold.com/v0/reserve/transactions/:id`
@@ -965,7 +877,7 @@ Requests the public view of a specific transaction.
 Returns a [Transaction Object](#transaction-object).
 
 <aside class="notice">
-  Note that you will only receive the list of committed transactions.
+  Note that only committed transactions can be retrieved through this endpoint.
 </aside>
 
 ## Transaction Limit Errors
