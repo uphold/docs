@@ -12,8 +12,8 @@ A registered application will be assigned a unique _Client Id_ and _Client Secre
 ## Considerations
 
 - For security reasons, your application **must** be secured with a valid _SSL_ certificate issued by a known Certificate Authority.
-- Likewise, the provided _Redirect URL_ when registering the application must be a valid static subresource. Notice that this property cannot be dynamically reconfigured during authorization requests for security reasons.
-- The _Redirect URL_ can also be a valid URI with a non-http/https protocol which is useful for mobile and desktop applications, for example: `my-app://uphold/connect`.
+- An application can register one or more _Redirect URLs_. During an authorization request, the optional `redirect_uri` parameter must be an **exact match** of one of the registered values — there is no partial or wildcard matching, and this property cannot be dynamically reconfigured during authorization requests for security reasons. When omitted, the first registered _Redirect URL_ is used.
+- A _Redirect URL_ must include a host and use the `https` scheme. For mobile and desktop applications, a custom application-specific scheme is also supported, for example: `my-app://uphold/connect`, as long as it also includes a host and does not collide with a known URI scheme ([IANA-registered](https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml) or otherwise, e.g. `http`, `ftp`).
 - Users can revoke access to your application at any time. Your application **must** be prepared for this and, if necessary, should request authorization from the user again.
 - Likewise, when users change their password, all authorization tokens are expired and the user enters a cool-down period where outbound transactions are not allowed, for security reasons. Your application **must** be prepared for this.
 - Your application may be suspended in an automated fashion in accordance with our [Terms of Service](https://uphold.com/en/legal/membership-agreement).
@@ -33,6 +33,7 @@ cards:read                        | Can view all [cards](#card-object) and their
 cards:write                       | Can create and update any [card](#card-object).
 phones:read                       | Can view all [phone](#phone-object) numbers and their information.
 phones:write                      | Can add new [phone](#phone-object) numbers.
+transactions:commit:otp           | Requires a Two Factor Authentication challenge when committing a [transaction](#transaction-object).
 transactions:deposit              | Can create a deposit [transaction](#transaction-object).
 transactions:read                 | Can view any [transaction](#transaction-object).
 transactions:transfer:application | Can create a [transaction](#transaction-object) between the user and the application.
