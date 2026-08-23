@@ -28,26 +28,32 @@ curl https://api.uphold.com/v0/assets
 [
   {
     "code": "BTC",
+    "features": ["buy", "deposit", "sell", "transfer", "withdraw"],
     "formatting": {
       "decimal": ".",
       "format": "__symbol__ __value__ __code__",
       "grouping": ",",
       "precision": 8
     },
+    "image": "https://cdn.uphold.com/assets/BTC.svg",
     "name": "Bitcoin",
+    "shortName": "BTC",
     "status": "open",
     "symbol": "₿",
     "type": "cryptocurrency"
   },
   {
     "code": "USD",
+    "features": ["buy", "deposit", "sell", "transfer", "withdraw"],
     "formatting": {
       "decimal": ".",
       "format": "__symbol__ __value__ __code__",
       "grouping": ",",
       "precision": 2
     },
+    "image": "https://cdn.uphold.com/assets/USD.svg",
     "name": "US Dollar",
+    "shortName": "USD",
     "status": "open",
     "symbol": "$",
     "type": "fiat"
@@ -97,17 +103,20 @@ Get the list of supported currencies and other financial assets, with details as
 
 Property   | Description
 ---------- | --------------------------------------------------------------------------------------------------------
-code       | Uppercase abbreviation of the asset, e.g. "BTC", USD", "C", or "BRK.B".
+code       | Uppercase abbreviation of the asset, e.g. "BTC", "USD", or "BRK.B".
+features   | List of the operations currently enabled for the asset, e.g. `buy`, `deposit`, `sell`, `transfer`, and `withdraw`.
 formatting | Specification for user-facing display, including number formatting and placement of the code and symbol.
+image      | URL of an image representing the asset, e.g. its logo.
 name       | Full name of the asset, e.g. "Euro", "Basic Attention Token", or "0x".
+shortName  | A shorter or alternative name for the asset, often the same as the code.
 status     | Current trading status. See [below](#asset-status) for more details.
 symbol     | A short and well-known representation of the asset, if one exists — e.g. "$", "₿", or "Kč".
 type       | Type of asset. Possible values are `commodity`, `cryptocurrency`, `equity`, `fiat`, `stablecoin` and `utility_token`.
 
-If the request is unauthenticated, the full list of assets supported by Uphold is returned.
-Authenticated requests, on the other hand, will filter the output,
-returning only the assets available for the current user,
-which can depend on factors such as their country and state of residency.
+If the request is unauthenticated, the list of publicly available assets is returned.
+Authenticated requests, on the other hand, will adjust the output,
+returning the assets available for the current user — which may include additional, non-public assets —
+depending on factors such as their country and state of residency.
 
 The list of assets returned can also be filtered by `type` using a query string parameter,
 as shown in the example to the side.
@@ -132,3 +141,5 @@ The possible values are:
   Most assets remain in this status save for exceptional circumstances, where they can become `halted`.
   Equities, on the other hand, will regularly transition between `open` and either `closed` or `extended`,
   depending on their availability for 24/7 operation.
+* `unavailable` — the asset cannot currently be transacted.
+  This is also the fallback value, used when no status information is known for the asset.

@@ -3,6 +3,9 @@
 At any time, you can query the rates we utilize when exchanging one form of value for another.
 These are expressed in [currency pairs](#currency-pair-object).
 
+Currency pairs are represented in two formats, both in the `pair` field of ticker responses and in the pair-based request paths below.
+Pairs between two of the currencies supported early in Uphold's history (such as BTC, ETH, EUR, or USD) are represented in concatenated form, e.g. `BTCUSD`, while all other pairs are hyphenated, e.g. `SOL-USD`.
+
 ## Get Tickers for Currency
 
 ```bash
@@ -193,6 +196,12 @@ curl https://api.uphold.com/v0/ticker/USD
   "pair": "SGDUSD"
 },
 {
+  "ask": "165.62",
+  "bid": "165.44",
+  "currency": "USD",
+  "pair": "SOL-USD"
+},
+{
   "ask": "3.67302",
   "bid": "3.67302",
   "currency": "AED",
@@ -373,6 +382,12 @@ curl https://api.uphold.com/v0/ticker/USD
   "pair": "USDSGD"
 },
 {
+  "ask": "0.00604",
+  "bid": "0.00603",
+  "currency": "SOL",
+  "pair": "USD-SOL"
+},
+{
   "ask": "7.20046083",
   "bid": "7.18752246",
   "currency": "VOX",
@@ -452,10 +467,18 @@ Lists all exchange rates relative to a given currency.
 
 `GET https://api.uphold.com/v0/ticker/:currency`
 
+`GET https://api.uphold.com/v0/ticker`
+
+If no currency is specified on the endpoint — i.e. the bare `GET /v0/ticker` route — USD is used as the base currency.
+
 ### Response
 
-Returns an associative array containing the current rates Uphold has on record for the currency specified.
-If no currency is specified on the endpoint, USD currency pair will be returned by default.
+Returns a JSON array of objects containing the current rates Uphold has on record for the currency specified.
+
+The results depend on authentication:
+unauthenticated requests return rates for publicly available currencies only,
+while authenticated requests may also include rates for additional currencies available to the current user.
+Requesting a non-public currency without authentication results in a 404 error.
 
 ## Get Tickers for Currency Pair
 
