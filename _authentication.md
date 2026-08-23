@@ -28,11 +28,12 @@ https://wallet.uphold.com/authorize/<client_id>?state=<state_string>&scope=accou
 
 Supported query parameters:
 
-Parameter | Required | Description
---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------
-intention | no       | By default, unauthenticated users will be redirected to the `login` page. This behavior can be changed by sending `signup` as the `intention` value.
-scope     | yes      | Permissions to request from the user. Multiple scopes [should be](https://tools.ietf.org/html/rfc6749#section-3.3) separated by spaces.
-state     | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
+Parameter    | Required | Description
+------------ | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------
+intention    | no       | By default, unauthenticated users will be redirected to the `login` page. This behavior can be changed by sending `signup` as the `intention` value.
+redirect_uri | no       | Must be an **exact match** of one of the application's registered _Redirect URLs_. When omitted, the first registered _Redirect URL_ is used.
+scope        | yes      | Permissions to request from the user. Multiple scopes [should be](https://tools.ietf.org/html/rfc6749#section-3.3) separated by spaces.
+state        | yes      | An unguessable, cryptographically secure random string used to protect against cross-site request forgery attacks.
 
 ### Step 2 - Requesting a Token
 
@@ -51,13 +52,19 @@ curl https://api.uphold.com/oauth2/token \
 ```json
 {
   "access_token": "41ee8b1fa14042e031fe304bb4793b54e6576d19b306dc205136172b80d59d20",
-  "expires_in": null
+  "scope": "accounts:read cards:read",
+  "token_type": "bearer"
 }
 ```
 
 If the user accepts your request, Uphold will redirect the user back to your site with a temporary `code` and the previously provided `state`, _as is_.
 
-This temporary `code` is valid for a duration of **5 minutes** and **can only be used once**.
+This temporary `code` is valid for a duration of **5 minutes** and **can only be used once** — repeated or concurrent attempts to redeem the same code fail with an `invalid_grant` error, in which case the user must go through the authorization flow again.
+
+By default, access tokens issued through this flow do not expire.
+An `expires_in` field, indicating the token's lifetime in seconds, is only present when the application is configured with an access token lifetime.
+Likewise, a `refresh_token` is only issued to applications with the refresh token grant enabled.
+The `scope` field lists the permissions granted to the token — tokens obtained through this flow are always scoped.
 
 Your application is responsible for ensuring that the `state` matches the value previously provided, thus preventing a malicious third-party from forging this request.
 
@@ -80,7 +87,32 @@ grant_type    | yes      | Must be set to *'authorization_code'*.
 
 <aside class="notice">
   <strong>Important Notice</strong>: We recommend encoding the <i>clientId</i> and <i>clientSecret</i> with the HTTP Basic Authentication scheme, instead of authenticating via the request body.
+
+  Note that invalid credentials sent via HTTP Basic Authentication yield a <a href="#errors">401 HTTP error</a>, while invalid credentials sent via the request body yield a <a href="#errors">400 HTTP error</a>.
 </aside>
+
+### Error Responses
+
+> Example of an error response for an invalid authorization code:
+
+```json
+{
+  "error": "invalid_grant",
+  "error_description": "Authorization code is invalid"
+}
+```
+
+Failed requests to the token endpoint return an [RFC 6749](https://tools.ietf.org/html/rfc6749#section-5.2)-style error response, where `error` is a machine-readable code and `error_description` a human-readable explanation.
+
+The most common error codes are:
+
+Error               | HTTP status                                    | Typical cause
+------------------- | ---------------------------------------------- | --------------------------------------------------------------
+invalid_request     | 400                                            | A required parameter is missing or malformed.
+invalid_client      | 400 (401 when using HTTP Basic Authentication) | Unknown *clientId* or wrong *clientSecret*.
+invalid_grant       | 400                                            | The authorization code is invalid, expired or already used.
+invalid_scope       | 400                                            | The requested scope is not available to the application.
+unauthorized_client | 400                                            | The grant type is not enabled for the application.
 
 ### Step 3 - Using the Access Token
 
@@ -160,7 +192,8 @@ Once you have obtained a client credentials token you may call any protected API
 Ideal for scripts, automated tools and command-line programs which remain under your control.
 
 For **personal usage only** you may choose to use a PAT.
-This token establishes who you are, provides full access to your user account and bypasses Two Factor Authentication, if enabled.
+This token establishes who you are, provides full access to your user account and does not expire until revoked.
+Authenticating with a PAT does not require a Two Factor Authentication challenge; however, individual operations that require a one-time password — such as creating another PAT or changing your password — will still request one (see [Two-Factor Authentication](#two-factor-authentication)).
 For this reason it should be treated just like your email/password combination, i.e. remain secret and never shared with third parties.
 PATs can be issued and revoked individually.
 
@@ -199,9 +232,9 @@ To list Personal Access Tokens you may use the following endpoint:
 ```bash
 curl https://api.uphold.com/v0/me/tokens \
   -X POST \
+  -H "Authorization: Bearer <token>" \
   -H "Content-Type: application/json" \
   -H "OTP-Token: <OTP-Token>" \
-  -u <email>:<password> \
   -d '{ "description": "My command line script" }'
 ```
 
@@ -215,18 +248,23 @@ curl https://api.uphold.com/v0/me/tokens \
 }
 ```
 
-To create a Personal Access Token you may use the following endpoint:
+To create a Personal Access Token you may use the following endpoint, authenticating with an existing access token that is not limited to specific [permissions](#permissions), such as another PAT:
 
 `POST https://api.uphold.com/v0/me/tokens`
 
 Supported parameters:
 
 Parameter   | Required | Description
------------ | -------- | -----------------------------------------
-description | yes      | A human-readable description of this PAT.
+----------- | -------- | ------------------------------------------------------------
+description | yes      | A human-readable description of this PAT (1 to 255 characters).
 
 <aside class="notice">
-  Requires the <code>OTP-Token</code> header with a valid TOTP token.
+  Requires the <code>OTP-Token</code> header with a valid one-time password, if Two Factor Authentication is enabled (see <a href="#two-factor-authentication">Two-Factor Authentication</a>).
+</aside>
+
+<aside class="notice">
+  <strong>Important Notice</strong>: The <code>accessToken</code> value is only returned once, at creation time — store it securely.
+  Business accounts cannot create Personal Access Tokens.
 </aside>
 
 ### Revoking a PAT
@@ -246,8 +284,10 @@ To revoke a Personal Access Token you may use the following endpoint:
 Supported parameters:
 
 Parameter | Required | Description
---------- | -------- | ---------------------------
-token     | yes      | The PAT you wish to revoke.
+--------- | -------- | -----------------------------------------------------------------------------------
+token     | yes      | The `accessToken` value of the PAT you wish to revoke (not its `id`).
+
+Returns an HTTP status code of `204` and no body in case of success, or a [404 HTTP error](#errors) if the token does not exist.
 
 ### Using a PAT
 
@@ -258,21 +298,50 @@ curl https://api.uphold.com/v0/me \
   -H "Authorization: Bearer <token>"
 ```
 
+> Alternatively, a PAT can be sent via HTTP Basic Authentication, using the token as the username and `x-oauth-basic` as the password:
+
+```bash
+curl https://api.uphold.com/v0/me \
+  -u <token>:x-oauth-basic
+```
+
 A PAT may be used for authenticating a request via the OAuth scheme.
 
 The `<token>` should be set as the `accessToken` received during creation.
 
 ## Basic Authentication
 
-> Simple request using email and password:
+> Example of listing your authentication methods using email and password:
 
 ```bash
-curl https://api.uphold.com/v0/me \
-  -H 'OTP-Token: <OTP-Token>' \
+curl https://api.uphold.com/v0/me/authentication_methods \
   -u <email>:<password>
 ```
 
-You can use Basic Authentication by providing your email and password combination.
+Authenticating with your email and password combination is restricted to a small set of endpoints used to manage and bootstrap Two Factor Authentication:
 
-If OTP (One-Time Password, also known as Two-Factor Authentication) is required, then you will get a [401 HTTP error](#errors), along with the HTTP header `OTP-Token: Required`.
-In which case, execute the command above again, this time passing your OTP verification code header, like so: `OTP-Token: <OTP-Token>`.
+- `GET /v0/me/authentication_methods`
+- `POST /v0/me/authentication_methods/:id/request_challenge`
+- `GET /v0/me/phones`
+
+All other endpoints require an OAuth access token or a [Personal Access Token](#personal-access-tokens-pat).
+
+## Two-Factor Authentication
+
+> Example of a response requiring a one-time password:
+
+```
+HTTP/1.1 401 Unauthorized
+OTP-Token: required
+```
+
+When an operation requires a one-time password (OTP, also known as Two-Factor Authentication), the API responds with a [401 HTTP error](#errors) and the response header `OTP-Token: required`.
+
+In that case, repeat the request with the following headers:
+
+Header        | Required | Description
+------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------
+OTP-Token     | yes      | The one-time password (verification code).
+OTP-Method-Id | no       | The `id` of the [authentication method](#authentication-method-object) to verify against. Only taken into account when the user has no default authentication method; otherwise the default method is always used.
+
+For SMS-based authentication methods, a verification code must first be requested through the [request challenge endpoint](#request-authentication-method-challenge).

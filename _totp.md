@@ -26,7 +26,7 @@ curl https://api.uphold.com/v0/me/authentication_methods \
   "default": true,
   "id": "be95ed5f-d048-4348-9572-411df23bedc9",
   "label": "+XXXXXXXXXX57",
-  "type": "authy",
+  "type": "sms",
   "verified": true,
   "verifiedAt": "2019-01-11T14:20:04.055Z"
 }]
@@ -129,6 +129,32 @@ curl https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333
 </aside>
 <aside class="notice">
   You cannot delete all of a user's authentication methods as trying to delete the last verified method of a user will return an error.
+</aside>
+
+### Response
+
+Returns an HTTP status code of <code>204</code> and no JSON body, in case of success.
+
+## Request Authentication Method Challenge
+
+```bash
+curl https://api.uphold.com/v0/me/authentication_methods/be95ed5f-d048-4348-9572-411df23bedc9/request_challenge \
+  -X POST \
+  -u <email>:<password>
+```
+
+> The above command does not return a JSON response.
+
+Requests the delivery of a verification code through the given authentication method. This is only supported for `sms` authentication methods — other method types return a [422 HTTP error](#errors).
+
+This endpoint can be authenticated with basic authentication (email and password) or with an access token that is not limited to specific [permissions](#permissions), such as a [Personal Access Token](#personal-access-tokens-pat), so that a verification code can be obtained before completing a two-factor authentication challenge.
+
+### Request
+
+`POST https://api.uphold.com/v0/me/authentication_methods/:id/request_challenge`
+
+<aside class="notice">
+  This endpoint is strictly <a href="#rate-limits">rate limited</a>.
 </aside>
 
 ### Response
