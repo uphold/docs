@@ -5,13 +5,17 @@ Uphold allows users to deposit value into a specific card from an external sourc
 Whenever a deposit is made into an Uphold card, it will be automatically converted into the value determined by the card's denomination.
 Likewise, when a withdrawal is made, the currency will be converted to the currency of the destination account, thus minimizing fees and currency conversions.
 
-We support the following account types:
+Deposit and withdrawal support for the most common account types is as follows:
 
 Account type | Deposits supported? | Withdrawals supported?
 ------------ | ------------------- | ----------------------
 ach          | Yes                 | Yes
-card         | Yes                 | No
+card         | Yes                 | No \*
 sepa         | Yes                 | Yes
+
+\* Push-to-card withdrawals via OCT settlement are available for eligible debit cards — see the [Approved cards](#approved-cards) section below.
+
+Accounts of other types can also be returned by the API — namely `fps` bank accounts, `swift` and `wire` bank accounts, and `exchange` accounts.
 
 Please refer to our FAQ for estimated [ACH transaction times](https://support.uphold.com/hc/en-us/articles/206762103-How-to-add-and-withdraw-funds-via-bank-transfer-U-S-), [SEPA transaction times](https://support.uphold.com/hc/en-us/articles/205803186-How-to-add-and-withdraw-funds-via-bank-transfer-Europe-), [fees and limits](https://support.uphold.com/hc/en-us/articles/360038404532).
 
@@ -27,7 +31,7 @@ curl https://api.uphold.com/v0/me/accounts \
 > Example of filtering the list to show only accounts of the `sepa` or `card` types, and in the `ok` status:
 
 ```bash
-curl 'https://api.uphold.com/v0/me/accounts?q=type:sepa,card%20status:ok'
+curl 'https://api.uphold.com/v0/me/accounts?q=type:sepa,card%20status:ok' \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -35,10 +39,13 @@ curl 'https://api.uphold.com/v0/me/accounts?q=type:sepa,card%20status:ok'
 
 ```json
 [{
+  "bic": "CGDIPTPL",
   "billing": {},
   "currency": "EUR",
+  "iban": "PT69003500001234567890112",
   "id": "18843b6d-5a43-480f-8e2b-73b27d726bf0",
   "label": "Checking Account",
+  "provider": "uphold",
   "status": "ok",
   "type": "sepa"
 },
@@ -47,9 +54,12 @@ curl 'https://api.uphold.com/v0/me/accounts?q=type:sepa,card%20status:ok'
     "name": "Makenna Ortiz"
   },
   "brand": "visa",
+  "cardNumberMasked": "1519",
   "currency": "USD",
+  "expiryDate": "2027-12-31T23:59:59.999Z",
   "id": "0874745c-f0bf-4973-a3d9-9832aeaae087",
   "label": "Savings Account",
+  "provider": "credit-card-gateway",
   "status": "ok",
   "type": "card"
 }]
@@ -65,15 +75,21 @@ Retrieves a list of accounts for the current user.
   Requires the <code>accounts:read</code> scope for Uphold Connect applications.
 </aside>
 
-You can filter the list of returned accounts using query string parameters.
+You can filter the list of returned accounts using the `q` query string parameter.
 Supported filters are `status:` and `type:`, with either a single value or a comma-separated list.
-For a list of valid values for these parameters, refer to the [Account Object](#account-object) documentation.
+Valid values for `status:` are `expired`, `failed`, `ok` and `pending`.
+By default, only accounts with the `ok` status are returned.
+Valid values for `type:` are `bank`, `card` and `exchange`, as well as the deprecated values `ach`, `fps` and `sepa`.
+Note that `swift` and `wire` may appear as account types in responses, but are not valid values for the `type:` filter.
 Multiple filters can be used together, separated with a space.
 See the code to the right for an example.
 
 ### Response
 
 Returns an array of the current user's accounts.
+
+All accounts include the `provider` property.
+Depending on the account type, additional properties are returned — e.g. `bic` and `iban` for `sepa` accounts, the masked account and routing numbers (`accountNumberMasked` and `routingNumberMasked`) for `ach` accounts, and `brand`, `cardNumberMasked` and `expiryDate` for `card` accounts.
 
 ## Get Account Details
 
@@ -86,10 +102,13 @@ curl https://api.uphold.com/v0/me/accounts/18843b6d-5a43-480f-8e2b-73b27d726bf0 
 
 ```json
 {
+  "bic": "CGDIPTPL",
   "billing": {},
   "currency": "EUR",
+  "iban": "PT69003500001234567890112",
   "id": "18843b6d-5a43-480f-8e2b-73b27d726bf0",
   "label": "Checking Account",
+  "provider": "uphold",
   "status": "ok",
   "type": "sepa"
 }
@@ -142,7 +161,7 @@ Number           | Brand      | Type   | Country | OCT settlement |
 4658584090000001 | visa       | debit  | GB      | N/A            |
 4659105569051157 | visa       | debit  | GB      | instant        |
 4659465888705671 | visa       | debit  | GB      | N/A            |
-4757337282365488 | visa       | debit  | DE      | N/A         |  
+4757337282365488 | visa       | debit  | DE      | N/A            |
 4921817844445119 | visa       | debit  | GB      | instant        |
 5121073611487018 | mastercard | credit | US      | N/A            |
 5259410220714099 | mastercard | credit | US      | N/A            |
@@ -167,10 +186,10 @@ Number           | Brand      | Type   | Country | 3DS flow            | Result 
 5518832400606463 | mastercard | debit  | US      | 3DS2 challenge flow | authentication attempted                  |
 5291144083573579 | mastercard | credit | US      | 3DS2 frictionless   | error message during scheme communication |
 5121073611487018 | mastercard | credit | US      | 3DS2 frictionless   | no associated 3DS method url              |
-5385308360135181 | mastercard | credit | US      | 3DS2 challenge flow | authentication successfull                |
+5385308360135181 | mastercard | credit | US      | 3DS2 challenge flow | authentication successful                 |
 5259410220714099 | mastercard | credit | US      | 3DS2 challenge flow | no associated 3DS method url              |
-4242424242424242 | visa       | credit | GB      | 3DS2 challenge flow | authentication successfull                |
-4485040371536584 | visa       | credit | US      | 3DS2 frictionless   | authentication successfull                |
+4242424242424242 | visa       | credit | GB      | 3DS2 challenge flow | authentication successful                 |
+4485040371536584 | visa       | credit | US      | 3DS2 frictionless   | authentication successful                 |
 4484070000035519 | visa       | credit | GB      | 3DS2 frictionless   | card not enrolled                         |
 4556574722325580 | visa       | credit | PT      | 3DS2 frictionless   | authentication attempted                  |
 4447336775378848 | visa       | debit  | US      | 3DS2 challenge flow | authentication could not be performed     |

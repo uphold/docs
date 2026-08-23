@@ -18,14 +18,17 @@ curl "https://api.uphold.com/v0/me" \
     "zipCode": "53059"
   },
   "balances": {
+    "available": "90.00",
     "currencies": {
       "BTC": {
         "amount": "90.00",
+        "available": "0.1",
         "balance": "0.1",
         "currency": "USD",
         "rate": "900.00000"
       }
     },
+    "pending": "0.00",
     "total": "90.00"
   },
   "birthdate": "2014-08-27",
@@ -35,6 +38,9 @@ curl "https://api.uphold.com/v0/me" \
   ],
   "email": "luke.skywalker@uphold.com",
   "firstName": "Luke",
+  "fullName": "Luke Skywalker",
+  "id": "d602e7bb-b938-44e0-bc74-b35ad3e21a55",
+  "identityCountry": "US",
   "lastName": "Skywalker",
   "memberAt": "2015-07-10T15:36:20.288Z",
   "name": "Luke Skywalker",
@@ -73,6 +79,7 @@ curl "https://api.uphold.com/v0/me" \
   },
   "state": "WA",
   "status": "ok",
+  "type": "individual",
   "verifications": {}
 }
 ```
@@ -90,14 +97,10 @@ curl "https://api.uphold.com/v0/me" \
 Returns the data associated with the current user.
 See the [user object](#user-object) documentation for details about the format of the response.
 
-<aside class="notice">
-  Be advised that this method can potentially return a large amount of data.
-</aside>
-
 ### Cards
 
-The `cards` property will be removed from the response.
-To access the cards of a given user please refer to the appropriate specific [endpoint](#list-cards).
+The `cards` property has been removed from the response.
+To access the cards of a given user please refer to the [List Cards](#list-cards) endpoint.
 
 ## Get User Phone Numbers
 
@@ -110,12 +113,22 @@ curl "https://api.uphold.com/v0/me/phones" \
 
 ```json
 [{
+  "country": "US",
+  "e164": "+15558675304",
+  "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c"
+}]
+```
+
+> Requests authenticated with email and password (or a password reset token) receive masked numbers instead:
+
+```json
+[{
   "e164Masked": "+XXXXXXXXX04",
   "id": "1d78aeb5-43ac-4ee8-8d28-1291b5d8355c",
   "internationalMasked": "+X XXX-XXX-XX04",
   "nationalMasked": "(XXX) XXX-XX04",
-  "primary": "true",
-  "verified": "true"
+  "primary": true,
+  "verified": true
 }]
 ```
 
@@ -123,6 +136,13 @@ curl "https://api.uphold.com/v0/me/phones" \
 
 `GET https://api.uphold.com/v0/me/phones`
 
+<aside class="notice">
+  Requires the <code>phones:read</code> scope for Uphold Connect applications.
+</aside>
+
 ### Response
 
 Returns an array of all the phone numbers associated with the current user.
+
+When the request is authenticated with an OAuth token, each item contains the `country`, `e164` and `id` properties.
+Requests authenticated with email and password (or a password reset token) receive masked numbers (`e164Masked`, `internationalMasked` and `nationalMasked`) along with the `primary` and `verified` flags instead.
