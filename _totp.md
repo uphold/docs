@@ -1,6 +1,6 @@
 # One-Time Password
 
-Uphold provides a TOTP (Time-Based One-Time Password) mechanism to secure user accounts.
+Uphold supports one-time passwords through authenticator apps (TOTP — Time-Based One-Time Password) and SMS to secure user accounts.
 Adopting and adhering to this mechanism is recommended for safety reasons.
 The following section documents how the Authentication Methods API works to provide support for this security mechanism.
 
@@ -8,7 +8,7 @@ The following section documents how the Authentication Methods API works to prov
 
 ```bash
 curl https://api.uphold.com/v0/me/authentication_methods \
-  -u <email>:<password>
+  -H "Authorization: Bearer <token>"
 ```
 
 > The above command returns the following JSON:
@@ -33,6 +33,8 @@ curl https://api.uphold.com/v0/me/authentication_methods \
 ```
 
 Retrieves a list of authentication methods for the current user.
+
+Requests authenticated with email and password (see [Basic Authentication](#basic-authentication)) receive a reduced set of fields — `default`, `id`, `label`, `type` and `verified` — and only include verified authentication methods.
 
 ### Request
 
@@ -67,10 +69,17 @@ curl https://api.uphold.com/v0/me/authentication_methods/totp \
 
 ### Request
 
-`POST https://api.uphold.com/v0/me/authentication_methods/totp`
+`POST https://api.uphold.com/v0/me/authentication_methods/:type`
+
+Where `:type` is one of:
+
+Type | Description
+---- | ------------------------------------------------------------------------------
+sms  | Enrolls the user's primary phone number to receive verification codes via SMS.
+totp | Registers an authenticator app (Time-Based One-Time Password).
 
 <aside class="notice">
-  Requires the <code>OTP-Token</code> header with a valid TOTP token.
+  Requires the <code>OTP-Token</code> header with a valid one-time password, if Two Factor Authentication is already enabled (see <a href="#two-factor-authentication">Two-Factor Authentication</a>).
 </aside>
 
 ### Response
@@ -122,13 +131,13 @@ curl https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333
 
 ### Request
 
-`DELETE https://api.uphold.com/v0/me/authentication_methods/3f8f8264-2f5e-4b2b-8333-473715ab039a`
+`DELETE https://api.uphold.com/v0/me/authentication_methods/:id`
 
 <aside class="notice">
-  Requires the <code>OTP-Token</code> header to be sent with a valid TOTP token.
+  Requires the <code>OTP-Token</code> header with a valid one-time password only when the user has no default authentication method.
 </aside>
 <aside class="notice">
-  You cannot delete all of a user's authentication methods as trying to delete the last verified method of a user will return an error.
+  The default authentication method cannot be deleted — attempting to do so returns a <a href="#errors">403 HTTP error</a>.
 </aside>
 
 ### Response
