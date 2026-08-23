@@ -59,7 +59,7 @@ Retrieves the details of the pending travel rule request associated with a depos
 `GET https://api.uphold.com/v0/me/travel-rule/transactions/:transactionId/request`
 
 <aside class="notice">
-  Requires the <code>transactions:read</code> scope for Uphold Connect applications. Returns a <a href="#errors">401 HTTP error</a> if the token is missing or invalid, or a <a href="#errors">403 HTTP error</a> if the required scope is not present.
+  Requires the <code>transactions:read</code> scope for Uphold Connect applications. Returns a <a href="#errors">401 HTTP error</a> if the token is missing or invalid, or a <a href="#errors">400 HTTP error</a> with code <code>invalid_scope</code> if the required scope is not present.
 </aside>
 <aside class="notice">
   Returns a <a href="#errors">404 HTTP error</a> if no pending travel rule request is associated with the given transaction.
@@ -127,7 +127,7 @@ Retrieves the details of a pending travel rule request for a withdrawal, using t
 `GET https://api.uphold.com/v0/me/travel-rule/requests/:requestForInformationId`
 
 <aside class="notice">
-  Requires the <code>transactions:read</code> scope for Uphold Connect applications. Returns a <a href="#errors">401 HTTP error</a> if the token is missing or invalid, or a <a href="#errors">403 HTTP error</a> if the required scope is not present.
+  Requires the <code>transactions:read</code> scope for Uphold Connect applications. Returns a <a href="#errors">401 HTTP error</a> if the token is missing or invalid, or a <a href="#errors">400 HTTP error</a> with code <code>invalid_scope</code> if the required scope is not present.
 </aside>
 <aside class="notice">
   The <code>:requestForInformationId</code> must be owned by the authenticated user. A <a href="#errors">404 HTTP error</a> is returned otherwise.
@@ -163,7 +163,7 @@ For withdrawals, this must be submitted before [committing the quote](#step-2-co
 `POST https://api.uphold.com/v0/me/travel-rule/requests/:requestForInformationId`
 
 <aside class="notice">
-  Requires the <code>transactions:withdraw</code> scope for Uphold Connect applications. Returns a <a href="#errors">401 HTTP error</a> if the token is missing or invalid, or a <a href="#errors">403 HTTP error</a> if the required scope is not present.
+  Requires the <code>transactions:withdraw</code> scope for Uphold Connect applications. Returns a <a href="#errors">401 HTTP error</a> if the token is missing or invalid, or a <a href="#errors">400 HTTP error</a> with code <code>invalid_scope</code> if the required scope is not present.
 </aside>
 <aside class="notice">
   The <code>:requestForInformationId</code> must be owned by the authenticated user. A <a href="#errors">404 HTTP error</a> is returned otherwise.
