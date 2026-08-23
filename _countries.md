@@ -142,7 +142,7 @@ Returns an array of payment objects containing two fields:
 Property   | Description
 ---------- | --------------------------------------------------------------------------------------------------------
 currency   | The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the currency supported for this payment method in this country.
-method     | The type of payment method. One of "[ach](https://en.wikipedia.org/wiki/ACH_Network)", "[card](https://en.wikipedia.org/wiki/Credit_card)", or "[sepa](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area)".
+method     | The type of payment method, such as "[ach](https://en.wikipedia.org/wiki/ACH_Network)", "[card](https://en.wikipedia.org/wiki/Credit_card)", or "[sepa](https://en.wikipedia.org/wiki/Single_Euro_Payments_Area)". Alternative payment methods can also appear, such as "apple-pay", "google-pay", "interac", "paypal", "pix", "spei", or "venmo".
 
 <aside class="notice">
   Each method+currency pair is represented as a separate entry in this list. For example, if both <code>USD</code> and <code>EUR</code> are supported for the <code>card</code> method, the list will contain two entries, one with the <code>USD</code>-<code>card</code> pair, and one with the <code>EUR</code>-<code>card</code> pair.
@@ -184,4 +184,5 @@ curl https://api.uphold.com/v0/countries/BA/subdivisions
 ```
 
 Returns an array of subdivision objects, containing the official name and the corresponding [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) code.
+Subdivisions that are blocked due to [Uphold's regulatory compliance rules](https://support.uphold.com/hc/en-us/articles/202022209-Supported-Geographies) are excluded from the response.
 If the country contains no subdivisions, an empty array is returned.
