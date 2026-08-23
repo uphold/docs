@@ -1,7 +1,7 @@
 # Cards
 
 Uphold uses the concept of a "card" as a store of value.
-Each card is denominated by a currency or store of value, and every card is automatically provisioned one or more addresses to which value can be sent.
+Each card is denominated by a currency or store of value, and addresses to which value can be sent can be created on demand for a card via the [Create Card Address](#create-card-address) endpoint.
 (Note that there can be multiple cards for the same currency.)
 
 Whenever value flows into a card, Uphold automatically converts that value into the value determined by the card's denomination.
@@ -20,7 +20,7 @@ curl https://api.uphold.com/v0/me/cards \
 > Example of filtering the list to show only starred cards denominated in BTC or EUR:
 
 ```bash
-curl 'https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR%20settings.starred:true'
+curl 'https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR%20settings.starred:true' \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -43,7 +43,7 @@ curl 'https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR%20settings.starred:t
     "currency": "USD"
   }],
   "settings": {
-    "position": 1,
+    "position": 0,
     "protected": false,
     "starred": true
   }
@@ -64,7 +64,7 @@ curl 'https://api.uphold.com/v0/me/cards?q=currency:BTC,EUR%20settings.starred:t
     "currency": "USD"
   }],
   "settings": {
-    "position": 2,
+    "position": 0,
     "protected": false,
     "starred": true
   }
@@ -81,10 +81,18 @@ Retrieves a list of cards for the current user.
   Requires the <code>cards:read</code> scope for Uphold Connect applications.
 </aside>
 
-You can filter the list of returned cards using query string parameters.
-Supported filters are `currency:` (which accepts a comma-separated list of currencies) and `settings.starred:` (which accepts `true` or `false`).
+You can filter the list of returned cards using the `q` query string parameter.
+Supported filters are `currency:` (which accepts a comma-separated list of currencies), `id:` (which accepts a comma-separated list of card IDs) and `settings.starred:` (which accepts `true` or `false`).
 Multiple filters can be used together, separated with a space.
 See the code to the right for an example.
+
+The list can also be sorted using the following query string parameters:
+
+Parameter          | Description
+------------------ | --------------------------------------------------------------------------------------------------------------------------------------
+direction          | The sort direction. Possible values are `asc` and `desc`. Defaults to `asc`.
+normalizedCurrency | The currency in which the `normalized` amounts are expressed. Defaults to the user's settings currency.
+sort               | The field to sort the list by. Possible values are `createdAt`, `currency`, `normalized.available` and `normalized.balance`. Defaults to `currency`.
 
 This endpoint supports [Pagination](#pagination).
 
@@ -118,7 +126,7 @@ curl https://api.uphold.com/v0/me/cards/bc9b3911-4bc1-4c6d-ac05-0ae87dcfc9b3 \
     "currency": "USD"
   }],
   "settings": {
-    "position": 2,
+    "position": 0,
     "protected": false,
     "starred": true
   }
@@ -135,7 +143,7 @@ Retrieves the details about a specific card.
   Requires the <code>cards:read</code> scope for Uphold Connect applications.
 </aside>
 <aside class="notice">
-  <code>:id</code> can either be the card ID or its bitcoin address and it must be owned by the user making the call.
+  <code>:id</code> can either be the card ID or any of the card's crypto addresses (on any network), and it must be owned by the user making the call.
 </aside>
 
 ### Response
@@ -160,10 +168,12 @@ curl https://api.uphold.com/v0/me/cards \
   Requires the <code>cards:write</code> scope for Uphold Connect applications.
 </aside>
 
-Parameter | Description
---------- | -------------------------------------------------------------------------------------------------------------
-currency  | The [currency](#currencies) to denominate the value stored by the card, represented by its code (e.g. "USD").
-label     | The display name of the card. Max length: 140 characters.
+Parameter | Required | Description
+--------- | -------- | -------------------------------------------------------------------------------------------------------------
+currency  | yes      | The [currency](#currencies) to denominate the value stored by the card, represented by its code (e.g. "USD").
+label     | no       | The display name of the card. Max length: 140 characters. If omitted, a default label is derived from the asset's name (e.g. "Bitcoin account").
+settings  | no       | This property contains the following keys:
+|         |          | `starred`: Indicates whether the card is starred or not. Defaults to `false`.
 
 ### Response
 
@@ -192,7 +202,11 @@ Parameter | Description
 label     | The display name of the card. Max length: 140 characters.
 settings  | This property contains the following keys:
 |         | `starred`: Indicates whether the card is starred or not.
-|         | <code class="notice">DEPRECATED</code> `position`: The card's current position.
+
+<aside class="notice">
+  The deprecated <code>settings.position</code> key is ignored if sent.
+  Cards no longer have a position — the field is always returned as <code>0</code> for backward compatibility.
+</aside>
 
 ### Response
 
@@ -220,7 +234,7 @@ curl https://api.uphold.com/v0/me/cards/024e51fc-5513-4d82-882c-9b22024280cc/add
 Generate an address for a card.
 
 <aside class="notice">
-  For the network <code>xrp-ledger</code> the response also returns the <code>tag</code> property, which is the corresponding <code>Destination Tag</code>.
+  For tag-based networks — <code>stellar</code>, <code>ton</code> and <code>xrp-ledger</code> — the response also returns the <code>tag</code> property (e.g. the <code>Destination Tag</code> on the XRP Ledger), which must be included when sending funds to the address.
 </aside>
 
 > For an XRP Ledger address, the following JSON is returned:
@@ -240,10 +254,15 @@ Generate an address for a card.
 <aside class="notice">
   Requires the <code>cards:write</code> scope for Uphold Connect applications.
 </aside>
+<aside class="notice">
+  Requires the user to have the deposits capability, otherwise a <code>403</code> error is returned.
+  The card's currency must support buying, otherwise a <code>400</code> error is returned.
+  Only one address can be created per network on each card.
+</aside>
 
 Parameter | Description
 --------- | -----------------------------------------------------------------------------------------------------------------------------------------------------
-network   | The address network. Possible values are `bitcoin`, `bitcoin-cash`, `bitcoin-gold`, `dash`, `ethereum`, `interledger`, `litecoin` and `xrp-ledger`.
+network   | The address network. Possible values are the networks of the cryptocurrencies available to the user — for example `bitcoin`, `ethereum`, `litecoin`, `solana`, `ton`, `tron` and `xrp-ledger`, among many others.
 
 ### Response
 
@@ -262,8 +281,11 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 ```json
 [{
   "formats": [{
-    "format": "pubkeyhash",
-    "value": "mkZuBgFa4gAjJ2UckDA3Pms68rVBavAneF"
+    "format": "wrappedSegWit",
+    "value": "3QJmV3qfvL9SuYo34YihAf3sRCW3qSinyC"
+  }, {
+    "format": "nativeSegWit",
+    "value": "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq"
   }],
   "type": "bitcoin"
 },
@@ -287,7 +309,7 @@ curl https://api.uphold.com/v0/me/cards/37e002a7-8508-4268-a18c-7335a6ddf24b/add
 Retrieves a list of addresses for a specific card.
 
 <aside class="notice">
-  The property <code>tag</code> is defined only to allow the XRP Ledger network to identify the card's <code>Destination Tag</code>.
+  The <code>tag</code> property is returned for tag-based networks — <code>stellar</code>, <code>ton</code> and <code>xrp-ledger</code> — and identifies the card on the shared address (e.g. the <code>Destination Tag</code> on the XRP Ledger).
 </aside>
 
 ### Request
