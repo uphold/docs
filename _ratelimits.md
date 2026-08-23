@@ -15,15 +15,18 @@ but multiple IPs can only make 5 requests per 60 minute time period per user acc
 
 The following table indicates the current rate limits:
 
-Endpoint                                  | Requests (per IP) / window | Requests (per user) / window
------------------------------------------ | -------------------------: | ---------------------------:
-*Global*                                  |         250 / 1-min window |                          N/A
-POST /me/confirm                          |         10 / 10-min window |                          N/A
-POST /me/reports                          |         10 / 10-min window |           10 / 10-min window
-POST /oauth2/token                        |          50 / 5-min window |            50 / 5-min window
-POST /password/change                     |          5 / 60-min window |            5 / 60-min window
-POST /password/forgot                     |          5 / 60-min window |            5 / 60-min window
-POST /password/reset                      |          5 / 60-min window |                          N/A
+Endpoint                                                | Requests (per IP) / window | Requests (per user) / window
+------------------------------------------------------- | -------------------------: | ---------------------------:
+*Global*                                                |         500 / 5-min window |                          N/A
+POST /me/authentication_methods/:id/request_challenge   |                        N/A |            1 / 45-sec window
+POST /me/cards/:card/transactions *(email destination)* |                        N/A |            5 / 60-min window
+POST /me/confirm                                        |         10 / 10-min window |                          N/A
+POST /me/reports/:type                                  |         10 / 10-min window |           10 / 10-min window
+POST /oauth2/token                                      |          50 / 5-min window |            50 / 5-min window
+POST /password/change                                   |          5 / 60-min window |            5 / 60-min window
+POST /password/forgot                                   |          5 / 60-min window |            5 / 60-min window
+
+For unauthenticated endpoints such as `POST /oauth2/token` and `POST /password/forgot`, the per-user dimension is keyed on the username or email address provided in the request.
 
 <aside class="notice">
   <strong>Important Notice</strong>: When performing a considerable volume of transactions, please refer to the <a href="https://support.uphold.com/hc/en-us/articles/360038404532">Transaction and Trading Limits FAQ</a> to know more about Trading Power.
@@ -46,10 +49,11 @@ When the API limit is reached, a [429 HTTP error](#errors) is returned with the 
 
 ```
 HTTP/1.1 429 Too Many Requests
-
 Retry-After: 85
 ```
 
-In this this example, the request could be retried in 1 minute and 25 seconds.
+In this example, the request could be retried in 1 minute and 25 seconds.
+
+The response body carries the error code `too_many_requests`.
 
 If you think you have a legitimate use-case for increased rate limits, please [contact us](/#support).
